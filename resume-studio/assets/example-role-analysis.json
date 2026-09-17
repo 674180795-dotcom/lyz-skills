@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "target": {
+    "role": "AI 产品经理",
+    "company": "合成测试公司",
+    "source": "user_jd",
+    "retrieved_at": "2026-09-17"
+  },
+  "requirements": [
+    {
+      "id": "req-product",
+      "text": "完成 AI 产品需求分析与原型设计",
+      "priority": "must",
+      "status": "supported",
+      "evidence_ids": ["work-support-copilot"],
+      "resume_location": "工作经历第 1 条",
+      "notes": "强调问题定义、引用可追溯和试用反馈"
+    },
+    {
+      "id": "req-data",
+      "text": "具备数据分析能力",
+      "priority": "preferred",
+      "status": "supported",
+      "evidence_ids": ["project-feedback"],
+      "resume_location": "项目经历第 1 条",
+      "notes": "保留 800 条反馈的真实范围"
+    }
+  ],
+  "positioning": "能把真实业务问题转成可验证 AI 产品原型的早期职业候选人",
+  "selected_evidence_ids": ["work-support-copilot", "project-feedback"],
+  "gaps": ["没有公开的真实上线指标"],
+  "excluded_items": ["与目标岗位无关的校园活动执行细节"]
+}

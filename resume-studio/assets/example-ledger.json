@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "target": {
+    "role": "AI 产品经理",
+    "company": "",
+    "market": "中国大陆",
+    "language": "zh-CN",
+    "jd_available": true
+  },
+  "basics": {
+    "name": "周宁",
+    "email": "zhou.ning@example.com",
+    "phone": "138-0000-1357",
+    "location": "上海",
+    "links": ["https://example.com/portfolio"]
+  },
+  "education": [
+    {"school": "东海大学（合成测试）", "degree": "本科", "major": "信息管理", "end": "2025.06"}
+  ],
+  "evidence_items": [
+    {
+      "id": "work-support-copilot",
+      "kind": "work",
+      "name": "客服知识助手",
+      "organization": "澄明科技（合成测试）",
+      "role": "产品运营实习生",
+      "start": "2024.07",
+      "end": "2024.12",
+      "context": "客服答案分散，新人查找慢",
+      "ownership": "独立整理高频问题，并与 2 名工程师共同定义检索与引用流程",
+      "actions": ["访谈 6 名客服并归纳问题分类", "设计可追溯答案卡片并组织两轮试用"],
+      "methods": ["用户访谈", "原型设计", "RAG 结果抽检"],
+      "result": "完成内部试用，客服主管确认可用于新人培训",
+      "proof": "用户确认并有试用纪要",
+      "evidence_type": "user_confirmed",
+      "skills": ["需求分析", "原型设计", "跨团队协作"],
+      "status": "confirmed",
+      "confidence": "high",
+      "uncertainties": []
+    },
+    {
+      "id": "project-feedback",
+      "kind": "project",
+      "name": "用户反馈归因看板",
+      "organization": "个人项目",
+      "role": "产品设计与实现",
+      "start": "2025.02",
+      "end": "2025.04",
+      "context": "产品反馈缺少统一分类和趋势观察",
+      "ownership": "独立完成问题定义、数据清洗、看板原型与演示",
+      "actions": ["整理 800 条脱敏反馈", "建立分类规则并实现交互看板"],
+      "methods": ["Python", "数据分析", "原型设计"],
+      "result": "完成可演示原型和 12 页分析报告",
+      "proof": "本地代码仓库与演示文件",
+      "evidence_type": "repository_verified",
+      "skills": ["Python", "数据分析", "产品分析"],
+      "status": "confirmed",
+      "confidence": "high",
+      "uncertainties": []
+    }
+  ],
+  "skills": [
+    {"name": "需求分析", "evidence_ids": ["work-support-copilot"], "status": "confirmed"},
+    {"name": "Python", "evidence_ids": ["project-feedback"], "status": "confirmed"}
+  ],
+  "job_requirements": [
+    {"requirement": "能完成 AI 产品需求分析与原型设计", "priority": "must", "status": "supported", "evidence_ids": ["work-support-copilot"]},
+    {"requirement": "具备数据分析能力", "priority": "preferred", "status": "supported", "evidence_ids": ["project-feedback"]}
+  ],
+  "uncertainties": [],
+  "confirmation": {"status": "confirmed", "confirmed_at": "2026-09-17"}
+}

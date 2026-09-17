@@ -1,0 +1,242 @@
+{
+  "optimizer_hints": {
+    "capability": "Create, tailor, audit, translate, typeset, and validate evidence-grounded job resumes",
+    "inputs": [
+      "old resume",
+      "job description",
+      "project notes",
+      "spoken answers",
+      "旧简历",
+      "岗位 JD",
+      "项目经历",
+      "口述回答"
+    ],
+    "trigger_actions": [
+      "create a resume",
+      "tailor a resume to a job",
+      "audit resume claims",
+      "translate a resume",
+      "render a resume to PDF",
+      "做简历",
+      "按 JD 改简历",
+      "检查简历",
+      "翻译简历",
+      "生成简历 PDF"
+    ],
+    "exclusions": [
+      "cover letters",
+      "portfolio sites",
+      "interview practice only",
+      "job application automation",
+      "career planning",
+      "academic CVs",
+      "recruiter-side screening",
+      "求职信",
+      "作品集网站",
+      "只做面试",
+      "代投",
+      "职业规划",
+      "学术 CV",
+      "招聘方筛选"
+    ],
+    "artifacts": [
+      "candidate fact ledger",
+      "role analysis",
+      "resume data",
+      "HTML resume",
+      "PDF resume",
+      "validation report"
+    ]
+  },
+  "fallback_positive_concepts": [
+    "resume_work",
+    "evidence_interview",
+    "jd_tailoring",
+    "resume_review",
+    "resume_rendering",
+    "resume_translation",
+    "multi_variant"
+  ],
+  "positive_concepts": {
+    "resume_work": {
+      "weight": 0.34,
+      "phrases": [
+        "resume",
+        "job resume",
+        "old resume",
+        "resume content",
+        "create a resume",
+        "write my resume",
+        "简历",
+        "旧简历",
+        "求职简历",
+        "做一份简历",
+        "写进简历"
+      ]
+    },
+    "evidence_interview": {
+      "weight": 0.18,
+      "phrases": [
+        "interview me",
+        "ask me questions",
+        "nothing to write",
+        "scattered experience",
+        "project experience",
+        "采访我",
+        "不知道写什么",
+        "零散经历",
+        "项目经历",
+        "慢慢挖",
+        "挖出能写"
+      ]
+    },
+    "jd_tailoring": {
+      "weight": 0.34,
+      "phrases": [
+        "job description",
+        "target role",
+        "tailor my resume",
+        "target jd",
+        "JD",
+        "岗位要求",
+        "目标岗位",
+        "针对岗位",
+        "按岗位",
+        "该保留",
+        "该删"
+      ]
+    },
+    "resume_review": {
+      "weight": 0.18,
+      "phrases": [
+        "audit my resume",
+        "review my resume",
+        "resume feedback",
+        "overclaim",
+        "timeline issue",
+        "检查简历",
+        "审查简历",
+        "点评简历",
+        "夸大",
+        "因果跳跃",
+        "时间线问题"
+      ]
+    },
+    "resume_rendering": {
+      "weight": 0.17,
+      "phrases": [
+        "resume pdf",
+        "HTML and PDF",
+        "ATS-readable PDF",
+        "typeset my resume",
+        "reformat my resume",
+        "生成 PDF",
+        "输出 HTML",
+        "文本型 PDF",
+        "重排",
+        "换版式",
+        "证件照"
+      ]
+    },
+    "resume_translation": {
+      "weight": 0.14,
+      "phrases": [
+        "English resume",
+        "translate my resume",
+        "resume in English",
+        "英文 resume",
+        "英文简历",
+        "翻译简历",
+        "译成英文"
+      ]
+    },
+    "multi_variant": {
+      "weight": 0.34,
+      "phrases": [
+        "resume versions",
+        "multiple roles",
+        "two versions",
+        "多个岗位",
+        "多岗位版本",
+        "多个版本",
+        "两个版本",
+        "分别做"
+      ]
+    }
+  },
+  "negative_concepts": {
+    "no_resume_directive": {
+      "weight": 0.55,
+      "exclusive": true,
+      "phrases": [
+        "do not process a resume",
+        "do not generate a resume",
+        "not a resume task",
+        "不需要处理简历",
+        "不要处理简历",
+        "不要生成任何候选人简历",
+        "不是简历任务"
+      ]
+    },
+    "cover_letter_only": {
+      "weight": 0.5,
+      "exclusive": true,
+      "phrases": ["cover letter", "求职信", "动机信"]
+    },
+    "portfolio_only": {
+      "weight": 0.5,
+      "exclusive": true,
+      "phrases": ["portfolio website", "portfolio site", "作品集网站", "个人网站"]
+    },
+    "interview_only": {
+      "weight": 0.46,
+      "exclusive": true,
+      "phrases": ["mock interview", "interview questions", "模拟面试", "准备面试题", "不要改简历"]
+    },
+    "application_automation": {
+      "weight": 0.5,
+      "exclusive": true,
+      "phrases": ["apply to jobs", "submit applications", "职位代投", "帮我投递", "投到招聘网站"]
+    },
+    "career_advice_only": {
+      "weight": 0.44,
+      "exclusive": true,
+      "phrases": ["career planning", "career change", "职业规划", "转行做", "职业选择"]
+    },
+    "academic_cv": {
+      "weight": 0.52,
+      "exclusive": true,
+      "phrases": ["academic CV", "PhD application CV", "学术 CV", "博士申请"]
+    },
+    "recruiter_screening": {
+      "weight": 0.5,
+      "exclusive": true,
+      "phrases": ["screen candidates", "screen resumes", "筛选候选人", "批量筛选", "招聘方"]
+    },
+    "company_research_only": {
+      "weight": 0.42,
+      "exclusive": true,
+      "phrases": ["is this company hiring", "company research only", "公司还招不招聘", "今天还招"]
+    },
+    "linkedin_only": {
+      "weight": 0.42,
+      "exclusive": true,
+      "phrases": ["LinkedIn profile", "LinkedIn summary", "LinkedIn 主页", "LinkedIn 简介"]
+    },
+    "method_explanation_only": {
+      "weight": 0.4,
+      "exclusive": true,
+      "phrases": ["explain STAR", "what is STAR", "解释一下 STAR", "STAR 方法是什么"]
+    },
+    "product_design_only": {
+      "weight": 0.42,
+      "exclusive": true,
+      "phrases": ["resume product database", "resume app architecture", "简历生成产品的数据库", "简历产品设计"]
+    },
+    "role_research_only": {
+      "weight": 0.38,
+      "exclusive": true,
+      "phrases": ["role research only", "暂时不做简历", "只研究岗位"]
+    }
+  }
+}

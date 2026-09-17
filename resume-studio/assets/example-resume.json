@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "language": "zh-CN",
+  "theme": "swiss",
+  "section_order": ["experience", "projects", "education", "skills", "awards"],
+  "filename": "周宁_AI产品经理_简历",
+  "target": {"role": "AI 产品经理", "company_type": "互联网"},
+  "basics": {
+    "name": "周宁",
+    "headline": "AI 产品经理｜需求分析 · 原型验证 · 数据分析",
+    "phone": "138-0000-1357",
+    "email": "zhou.ning@example.com",
+    "location": "上海",
+    "links": [{"label": "作品集", "url": "https://example.com/portfolio"}],
+    "summary": "围绕真实业务问题完成 AI 产品需求拆解、原型设计和试用验证，能使用数据分析补充产品判断。",
+    "photo": {"enabled": false, "source": null}
+  },
+  "education": [
+    {
+      "school": "东海大学（合成测试）",
+      "degree": "本科",
+      "major": "信息管理",
+      "start": "2021.09",
+      "end": "2025.06",
+      "location": "上海",
+      "details": ["课程：产品设计、数据分析、信息系统"]
+    }
+  ],
+  "experience": [
+    {
+      "organization": "澄明科技（合成测试）",
+      "role": "产品运营实习生",
+      "start": "2024.07",
+      "end": "2024.12",
+      "location": "上海",
+      "tech": ["需求分析", "用户访谈", "原型设计", "RAG 结果抽检"],
+      "bullets": [
+        {
+          "text": "访谈 6 名客服并归纳高频问题，与 2 名工程师共同定义检索与引用流程，完成客服知识助手内部试用。",
+          "evidence_type": "user_confirmed",
+          "source_note": "合成测试数据；非真实人物"
+        },
+        {
+          "text": "设计可追溯答案卡片并组织两轮试用，客服主管确认方案可用于新人培训。",
+          "evidence_type": "user_confirmed",
+          "source_note": "合成测试数据；非真实人物"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "organization": "用户反馈归因看板",
+      "role": "个人项目｜产品设计与实现",
+      "start": "2025.02",
+      "end": "2025.04",
+      "tech": ["Python", "数据分析", "数据清洗", "可视化", "交互原型"],
+      "link": "https://example.com/feedback-dashboard",
+      "bullets": [
+        {
+          "text": "清洗并整理 800 条脱敏反馈，建立分类规则与趋势视图，完成可交互看板和 12 页分析报告。",
+          "evidence_type": "repository_verified",
+          "source_note": "合成测试仓库；非真实人物"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {"category": "产品", "items": ["需求分析", "原型设计", "用户访谈"]},
+    {"category": "数据与工具", "items": ["Python", "数据清洗", "可视化"]}
+  ],
+  "awards": []
+}

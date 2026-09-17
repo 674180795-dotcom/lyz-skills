@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/resume-studio/role-analysis.schema.json",
+  "title": "Resume Studio Role Analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "target", "requirements", "positioning", "gaps"],
+  "properties": {
+    "version": {"const": 1},
+    "target": {
+      "type": "object",
+      "required": ["role", "source"],
+      "properties": {
+        "role": {"type": "string"},
+        "company": {"type": "string"},
+        "source": {"enum": ["user_jd", "official_job_page", "role_lens"]},
+        "source_url": {"type": "string"},
+        "retrieved_at": {"type": "string"}
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "priority", "status", "evidence_ids", "resume_location"],
+        "properties": {
+          "id": {"type": "string"},
+          "text": {"type": "string"},
+          "priority": {"enum": ["must", "preferred", "responsibility"]},
+          "status": {"enum": ["supported", "partial", "gap", "unknown"]},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}},
+          "resume_location": {"type": "string"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "positioning": {"type": "string"},
+    "selected_evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "gaps": {"type": "array", "items": {"type": "string"}},
+    "excluded_items": {"type": "array", "items": {"type": "string"}}
+  }
+}

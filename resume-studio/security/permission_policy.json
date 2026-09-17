@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-09-17",
+  "capabilities": {
+    "file_write": {
+      "decision": "approved",
+      "reviewer": "Ling99 (task-scoped authorization)",
+      "scope": "Only user-selected resume output directories, explicit --output paths, and temporary visual-validation directories.",
+      "reason": "The skill must write the fact ledger, role analysis, resume data, HTML, PDF, validation JSON, extracted text, and page images requested by the user.",
+      "expires_at": "2026-12-31",
+      "evidence": [
+        "SKILL.md",
+        "references/rendering-and-validation.md",
+        "reports/security_trust_report.md"
+      ],
+      "target_enforcement": {
+        "openai": "metadata-only permission contract; host and workspace policy remain authoritative",
+        "claude": "adapter permission metadata; host approval remains authoritative",
+        "vscode": "VS Code workspace trust plus adapter permission metadata",
+        "generic": "operator reviews the output directory before execution"
+      }
+    },
+    "subprocess": {
+      "decision": "approved",
+      "reviewer": "Ling99 (task-scoped authorization)",
+      "scope": "Local Chrome/Chromium and Poppler commands used only to render, inspect, extract, and validate resume files.",
+      "reason": "Text-based PDF generation and page-level validation require local browser and Poppler subprocesses; the scripts contain no outbound network execution.",
+      "expires_at": "2026-12-31",
+      "evidence": [
+        "scripts/render_resume.py",
+        "scripts/extract_resume.py",
+        "scripts/pdf_to_images.py",
+        "scripts/validate_resume.py",
+        "reports/security_trust_report.md"
+      ],
+      "target_enforcement": {
+        "openai": "metadata-only permission contract; host and workspace policy remain authoritative",
+        "claude": "adapter permission metadata; host approval remains authoritative",
+        "vscode": "VS Code workspace trust plus adapter permission metadata",
+        "generic": "operator reviews local executable discovery before execution"
+      }
+    }
+  }
+}

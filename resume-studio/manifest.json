@@ -1,0 +1,27 @@
+{
+  "name": "resume-studio",
+  "version": "1.0.0",
+  "owner": "Ling99",
+  "license": "MIT",
+  "updated_at": "2026-09-17",
+  "status": "active",
+  "maturity_tier": "production",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "skill_archetype": "production",
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "assets",
+    "evals",
+    "reports"
+  ]
+}

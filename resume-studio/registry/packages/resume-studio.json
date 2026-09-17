@@ -1,0 +1,56 @@
+{
+  "schema_version": "2.0",
+  "name": "resume-studio",
+  "version": "1.0.0",
+  "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
+  "targets": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "maturity": "production",
+  "owner": "Ling99",
+  "review_cadence": "quarterly",
+  "trust_level": "local",
+  "license": "MIT",
+  "checksums": {
+    "package_sha256": "ef3d9949d8cf8bf93f8fbaa1065e3befdbae6933d528e3ec712780658d3b0ce2"
+  },
+  "compatibility": {
+    "openai": "pass",
+    "claude": "pass",
+    "agent-skills": "pass",
+    "vscode": "pass",
+    "generic": "pass",
+    "agent-skills-compatible": "pass"
+  },
+  "source": {
+    "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/resume-studio",
+    "skill_ir": "reports/skill-ir.json",
+    "ir_schema_version": "2.0.0",
+    "canonical_metadata": "agents/interface.yaml"
+  },
+  "artifacts": {
+    "overview_html": "reports/skill-overview.html",
+    "review_studio_html": "reports/review-studio.html",
+    "trust_report": "reports/security_trust_report.md",
+    "conformance_matrix": "reports/conformance_matrix.md",
+    "compiled_targets": "reports/compiled_targets.md",
+    "package_verification": "",
+    "install_simulation": "",
+    "adoption_drift": "reports/adoption_drift_report.md",
+    "review_waivers": "reports/review_waivers.md",
+    "review_annotations": "reports/review_annotations.md",
+    "package_metadata": "registry/packages/resume-studio.json"
+  },
+  "distribution": {
+    "archive_verified": false,
+    "archive_sha256": "",
+    "package_verification": "",
+    "install_simulated": false,
+    "install_simulation": ""
+  },
+  "generated_at": "2026-09-17"
+}

@@ -1,0 +1,26 @@
+interface:
+  display_name: "简历工坊"
+  short_description: "边聊边挖经历，生成可信、针对岗位且排版完成的简历"
+  default_prompt: "使用 $resume-studio 帮我从现有材料或一问一答开始，整理事实、匹配目标岗位，并交付可编辑 HTML 和可投递 PDF 简历。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    vscode: "agent-skills-source-with-vscode-notes"
