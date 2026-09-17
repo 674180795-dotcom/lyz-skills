@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-09-17",
+  "package_count": 1,
+  "packages": [
+    {
+      "name": "lyz-resume",
+      "version": "1.0.0",
+      "maturity": "production",
+      "owner": "Ling99",
+      "targets": [
+        "openai",
+        "claude",
+        "generic",
+        "agent-skills-compatible",
+        "vscode"
+      ],
+      "package_metadata": "registry/packages/lyz-resume.json",
+      "package_sha256": "4aa3d18e4099e240169d60940e6df1fa3f949fa551b29a2eece6e3bd8fbb3808"
+    }
+  ]
+}

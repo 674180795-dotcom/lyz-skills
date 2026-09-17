@@ -1,0 +1,31 @@
+interface:
+  display_name: 简历工坊
+  short_description: 边聊边挖经历，生成可信、针对岗位且排版完成的简历
+  default_prompt: 使用 $lyz-resume 帮我从现有材料或一问一答开始，整理事实、匹配目标岗位，并交付可编辑 HTML 和可投递 PDF 简历。
+compatibility:
+  canonical_format: agent-skills
+  activation_mode: manual
+  execution_context: inline
+  shell: bash
+  trust_level: local
+  remote_inline_execution: forbid
+  permission_contract:
+    review_required: true
+    declared_capabilities:
+    - file_write
+    - subprocess
+    native_enforcement: false
+    representation: targets/openai/agents/openai.yaml::compatibility.permission_contract
+      plus adapter.json
+  native_contract:
+    native_surface: OpenAI-style interface metadata plus neutral Agent Skills source
+    activation_policy: Use frontmatter description for catalog routing and targets/openai/agents/openai.yaml
+      for display name, default prompt, and compatibility metadata.
+    resource_strategy: Ship the neutral source tree and expose OpenAI-facing interface
+      metadata as a generated companion file.
+    permission_enforcement: metadata-only
+    review_artifacts:
+    - targets/openai/agents/openai.yaml
+    - targets/openai/adapter.json
+    - reports/review-studio.html
+  degradation_strategy: metadata-adapter

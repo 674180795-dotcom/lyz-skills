@@ -10,7 +10,7 @@
 
 | Skill | 状态 | 用途 | 入口 |
 | --- | --- | --- | --- |
-| **resume-studio**（简历工坊） | 可用 | 将旧简历、JD、零散经历或口述整理为可信、针对岗位的 HTML/PDF 简历 | [README](resume-studio/README.md) · [SKILL.md](resume-studio/SKILL.md) |
+| **lyz-resume**（简历工坊） | 可用 | 将旧简历、JD、零散经历或口述整理为可信、针对岗位的 HTML/PDF 简历 | [README](lyz-resume/README.md) · [SKILL.md](lyz-resume/SKILL.md) |
 
 后续新增 Skill 会先在这里登记，再在各自目录中维护完整说明。首页只负责“我有什么、怎么开始、去哪里深入”，不会替代某个 Skill 的详细文档。
 
@@ -27,7 +27,7 @@ bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill <skill-name> -y
 当前可直接安装：
 
 ```bash
-bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill resume-studio -y
+bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill lyz-resume -y
 ```
 
 ### 安装全部 Skill
@@ -62,7 +62,7 @@ Skill 安装完成后，用自然语言描述目标即可，不需要记住内�
 
 更具体的使用方式、首轮输入格式、交付文件和边界，以对应目录中的 `README.md` 与 `SKILL.md` 为准。建议先看 Skill 的 README，再开始使用；如果信息不完整，直接说“不知道”“跳过”或“先按现有信息出草稿”，不要为了配合格式而编造内容。
 
-## 当前 Skill：resume-studio
+## 当前 Skill：lyz-resume
 
 简历工坊是本仓库的第一个可用 Skill。它面向从零做简历、优化旧简历、按 JD 定制、多岗位版本、只换版式，以及生成并验收 HTML/PDF 的场景。
 
@@ -70,13 +70,13 @@ Skill 安装完成后，用自然语言描述目标即可，不需要记住内�
 
 详细说明请看：
 
-- [简历工坊 README](resume-studio/README.md)：怎么安装、怎么开口、会得到什么；
-- [SKILL.md](resume-studio/SKILL.md)：路由、工作流、对话规则和交付契约；
-- [访谈与持续动力](resume-studio/references/intake-and-momentum.md)：低信息用户的引导方法；
-- [岗位分析与写作](resume-studio/references/role-analysis-and-writing.md)：JD、证据与表达边界；
-- [渲染与验收](resume-studio/references/rendering-and-validation.md)：HTML/PDF 的检查方式；
-- [评审工作台](resume-studio/reports/review-studio.html)：当前版本的审查记录；
-- [可分发压缩包](resume-studio/dist/resume-studio.zip)：离线分发文件。
+- [简历工坊 README](lyz-resume/README.md)：怎么安装、怎么开口、会得到什么；
+- [SKILL.md](lyz-resume/SKILL.md)：路由、工作流、对话规则和交付契约；
+- [访谈与持续动力](lyz-resume/references/intake-and-momentum.md)：低信息用户的引导方法；
+- [岗位分析与写作](lyz-resume/references/role-analysis-and-writing.md)：JD、证据与表达边界；
+- [渲染与验收](lyz-resume/references/rendering-and-validation.md)：HTML/PDF 的检查方式；
+- [评审工作台](lyz-resume/reports/review-studio.html)：当前版本的审查记录；
+- [可分发压缩包](lyz-resume/dist/lyz-resume.zip)：离线分发文件。
 
 ## 共同约定
 
@@ -116,7 +116,7 @@ Skill 安装完成后，用自然语言描述目标即可，不需要记住内�
 ```text
 lyz-skills/
 ├── README.md
-├── resume-studio/
+├── lyz-resume/
 └── <future-skill>/
 ```
 
