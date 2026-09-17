@@ -1,123 +1,125 @@
 # lyz-skills
 
-我的 Codex Skill 集合。
+我的可安装 AI Skill 集合。
 
-这个仓库不是一个单一助手，也不是一组散落的提示词，而是一个持续增长的个人 Skill 库：把可重复的工作流整理成可以安装、检查、复用和继续演化的独立能力包。
-
-每个 Skill 都有自己的入口、适用范围、输出契约和验证材料。你可以只安装一个，也可以把整个仓库作为自己的 Skill 工具箱。
+这里不是一个单一助手，也不是一堆散落的提示词。每个目录都是一项独立能力：有明确的触发范围、执行流程、交付契约和验证材料。你可以只安装需要的一项，也可以把整个仓库作为持续增长的个人 Skill 工具箱。
 
 ## Skill 索引
 
-| Skill | 状态 | 用途 | 入口 |
-| --- | --- | --- | --- |
-| **lyz-resume**（简历工坊） | 可用 | 将旧简历、JD、零散经历或口述整理为可信、针对岗位的 HTML/PDF 简历 | [README](lyz-resume/README.md) · [SKILL.md](lyz-resume/SKILL.md) |
+| Skill | 状态 | 用途 | 文档 | 离线包 |
+| --- | --- | --- | --- | --- |
+| **lyz-resume**（简历工坊） | 可用 · v1.1.0 | 从旧简历、JD、零散经历或口述开始，生成可信、针对岗位的 HTML/PDF 简历 | [使用说明](lyz-resume/README.md) · [执行入口](lyz-resume/SKILL.md) | [下载 ZIP](lyz-resume/dist/lyz-resume.zip) |
 
-后续新增 Skill 会先在这里登记，再在各自目录中维护完整说明。首页只负责“我有什么、怎么开始、去哪里深入”，不会替代某个 Skill 的详细文档。
+以后新增的 Skill 都会先登记在这里。首页只负责索引、安装和通用约定；每项 Skill 的具体用法放在它自己的目录中。
 
 ## 安装
 
-### 安装单个 Skill
+### 推荐：Node.js / npx
 
-如果你已经安装了 [skills CLI](https://github.com/vercel-labs/skills)，把 `<skill-name>` 换成上面的名称即可：
+不需要先安装 Bun。把 `<skill-name>` 换成索引中的名称：
+
+```bash
+npx -y skills add 674180795-dotcom/lyz-skills -g -a codex --skill <skill-name> -y
+```
+
+例如：
+
+```bash
+npx -y skills add 674180795-dotcom/lyz-skills -g -a codex --skill lyz-resume -y
+```
+
+查看仓库中的 Skill：
+
+```bash
+npx -y skills add 674180795-dotcom/lyz-skills --list
+```
+
+安装全部 Skill：
+
+```bash
+npx -y skills add 674180795-dotcom/lyz-skills -g -a codex --skill '*' -y
+```
+
+### 可选：Bun / bunx
+
+已经使用 Bun 时，命令等价：
 
 ```bash
 bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill <skill-name> -y
 ```
 
-当前可直接安装：
+### 包管理器不可用：下载 ZIP
+
+每个已发布 Skill 在索引中提供独立 ZIP。解压后，把完整的 `<skill-name>/` 复制到目标产品的用户 Skill 目录；目录内应直接包含 `SKILL.md`，不要多套一层同名文件夹。
+
+macOS / Linux 的通用 Agent Skills 目录示例：
 
 ```bash
-bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill lyz-resume -y
-```
-
-### 安装全部 Skill
-
-```bash
-bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill '*' -y
-```
-
-### 查看可用 Skill
-
-```bash
-bunx skills add 674180795-dotcom/lyz-skills -l
-```
-
-### 不使用 CLI：手动复制
-
-```bash
-git clone --depth 1 https://github.com/674180795-dotcom/lyz-skills.git "$HOME/code/lyz-skills"
+unzip <skill-name>.zip
 mkdir -p "$HOME/.agents/skills"
-rsync -a "$HOME/code/lyz-skills/<skill-name>/" "$HOME/.agents/skills/<skill-name>/"
+cp -R <skill-name> "$HOME/.agents/skills/<skill-name>"
 ```
 
-项目级安装时，把目标目录换成当前项目的 `.agents/skills/<skill-name>/` 即可。
+Windows PowerShell 示例：
+
+```powershell
+Expand-Archive .\<skill-name>.zip -DestinationPath .\skill-package
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.agents\skills" | Out-Null
+Copy-Item -Recurse -Force ".\skill-package\<skill-name>" "$env:USERPROFILE\.agents\skills\<skill-name>"
+```
+
+豆包、WorkBuddy 或其他未被 `skills` CLI 原生列出的产品，以产品界面或文档显示的“用户 Skill 目录”为准。能手动读取 Agent Skills 格式，不等于该产品拥有经过验证的原生适配。
+
+## 安装失败时
+
+- 没有 Bun：直接使用上面的 `npx` 命令。
+- `npx`/`bunx` 的缓存写入被宿主沙箱拦截：使用独立 ZIP 手动复制。
+- Bun 访问 `registry.npmmirror.com` 返回 407：按网络策略处理代理白名单，或用 `BUN_CONFIG_REGISTRY=https://registry.npmjs.org` 指定 registry。
+- GitHub clone 或 tarball 下载反复中断：优先下载索引中的小型 ZIP，不要无上限重试。
+- 命令被 `SIGTERM` 且没有任何输出：同时检查宿主沙箱、代理和 GitHub TLS，不能仅凭这一条认定 Skill 损坏。
+
+每个 Skill 的依赖、平台声明和完整排障记录都在其自己的 README 或 `references/` 中。例如：[lyz-resume 安装与兼容性](lyz-resume/references/installation-and-portability.md)。
 
 ## 安装后怎么用
 
-Skill 安装完成后，用自然语言描述目标即可，不需要记住内部脚本或参数：
+在目标 Agent 中用自然语言描述任务即可；明确写出 Skill 名称最稳定：
 
 ```text
-用 <skill-name> 帮我完成这件事：……
+使用 $<skill-name> 帮我完成：……
 ```
 
-更具体的使用方式、首轮输入格式、交付文件和边界，以对应目录中的 `README.md` 与 `SKILL.md` 为准。建议先看 Skill 的 README，再开始使用；如果信息不完整，直接说“不知道”“跳过”或“先按现有信息出草稿”，不要为了配合格式而编造内容。
+输入不完整时可以直接说“不知道”“跳过”或“先按现有信息出草稿”。具体的首轮输入、输出文件和能力边界，以对应目录中的 `README.md` 与 `SKILL.md` 为准。
 
-## 当前 Skill：lyz-resume
+## 共同结构
 
-简历工坊是本仓库的第一个可用 Skill。它面向从零做简历、优化旧简历、按 JD 定制、多岗位版本、只换版式，以及生成并验收 HTML/PDF 的场景。
-
-它特别处理一个常见难点：用户没有整理好的材料，也很难一次讲完整。它会把对话设计成低启动成本的单问题访谈：先展示已经捕获的事实或草稿，再只追问一个最有价值的缺口；达到 `workable` 就先交付诚实版本，不替用户虚构数字、职位或成果。
-
-详细说明请看：
-
-- [简历工坊 README](lyz-resume/README.md)：怎么安装、怎么开口、会得到什么；
-- [SKILL.md](lyz-resume/SKILL.md)：路由、工作流、对话规则和交付契约；
-- [访谈与持续动力](lyz-resume/references/intake-and-momentum.md)：低信息用户的引导方法；
-- [岗位分析与写作](lyz-resume/references/role-analysis-and-writing.md)：JD、证据与表达边界；
-- [渲染与验收](lyz-resume/references/rendering-and-validation.md)：HTML/PDF 的检查方式；
-- [评审工作台](lyz-resume/reports/review-studio.html)：当前版本的审查记录；
-- [可分发压缩包](lyz-resume/dist/lyz-resume.zip)：离线分发文件。
-
-## 共同约定
-
-每个成熟 Skill 尽量保持相同的可读结构：
+成熟 Skill 尽量保持相同的可读结构：
 
 ```text
 <skill-name>/
 ├── SKILL.md       # 模型如何路由和执行
 ├── README.md      # 人类如何安装和使用
-├── references/    # 需要时才加入的深度规则
+├── references/    # 需要时才读取的深度规则
 ├── scripts/       # 确定性操作与工具
 ├── assets/        # Schema、模板和样例
 ├── evals/         # 触发与输出回归
-└── reports/       # 验证、评审和发布证据
+├── reports/       # 验证、评审和发布证据
+└── dist/          # 可分发安装包
 ```
 
-不是每个 Skill 都必须有全部目录；只保留真正支撑它的资源。每个 Skill 都应明确：
+不是每项 Skill 都必须拥有全部目录，但都应说明：
 
-- 它解决什么问题，以及什么情况不该使用它；
-- 需要哪些输入，如何处理缺失或不确定信息；
-- 会交付什么文件或结果；
-- 哪些内容必须由用户确认，哪些内容不能推断；
-- 如何验证这套工作流没有悄悄退化。
+- 它解决什么问题，什么情况不该使用；
+- 需要哪些输入，怎样处理缺失与不确定信息；
+- 会交付什么结果；
+- 哪些内容必须由用户确认，哪些不能推断；
+- 怎样验证工作流没有悄悄退化。
 
-## 新增 Skill 的最短路径
+## 新增 Skill
 
 1. 在根目录创建独立的 `<skill-name>/`；
-2. 先写清 `SKILL.md` 的触发条件、边界和输出契约；
-3. 再按需要加入 references、scripts、assets 和 evals；
-4. 在本页的“Skill 索引”中补一行；
-5. 完成安装、触发、输出和边界检查后再标记为“可用”。
+2. 先写清 `SKILL.md` 的触发条件、边界和交付契约；
+3. 按实际需要加入 references、scripts、assets 和 evals；
+4. 完成安装、触发、输出和边界检查；
+5. 在本页的索引中登记，不把某一项 Skill 的详细说明搬到首页。
 
-这样新增 Skill 不会把首页重新变成某一个项目的说明书，也不会让使用者必须读完整个仓库才能找到入口。
-
-## 仓库结构
-
-```text
-lyz-skills/
-├── README.md
-├── lyz-resume/
-└── <future-skill>/
-```
-
-首页的结构参考了 [ljg-skills](https://github.com/lijigang/ljg-skills) 的“安装 + 索引 + 深入阅读”思路；这里的项目定位、Skill 说明和使用边界均按 `lyz-skills` 自己的工作流重新整理。
+首页的信息架构参考了 [ljg-skills](https://github.com/lijigang/ljg-skills) 的“安装 + 索引 + 深入阅读”思路；具体 Skill、验证材料和兼容性声明由本仓库独立维护。

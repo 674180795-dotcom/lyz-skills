@@ -2,12 +2,12 @@
 
 - OK: `True`
 - Package: `lyz-resume`
-- Version: `1.0.0`
+- Version: `1.1.0`
 - Maturity: `production`
 - Owner: `Ling99`
 - License: `MIT`
-- Package SHA256: `4aa3d18e4099e240169d60940e6df1fa3f949fa551b29a2eece6e3bd8fbb3808`
-- Archive SHA256: `9da7493703f59eda83899ec821b88349d45c41dd29813de3e4216381e4774aed`
+- Package SHA256: `6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4`
+- Archive SHA256: `4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080`
 - Install simulated: `True`
 
 ## Compatibility

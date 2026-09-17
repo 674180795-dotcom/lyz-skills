@@ -1,9 +1,9 @@
 {
   "name": "lyz-resume",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "owner": "Ling99",
   "license": "MIT",
-  "updated_at": "2026-09-17",
+  "updated_at": "2026-09-18",
   "status": "active",
   "maturity_tier": "production",
   "lifecycle_stage": "production",
@@ -17,6 +17,23 @@
     "agent-skills-compatible",
     "vscode"
   ],
+  "portability": {
+    "canonical_format": "agent-skills",
+    "platform_agnostic_source": true,
+    "manual_copy_supported": true,
+    "native_adapter_targets": [
+      "openai",
+      "claude",
+      "generic",
+      "vscode"
+    ],
+    "manual_install_targets": [
+      "doubao",
+      "workbuddy",
+      "other-agent-skills-compatible"
+    ],
+    "claim_level": "manual-copy-compatible-not-native-integration"
+  },
   "factory_components": [
     "references",
     "scripts",
