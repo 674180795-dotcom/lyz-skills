@@ -1,142 +1,123 @@
 # lyz-skills
 
-我的 Codex Skill 集合。这里的 Skill 不只是一个提示词，而是一套可以反复调用的工作流：知道什么时候提问、如何保留事实、怎样产出文件，以及交付前如何检查。
+我的 Codex Skill 集合。
 
-当前首个 Skill 是 **resume-studio（简历工坊）**：把旧简历、JD、零散经历或一段口述，整理成可信、针对岗位、可以继续编辑和投递的简历文件。
+这个仓库不是一个单一助手，也不是一组散落的提示词，而是一个持续增长的个人 Skill 库：把可重复的工作流整理成可以安装、检查、复用和继续演化的独立能力包。
 
-## 先开始：三步用起来
+每个 Skill 都有自己的入口、适用范围、输出契约和验证材料。你可以只安装一个，也可以把整个仓库作为自己的 Skill 工具箱。
 
-### 1. 安装 Skill
+## Skill 索引
 
-如果你已经安装了 [skills CLI](https://github.com/vercel-labs/skills)，可以直接安装到 Codex：
+| Skill | 状态 | 用途 | 入口 |
+| --- | --- | --- | --- |
+| **resume-studio**（简历工坊） | 可用 | 将旧简历、JD、零散经历或口述整理为可信、针对岗位的 HTML/PDF 简历 | [README](resume-studio/README.md) · [SKILL.md](resume-studio/SKILL.md) |
+
+后续新增 Skill 会先在这里登记，再在各自目录中维护完整说明。首页只负责“我有什么、怎么开始、去哪里深入”，不会替代某个 Skill 的详细文档。
+
+## 安装
+
+### 安装单个 Skill
+
+如果你已经安装了 [skills CLI](https://github.com/vercel-labs/skills)，把 `<skill-name>` 换成上面的名称即可：
 
 ```bash
-# 安装简历工坊（全局，推荐）
-bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill resume-studio -y
+bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill <skill-name> -y
+```
 
-# 查看仓库里的可用 Skill
+当前可直接安装：
+
+```bash
+bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill resume-studio -y
+```
+
+### 安装全部 Skill
+
+```bash
+bunx skills add 674180795-dotcom/lyz-skills -g -a codex --skill '*' -y
+```
+
+### 查看可用 Skill
+
+```bash
 bunx skills add 674180795-dotcom/lyz-skills -l
 ```
 
-也可以用 git clone 手动安装：
+### 不使用 CLI：手动复制
 
 ```bash
 git clone --depth 1 https://github.com/674180795-dotcom/lyz-skills.git "$HOME/code/lyz-skills"
 mkdir -p "$HOME/.agents/skills"
-rsync -a "$HOME/code/lyz-skills/resume-studio/" "$HOME/.agents/skills/resume-studio/"
+rsync -a "$HOME/code/lyz-skills/<skill-name>/" "$HOME/.agents/skills/<skill-name>/"
 ```
 
-项目级安装时，把目标目录换成当前项目的 `.agents/skills/resume-studio/` 即可。
+项目级安装时，把目标目录换成当前项目的 `.agents/skills/<skill-name>/` 即可。
 
-### 2. 用自然语言叫它
+## 安装后怎么用
 
-安装完成后，不需要记命令。直接在 Codex 里说你想完成的事：
+Skill 安装完成后，用自然语言描述目标即可，不需要记住内部脚本或参数：
 
 ```text
-用简历工坊帮我做一份产品经理简历。我现在只有一些零散经历。
+用 <skill-name> 帮我完成这件事：……
 ```
 
-或者：
+更具体的使用方式、首轮输入格式、交付文件和边界，以对应目录中的 `README.md` 与 `SKILL.md` 为准。建议先看 Skill 的 README，再开始使用；如果信息不完整，直接说“不知道”“跳过”或“先按现有信息出草稿”，不要为了配合格式而编造内容。
+
+## 当前 Skill：resume-studio
+
+简历工坊是本仓库的第一个可用 Skill。它面向从零做简历、优化旧简历、按 JD 定制、多岗位版本、只换版式，以及生成并验收 HTML/PDF 的场景。
+
+它特别处理一个常见难点：用户没有整理好的材料，也很难一次讲完整。它会把对话设计成低启动成本的单问题访谈：先展示已经捕获的事实或草稿，再只追问一个最有价值的缺口；达到 `workable` 就先交付诚实版本，不替用户虚构数字、职位或成果。
+
+详细说明请看：
+
+- [简历工坊 README](resume-studio/README.md)：怎么安装、怎么开口、会得到什么；
+- [SKILL.md](resume-studio/SKILL.md)：路由、工作流、对话规则和交付契约；
+- [访谈与持续动力](resume-studio/references/intake-and-momentum.md)：低信息用户的引导方法；
+- [岗位分析与写作](resume-studio/references/role-analysis-and-writing.md)：JD、证据与表达边界；
+- [渲染与验收](resume-studio/references/rendering-and-validation.md)：HTML/PDF 的检查方式；
+- [评审工作台](resume-studio/reports/review-studio.html)：当前版本的审查记录；
+- [可分发压缩包](resume-studio/dist/resume-studio.zip)：离线分发文件。
+
+## 共同约定
+
+每个成熟 Skill 尽量保持相同的可读结构：
 
 ```text
-这是我的旧简历和目标 JD，请保留真实经历，针对这个岗位重写，并生成可投递 PDF。
+<skill-name>/
+├── SKILL.md       # 模型如何路由和执行
+├── README.md      # 人类如何安装和使用
+├── references/    # 需要时才加入的深度规则
+├── scripts/       # 确定性操作与工具
+├── assets/        # Schema、模板和样例
+├── evals/         # 触发与输出回归
+└── reports/       # 验证、评审和发布证据
 ```
 
-还可以只说：
+不是每个 Skill 都必须有全部目录；只保留真正支撑它的资源。每个 Skill 都应明确：
 
-```text
-我不知道简历写什么，先采访我，但一次只问一个问题。
-```
+- 它解决什么问题，以及什么情况不该使用它；
+- 需要哪些输入，如何处理缺失或不确定信息；
+- 会交付什么文件或结果；
+- 哪些内容必须由用户确认，哪些内容不能推断；
+- 如何验证这套工作流没有悄悄退化。
 
-### 3. 你只需要提供一点点
+## 新增 Skill 的最短路径
 
-不需要先整理资料，也不需要使用专业表达。下面任意一项都可以作为起点：
+1. 在根目录创建独立的 `<skill-name>/`；
+2. 先写清 `SKILL.md` 的触发条件、边界和输出契约；
+3. 再按需要加入 references、scripts、assets 和 evals；
+4. 在本页的“Skill 索引”中补一行；
+5. 完成安装、触发、输出和边界检查后再标记为“可用”。
 
-- 一份旧简历、项目文档或 JD；
-- 一个你做过的项目；
-- 一次你解决过的具体问题；
-- 一段想到什么说什么的语音转文字；
-- 甚至只说“我想找什么工作”。
+这样新增 Skill 不会把首页重新变成某一个项目的说明书，也不会让使用者必须读完整个仓库才能找到入口。
 
-如果暂时答不上来，可以直接说 **“跳过”**、**“不知道”** 或 **“先按现有信息出草稿”**。Skill 会把不确定内容标出来，不会替你编数字、职位或成果。
-
-## 简历工坊会怎么带你完成
-
-它专门为“手里没有完整资料、很难持续回忆”的情况设计：
-
-1. **先降低启动成本**：告诉你无需整理、无需一次说完，从最熟悉的一件事开始。
-2. **每次只问一个最值钱的问题**：不发长问卷，不要求你凭空想 KPI。
-3. **回答后立即回声**：先具体指出这条信息证明了什么，再展示已经捕获的事实或草稿。
-4. **把经历变成证据**：区分你的个人贡献、团队成果、已确认事实和待确认信息。
-5. **达到可用就先交付**：信息达到 `workable` 就能生成诚实版本；证据更充分时再升级到 `strong`。
-6. **完成文件级验收**：生成 HTML/PDF，检查内容、页数、可提取文本和逐页视觉效果。
-
-对话中的“鼓励”是有依据的。例如它会说：
-
-> 这条信息已经把“团队做了什么”和“你亲自负责什么”分开了，我先记为一条可用证据。下面只补一个关键缺口：当时你具体交付了什么？
-
-它不会用空泛夸奖、制造焦虑或诱导你猜数字来延长对话。每轮都应该让你看到已经得到的东西。
-
-## 你会得到什么
-
-默认交付目录包含：
-
-| 文件 | 用途 |
-| --- | --- |
-| `candidate-ledger.json` | 私有事实账本：来源、置信度、个人边界和待确认项 |
-| `role-analysis.json` | JD 要求、证据映射与缺口 |
-| `resume-data.json` | 允许公开并用于渲染的简历数据 |
-| `resume.html` | 可编辑的同源 HTML |
-| `resume.pdf` | 文本可提取、适合投递的 PDF |
-| `validation.json` | 内容与文件验证结果 |
-
-照片默认关闭；如果你主动开启，只把它作为排版资产，不根据外貌推断年龄、性格或能力。
-
-## 适用与边界
-
-适合：
-
-- 从零制作第一份简历；
-- 旧简历重写、纠错和结构优化；
-- 按不同 JD 生成多个真实版本；
-- 只改版式，不改原文；
-- 生成 HTML/PDF 并做可读性复查。
-
-不负责：学术 CV、作品集网站、求职信、职业规划、职位代投和单纯模拟面试。它不会承诺 ATS 分数、面试邀约或就业结果。
-
-## 仓库内容
+## 仓库结构
 
 ```text
 lyz-skills/
-└── resume-studio/
-    ├── SKILL.md                    # 路由、工作流与交付契约
-    ├── README.md                   # Skill 级说明
-    ├── references/                 # 访谈、事实契约、岗位分析、渲染验收
-    ├── scripts/                    # 提取、评估、验证、渲染脚本
-    ├── assets/                     # Schema、样例与模板
-    ├── evals/                      # 触发和输出回归样例
-    ├── reports/                    # 评测、审查和发布证据
-    └── dist/resume-studio.zip      # 可分发压缩包
+├── README.md
+├── resume-studio/
+└── <future-skill>/
 ```
 
-从这些入口深入：
-
-- [简历工坊说明](resume-studio/README.md)
-- [Skill 主文件](resume-studio/SKILL.md)
-- [访谈与持续动力](resume-studio/references/intake-and-momentum.md)
-- [岗位分析与写作](resume-studio/references/role-analysis-and-writing.md)
-- [渲染与验收](resume-studio/references/rendering-and-validation.md)
-- [评审工作台](resume-studio/reports/review-studio.html)
-- [下载压缩包](resume-studio/dist/resume-studio.zip)
-
-## 验证状态
-
-当前版本已完成本地确定性验证：流水线测试、触发回归、输出契约、目标适配、安装/打包检查均已记录在 `resume-studio/reports/`。这些是可复现的工程检查，不等同于真实用户长期使用数据；后续会继续补充真人盲评和采用反馈。
-
-## 第三方说明
-
-HTML/PDF 渲染与部分验证代码改编自 MIT 许可项目 [`joeseesun/qiaomu-campus-resume`](https://github.com/joeseesun/qiaomu-campus-resume)，详见 [THIRD_PARTY_NOTICES.md](resume-studio/THIRD_PARTY_NOTICES.md)。
-
-## 下一步
-
-这个仓库会继续收纳可复用的个人 Skill。新增 Skill 时，首页会同时补上：它解决什么问题、怎么安装、第一句话怎么说、会交付什么，以及明确的边界。
+首页的结构参考了 [ljg-skills](https://github.com/lijigang/ljg-skills) 的“安装 + 索引 + 深入阅读”思路；这里的项目定位、Skill 说明和使用边界均按 `lyz-skills` 自己的工作流重新整理。
