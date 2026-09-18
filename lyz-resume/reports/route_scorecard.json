@@ -1,0 +1,42 @@
+{
+  "summary": {
+    "total_cases": 27,
+    "correct_cases": 27,
+    "accuracy": 1.0,
+    "ambiguous_case_count": 0,
+    "margin_warning_threshold": 0.08,
+    "misroute_count": 0,
+    "no_route_accuracy": 1.0
+  },
+  "route_stats": {
+    "lyz-resume": {
+      "expected_count": 12,
+      "predicted_count": 12,
+      "correct_count": 12,
+      "precision": 1.0,
+      "recall": 1.0,
+      "average_margin": null
+    },
+    "no_route": {
+      "expected_count": 15,
+      "predicted_count": 15,
+      "correct_count": 15,
+      "precision": 1.0,
+      "recall": 1.0,
+      "average_margin": null
+    }
+  },
+  "confusion_matrix": {
+    "lyz-resume": {"lyz-resume": 12, "no_route": 0},
+    "no_route": {"lyz-resume": 0, "no_route": 15}
+  },
+  "ambiguous_cases": [],
+  "misroutes": [],
+  "method": {
+    "evaluator": "yao-meta-skill scripts/trigger_eval.py",
+    "cases": "evals/trigger_cases.json",
+    "semantic_config": "evals/semantic_config.json",
+    "threshold": 0.18,
+    "evaluated_at": "2026-09-17"
+  }
+}

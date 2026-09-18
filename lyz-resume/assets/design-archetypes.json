@@ -1,0 +1,107 @@
+{
+  "version": "2.0.0",
+  "layouts": {
+    "classic-single-column": {
+      "label": "经典单栏堆叠",
+      "capacity": ["balanced", "dense"],
+      "render_profiles": ["ats-first", "balanced", "human-first"],
+      "supports_photo": true,
+      "best_for": ["稳定阅读顺序", "内容较多", "正式投递"]
+    },
+    "asymmetric-left-sidebar": {
+      "label": "左侧不对称双栏",
+      "capacity": ["sparse", "balanced"],
+      "render_profiles": ["balanced", "human-first"],
+      "supports_photo": true,
+      "best_for": ["技能快览", "跨职能经历", "人工阅读"]
+    },
+    "sidebar-left-hero": {
+      "label": "左栏与英雄头部复合",
+      "capacity": ["balanced"],
+      "render_profiles": ["human-first"],
+      "supports_photo": true,
+      "best_for": ["定位鲜明", "中等信息量", "人工阅读"]
+    },
+    "hero-header-blocks": {
+      "label": "英雄头部与模块色块",
+      "capacity": ["sparse", "balanced"],
+      "render_profiles": ["human-first"],
+      "supports_photo": true,
+      "best_for": ["复合型新人", "内容模块清晰", "视觉展示"]
+    },
+    "hero-header-linear": {
+      "label": "英雄头部与线性流",
+      "capacity": ["balanced", "dense"],
+      "render_profiles": ["balanced", "human-first"],
+      "supports_photo": true,
+      "best_for": ["资深经历", "一至两页", "线性深读"]
+    },
+    "asymmetric-right-sidebar": {
+      "label": "右侧辅助栏",
+      "capacity": ["sparse", "balanced"],
+      "render_profiles": ["balanced", "human-first"],
+      "supports_photo": false,
+      "best_for": ["成果快览", "产品运营", "人工阅读"]
+    },
+    "tabular-structured": {
+      "label": "表格结构化排版",
+      "capacity": ["balanced", "dense"],
+      "render_profiles": ["balanced"],
+      "supports_photo": false,
+      "best_for": ["字段对齐", "传统行业", "阅读顺序需专项验证"]
+    },
+    "banner-accent-flow": {
+      "label": "薄条幅与装饰流",
+      "capacity": ["sparse", "balanced"],
+      "render_profiles": ["balanced", "human-first"],
+      "supports_photo": true,
+      "best_for": ["应届与实习", "内容较少", "轻量视觉识别"]
+    }
+  },
+  "skins": {
+    "classic-navy": {
+      "label": "经典海军蓝",
+      "paper": "#FFFFFF", "ink": "#20262D", "muted": "#66707A", "line": "#CCD3DA", "brand": "#203E5A", "tint": "#EEF2F6", "accent": "#B28B4B",
+      "body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+    },
+    "editorial-ink": {
+      "label": "编辑式墨色",
+      "paper": "#F8F7F2", "ink": "#191918", "muted": "#6C6A64", "line": "#DDD9CE", "brand": "#253B59", "tint": "#EEF1F4", "accent": "#9A7650",
+      "body_font": "Palatino, Georgia, 'Songti SC', 'STSong', serif",
+      "heading_font": "Palatino, Georgia, 'Songti SC', 'STSong', serif"
+    },
+    "swiss-red": {
+      "label": "瑞士红",
+      "paper": "#FCFCFA", "ink": "#101214", "muted": "#5E6266", "line": "#D9DDDE", "brand": "#B83B32", "tint": "#F7EBE9", "accent": "#B83B32",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "tech-blue": {
+      "label": "技术蓝",
+      "paper": "#FFFFFF", "ink": "#15212B", "muted": "#5C6871", "line": "#D8E0E5", "brand": "#08658F", "tint": "#EAF3F8", "accent": "#2E8DB7",
+      "body_font": "'IBM Plex Sans', 'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'IBM Plex Sans', 'Avenir Next', 'PingFang SC', sans-serif"
+    },
+    "campus-green": {
+      "label": "清新绿",
+      "paper": "#FFFDF8", "ink": "#17231F", "muted": "#64706B", "line": "#DDE8E2", "brand": "#176A58", "tint": "#EAF5F1", "accent": "#C58A4B",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "navy-gold": {
+      "label": "深蓝金",
+      "paper": "#FFFFFF", "ink": "#22272E", "muted": "#66707A", "line": "#D5D9DE", "brand": "#2F4058", "tint": "#E9EDF2", "accent": "#B8945A",
+      "body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+    }
+  },
+  "legacy_mapping": {
+    "ats-classic": {"layout": "classic-single-column", "skin": "classic-navy", "density": "balanced"},
+    "kami": {"layout": "classic-single-column", "skin": "editorial-ink", "density": "balanced"},
+    "swiss": {"layout": "classic-single-column", "skin": "swiss-red", "density": "balanced"},
+    "tech": {"layout": "classic-single-column", "skin": "tech-blue", "density": "balanced"},
+    "campus": {"layout": "banner-accent-flow", "skin": "campus-green", "density": "balanced"},
+    "compact": {"layout": "classic-single-column", "skin": "classic-navy", "density": "dense"}
+  }
+}

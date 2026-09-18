@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {
+      "name": "lyz-resume",
+      "path": "."
+    }
+  ],
+  "shared_resources": []
+}

@@ -24,9 +24,12 @@ class ResumeStudioTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.resume = json.loads((ROOT / "assets/example-resume.json").read_text(encoding="utf-8"))
+        cls.legacy_resume = json.loads((ROOT / "assets/example-resume-v1.json").read_text(encoding="utf-8"))
         cls.ledger = json.loads((ROOT / "assets/example-ledger.json").read_text(encoding="utf-8"))
         cls.validator = load_module("resume_studio_validate", ROOT / "scripts/validate_resume.py")
         cls.renderer = load_module("resume_studio_render", ROOT / "scripts/render_resume.py")
+        cls.renderer_v2 = load_module("resume_studio_render_v2", ROOT / "scripts/render_resume_v2.py")
+        cls.alignment = load_module("resume_studio_alignment", ROOT / "scripts/validate_alignment.py")
         cls.intake = load_module("resume_studio_intake", ROOT / "scripts/assess_intake.py")
 
     def test_example_resume_passes(self) -> None:
@@ -80,6 +83,41 @@ class ResumeStudioTests(unittest.TestCase):
         self.assertNotIn("source_note", rendered)
         self.assertIn("工作经历", rendered)
         self.assertLess(rendered.index("工作经历"), rendered.index("教育经历"))
+
+    def test_legacy_v1_resume_still_renders(self) -> None:
+        rendered = self.renderer.make_html(self.legacy_resume)
+        self.assertIn('data-theme="swiss"', rendered)
+        self.assertIn("工作经历", rendered)
+
+    def test_targeted_alignment_example_passes(self) -> None:
+        role = json.loads((ROOT / "assets/example-role-analysis.json").read_text(encoding="utf-8"))
+        plan = json.loads((ROOT / "assets/example-resume-plan.json").read_text(encoding="utf-8"))
+        errors, warnings, facts = self.alignment.validate_alignment(role, plan, self.resume)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+        self.assertEqual(facts["visible_evidence_order"][0], "work-support-copilot")
+
+    def test_all_layouts_have_distinct_dom(self) -> None:
+        markers = {
+            "classic-single-column": "resume-classic",
+            "asymmetric-left-sidebar": "resume-left-sidebar",
+            "sidebar-left-hero": "resume-sidebar-hero",
+            "hero-header-blocks": "resume-hero-blocks",
+            "hero-header-linear": "resume-hero-linear",
+            "asymmetric-right-sidebar": "resume-right-sidebar",
+            "tabular-structured": "resume-table",
+            "banner-accent-flow": "resume-banner",
+        }
+        for layout, marker in markers.items():
+            meta = self.renderer_v2.DESIGN_SYSTEM["layouts"][layout]
+            rendered = self.renderer_v2.make_html(
+                self.resume,
+                layout=layout,
+                density=meta["capacity"][0],
+                render_profile=meta["render_profiles"][0],
+            )
+            self.assertIn(f'data-layout="{layout}"', rendered)
+            self.assertIn(marker, rendered)
 
     def test_local_photo_is_embedded(self) -> None:
         png = base64.b64decode(

@@ -1,0 +1,361 @@
+{
+  "ok": true,
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
+  "summary": {
+    "scanned_files": 36,
+    "script_count": 8,
+    "internal_module_count": 0,
+    "secret_findings": 0,
+    "dependency_files": [
+      "requirements.txt"
+    ],
+    "network_script_count": 0,
+    "network_policy_covered_count": 0,
+    "network_policy_missing_count": 0,
+    "file_write_script_count": 8,
+    "permission_required_count": 2,
+    "permission_approved_count": 2,
+    "permission_missing_count": 0,
+    "permission_invalid_count": 0,
+    "permission_expired_count": 0,
+    "help_smoke_checked_count": 8,
+    "help_smoke_failed_count": 0,
+    "interactive_script_count": 0,
+    "package_hash_scope": "source-contract-without-generated-reports",
+    "package_hash_file_count": 36,
+    "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+  },
+  "failures": [],
+  "warnings": [],
+  "secrets": [],
+  "scripts": [
+    {
+      "path": "scripts/assess_intake.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": false,
+      "network_urls": [],
+      "network_hosts": []
+    },
+    {
+      "path": "scripts/extract_resume.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [
+        "http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+      ],
+      "network_hosts": [
+        "schemas.openxmlformats.org"
+      ]
+    },
+    {
+      "path": "scripts/pdf_to_images.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [],
+      "network_hosts": []
+    },
+    {
+      "path": "scripts/render_resume.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/003",
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/071",
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/102",
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/109",
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/150",
+        "https://github.com/mmmlllnnn/ResumeCollection/tree/main/1.%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86/214"
+      ],
+      "network_hosts": [
+        "github.com"
+      ]
+    },
+    {
+      "path": "scripts/render_resume_v2.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [],
+      "network_hosts": []
+    },
+    {
+      "path": "scripts/validate_alignment.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": false,
+      "network_urls": [],
+      "network_hosts": []
+    },
+    {
+      "path": "scripts/validate_resume.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [],
+      "network_hosts": []
+    },
+    {
+      "path": "scripts/validate_resume_v2.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": true,
+      "network_urls": [],
+      "network_hosts": []
+    }
+  ],
+  "dependencies": {
+    "present": [
+      "requirements.txt"
+    ],
+    "pinned": [],
+    "unpinned": []
+  },
+  "network_policy": {
+    "present": false,
+    "path": "security/network_policy.json",
+    "schema_version": "",
+    "network_script_count": 0,
+    "covered_scripts": [],
+    "missing_scripts": [],
+    "mismatches": [],
+    "default_policy": {}
+  },
+  "help_smoke": {
+    "enabled": true,
+    "timeout_seconds": 5.0,
+    "candidate_count": 8,
+    "checked_count": 8,
+    "passed_count": 8,
+    "failed_count": 0,
+    "skipped_count": 0,
+    "failed_scripts": [],
+    "results": [
+      {
+        "path": "scripts/assess_intake.py",
+        "command": "python3 scripts/assess_intake.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: assess_intake.py [-h] [--output OUTPUT] input\n\n检查简历采集状态并给出下一批高价值问题。\n\npositional arguments:\n  input                 candidate-ledger.json 路径\n\noptions:\n  -h, --help            show this help message and exit\n  --output OUTPUT, -o OUTPU",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/extract_resume.py",
+        "command": "python3 scripts/extract_resume.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: extract_resume.py [-h] --output OUTPUT input\n\n从本地简历提取文本，不调用外部服务。\n\npositional arguments:\n  input                 PDF、DOCX、TXT 或 Markdown 文件\n\noptions:\n  -h, --help            show this help message and exit\n  --output OUTPUT, -o OUTPUT",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/pdf_to_images.py",
+        "command": "python3 scripts/pdf_to_images.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: pdf_to_images.py [-h] --output-dir OUTPUT_DIR [--dpi DPI] input\n\n将 PDF 逐页转换为 PNG，供视觉验收。\n\npositional arguments:\n  input                 PDF 文件\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/render_resume.py",
+        "command": "python3 scripts/render_resume.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: render_resume.py [-h] [--output-dir OUTPUT_DIR] [--basename BASENAME]\n                        [--theme {ats-classic,kami,swiss,tech,campus,compact}]\n                        [--all-themes]\n                        [--reference-style {r",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/render_resume_v2.py",
+        "command": "python3 scripts/render_resume_v2.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: render_resume_v2.py [-h] [--output-dir OUTPUT_DIR]\n                           [--basename BASENAME]\n                           [--layout {classic-single-column,asymmetric-left-sidebar,sidebar-left-hero,hero-header-blocks,hero-header-",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/validate_alignment.py",
+        "command": "python3 scripts/validate_alignment.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: validate_alignment.py [-h] [--output OUTPUT]\n                             role_analysis resume_plan resume_data\n\n检查岗位分析、简历计划和成稿之间的取舍与追溯关系。\n\npositional arguments:\n  role_analysis\n  resume_plan\n  resume_data\n\noptions:\n  -h, --help     ",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/validate_resume.py",
+        "command": "python3 scripts/validate_resume.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: validate_resume.py [-h] [--html HTML] [--pdf PDF]\n                          [--theme {ats-classic,kami,swiss,tech,campus,compact}]\n                          [--reference-style {rc-003,rc-071,rc-102,rc-109,rc-150,rc-214}]\n            ",
+        "stderr_excerpt": ""
+      },
+      {
+        "path": "scripts/validate_resume_v2.py",
+        "command": "python3 scripts/validate_resume_v2.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: validate_resume_v2.py [-h] [--html HTML] [--pdf PDF] [--output OUTPUT]\n                             input\n\n检查 v2 简历数据与可选 HTML/PDF 产物。\n\npositional arguments:\n  input\n\noptions:\n  -h, --help            show this help message and exit\n  ",
+        "stderr_excerpt": ""
+      }
+    ],
+    "skipped": []
+  },
+  "permission_governance": {
+    "present": true,
+    "path": "security/permission_policy.json",
+    "schema_version": "1.0",
+    "reviewed_at": "2026-09-17",
+    "required_capabilities": [
+      "file_write",
+      "subprocess"
+    ],
+    "approved_capabilities": [
+      "file_write",
+      "subprocess"
+    ],
+    "missing_capabilities": [],
+    "invalid_capabilities": [],
+    "expired_capabilities": [],
+    "approval_count": 2,
+    "required_count": 2,
+    "missing_count": 0,
+    "invalid_count": 0,
+    "expired_count": 0,
+    "approvals": [
+      {
+        "capability": "file_write",
+        "status": "approved",
+        "scripts": [
+          "scripts/assess_intake.py",
+          "scripts/extract_resume.py",
+          "scripts/pdf_to_images.py",
+          "scripts/render_resume.py",
+          "scripts/render_resume_v2.py",
+          "scripts/validate_alignment.py",
+          "scripts/validate_resume.py",
+          "scripts/validate_resume_v2.py"
+        ],
+        "reviewer": "Ling99 (task-scoped authorization)",
+        "scope": "Only user-selected resume output directories, explicit --output paths, and temporary visual-validation directories.",
+        "reason": "The skill must write the fact ledger, role analysis, resume data, HTML, PDF, validation JSON, extracted text, and page images requested by the user.",
+        "expires_at": "2026-12-31",
+        "evidence": [
+          "SKILL.md",
+          "references/rendering-and-validation.md",
+          "reports/security_trust_report.md"
+        ],
+        "target_enforcement": {
+          "openai": "metadata-only permission contract; host and workspace policy remain authoritative",
+          "claude": "adapter permission metadata; host approval remains authoritative",
+          "vscode": "VS Code workspace trust plus adapter permission metadata",
+          "generic": "operator reviews the output directory before execution"
+        },
+        "validation": []
+      },
+      {
+        "capability": "subprocess",
+        "status": "approved",
+        "scripts": [
+          "scripts/extract_resume.py",
+          "scripts/pdf_to_images.py",
+          "scripts/render_resume.py",
+          "scripts/render_resume_v2.py",
+          "scripts/validate_resume.py",
+          "scripts/validate_resume_v2.py"
+        ],
+        "reviewer": "Ling99 (task-scoped authorization)",
+        "scope": "Local Chrome/Chromium and Poppler commands used only to render, inspect, extract, and validate resume files.",
+        "reason": "Text-based PDF generation and page-level validation require local browser and Poppler subprocesses; the scripts contain no outbound network execution.",
+        "expires_at": "2026-12-31",
+        "evidence": [
+          "scripts/render_resume.py",
+          "scripts/extract_resume.py",
+          "scripts/pdf_to_images.py",
+          "scripts/validate_resume.py",
+          "reports/security_trust_report.md"
+        ],
+        "target_enforcement": {
+          "openai": "metadata-only permission contract; host and workspace policy remain authoritative",
+          "claude": "adapter permission metadata; host approval remains authoritative",
+          "vscode": "VS Code workspace trust plus adapter permission metadata",
+          "generic": "operator reviews local executable discovery before execution"
+        },
+        "validation": []
+      }
+    ]
+  },
+  "trust_metadata": {
+    "source_tier": "local",
+    "remote_inline_execution": "forbid",
+    "remote_metadata_policy": "allow-metadata-only"
+  },
+  "artifacts": {
+    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/security_trust_report.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/security_trust_report.md"
+  }
+}

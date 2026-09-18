@@ -1,2 +1,2 @@
-# Python 3.10+ standard library only.
+# Python 3.10+ standard library only. The v2 renderer and Yao release gates are not compatible with the macOS system Python 3.9.
 # Runtime executables for PDF workflows: Chrome/Chromium and Poppler (pdfinfo, pdftotext, pdftoppm).

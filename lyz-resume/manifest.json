@@ -1,6 +1,6 @@
 {
   "name": "lyz-resume",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "owner": "Ling99",
   "license": "MIT",
   "updated_at": "2026-09-18",
@@ -10,6 +10,21 @@
   "context_budget_tier": "production",
   "review_cadence": "quarterly",
   "skill_archetype": "production",
+  "input_files": [
+    "candidate resume, JD, project material, or interview notes supplied by the user",
+    "resume_design_system.md as file-backed fixture evidence; original template files are excluded from distribution"
+  ],
+  "output_contract": [
+    "candidate-ledger.json",
+    "role-analysis.json",
+    "resume-plan.json",
+    "resume-data.json",
+    "resume.html",
+    "resume.pdf",
+    "alignment-validation.json",
+    "validation.json"
+  ],
+  "rollback_boundary": "Restore the reviewed 1.1.0 archive and registry record; v1 theme rendering remains available in scripts/render_resume.py and scripts/validate_resume.py.",
   "target_platforms": [
     "openai",
     "claude",

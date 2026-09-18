@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import base64
 import html
+import importlib.util
 import json
 import mimetypes
 import os
@@ -349,6 +350,17 @@ PHOTO_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_PHOTO_BYTES = 8 * 1024 * 1024
 
 
+def _load_v2_renderer():
+    """Load the additive v2 renderer while keeping this v1 implementation as rollback."""
+    path = Path(__file__).with_name("render_resume_v2.py")
+    spec = importlib.util.spec_from_file_location("lyz_resume_renderer_v2", path)
+    if not spec or not spec.loader:
+        raise RuntimeError("无法加载 render_resume_v2.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def esc(value: Any) -> str:
     return html.escape(str(value or "").strip(), quote=True)
 
@@ -670,6 +682,8 @@ def make_html(
     theme_id: str | None = None,
     reference_style: str | None = None,
 ) -> str:
+    if data.get("version") == 2 or isinstance(data.get("design"), dict):
+        return _load_v2_renderer().make_html(data, theme=theme_id, reference_style=reference_style)
     language = str(data.get("language", "zh-CN"))
     selected_reference = resolve_reference_style(reference_style or data.get("reference_style"))
     reference = REFERENCE_STYLES[selected_reference] if selected_reference else None
@@ -944,6 +958,15 @@ def render_one(
 
 
 def main() -> None:
+    v2_flags = {"--layout", "--skin", "--density", "--render-profile", "--all-layouts"}
+    if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
+        try:
+            candidate = json.loads(Path(sys.argv[1]).expanduser().read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            candidate = None
+        if (isinstance(candidate, dict) and candidate.get("version") == 2) or v2_flags.intersection(sys.argv[2:]):
+            _load_v2_renderer().main()
+            return
     parser = argparse.ArgumentParser(description="将结构化求职简历渲染为本地 HTML 与 PDF。")
     parser.add_argument("input", help="resume-data.json 路径")
     parser.add_argument("--output-dir", "-o", default="output", help="输出目录")

@@ -1,10 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "language": "zh-CN",
-  "theme": "swiss",
+  "design": {
+    "layout": "classic-single-column",
+    "skin": "swiss-red",
+    "density": "auto",
+    "render_profile": "balanced"
+  },
   "section_order": ["experience", "projects", "education", "skills", "awards"],
   "filename": "周宁_AI产品经理_简历",
   "target": {"role": "AI 产品经理", "company_type": "互联网"},
+  "targeting": {
+    "role_thesis": "能把真实业务问题转成可验证 AI 产品原型，并用数据补充产品判断的早期职业候选人",
+    "priority_requirement_ids": ["req-product", "req-data"],
+    "included_evidence_ids": ["work-support-copilot", "project-feedback"],
+    "omitted_evidence_ids": []
+  },
   "basics": {
     "name": "周宁",
     "headline": "AI 产品经理｜需求分析 · 原型验证 · 数据分析",
@@ -34,6 +45,9 @@
       "end": "2024.12",
       "location": "上海",
       "tech": ["需求分析", "用户访谈", "原型设计", "RAG 结果抽检"],
+      "evidence_ids": ["work-support-copilot"],
+      "requirement_ids": ["req-product"],
+      "priority": "core",
       "bullets": [
         {
           "text": "访谈 6 名客服并归纳高频问题，与 2 名工程师共同定义检索与引用流程，完成客服知识助手内部试用。",
@@ -55,6 +69,9 @@
       "start": "2025.02",
       "end": "2025.04",
       "tech": ["Python", "数据分析", "数据清洗", "可视化", "交互原型"],
+      "evidence_ids": ["project-feedback"],
+      "requirement_ids": ["req-data"],
+      "priority": "supporting",
       "link": "https://example.com/feedback-dashboard",
       "bullets": [
         {

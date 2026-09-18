@@ -1,0 +1,173 @@
+{
+  "schema_version": "2.0.0",
+  "name": "lyz-resume",
+  "title": "简历工坊",
+  "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
+  "trigger_surface": {
+    "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
+    "should_trigger": [
+      "我没有简历，也不知道自己有什么可写的，采访我做一份运营简历。",
+      "这是旧简历和目标 JD，帮我针对岗位重写并生成 PDF。",
+      "内容一个字都别改，只把这份简历重排得更专业。",
+      "请检查我简历里有没有夸大、因果跳跃和时间线问题。",
+      "用同一份经历分别做 AI 产品经理和增长运营两个版本。",
+      "把我这些零散项目经历整理成一份英文 resume。",
+      "给简历加上我提供的证件照，再输出 HTML 和 PDF。",
+      "我只有一句话的项目经历，帮我慢慢挖出能写进简历的内容。"
+    ],
+    "should_not_trigger": [
+      "帮我写一封针对这家公司 CEO 的求职信。",
+      "给我做一个个人作品集网站。",
+      "模拟产品经理面试并追问我的项目。",
+      "帮我把职位投到招聘网站上。",
+      "我应该转行做产品还是继续做运营？",
+      "写一份博士申请用的 academic CV。",
+      "解释一下 STAR 方法是什么。",
+      "帮招聘方批量筛选这 500 份候选人简历。",
+      "学术 CV、资深高管品牌叙事、作品集网站、求职信、面试训练、职业规划、职位代投。"
+    ],
+    "edge_cases": [
+      "基于我的简历准备面试题，但不要改简历。",
+      "研究一下当前 AI 产品经理岗位都要求什么，暂时不做简历。",
+      "设计一套简历生成产品的数据库。",
+      "给我一份通用的项目复盘模板，不需要处理简历。",
+      "设计招聘系统中的候选人数据表，不要生成任何候选人简历。"
+    ]
+  },
+  "workflow": {
+    "steps": [
+      "Understand the request.",
+      "Execute the main task.",
+      "Validate the result."
+    ],
+    "decision_points": [
+      "Ask one focused clarification when the real job, output, or exclusion boundary is unclear.",
+      "Escalate visible tradeoffs when benchmark patterns conflict with local privacy, naming, or governance constraints.",
+      "Do not silently broaden the skill into adjacent jobs just because the examples are nearby."
+    ],
+    "failure_modes": [
+      "Tables can render as dense grids with weak hierarchy or poor mobile readability.",
+      "Long bullets can make the output look complete while hiding the actual decision logic.",
+      "Screenshots can be captured from the wrong state, wrong viewport, or wrong crop.",
+      "Missing screenshots can cause the skill to invent visual references instead of declaring the gap.",
+      "Footnote markers or dense citation notes can interrupt the reading flow.",
+      "Evidence can be over-attached to obvious statements and under-attached to risky claims.",
+      "Users start invoking the skill for adjacent one-off or explanation-only requests.",
+      "Outputs remain valid but become generic, cluttered, or weakly aligned with the user's domain.",
+      "Borrowed benchmark patterns no longer fit the local job or add ceremony without payoff.",
+      "Skill usage becomes team-critical while ownership, review cadence, or rollback evidence stays informal."
+    ]
+  },
+  "resources": {
+    "references": [
+      "references/facts-and-data-contract.md",
+      "references/installation-and-portability.md",
+      "references/intake-and-momentum.md",
+      "references/rendering-and-validation.md",
+      "references/role-analysis-and-writing.md",
+      "references/role-lenses.md",
+      "references/targeted-composition.md",
+      "references/visual-design-system.md"
+    ],
+    "scripts": [
+      "scripts/assess_intake.py",
+      "scripts/extract_resume.py",
+      "scripts/pdf_to_images.py",
+      "scripts/render_resume.py",
+      "scripts/render_resume_v2.py",
+      "scripts/validate_alignment.py",
+      "scripts/validate_resume.py",
+      "scripts/validate_resume_v2.py"
+    ],
+    "assets": [
+      "assets/candidate-ledger.schema.json",
+      "assets/design-archetypes.json",
+      "assets/example-ledger.json",
+      "assets/example-resume-plan.json",
+      "assets/example-resume-v1.json",
+      "assets/example-resume.json",
+      "assets/example-role-analysis.json",
+      "assets/resume-data.schema.json",
+      "assets/resume-plan.schema.json",
+      "assets/role-analysis.schema.json"
+    ],
+    "reports": [
+      "reports/intent-context.json",
+      "reports/intent-confidence.json",
+      "reports/intent-confidence.md",
+      "reports/reference-synthesis.json",
+      "reports/reference-synthesis.md",
+      "reports/output-risk-profile.json",
+      "reports/output-risk-profile.md",
+      "reports/artifact-design-profile.json",
+      "reports/artifact-design-profile.md",
+      "reports/prompt-quality-profile.json",
+      "reports/prompt-quality-profile.md",
+      "reports/system-model.json",
+      "reports/system-model.md",
+      "reports/iteration-directions.json",
+      "reports/iteration-directions.md",
+      "reports/skill-overview.json",
+      "reports/skill-overview.html",
+      "reports/output_quality_scorecard.json",
+      "reports/output_quality_scorecard.md",
+      "reports/output_execution_runs.json",
+      "reports/output_execution_runs.md",
+      "reports/output_blind_review_pack.json",
+      "reports/output_blind_review_pack.md",
+      "reports/output_blind_answer_key.json",
+      "reports/review_annotations.json",
+      "reports/review_annotations.md",
+      "reports/conformance_matrix.json",
+      "reports/conformance_matrix.md",
+      "reports/security_trust_report.json",
+      "reports/security_trust_report.md",
+      "reports/runtime_permission_probes.json",
+      "reports/runtime_permission_probes.md",
+      "reports/skill_atlas.json",
+      "reports/skill_atlas.html"
+    ]
+  },
+  "eval_plan": {
+    "trigger": [
+      "evals/output/cases.jsonl",
+      "evals/output/fixtures/old-resume.md",
+      "evals/output/schema.json",
+      "evals/semantic_config.json",
+      "evals/trigger_cases.json"
+    ],
+    "output": [
+      "evals/output/cases.jsonl",
+      "evals/output/fixtures/old-resume.md",
+      "evals/output/schema.json"
+    ],
+    "adversarial": [],
+    "baseline": "without_skill"
+  },
+  "risk": {
+    "output_risk": "high",
+    "execution_risk": "medium",
+    "trust_boundary": "team"
+  },
+  "governance": {
+    "owner": "Ling99",
+    "maturity": "production",
+    "review_cadence": "quarterly",
+    "review_due": ""
+  },
+  "targets": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "source_files": [
+    "SKILL.md",
+    "manifest.json",
+    "agents/interface.yaml",
+    "reports/intent-context.json",
+    "reports/output-risk-profile.json",
+    "reports/system-model.json"
+  ]
+}

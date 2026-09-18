@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0",
+  "ok": true,
+  "cases": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/evals/output/cases.jsonl",
+  "runner": {
+    "mode": "command",
+    "command": [
+      "/Users/ling99/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+      "scripts/local_output_eval_runner.py"
+    ],
+    "timeout_seconds": 30.0
+  },
+  "summary": {
+    "case_count": 5,
+    "variant_run_count": 10,
+    "command_executed_count": 10,
+    "model_executed_count": 0,
+    "recorded_fixture_count": 0,
+    "timing_observed_count": 10,
+    "token_observed_count": 0,
+    "token_estimated_count": 10,
+    "baseline_pass_rate": 5.0,
+    "with_skill_pass_rate": 100.0,
+    "delta": 95.0,
+    "regression_count": 0,
+    "failure_count": 0,
+    "gate_pass": true
+  },
+  "runs": [
+    {
+      "case_id": "low-information-intake",
+      "variant": "baseline",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 16.06,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 4,
+        "output_tokens": 10,
+        "total_tokens": 14,
+        "estimated": true
+      },
+      "score": 25.0,
+      "passed_count": 1,
+      "failed_count": 3,
+      "failed_assertions": [
+        "low-friction-opening",
+        "one-question",
+        "no-metric-pressure"
+      ],
+      "output_sha256": "653d3e0baf717afb0df5aed52e6d4ff69a954f8de565b46d7e0c0e9c0657da49",
+      "failure": ""
+    },
+    {
+      "case_id": "low-information-intake",
+      "variant": "with_skill",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 15.6,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 4,
+        "output_tokens": 32,
+        "total_tokens": 36,
+        "estimated": true
+      },
+      "score": 100.0,
+      "passed_count": 4,
+      "failed_count": 0,
+      "failed_assertions": [],
+      "output_sha256": "815cf57908d1127ae72d56797575f9ee90257b00d6032f7dc23f20b9f2dccba7",
+      "failure": ""
+    },
+    {
+      "case_id": "layout-only-boundary",
+      "variant": "baseline",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 16.27,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 5,
+        "output_tokens": 6,
+        "total_tokens": 11,
+        "estimated": true
+      },
+      "score": 0.0,
+      "passed_count": 0,
+      "failed_count": 3,
+      "failed_assertions": [
+        "preserves-copy",
+        "forbids-invention",
+        "same-source-rendering"
+      ],
+      "output_sha256": "866a90f49da42c8148a3c05f82290a7096d4740083218a659d2370eeadabba32",
+      "failure": ""
+    },
+    {
+      "case_id": "layout-only-boundary",
+      "variant": "with_skill",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 16.01,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 5,
+        "output_tokens": 33,
+        "total_tokens": 38,
+        "estimated": true
+      },
+      "score": 100.0,
+      "passed_count": 3,
+      "failed_count": 0,
+      "failed_assertions": [],
+      "output_sha256": "7d57bfcb6e914c21cba6bec4d47fa89eae1fb0256acf23d8b2d6a79b8ca64ecd",
+      "failure": ""
+    },
+    {
+      "case_id": "jd-keyword-gap",
+      "variant": "baseline",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 18.51,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 12,
+        "total_tokens": 22,
+        "estimated": true
+      },
+      "score": 0.0,
+      "passed_count": 0,
+      "failed_count": 3,
+      "failed_assertions": [
+        "gap-preserved",
+        "evidence-first",
+        "forbids-fake-skill"
+      ],
+      "output_sha256": "ebed05194eda9e29869092806b559bae3f40629987f07c0c3f3f6f33a0aa6996",
+      "failure": ""
+    },
+    {
+      "case_id": "jd-keyword-gap",
+      "variant": "with_skill",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 17.82,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 33,
+        "total_tokens": 43,
+        "estimated": true
+      },
+      "score": 100.0,
+      "passed_count": 3,
+      "failed_count": 0,
+      "failed_assertions": [],
+      "output_sha256": "9c6d53338ba967e2f64f02bca6602638118bced57d457c0e85687ebee41aa0eb",
+      "failure": ""
+    },
+    {
+      "case_id": "multi-role-variants",
+      "variant": "baseline",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 17.65,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 8,
+        "total_tokens": 15,
+        "estimated": true
+      },
+      "score": 0.0,
+      "passed_count": 0,
+      "failed_count": 3,
+      "failed_assertions": [
+        "single-fact-source",
+        "separate-role-analysis",
+        "no-universal-resume"
+      ],
+      "output_sha256": "19a7bfee38c768b57a1fbef959712356f4db18b3738dcab6e318e4aad4852240",
+      "failure": ""
+    },
+    {
+      "case_id": "multi-role-variants",
+      "variant": "with_skill",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 17.52,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 32,
+        "total_tokens": 39,
+        "estimated": true
+      },
+      "score": 100.0,
+      "passed_count": 3,
+      "failed_count": 0,
+      "failed_assertions": [],
+      "output_sha256": "45a36f389691d9452e1ed5572d9254b8583322a774d6ae290049fe4e5e8812ed",
+      "failure": ""
+    },
+    {
+      "case_id": "causal-claim-review",
+      "variant": "baseline",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 16.18,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 8,
+        "total_tokens": 16,
+        "estimated": true
+      },
+      "score": 0.0,
+      "passed_count": 0,
+      "failed_count": 4,
+      "failed_assertions": [
+        "separates-known-unknown",
+        "one-verification-question",
+        "offers-honest-downgrade",
+        "forbids-overclaim"
+      ],
+      "output_sha256": "10b28da63a86b835c76fd99e204ff340eee6477e2eaae42a57461f91c11d6bba",
+      "failure": ""
+    },
+    {
+      "case_id": "causal-claim-review",
+      "variant": "with_skill",
+      "status": "pass",
+      "execution_mode": "command",
+      "model_executed": false,
+      "command_executed": true,
+      "duration_ms": 16.69,
+      "provider": "local-output-eval-runner",
+      "model": "",
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 37,
+        "total_tokens": 45,
+        "estimated": true
+      },
+      "score": 100.0,
+      "passed_count": 4,
+      "failed_count": 0,
+      "failed_assertions": [],
+      "output_sha256": "67f1c275ed2b0a633cfb6f3ab5bfc24add43b48e2d3d2f70c1136b601201eaac",
+      "failure": ""
+    }
+  ],
+  "failures": [],
+  "artifacts": {
+    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_execution_runs.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_execution_runs.md"
+  }
+}

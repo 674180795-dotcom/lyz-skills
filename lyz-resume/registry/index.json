@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "lyz-resume",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "maturity": "production",
       "owner": "Ling99",
       "targets": [
@@ -16,7 +16,7 @@
         "vscode"
       ],
       "package_metadata": "registry/packages/lyz-resume.json",
-      "package_sha256": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4"
+      "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
     }
   ]
 }

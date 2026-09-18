@@ -50,7 +50,7 @@
       "key": "output-lab",
       "label": "输出实验",
       "status": "warn",
-      "detail": "5/3 cases; with-skill 100.0; baseline 5.0; file-backed 1; near-neighbor 1; blind A/B 5; exec 10; command 10; model 0; recorded 0; review adjudication missing",
+      "detail": "8/3 cases; with-skill 100.0; baseline 3.12; file-backed 1; near-neighbor 1; blind A/B 8; exec 10; command 10; model 0; recorded 0; review adjudication missing",
       "evidence": "reports/output_quality_scorecard.json",
       "link": "output_quality_scorecard.md",
       "review_action_id": "review-action-output-lab",
@@ -95,7 +95,7 @@
       "key": "trust-report",
       "label": "信任报告",
       "status": "pass",
-      "detail": "0 secrets; 5 scripts; 0 network-capable scripts; 0 help smoke failures",
+      "detail": "0 secrets; 8 scripts; 0 network-capable scripts; 0 help smoke failures",
       "evidence": "reports/security_trust_report.json",
       "link": "security_trust_report.md",
       "review_action_id": "",
@@ -110,7 +110,7 @@
       "key": "python-compat",
       "label": "Python 兼容",
       "status": "pass",
-      "detail": "Python 3.11; 6 files; 0 compatibility issues; 0 syntax; 0 f-string 3.11 hazards",
+      "detail": "Python 3.11; 9 files; 0 compatibility issues; 0 syntax; 0 f-string 3.11 hazards",
       "evidence": "reports/python_compatibility.json",
       "link": "python_compatibility.md",
       "review_action_id": "",
@@ -230,7 +230,7 @@
       "key": "registry-audit",
       "label": "注册审计",
       "status": "pass",
-      "detail": "lyz-resume 1.1.0; 6/6 compatibility entries pass; install pass with 4 adapters; installer permissions 8 enforced / 0 failures",
+      "detail": "lyz-resume 2.0.0; 6/6 compatibility entries pass; install pass with 4 adapters; installer permissions 8 enforced / 0 failures",
       "evidence": "reports/registry_audit.json + reports/install_simulation.json",
       "link": "registry_audit.md",
       "review_action_id": "",
@@ -245,7 +245,7 @@
       "key": "release-notes",
       "label": "发布路线",
       "status": "warn",
-      "detail": "promotion decisions are missing; release notes need reviewer confirmation",
+      "detail": "promotion decisions are missing; release notes need reviewer confirmation; upgrade major declared / patch recommended",
       "evidence": "reports/promotion_decisions.json + reports/upgrade_check.json + docs/migration-v2.md",
       "link": "/Users/ling99/.codex/skills/yao-meta-skill/docs/migration-v2.md",
       "review_action_id": "review-action-release-notes",
@@ -308,7 +308,7 @@
       "key": "output-lab",
       "label": "输出实验",
       "status": "warn",
-      "detail": "5/3 cases; with-skill 100.0; baseline 5.0; file-backed 1; near-neighbor 1; blind A/B 5; exec 10; command 10; model 0; recorded 0; review adjudication missing",
+      "detail": "8/3 cases; with-skill 100.0; baseline 3.12; file-backed 1; near-neighbor 1; blind A/B 8; exec 10; command 10; model 0; recorded 0; review adjudication missing",
       "evidence": "reports/output_quality_scorecard.json",
       "link": "output_quality_scorecard.md",
       "review_action_id": "review-action-output-lab",
@@ -368,7 +368,7 @@
       "key": "release-notes",
       "label": "发布路线",
       "status": "warn",
-      "detail": "promotion decisions are missing; release notes need reviewer confirmation",
+      "detail": "promotion decisions are missing; release notes need reviewer confirmation; upgrade major declared / patch recommended",
       "evidence": "reports/promotion_decisions.json + reports/upgrade_check.json + docs/migration-v2.md",
       "link": "/Users/ling99/.codex/skills/yao-meta-skill/docs/migration-v2.md",
       "review_action_id": "review-action-release-notes",
@@ -604,11 +604,11 @@
           "path": "reports/upgrade_check.md",
           "label": "upgrade check",
           "kind": "report",
-          "line": null,
-          "matched_pattern": "",
-          "excerpt": "",
-          "exists": false,
-          "link": ""
+          "line": 1,
+          "matched_pattern": "# Upgrade",
+          "excerpt": "# Upgrade Check",
+          "exists": true,
+          "link": "upgrade_check.md"
         },
         {
           "path": "docs/migration-v2.md",
@@ -2168,17 +2168,17 @@
       "ok": true,
       "cases": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/evals/output/cases.jsonl",
       "summary": {
-        "case_count": 5,
+        "case_count": 8,
         "file_backed_case_count": 1,
         "near_neighbor_case_count": 1,
-        "boundary_case_count": 1,
-        "baseline_pass_rate": 5.0,
+        "boundary_case_count": 2,
+        "baseline_pass_rate": 3.12,
         "with_skill_pass_rate": 100.0,
-        "delta": 95.0,
+        "delta": 96.88,
         "regression_count": 0,
         "gate_pass": true,
         "failure_taxonomy": [],
-        "blind_pair_count": 5
+        "blind_pair_count": 8
       },
       "results": [
         {
@@ -2865,13 +2865,434 @@
           "delta": 100.0,
           "winner": "with_skill",
           "failure_taxonomy": []
+        },
+        {
+          "id": "targeted-evidence-budget",
+          "prompt": "我有六段经历，准备投 AI 产品经理。两段做过需求、原型和试用，另外四段是社团、行政和销售兼职。都写进去显得丰富一些。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "file_backed",
+            "tier": "production"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 4,
+            "checks": [
+              {
+                "id": "explicit-tiering",
+                "description": "Evidence is deliberately tiered instead of listed equally.",
+                "weight": 1.0,
+                "failure_type": "flat_inventory",
+                "passed": false,
+                "missing": [
+                  "core",
+                  "supporting",
+                  "brief",
+                  "omit"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "page-priority",
+                "description": "Core evidence receives first-page priority and more space.",
+                "weight": 1.0,
+                "failure_type": "weak_targeting",
+                "passed": false,
+                "missing": [
+                  "第一页",
+                  "2–3 条"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "omission-is-safe",
+                "description": "Omitted facts remain in the ledger rather than being deleted.",
+                "weight": 1.0,
+                "failure_type": "fact_loss",
+                "passed": false,
+                "missing": [
+                  "继续保留在 candidate-ledger",
+                  "不挤占"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "alignment-gate",
+                "description": "The plan is checked against the public resume.",
+                "weight": 1.0,
+                "failure_type": "missing_alignment_gate",
+                "passed": false,
+                "missing": [
+                  "validate_alignment.py",
+                  "omit 不进入"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "explicit-tiering",
+                "description": "Evidence is deliberately tiered instead of listed equally.",
+                "weight": 1.0,
+                "failure_type": "flat_inventory",
+                "passed": false,
+                "missing": [
+                  "core",
+                  "supporting",
+                  "brief",
+                  "omit"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "page-priority",
+                "description": "Core evidence receives first-page priority and more space.",
+                "weight": 1.0,
+                "failure_type": "weak_targeting",
+                "passed": false,
+                "missing": [
+                  "第一页",
+                  "2–3 条"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "omission-is-safe",
+                "description": "Omitted facts remain in the ledger rather than being deleted.",
+                "weight": 1.0,
+                "failure_type": "fact_loss",
+                "passed": false,
+                "missing": [
+                  "继续保留在 candidate-ledger",
+                  "不挤占"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "alignment-gate",
+                "description": "The plan is checked against the public resume.",
+                "weight": 1.0,
+                "failure_type": "missing_alignment_gate",
+                "passed": false,
+                "missing": [
+                  "validate_alignment.py",
+                  "omit 不进入"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 4,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "explicit-tiering",
+                "description": "Evidence is deliberately tiered instead of listed equally.",
+                "weight": 1.0,
+                "failure_type": "flat_inventory",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "page-priority",
+                "description": "Core evidence receives first-page priority and more space.",
+                "weight": 1.0,
+                "failure_type": "weak_targeting",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "omission-is-safe",
+                "description": "Omitted facts remain in the ledger rather than being deleted.",
+                "weight": 1.0,
+                "failure_type": "fact_loss",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "alignment-gate",
+                "description": "The plan is checked against the public resume.",
+                "weight": 1.0,
+                "failure_type": "missing_alignment_gate",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "layout-archetype-selection",
+          "prompt": "给我换八套好看的简历主题，颜色都不一样就行。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "core",
+            "tier": "production"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 3,
+            "checks": [
+              {
+                "id": "three-layer-design",
+                "description": "Layout, skin, and density are separate concerns.",
+                "weight": 1.0,
+                "failure_type": "theme_conflation",
+                "passed": false,
+                "missing": [
+                  "layout × skin × density",
+                  "compact 归入 density"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "distinct-topology",
+                "description": "Layouts need structurally distinct output.",
+                "weight": 1.0,
+                "failure_type": "color_only_templates",
+                "passed": false,
+                "missing": [
+                  "不同 DOM 或栅格",
+                  "左右辅助栏"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded-choice",
+                "description": "Normal output avoids a noisy eight-variant dump.",
+                "weight": 1.0,
+                "failure_type": "variant_overproduction",
+                "passed": false,
+                "missing": [
+                  "默认推荐一套",
+                  "三套拓扑差异明显"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "three-layer-design",
+                "description": "Layout, skin, and density are separate concerns.",
+                "weight": 1.0,
+                "failure_type": "theme_conflation",
+                "passed": false,
+                "missing": [
+                  "layout × skin × density",
+                  "compact 归入 density"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "distinct-topology",
+                "description": "Layouts need structurally distinct output.",
+                "weight": 1.0,
+                "failure_type": "color_only_templates",
+                "passed": false,
+                "missing": [
+                  "不同 DOM 或栅格",
+                  "左右辅助栏"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded-choice",
+                "description": "Normal output avoids a noisy eight-variant dump.",
+                "weight": 1.0,
+                "failure_type": "variant_overproduction",
+                "passed": false,
+                "missing": [
+                  "默认推荐一套",
+                  "三套拓扑差异明显"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 3,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "three-layer-design",
+                "description": "Layout, skin, and density are separate concerns.",
+                "weight": 1.0,
+                "failure_type": "theme_conflation",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "distinct-topology",
+                "description": "Layouts need structurally distinct output.",
+                "weight": 1.0,
+                "failure_type": "color_only_templates",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded-choice",
+                "description": "Normal output avoids a noisy eight-variant dump.",
+                "weight": 1.0,
+                "failure_type": "variant_overproduction",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "ats-layout-claim",
+          "prompt": "表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "boundary",
+            "tier": "production"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 3,
+            "checks": [
+              {
+                "id": "rejects-universal-claim",
+                "description": "It rejects universal ATS compatibility claims.",
+                "weight": 1.0,
+                "failure_type": "unsupported_ats_claim",
+                "passed": false,
+                "missing": [
+                  "不能作这种通用声明",
+                  "当前测试样本"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "evidence-check",
+                "description": "Claims depend on concrete extraction and order checks.",
+                "weight": 1.0,
+                "failure_type": "missing_runtime_evidence",
+                "passed": false,
+                "missing": [
+                  "文本提取",
+                  "阅读顺序检查"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "no-outcome-promise",
+                "description": "It avoids ATS score and pass-rate promises.",
+                "weight": 1.0,
+                "failure_type": "outcome_promise",
+                "passed": false,
+                "missing": [
+                  "不提供 ATS 分数",
+                  "不承诺通过率"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "rejects-universal-claim",
+                "description": "It rejects universal ATS compatibility claims.",
+                "weight": 1.0,
+                "failure_type": "unsupported_ats_claim",
+                "passed": false,
+                "missing": [
+                  "不能作这种通用声明",
+                  "当前测试样本"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "evidence-check",
+                "description": "Claims depend on concrete extraction and order checks.",
+                "weight": 1.0,
+                "failure_type": "missing_runtime_evidence",
+                "passed": false,
+                "missing": [
+                  "文本提取",
+                  "阅读顺序检查"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "no-outcome-promise",
+                "description": "It avoids ATS score and pass-rate promises.",
+                "weight": 1.0,
+                "failure_type": "outcome_promise",
+                "passed": false,
+                "missing": [
+                  "不提供 ATS 分数",
+                  "不承诺通过率"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 3,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "rejects-universal-claim",
+                "description": "It rejects universal ATS compatibility claims.",
+                "weight": 1.0,
+                "failure_type": "unsupported_ats_claim",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "evidence-check",
+                "description": "Claims depend on concrete extraction and order checks.",
+                "weight": 1.0,
+                "failure_type": "missing_runtime_evidence",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "no-outcome-promise",
+                "description": "It avoids ATS score and pass-rate promises.",
+                "weight": 1.0,
+                "failure_type": "outcome_promise",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
         }
       ],
       "failures": [],
       "blind_review": {
         "pack": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.json",
         "answer_key": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_answer_key.json",
-        "pair_count": 5
+        "pair_count": 8
       },
       "artifacts": {
         "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_quality_scorecard.json",
@@ -3172,9 +3593,9 @@
       "schema_version": "1.0",
       "seed": "yao-output-eval-blind-v1",
       "summary": {
-        "pair_count": 5,
+        "pair_count": 8,
         "answer_key_separate": true,
-        "with_skill_hidden_count": 5
+        "with_skill_hidden_count": 8
       },
       "pairs": [
         {
@@ -3363,6 +3784,116 @@
             "blind_id": "causal-claim-review:B",
             "output": "主导首页 UI 重构，通过优化用户体验推动公司营收增长 32%。"
           }
+        },
+        {
+          "case_id": "targeted-evidence-budget",
+          "prompt": "我有六段经历，准备投 AI 产品经理。两段做过需求、原型和试用，另外四段是社团、行政和销售兼职。都写进去显得丰富一些。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "file_backed",
+            "tier": "production"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "explicit-tiering",
+              "description": "Evidence is deliberately tiered instead of listed equally.",
+              "weight": 1.0
+            },
+            {
+              "id": "page-priority",
+              "description": "Core evidence receives first-page priority and more space.",
+              "weight": 1.0
+            },
+            {
+              "id": "omission-is-safe",
+              "description": "Omitted facts remain in the ledger rather than being deleted.",
+              "weight": 1.0
+            },
+            {
+              "id": "alignment-gate",
+              "description": "The plan is checked against the public resume.",
+              "weight": 1.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "targeted-evidence-budget:A",
+            "output": "先建立 resume-plan：两段直接证明需求、原型和试用的经历标为 core，放在第一页并各保留 2–3 条；能补充沟通或用户理解的真实经历标为 supporting 或 brief；其余弱相关内容标为 omit，继续保留在 candidate-ledger，但不挤占这个岗位版本。成稿前用 validate_alignment.py 检查核心证据前置、brief 不超过一条、omit 不进入公开简历。"
+          },
+          "variant_b": {
+            "blind_id": "targeted-evidence-budget:B",
+            "output": "可以把六段经历完整写入，再统一用产品经理关键词润色，让履历看起来更丰富。"
+          }
+        },
+        {
+          "case_id": "layout-archetype-selection",
+          "prompt": "给我换八套好看的简历主题，颜色都不一样就行。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "core",
+            "tier": "production"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "three-layer-design",
+              "description": "Layout, skin, and density are separate concerns.",
+              "weight": 1.0
+            },
+            {
+              "id": "distinct-topology",
+              "description": "Layouts need structurally distinct output.",
+              "weight": 1.0
+            },
+            {
+              "id": "bounded-choice",
+              "description": "Normal output avoids a noisy eight-variant dump.",
+              "weight": 1.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "layout-archetype-selection:A",
+            "output": "我会复制同一个单栏模板并替换八组颜色和字体，生成八套主题。"
+          },
+          "variant_b": {
+            "blind_id": "layout-archetype-selection:B",
+            "output": "不会把换色当成八套模板。2.0 将页面拆成 layout × skin × density：八种 layout 必须具有不同 DOM 或栅格，例如单栏、左右辅助栏、Hero 线性流、模块色块和表格结构；skin 只负责颜色与字体，compact 归入 density。普通交付默认推荐一套；你明确要比较时，优先生成三套拓扑差异明显的预览。"
+          }
+        },
+        {
+          "case_id": "ats-layout-claim",
+          "prompt": "表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
+          "input_files": [],
+          "metadata": {
+            "case_type": "boundary",
+            "tier": "production"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "rejects-universal-claim",
+              "description": "It rejects universal ATS compatibility claims.",
+              "weight": 1.0
+            },
+            {
+              "id": "evidence-check",
+              "description": "Claims depend on concrete extraction and order checks.",
+              "weight": 1.0
+            },
+            {
+              "id": "no-outcome-promise",
+              "description": "It avoids ATS score and pass-rate promises.",
+              "weight": 1.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "ats-layout-claim:A",
+            "output": "是的，结构化表格和双栏能让 ATS 更准确识别，因此可以写成 ATS 极度友好。"
+          },
+          "variant_b": {
+            "blind_id": "ats-layout-claim:B",
+            "output": "不能作这种通用声明。默认 ATS-first 使用语义顺序稳定的单栏；表格和双栏只能在具体 PDF 经过文本提取、关键字段存在和阅读顺序检查后，描述为“在当前测试样本中可提取”。不提供 ATS 分数，也不承诺通过率。"
+          }
         }
       ]
     },
@@ -3409,7 +3940,7 @@
           "compiled_contract": {
             "name": "lyz-resume",
             "title": "简历工坊",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
             "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
             "trigger": {
@@ -3474,21 +4005,30 @@
                 "references/intake-and-momentum.md",
                 "references/rendering-and-validation.md",
                 "references/role-analysis-and-writing.md",
-                "references/role-lenses.md"
+                "references/role-lenses.md",
+                "references/targeted-composition.md",
+                "references/visual-design-system.md"
               ],
               "scripts": [
                 "scripts/assess_intake.py",
                 "scripts/extract_resume.py",
                 "scripts/pdf_to_images.py",
                 "scripts/render_resume.py",
-                "scripts/validate_resume.py"
+                "scripts/render_resume_v2.py",
+                "scripts/validate_alignment.py",
+                "scripts/validate_resume.py",
+                "scripts/validate_resume_v2.py"
               ],
               "assets": [
                 "assets/candidate-ledger.schema.json",
+                "assets/design-archetypes.json",
                 "assets/example-ledger.json",
+                "assets/example-resume-plan.json",
+                "assets/example-resume-v1.json",
                 "assets/example-resume.json",
                 "assets/example-role-analysis.json",
                 "assets/resume-data.schema.json",
+                "assets/resume-plan.schema.json",
                 "assets/role-analysis.schema.json"
               ],
               "reports": [
@@ -3528,9 +4068,9 @@
                 "reports/skill_atlas.html"
               ],
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               }
             },
@@ -3691,9 +4231,9 @@
               "resources": {
                 "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
                 "counts": {
-                  "references": 6,
-                  "scripts": 5,
-                  "assets": 6,
+                  "references": 8,
+                  "scripts": 8,
+                  "assets": 10,
                   "reports": 34
                 },
                 "generated_files": [
@@ -3703,7 +4243,7 @@
               },
               "scripts": {
                 "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
-                "script_count": 5,
+                "script_count": 8,
                 "help_smoke_failed_count": 0
               },
               "permissions": {
@@ -3860,9 +4400,9 @@
             "resources": {
               "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               },
               "generated_files": [
@@ -3872,7 +4412,7 @@
             },
             "scripts": {
               "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
-              "script_count": 5,
+              "script_count": 8,
               "help_smoke_failed_count": 0
             },
             "permissions": {
@@ -3965,7 +4505,7 @@
           "compiled_contract": {
             "name": "lyz-resume",
             "title": "简历工坊",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
             "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
             "trigger": {
@@ -4030,21 +4570,30 @@
                 "references/intake-and-momentum.md",
                 "references/rendering-and-validation.md",
                 "references/role-analysis-and-writing.md",
-                "references/role-lenses.md"
+                "references/role-lenses.md",
+                "references/targeted-composition.md",
+                "references/visual-design-system.md"
               ],
               "scripts": [
                 "scripts/assess_intake.py",
                 "scripts/extract_resume.py",
                 "scripts/pdf_to_images.py",
                 "scripts/render_resume.py",
-                "scripts/validate_resume.py"
+                "scripts/render_resume_v2.py",
+                "scripts/validate_alignment.py",
+                "scripts/validate_resume.py",
+                "scripts/validate_resume_v2.py"
               ],
               "assets": [
                 "assets/candidate-ledger.schema.json",
+                "assets/design-archetypes.json",
                 "assets/example-ledger.json",
+                "assets/example-resume-plan.json",
+                "assets/example-resume-v1.json",
                 "assets/example-resume.json",
                 "assets/example-role-analysis.json",
                 "assets/resume-data.schema.json",
+                "assets/resume-plan.schema.json",
                 "assets/role-analysis.schema.json"
               ],
               "reports": [
@@ -4084,9 +4633,9 @@
                 "reports/skill_atlas.html"
               ],
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               }
             },
@@ -4247,9 +4796,9 @@
               "resources": {
                 "strategy": "Preserve the source tree directly; write target notes in targets/claude/README.md.",
                 "counts": {
-                  "references": 6,
-                  "scripts": 5,
-                  "assets": 6,
+                  "references": 8,
+                  "scripts": 8,
+                  "assets": 10,
                   "reports": 34
                 },
                 "generated_files": [
@@ -4259,7 +4808,7 @@
               },
               "scripts": {
                 "strategy": "Scripts remain local package resources and must be reviewed through trust and permission reports before use.",
-                "script_count": 5,
+                "script_count": 8,
                 "help_smoke_failed_count": 0
               },
               "permissions": {
@@ -4416,9 +4965,9 @@
             "resources": {
               "strategy": "Preserve the source tree directly; write target notes in targets/claude/README.md.",
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               },
               "generated_files": [
@@ -4428,7 +4977,7 @@
             },
             "scripts": {
               "strategy": "Scripts remain local package resources and must be reviewed through trust and permission reports before use.",
-              "script_count": 5,
+              "script_count": 8,
               "help_smoke_failed_count": 0
             },
             "permissions": {
@@ -4521,7 +5070,7 @@
           "compiled_contract": {
             "name": "lyz-resume",
             "title": "简历工坊",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
             "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
             "trigger": {
@@ -4586,21 +5135,30 @@
                 "references/intake-and-momentum.md",
                 "references/rendering-and-validation.md",
                 "references/role-analysis-and-writing.md",
-                "references/role-lenses.md"
+                "references/role-lenses.md",
+                "references/targeted-composition.md",
+                "references/visual-design-system.md"
               ],
               "scripts": [
                 "scripts/assess_intake.py",
                 "scripts/extract_resume.py",
                 "scripts/pdf_to_images.py",
                 "scripts/render_resume.py",
-                "scripts/validate_resume.py"
+                "scripts/render_resume_v2.py",
+                "scripts/validate_alignment.py",
+                "scripts/validate_resume.py",
+                "scripts/validate_resume_v2.py"
               ],
               "assets": [
                 "assets/candidate-ledger.schema.json",
+                "assets/design-archetypes.json",
                 "assets/example-ledger.json",
+                "assets/example-resume-plan.json",
+                "assets/example-resume-v1.json",
                 "assets/example-resume.json",
                 "assets/example-role-analysis.json",
                 "assets/resume-data.schema.json",
+                "assets/resume-plan.schema.json",
                 "assets/role-analysis.schema.json"
               ],
               "reports": [
@@ -4640,9 +5198,9 @@
                 "reports/skill_atlas.html"
               ],
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               }
             },
@@ -4803,9 +5361,9 @@
               "resources": {
                 "strategy": "Preserve references, scripts, assets, evals, reports, and adapter metadata as relative package resources.",
                 "counts": {
-                  "references": 6,
-                  "scripts": 5,
-                  "assets": 6,
+                  "references": 8,
+                  "scripts": 8,
+                  "assets": 10,
                   "reports": 34
                 },
                 "generated_files": [
@@ -4814,7 +5372,7 @@
               },
               "scripts": {
                 "strategy": "Expose script and permission metadata for downstream clients or installers to enforce.",
-                "script_count": 5,
+                "script_count": 8,
                 "help_smoke_failed_count": 0
               },
               "permissions": {
@@ -4965,9 +5523,9 @@
             "resources": {
               "strategy": "Preserve references, scripts, assets, evals, reports, and adapter metadata as relative package resources.",
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               },
               "generated_files": [
@@ -4976,7 +5534,7 @@
             },
             "scripts": {
               "strategy": "Expose script and permission metadata for downstream clients or installers to enforce.",
-              "script_count": 5,
+              "script_count": 8,
               "help_smoke_failed_count": 0
             },
             "permissions": {
@@ -5061,7 +5619,7 @@
           "compiled_contract": {
             "name": "lyz-resume",
             "title": "简历工坊",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
             "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
             "trigger": {
@@ -5126,21 +5684,30 @@
                 "references/intake-and-momentum.md",
                 "references/rendering-and-validation.md",
                 "references/role-analysis-and-writing.md",
-                "references/role-lenses.md"
+                "references/role-lenses.md",
+                "references/targeted-composition.md",
+                "references/visual-design-system.md"
               ],
               "scripts": [
                 "scripts/assess_intake.py",
                 "scripts/extract_resume.py",
                 "scripts/pdf_to_images.py",
                 "scripts/render_resume.py",
-                "scripts/validate_resume.py"
+                "scripts/render_resume_v2.py",
+                "scripts/validate_alignment.py",
+                "scripts/validate_resume.py",
+                "scripts/validate_resume_v2.py"
               ],
               "assets": [
                 "assets/candidate-ledger.schema.json",
+                "assets/design-archetypes.json",
                 "assets/example-ledger.json",
+                "assets/example-resume-plan.json",
+                "assets/example-resume-v1.json",
                 "assets/example-resume.json",
                 "assets/example-role-analysis.json",
                 "assets/resume-data.schema.json",
+                "assets/resume-plan.schema.json",
                 "assets/role-analysis.schema.json"
               ],
               "reports": [
@@ -5180,9 +5747,9 @@
                 "reports/skill_atlas.html"
               ],
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               }
             },
@@ -5343,9 +5910,9 @@
               "resources": {
                 "strategy": "Keep optional directories as relative resources next to SKILL.md.",
                 "counts": {
-                  "references": 6,
-                  "scripts": 5,
-                  "assets": 6,
+                  "references": 8,
+                  "scripts": 8,
+                  "assets": 10,
                   "reports": 34
                 },
                 "generated_files": [
@@ -5355,7 +5922,7 @@
               },
               "scripts": {
                 "strategy": "Scripts remain local optional resources and should advertise --help when executable.",
-                "script_count": 5,
+                "script_count": 8,
                 "help_smoke_failed_count": 0
               },
               "permissions": {
@@ -5505,9 +6072,9 @@
             "resources": {
               "strategy": "Keep optional directories as relative resources next to SKILL.md.",
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               },
               "generated_files": [
@@ -5517,7 +6084,7 @@
             },
             "scripts": {
               "strategy": "Scripts remain local optional resources and should advertise --help when executable.",
-              "script_count": 5,
+              "script_count": 8,
               "help_smoke_failed_count": 0
             },
             "permissions": {
@@ -5601,7 +6168,7 @@
           "compiled_contract": {
             "name": "lyz-resume",
             "title": "简历工坊",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
             "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
             "trigger": {
@@ -5666,21 +6233,30 @@
                 "references/intake-and-momentum.md",
                 "references/rendering-and-validation.md",
                 "references/role-analysis-and-writing.md",
-                "references/role-lenses.md"
+                "references/role-lenses.md",
+                "references/targeted-composition.md",
+                "references/visual-design-system.md"
               ],
               "scripts": [
                 "scripts/assess_intake.py",
                 "scripts/extract_resume.py",
                 "scripts/pdf_to_images.py",
                 "scripts/render_resume.py",
-                "scripts/validate_resume.py"
+                "scripts/render_resume_v2.py",
+                "scripts/validate_alignment.py",
+                "scripts/validate_resume.py",
+                "scripts/validate_resume_v2.py"
               ],
               "assets": [
                 "assets/candidate-ledger.schema.json",
+                "assets/design-archetypes.json",
                 "assets/example-ledger.json",
+                "assets/example-resume-plan.json",
+                "assets/example-resume-v1.json",
                 "assets/example-resume.json",
                 "assets/example-role-analysis.json",
                 "assets/resume-data.schema.json",
+                "assets/resume-plan.schema.json",
                 "assets/role-analysis.schema.json"
               ],
               "reports": [
@@ -5720,9 +6296,9 @@
                 "reports/skill_atlas.html"
               ],
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               }
             },
@@ -5883,9 +6459,9 @@
               "resources": {
                 "strategy": "Install as project or user scoped skill source, preserving relative references and scripts.",
                 "counts": {
-                  "references": 6,
-                  "scripts": 5,
-                  "assets": 6,
+                  "references": 8,
+                  "scripts": 8,
+                  "assets": 10,
                   "reports": 34
                 },
                 "generated_files": [
@@ -5895,7 +6471,7 @@
               },
               "scripts": {
                 "strategy": "Scripts require workspace trust and operator/client approval outside this compiler.",
-                "script_count": 5,
+                "script_count": 8,
                 "help_smoke_failed_count": 0
               },
               "permissions": {
@@ -6049,9 +6625,9 @@
             "resources": {
               "strategy": "Install as project or user scoped skill source, preserving relative references and scripts.",
               "counts": {
-                "references": 6,
-                "scripts": 5,
-                "assets": 6,
+                "references": 8,
+                "scripts": 8,
+                "assets": 10,
                 "reports": 34
               },
               "generated_files": [
@@ -6061,7 +6637,7 @@
             },
             "scripts": {
               "strategy": "Scripts require workspace trust and operator/client approval outside this compiler.",
-              "script_count": 5,
+              "script_count": 8,
               "help_smoke_failed_count": 0
             },
             "permissions": {
@@ -6172,12 +6748,12 @@
             "references resource resolves: references/rendering-and-validation.md",
             "references resource resolves: references/role-analysis-and-writing.md",
             "references resource resolves: references/role-lenses.md",
+            "references resource resolves: references/targeted-composition.md",
+            "references resource resolves: references/visual-design-system.md",
             "scripts resource resolves: scripts/assess_intake.py",
             "scripts resource resolves: scripts/extract_resume.py",
             "scripts resource resolves: scripts/pdf_to_images.py",
-            "scripts resource resolves: scripts/render_resume.py",
-            "scripts resource resolves: scripts/validate_resume.py",
-            "assets resource resolves: assets/candidate-ledger.schema.json"
+            "scripts resource resolves: scripts/render_resume.py"
           ],
           "failures": [],
           "warnings": []
@@ -6216,12 +6792,12 @@
             "references resource resolves: references/rendering-and-validation.md",
             "references resource resolves: references/role-analysis-and-writing.md",
             "references resource resolves: references/role-lenses.md",
+            "references resource resolves: references/targeted-composition.md",
+            "references resource resolves: references/visual-design-system.md",
             "scripts resource resolves: scripts/assess_intake.py",
             "scripts resource resolves: scripts/extract_resume.py",
             "scripts resource resolves: scripts/pdf_to_images.py",
-            "scripts resource resolves: scripts/render_resume.py",
-            "scripts resource resolves: scripts/validate_resume.py",
-            "assets resource resolves: assets/candidate-ledger.schema.json"
+            "scripts resource resolves: scripts/render_resume.py"
           ],
           "failures": [],
           "warnings": []
@@ -6260,12 +6836,12 @@
             "references resource resolves: references/rendering-and-validation.md",
             "references resource resolves: references/role-analysis-and-writing.md",
             "references resource resolves: references/role-lenses.md",
+            "references resource resolves: references/targeted-composition.md",
+            "references resource resolves: references/visual-design-system.md",
             "scripts resource resolves: scripts/assess_intake.py",
             "scripts resource resolves: scripts/extract_resume.py",
             "scripts resource resolves: scripts/pdf_to_images.py",
-            "scripts resource resolves: scripts/render_resume.py",
-            "scripts resource resolves: scripts/validate_resume.py",
-            "assets resource resolves: assets/candidate-ledger.schema.json"
+            "scripts resource resolves: scripts/render_resume.py"
           ],
           "failures": [],
           "warnings": [
@@ -6306,12 +6882,12 @@
             "references resource resolves: references/rendering-and-validation.md",
             "references resource resolves: references/role-analysis-and-writing.md",
             "references resource resolves: references/role-lenses.md",
+            "references resource resolves: references/targeted-composition.md",
+            "references resource resolves: references/visual-design-system.md",
             "scripts resource resolves: scripts/assess_intake.py",
             "scripts resource resolves: scripts/extract_resume.py",
             "scripts resource resolves: scripts/pdf_to_images.py",
-            "scripts resource resolves: scripts/render_resume.py",
-            "scripts resource resolves: scripts/validate_resume.py",
-            "assets resource resolves: assets/candidate-ledger.schema.json"
+            "scripts resource resolves: scripts/render_resume.py"
           ],
           "failures": [],
           "warnings": [
@@ -6352,12 +6928,12 @@
             "references resource resolves: references/rendering-and-validation.md",
             "references resource resolves: references/role-analysis-and-writing.md",
             "references resource resolves: references/role-lenses.md",
+            "references resource resolves: references/targeted-composition.md",
+            "references resource resolves: references/visual-design-system.md",
             "scripts resource resolves: scripts/assess_intake.py",
             "scripts resource resolves: scripts/extract_resume.py",
             "scripts resource resolves: scripts/pdf_to_images.py",
-            "scripts resource resolves: scripts/render_resume.py",
-            "scripts resource resolves: scripts/validate_resume.py",
-            "assets resource resolves: assets/candidate-ledger.schema.json"
+            "scripts resource resolves: scripts/render_resume.py"
           ],
           "failures": [],
           "warnings": []
@@ -6759,8 +7335,8 @@
       "ok": true,
       "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
       "summary": {
-        "scanned_files": 27,
-        "script_count": 5,
+        "scanned_files": 36,
+        "script_count": 8,
         "internal_module_count": 0,
         "secret_findings": 0,
         "dependency_files": [
@@ -6769,18 +7345,18 @@
         "network_script_count": 0,
         "network_policy_covered_count": 0,
         "network_policy_missing_count": 0,
-        "file_write_script_count": 5,
+        "file_write_script_count": 8,
         "permission_required_count": 2,
         "permission_approved_count": 2,
         "permission_missing_count": 0,
         "permission_invalid_count": 0,
         "permission_expired_count": 0,
-        "help_smoke_checked_count": 5,
+        "help_smoke_checked_count": 8,
         "help_smoke_failed_count": 0,
         "interactive_script_count": 0,
         "package_hash_scope": "source-contract-without-generated-reports",
-        "package_hash_file_count": 27,
-        "package_sha256": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4"
+        "package_hash_file_count": 36,
+        "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
       },
       "failures": [],
       "warnings": [],
@@ -6856,7 +7432,49 @@
           ]
         },
         {
+          "path": "scripts/render_resume_v2.py",
+          "interface": "cli",
+          "interface_declared": false,
+          "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+          "has_argparse": true,
+          "has_main_guard": true,
+          "uses_input": false,
+          "uses_network": false,
+          "uses_file_write": true,
+          "uses_subprocess": true,
+          "network_urls": [],
+          "network_hosts": []
+        },
+        {
+          "path": "scripts/validate_alignment.py",
+          "interface": "cli",
+          "interface_declared": false,
+          "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+          "has_argparse": true,
+          "has_main_guard": true,
+          "uses_input": false,
+          "uses_network": false,
+          "uses_file_write": true,
+          "uses_subprocess": false,
+          "network_urls": [],
+          "network_hosts": []
+        },
+        {
           "path": "scripts/validate_resume.py",
+          "interface": "cli",
+          "interface_declared": false,
+          "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+          "has_argparse": true,
+          "has_main_guard": true,
+          "uses_input": false,
+          "uses_network": false,
+          "uses_file_write": true,
+          "uses_subprocess": true,
+          "network_urls": [],
+          "network_hosts": []
+        },
+        {
+          "path": "scripts/validate_resume_v2.py",
           "interface": "cli",
           "interface_declared": false,
           "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
@@ -6890,9 +7508,9 @@
       "help_smoke": {
         "enabled": true,
         "timeout_seconds": 5.0,
-        "candidate_count": 5,
-        "checked_count": 5,
-        "passed_count": 5,
+        "candidate_count": 8,
+        "checked_count": 8,
+        "passed_count": 8,
         "failed_count": 0,
         "skipped_count": 0,
         "failed_scripts": [],
@@ -6938,6 +7556,26 @@
             "stderr_excerpt": ""
           },
           {
+            "path": "scripts/render_resume_v2.py",
+            "command": "python3 scripts/render_resume_v2.py --help",
+            "returncode": 0,
+            "timed_out": false,
+            "passed": true,
+            "has_help_text": true,
+            "stdout_excerpt": "usage: render_resume_v2.py [-h] [--output-dir OUTPUT_DIR]\n                           [--basename BASENAME]\n                           [--layout {classic-single-column,asymmetric-left-sidebar,sidebar-left-hero,hero-header-blocks,hero-header-",
+            "stderr_excerpt": ""
+          },
+          {
+            "path": "scripts/validate_alignment.py",
+            "command": "python3 scripts/validate_alignment.py --help",
+            "returncode": 0,
+            "timed_out": false,
+            "passed": true,
+            "has_help_text": true,
+            "stdout_excerpt": "usage: validate_alignment.py [-h] [--output OUTPUT]\n                             role_analysis resume_plan resume_data\n\n检查岗位分析、简历计划和成稿之间的取舍与追溯关系。\n\npositional arguments:\n  role_analysis\n  resume_plan\n  resume_data\n\noptions:\n  -h, --help     ",
+            "stderr_excerpt": ""
+          },
+          {
             "path": "scripts/validate_resume.py",
             "command": "python3 scripts/validate_resume.py --help",
             "returncode": 0,
@@ -6945,6 +7583,16 @@
             "passed": true,
             "has_help_text": true,
             "stdout_excerpt": "usage: validate_resume.py [-h] [--html HTML] [--pdf PDF]\n                          [--theme {ats-classic,kami,swiss,tech,campus,compact}]\n                          [--reference-style {rc-003,rc-071,rc-102,rc-109,rc-150,rc-214}]\n            ",
+            "stderr_excerpt": ""
+          },
+          {
+            "path": "scripts/validate_resume_v2.py",
+            "command": "python3 scripts/validate_resume_v2.py --help",
+            "returncode": 0,
+            "timed_out": false,
+            "passed": true,
+            "has_help_text": true,
+            "stdout_excerpt": "usage: validate_resume_v2.py [-h] [--html HTML] [--pdf PDF] [--output OUTPUT]\n                             input\n\n检查 v2 简历数据与可选 HTML/PDF 产物。\n\npositional arguments:\n  input\n\noptions:\n  -h, --help            show this help message and exit\n  ",
             "stderr_excerpt": ""
           }
         ],
@@ -6980,7 +7628,10 @@
               "scripts/extract_resume.py",
               "scripts/pdf_to_images.py",
               "scripts/render_resume.py",
-              "scripts/validate_resume.py"
+              "scripts/render_resume_v2.py",
+              "scripts/validate_alignment.py",
+              "scripts/validate_resume.py",
+              "scripts/validate_resume_v2.py"
             ],
             "reviewer": "Ling99 (task-scoped authorization)",
             "scope": "Only user-selected resume output directories, explicit --output paths, and temporary visual-validation directories.",
@@ -7006,7 +7657,9 @@
               "scripts/extract_resume.py",
               "scripts/pdf_to_images.py",
               "scripts/render_resume.py",
-              "scripts/validate_resume.py"
+              "scripts/render_resume_v2.py",
+              "scripts/validate_resume.py",
+              "scripts/validate_resume_v2.py"
             ],
             "reviewer": "Ling99 (task-scoped authorization)",
             "scope": "Local Chrome/Chromium and Poppler commands used only to render, inspect, extract, and validate resume files.",
@@ -7042,11 +7695,11 @@
     "python_compatibility": {
       "schema_version": "1.0",
       "ok": true,
-      "generated_at": "2026-09-17",
+      "generated_at": "2026-09-18",
       "root": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
       "summary": {
         "target_python": "3.11",
-        "file_count": 6,
+        "file_count": 9,
         "issue_count": 0,
         "syntax_error_count": 0,
         "fstring_311_violation_count": 0,
@@ -7088,7 +7741,25 @@
           "issues": []
         },
         {
+          "path": "scripts/render_resume_v2.py",
+          "ok": true,
+          "issue_count": 0,
+          "issues": []
+        },
+        {
+          "path": "scripts/validate_alignment.py",
+          "ok": true,
+          "issue_count": 0,
+          "issues": []
+        },
+        {
           "path": "scripts/validate_resume.py",
+          "ok": true,
+          "issue_count": 0,
+          "issues": []
+        },
+        {
+          "path": "scripts/validate_resume_v2.py",
           "ok": true,
           "issue_count": 0,
           "issues": []
@@ -7542,7 +8213,7 @@
       "package": {
         "schema_version": "2.0",
         "name": "lyz-resume",
-        "version": "1.1.0",
+        "version": "2.0.0",
         "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
         "targets": [
           "openai",
@@ -7557,8 +8228,8 @@
         "trust_level": "local",
         "license": "MIT",
         "checksums": {
-          "package_sha256": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4",
-          "archive_sha256": "4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080"
+          "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530",
+          "archive_sha256": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63"
         },
         "compatibility": {
           "openai": "pass",
@@ -7589,7 +8260,7 @@
         },
         "distribution": {
           "archive_verified": true,
-          "archive_sha256": "4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080",
+          "archive_sha256": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63",
           "package_verification": "reports/package_verification.json",
           "install_simulated": true,
           "install_simulation": "reports/install_simulation.json"
@@ -7603,7 +8274,7 @@
         "packages": [
           {
             "name": "lyz-resume",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "maturity": "production",
             "owner": "Ling99",
             "targets": [
@@ -7614,7 +8285,7 @@
               "vscode"
             ],
             "package_metadata": "registry/packages/lyz-resume.json",
-            "package_sha256": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4"
+            "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
           }
         ]
       },
@@ -7637,8 +8308,8 @@
         "target_count": 4,
         "adapter_count": 4,
         "archive_present": true,
-        "archive_sha256": "1d2f984af7b1bf6e600658462ff56a6ee74c5cfc70ef04324a15e9e4edd78165",
-        "archive_entry_count": 105,
+        "archive_sha256": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63",
+        "archive_entry_count": 114,
         "failure_count": 0,
         "warning_count": 0
       },
@@ -8299,11 +8970,11 @@
       "generated_at": "2026-09-18",
       "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
       "package_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/dist",
-      "install_root": "/Users/ling99/Codexfiles/Codex/.tmp/lyz-resume-install-simulation-final/simulate-lyz-resume",
-      "installed_skill_dir": "/Users/ling99/Codexfiles/Codex/.tmp/lyz-resume-install-simulation-final/simulate-lyz-resume/lyz-resume",
+      "install_root": "[temporary-install-root]",
+      "installed_skill_dir": "[temporary-install-root]/lyz-resume",
       "summary": {
         "archive_present": true,
-        "archive_entry_count": 105,
+        "archive_entry_count": 114,
         "archive_extracted": true,
         "entrypoint_loaded": true,
         "manifest_loaded": true,
@@ -8313,7 +8984,7 @@
         "installer_permission_failure_count": 0,
         "permission_target_count": 4,
         "permission_capability_count": 2,
-        "install_root_is_temp": false,
+        "install_root_is_temp": true,
         "failure_count": 0,
         "warning_count": 0
       },
@@ -8533,10 +9204,78 @@
         "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/install_simulation.md"
       }
     },
-    "upgrade_check": {},
+    "upgrade_check": {
+      "ok": true,
+      "schema_version": "2.0",
+      "generated_at": "2026-09-18",
+      "previous": {
+        "name": "lyz-resume",
+        "version": "1.1.0",
+        "targets": [
+          "openai",
+          "claude",
+          "generic",
+          "agent-skills-compatible",
+          "vscode"
+        ]
+      },
+      "current": {
+        "name": "lyz-resume",
+        "version": "2.0.0",
+        "targets": [
+          "openai",
+          "claude",
+          "generic",
+          "agent-skills-compatible",
+          "vscode"
+        ]
+      },
+      "summary": {
+        "declared_bump": "major",
+        "recommended_bump": "patch",
+        "breaking_change_count": 0,
+        "added_target_count": 0,
+        "metadata_change_count": 0,
+        "checksum_change_count": 2,
+        "failure_count": 0,
+        "warning_count": 0
+      },
+      "upgrade_diff": {
+        "name_changed": false,
+        "added_targets": [],
+        "removed_targets": [],
+        "compatibility_changes": [],
+        "metadata_changes": [],
+        "checksum_changes": [
+          {
+            "field": "archive_sha256",
+            "from": "4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080",
+            "to": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63"
+          },
+          {
+            "field": "package_sha256",
+            "from": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4",
+            "to": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+          }
+        ]
+      },
+      "release_notes": [
+        "Recommended version bump: patch.",
+        "Package or archive checksum changed; reviewers should verify package artifacts before release.",
+        "Package verification evidence: reports/package_verification.md."
+      ],
+      "failures": [],
+      "warnings": [],
+      "artifacts": {
+        "previous_package": "/private/tmp/lyz-resume-registry-1.1.0.json",
+        "current_package": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/packages/lyz-resume.json",
+        "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.md"
+      }
+    },
     "manifest": {
       "name": "lyz-resume",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "owner": "Ling99",
       "license": "MIT",
       "updated_at": "2026-09-18",
@@ -8546,6 +9285,21 @@
       "context_budget_tier": "production",
       "review_cadence": "quarterly",
       "skill_archetype": "production",
+      "input_files": [
+        "candidate resume, JD, project material, or interview notes supplied by the user",
+        "resume_design_system.md as file-backed fixture evidence; original template files are excluded from distribution"
+      ],
+      "output_contract": [
+        "candidate-ledger.json",
+        "role-analysis.json",
+        "resume-plan.json",
+        "resume-data.json",
+        "resume.html",
+        "resume.pdf",
+        "alignment-validation.json",
+        "validation.json"
+      ],
+      "rollback_boundary": "Restore the reviewed 1.1.0 archive and registry record; v1 theme rendering remains available in scripts/render_resume.py and scripts/validate_resume.py.",
       "target_platforms": [
         "openai",
         "claude",
@@ -8583,14 +9337,14 @@
       "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
       "metadata": {
         "author": "Ling99",
-        "version": "1.1.0"
+        "version": "2.0.0"
       }
     },
     "interface": {
       "interface": {
         "display_name": "简历工坊",
-        "short_description": "边聊边挖经历，生成可信、针对岗位且排版完成的简历",
-        "default_prompt": "使用 $lyz-resume 帮我从现有材料或一问一答开始，整理事实、匹配目标岗位，并交付可编辑 HTML 和可投递 PDF 简历。"
+        "short_description": "按岗位取舍经历，并用多种专业布局生成可信简历",
+        "default_prompt": "使用 $lyz-resume 从现有材料或一问一答开始，整理事实，按目标岗位选择和排序证据，再用合适的布局交付可编辑 HTML 和可投递 PDF 简历。"
       },
       "compatibility": {
         "canonical_format": "agent-skills",

@@ -18,18 +18,32 @@ python3 "$SKILL_DIR/scripts/assess_intake.py" candidate-ledger.json --output int
 
 `blocked` 继续补一个阻断项；`workable` 可生成诚实版本；`strong` 表示证据覆盖充分。脚本只能检查完整性，不能证明用户陈述为真。
 
-## 3. 内容验证与渲染
+## 3. 岗位一致性与内容验证
 
 ```bash
+python3 "$SKILL_DIR/scripts/validate_alignment.py" \
+  role-analysis.json resume-plan.json resume-data.json \
+  --output alignment-validation.json
 python3 "$SKILL_DIR/scripts/validate_resume.py" resume-data.json --output validation-data.json
-python3 "$SKILL_DIR/scripts/render_resume.py" resume-data.json --theme swiss --output-dir output
 ```
 
-主题：`ats-classic`、`kami`、`swiss`、`tech`、`campus`、`compact`。默认按岗位与密度选一个；只有用户明确要求比较时才运行 `--all-themes`。
+一致性验证必须先通过：计划纳入的证据都进入成稿，`omit` 证据不泄漏，核心证据在前，`brief` 与其他条目不超出 bullet 预算。
+
+## 4. 渲染
+
+```bash
+python3 "$SKILL_DIR/scripts/render_resume.py" resume-data.json \
+  --layout classic-single-column \
+  --skin classic-navy \
+  --density auto \
+  --output-dir output
+```
+
+布局与选择规则见 [视觉原型与选择](visual-design-system.md)。旧版 `--theme` 仍可用于 v1 文件；新版优先使用 `--layout / --skin / --density / --render-profile`。内部验收八种布局时可运行 `--all-layouts`，普通用户默认只生成一个推荐版本。
 
 照片默认关闭。用户主动要求时，在 `basics.photo` 中设置 `enabled: true` 与本地 `source`。渲染器把图片嵌入 HTML，最终文件不依赖绝对本地路径。
 
-## 4. 文件验证
+## 5. 文件验证
 
 ```bash
 python3 "$SKILL_DIR/scripts/validate_resume.py" resume-data.json \
@@ -46,7 +60,7 @@ python3 "$SKILL_DIR/scripts/validate_resume.py" resume-data.json \
 - 无占位符、远程字体、远程图片或渲染出的私人 `source_note`；
 - 时间线、链接、证据类型和章节顺序有效。
 
-## 5. 视觉闭环
+## 6. 视觉闭环
 
 ```bash
 python3 "$SKILL_DIR/scripts/pdf_to_images.py" output/resume.pdf --output-dir output/pages
@@ -59,7 +73,7 @@ python3 "$SKILL_DIR/scripts/pdf_to_images.py" output/resume.pdf --output-dir out
 1. 删除弱相关、重复或无证据内容；
 2. 合并重复 bullet，缩短长句；
 3. 调整章节顺序和适度间距；
-4. 切换 `compact`；
-5. 仍拥挤时使用两页。
+4. 将 `density` 切换为 `dense`，但正文不得低于 9.1pt；
+5. 切换兼容高密内容的布局或使用两页。
 
 正文不得低于 9.1pt。不要为“一页”牺牲可读性，也不要把两页本身当成失败。

@@ -4,77 +4,72 @@
   "title": "Resume Studio Public Resume Data",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "language", "theme", "filename", "target", "basics", "education", "experience", "projects", "skills", "awards"],
+  "required": ["version", "language", "filename", "target", "basics", "education", "experience", "projects", "skills", "awards"],
   "properties": {
-    "version": {"const": 1},
+    "version": {"enum": [1, 2]},
     "language": {"enum": ["zh-CN", "en"]},
     "theme": {"enum": ["ats-classic", "kami", "swiss", "tech", "campus", "compact"]},
-    "section_order": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": {"enum": ["education", "experience", "projects", "skills", "awards"]}
+    "reference_style": {"enum": ["rc-003", "rc-071", "rc-102", "rc-109", "rc-150", "rc-214"]},
+    "design": {
+      "type": "object", "additionalProperties": false, "required": ["layout", "skin", "density", "render_profile"],
+      "properties": {
+        "layout": {"enum": ["classic-single-column", "asymmetric-left-sidebar", "sidebar-left-hero", "hero-header-blocks", "hero-header-linear", "asymmetric-right-sidebar", "tabular-structured", "banner-accent-flow"]},
+        "skin": {"enum": ["classic-navy", "editorial-ink", "swiss-red", "tech-blue", "campus-green", "navy-gold"]},
+        "density": {"enum": ["auto", "sparse", "balanced", "dense"]},
+        "render_profile": {"enum": ["ats-first", "balanced", "human-first"]}
+      }
     },
+    "section_order": {"type": "array", "uniqueItems": true, "items": {"enum": ["education", "experience", "projects", "skills", "awards"]}},
     "filename": {"type": "string"},
-    "target": {
-      "type": "object",
-      "required": ["role"],
-      "properties": {"role": {"type": "string"}, "company_type": {"type": "string"}}
+    "target": {"type": "object", "additionalProperties": false, "required": ["role"], "properties": {"role": {"type": "string"}, "company_type": {"type": "string"}}},
+    "targeting": {
+      "type": "object", "additionalProperties": false, "required": ["role_thesis", "priority_requirement_ids", "included_evidence_ids", "omitted_evidence_ids"],
+      "properties": {
+        "role_thesis": {"type": "string"},
+        "priority_requirement_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "included_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "omitted_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
     },
     "basics": {
-      "type": "object",
-      "required": ["name", "email"],
+      "type": "object", "required": ["name", "email"],
       "properties": {
-        "name": {"type": "string"},
-        "headline": {"type": "string"},
-        "phone": {"type": "string"},
-        "email": {"type": "string"},
-        "location": {"type": "string"},
-        "summary": {"type": "string"},
-        "links": {
-          "type": "array",
-          "items": {"type": "object", "required": ["label", "url"], "properties": {"label": {"type": "string"}, "url": {"type": "string"}}}
-        },
-        "photo": {
-          "type": "object",
-          "required": ["enabled"],
-          "properties": {"enabled": {"type": "boolean"}, "source": {"type": ["string", "null"]}, "alt": {"type": "string"}}
-        }
+        "name": {"type": "string"}, "headline": {"type": "string"}, "phone": {"type": "string"}, "email": {"type": "string"}, "location": {"type": "string"}, "summary": {"type": "string"},
+        "links": {"type": "array", "items": {"type": "object", "required": ["label", "url"], "properties": {"label": {"type": "string"}, "url": {"type": "string"}}}},
+        "photo": {"type": "object", "required": ["enabled"], "properties": {"enabled": {"type": "boolean"}, "source": {"type": ["string", "null"]}, "alt": {"type": "string"}}}
       }
     },
     "education": {"type": "array", "items": {"type": "object"}},
     "experience": {"$ref": "#/$defs/entries"},
     "projects": {"$ref": "#/$defs/entries"},
-    "skills": {
-      "type": "array",
-      "items": {"type": "object", "required": ["category", "items"], "properties": {"category": {"type": "string"}, "items": {"type": "array", "items": {"type": "string"}}}}
-    },
+    "skills": {"type": "array", "items": {"type": "object", "required": ["category", "items"], "properties": {"category": {"type": "string"}, "items": {"type": "array", "items": {"type": "string"}}}},
     "awards": {"type": "array", "items": {"type": "object"}}
   },
+  "allOf": [
+    {"if": {"properties": {"version": {"const": 1}}}, "then": {"required": ["theme"]}},
+    {"if": {"properties": {"version": {"const": 2}}}, "then": {"required": ["design", "targeting"]}}
+  ],
   "$defs": {
     "entries": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["organization", "role", "bullets"],
+        "type": "object", "required": ["organization", "role", "bullets"],
         "properties": {
-          "organization": {"type": "string"},
-          "role": {"type": "string"},
-          "start": {"type": "string"},
-          "end": {"type": "string"},
-          "location": {"type": "string"},
-          "tech": {"type": "array", "items": {"type": "string"}},
-          "link": {"type": "string"},
+          "organization": {"type": "string"}, "role": {"type": "string"}, "start": {"type": "string"}, "end": {"type": "string"}, "location": {"type": "string"},
+          "tech": {"type": "array", "items": {"type": "string"}}, "link": {"type": "string"},
+          "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "requirement_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "priority": {"enum": ["core", "supporting", "brief"]},
           "bullets": {
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 5,
+            "type": "array", "minItems": 1, "maxItems": 5,
             "items": {
-              "type": "object",
-              "required": ["text", "evidence_type", "source_note"],
+              "type": "object", "required": ["text", "evidence_type", "source_note"],
               "properties": {
                 "text": {"type": "string"},
                 "evidence_type": {"enum": ["source_resume", "user_confirmed", "repository_verified", "document_verified", "conservative_estimate"]},
-                "source_note": {"type": "string"}
+                "source_note": {"type": "string"},
+                "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+                "requirement_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
               }
             }
           }
@@ -82,4 +77,5 @@
       }
     }
   }
+}
 }

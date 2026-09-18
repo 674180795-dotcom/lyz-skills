@@ -1,0 +1,37 @@
+{
+  "score": 100,
+  "band": "high",
+  "gate_passed": true,
+  "strengths": [
+    "The recurring job is concrete enough to anchor the package.",
+    "Real input shape is explicit.",
+    "The hand-back output is concrete.",
+    "Boundary exclusions are already explicit.",
+    "Operational constraints are visible."
+  ],
+  "gaps": [],
+  "follow_up_questions": [],
+  "anchor_sentence": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。 Primary output: 一个独立输出目录，其中 candidate-ledger.json 可追溯每条事实，role-analysis.json 将岗位要求映射到证据，resume-data.json 是内容单一事实源，resume.html 可编辑，resume.pdf 为 A4、1–2 页且文本可提取，validation.json 记录机器与逐页视觉验收结果；多岗位版本共享同一事实账本。. Exclusions: 学术 CV、资深高管品牌叙事、作品集网站、求职信、面试训练、职业规划、职位代投。.",
+  "recommended_action": "Intent is clear enough to package the first routeable version.",
+  "context": {
+    "job": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
+    "real_inputs": [
+      "旧简历 PDF/DOCX/图片、零散文字、目标岗位或 JD、项目链接、口述回答、可选照片"
+    ],
+    "primary_output": "一个独立输出目录，其中 candidate-ledger.json 可追溯每条事实，role-analysis.json 将岗位要求映射到证据，resume-data.json 是内容单一事实源，resume.html 可编辑，resume.pdf 为 A4、1–2 页且文本可提取，validation.json 记录机器与逐页视觉验收结果；多岗位版本共享同一事实账本。",
+    "description": "将用户的旧简历、零散经历、JD 或口述材料整理为可追溯事实，采用低负担的一问一答访谈补齐高价值信息，按目标岗位写作并审校，最终交付同源 HTML/PDF 简历与验证报告。适用于从零做简历、优化旧简历、按 JD 定制、多岗位版本、简历排版和 PDF 交付；不用于学术 CV、作品集网站、求职信、职位代投或单纯模拟面试。",
+    "exclusions": [
+      "学术 CV、资深高管品牌叙事、作品集网站、求职信、面试训练、职业规划、职位代投。"
+    ],
+    "constraints": [
+      "保护隐私；不把推断当事实；用户可跳过/不知道/先出草稿；只有门禁通过才称为最终可投递。"
+    ],
+    "standards": [
+      "低负担访谈、事实可追溯、JD 关键词有证据、HTML/PDF 同源、页数与视觉验收通过。"
+    ],
+    "correction": "不要用空泛夸奖拖延对话；采用具体认可、价值回声、选择权和可见进度，让每一轮都产生可用资产。",
+    "user_references": [
+      "/Users/ling99/Documents/02_个人项目/每日知识点账号/ZFimage/简历-AI-Skill-研究报告.md"
+    ]
+  }
+}

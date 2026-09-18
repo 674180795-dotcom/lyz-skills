@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "schema_version": "2.0",
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
+  "registry_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry",
+  "package": {
+    "schema_version": "2.0",
+    "name": "lyz-resume",
+    "version": "2.0.0",
+    "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
+    "targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible",
+      "vscode"
+    ],
+    "maturity": "production",
+    "owner": "Ling99",
+    "review_cadence": "quarterly",
+    "trust_level": "local",
+    "license": "MIT",
+    "checksums": {
+      "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530",
+      "archive_sha256": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63"
+    },
+    "compatibility": {
+      "openai": "pass",
+      "claude": "pass",
+      "agent-skills": "pass",
+      "vscode": "pass",
+      "generic": "pass",
+      "agent-skills-compatible": "pass"
+    },
+    "source": {
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
+      "skill_ir": "reports/skill-ir.json",
+      "ir_schema_version": "2.0.0",
+      "canonical_metadata": "agents/interface.yaml"
+    },
+    "artifacts": {
+      "overview_html": "reports/skill-overview.html",
+      "review_studio_html": "reports/review-studio.html",
+      "trust_report": "reports/security_trust_report.md",
+      "conformance_matrix": "reports/conformance_matrix.md",
+      "compiled_targets": "reports/compiled_targets.md",
+      "package_verification": "reports/package_verification.md",
+      "install_simulation": "reports/install_simulation.md",
+      "adoption_drift": "reports/adoption_drift_report.md",
+      "review_waivers": "reports/review_waivers.md",
+      "review_annotations": "reports/review_annotations.md",
+      "package_metadata": "registry/packages/lyz-resume.json"
+    },
+    "distribution": {
+      "archive_verified": true,
+      "archive_sha256": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63",
+      "package_verification": "reports/package_verification.json",
+      "install_simulated": true,
+      "install_simulation": "reports/install_simulation.json"
+    },
+    "generated_at": "2026-09-18"
+  },
+  "index": {
+    "schema_version": "2.0",
+    "generated_at": "2026-09-18",
+    "package_count": 1,
+    "packages": [
+      {
+        "name": "lyz-resume",
+        "version": "2.0.0",
+        "maturity": "production",
+        "owner": "Ling99",
+        "targets": [
+          "openai",
+          "claude",
+          "generic",
+          "agent-skills-compatible",
+          "vscode"
+        ],
+        "package_metadata": "registry/packages/lyz-resume.json",
+        "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+      }
+    ]
+  },
+  "failures": [],
+  "warnings": [],
+  "artifacts": {
+    "index": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/index.json",
+    "package": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/packages/lyz-resume.json",
+    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/registry_audit.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/registry_audit.md"
+  }
+}

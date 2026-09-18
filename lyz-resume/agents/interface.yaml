@@ -1,7 +1,7 @@
 interface:
   display_name: "简历工坊"
-  short_description: "边聊边挖经历，生成可信、针对岗位且排版完成的简历"
-  default_prompt: "使用 $lyz-resume 帮我从现有材料或一问一答开始，整理事实、匹配目标岗位，并交付可编辑 HTML 和可投递 PDF 简历。"
+  short_description: "按岗位取舍经历，并用多种专业布局生成可信简历"
+  default_prompt: "使用 $lyz-resume 从现有材料或一问一答开始，整理事实，按目标岗位选择和排序证据，再用合适的布局交付可编辑 HTML 和可投递 PDF 简历。"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets:

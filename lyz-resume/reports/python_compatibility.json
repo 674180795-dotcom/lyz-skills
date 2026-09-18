@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "ok": true,
+  "generated_at": "2026-09-18",
+  "root": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
+  "summary": {
+    "target_python": "3.11",
+    "file_count": 9,
+    "issue_count": 0,
+    "syntax_error_count": 0,
+    "fstring_311_violation_count": 0,
+    "decision": "pass"
+  },
+  "rules": [
+    {
+      "key": "current-python-syntax",
+      "reason": "Every scanned Python source file must compile under the running interpreter."
+    },
+    {
+      "key": "fstring-expression-backslash",
+      "reason": "Python 3.11 rejects backslashes inside f-string expressions; keep escaping outside the expression."
+    }
+  ],
+  "files": [
+    {
+      "path": "scripts/assess_intake.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/extract_resume.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/pdf_to_images.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/render_resume.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/render_resume_v2.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/validate_alignment.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/validate_resume.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "scripts/validate_resume_v2.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "ok": true,
+      "issue_count": 0,
+      "issues": []
+    }
+  ],
+  "issues": [],
+  "artifacts": {
+    "json": "reports/python_compatibility.json",
+    "markdown": "reports/python_compatibility.md"
+  }
+}

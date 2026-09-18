@@ -1,7 +1,7 @@
 {
   "name": "lyz-resume",
   "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "platform": "openai",
   "skill_root": "lyz-resume",
   "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
@@ -19,9 +19,9 @@
     "decision_point_count": 3,
     "failure_mode_count": 10,
     "resource_counts": {
-      "references": 6,
-      "scripts": 5,
-      "assets": 6,
+      "references": 8,
+      "scripts": 8,
+      "assets": 10,
       "reports": 34
     },
     "eval_counts": {
@@ -70,7 +70,7 @@
   "compiled_contract": {
     "name": "lyz-resume",
     "title": "简历工坊",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
     "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
     "trigger": {
@@ -135,21 +135,30 @@
         "references/intake-and-momentum.md",
         "references/rendering-and-validation.md",
         "references/role-analysis-and-writing.md",
-        "references/role-lenses.md"
+        "references/role-lenses.md",
+        "references/targeted-composition.md",
+        "references/visual-design-system.md"
       ],
       "scripts": [
         "scripts/assess_intake.py",
         "scripts/extract_resume.py",
         "scripts/pdf_to_images.py",
         "scripts/render_resume.py",
-        "scripts/validate_resume.py"
+        "scripts/render_resume_v2.py",
+        "scripts/validate_alignment.py",
+        "scripts/validate_resume.py",
+        "scripts/validate_resume_v2.py"
       ],
       "assets": [
         "assets/candidate-ledger.schema.json",
+        "assets/design-archetypes.json",
         "assets/example-ledger.json",
+        "assets/example-resume-plan.json",
+        "assets/example-resume-v1.json",
         "assets/example-resume.json",
         "assets/example-role-analysis.json",
         "assets/resume-data.schema.json",
+        "assets/resume-plan.schema.json",
         "assets/role-analysis.schema.json"
       ],
       "reports": [
@@ -189,9 +198,9 @@
         "reports/skill_atlas.html"
       ],
       "counts": {
-        "references": 6,
-        "scripts": 5,
-        "assets": 6,
+        "references": 8,
+        "scripts": 8,
+        "assets": 10,
         "reports": 34
       }
     },
@@ -268,24 +277,29 @@
         },
         "file_write": {
           "required": true,
-          "script_count": 5,
+          "script_count": 8,
           "scripts": [
             "scripts/assess_intake.py",
             "scripts/extract_resume.py",
             "scripts/pdf_to_images.py",
             "scripts/render_resume.py",
-            "scripts/validate_resume.py"
+            "scripts/render_resume_v2.py",
+            "scripts/validate_alignment.py",
+            "scripts/validate_resume.py",
+            "scripts/validate_resume_v2.py"
           ],
           "review_reason": "Scripts write local files or generated artifacts."
         },
         "subprocess": {
           "required": true,
-          "script_count": 4,
+          "script_count": 6,
           "scripts": [
             "scripts/extract_resume.py",
             "scripts/pdf_to_images.py",
             "scripts/render_resume.py",
-            "scripts/validate_resume.py"
+            "scripts/render_resume_v2.py",
+            "scripts/validate_resume.py",
+            "scripts/validate_resume_v2.py"
           ],
           "review_reason": "Scripts spawn local commands and need operator review."
         },
@@ -304,15 +318,15 @@
       },
       "help_smoke": {
         "enabled": true,
-        "checked_count": 5,
+        "checked_count": 8,
         "failed_count": 0,
         "failed_scripts": []
       },
       "trust_summary": {
         "secret_findings": 0,
         "network_script_count": 0,
-        "file_write_script_count": 5,
-        "subprocess_script_count": 4,
+        "file_write_script_count": 8,
+        "subprocess_script_count": 6,
         "interactive_script_count": 0,
         "help_smoke_failed_count": 0
       }
@@ -332,8 +346,8 @@
       ],
       "capability_counts": {
         "network": 0,
-        "file_write": 5,
-        "subprocess": 4,
+        "file_write": 8,
+        "subprocess": 6,
         "interactive": 0
       },
       "evidence": "reports/security_trust_report.json",
@@ -352,9 +366,9 @@
       "resources": {
         "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
         "counts": {
-          "references": 6,
-          "scripts": 5,
-          "assets": 6,
+          "references": 8,
+          "scripts": 8,
+          "assets": 10,
           "reports": 34
         },
         "generated_files": [
@@ -364,7 +378,7 @@
       },
       "scripts": {
         "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
-        "script_count": 5,
+        "script_count": 8,
         "help_smoke_failed_count": 0
       },
       "permissions": {
@@ -439,24 +453,29 @@
       },
       "file_write": {
         "required": true,
-        "script_count": 5,
+        "script_count": 8,
         "scripts": [
           "scripts/assess_intake.py",
           "scripts/extract_resume.py",
           "scripts/pdf_to_images.py",
           "scripts/render_resume.py",
-          "scripts/validate_resume.py"
+          "scripts/render_resume_v2.py",
+          "scripts/validate_alignment.py",
+          "scripts/validate_resume.py",
+          "scripts/validate_resume_v2.py"
         ],
         "review_reason": "Scripts write local files or generated artifacts."
       },
       "subprocess": {
         "required": true,
-        "script_count": 4,
+        "script_count": 6,
         "scripts": [
           "scripts/extract_resume.py",
           "scripts/pdf_to_images.py",
           "scripts/render_resume.py",
-          "scripts/validate_resume.py"
+          "scripts/render_resume_v2.py",
+          "scripts/validate_resume.py",
+          "scripts/validate_resume_v2.py"
         ],
         "review_reason": "Scripts spawn local commands and need operator review."
       },
@@ -475,15 +494,15 @@
     },
     "help_smoke": {
       "enabled": true,
-      "checked_count": 5,
+      "checked_count": 8,
       "failed_count": 0,
       "failed_scripts": []
     },
     "trust_summary": {
       "secret_findings": 0,
       "network_script_count": 0,
-      "file_write_script_count": 5,
-      "subprocess_script_count": 4,
+      "file_write_script_count": 8,
+      "subprocess_script_count": 6,
       "interactive_script_count": 0,
       "help_smoke_failed_count": 0
     }
@@ -501,8 +520,8 @@
     ],
     "capability_counts": {
       "network": 0,
-      "file_write": 5,
-      "subprocess": 4,
+      "file_write": 8,
+      "subprocess": 6,
       "interactive": 0
     },
     "evidence": "reports/security_trust_report.json",
@@ -521,9 +540,9 @@
     "resources": {
       "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
       "counts": {
-        "references": 6,
-        "scripts": 5,
-        "assets": 6,
+        "references": 8,
+        "scripts": 8,
+        "assets": 10,
         "reports": 34
       },
       "generated_files": [
@@ -533,7 +552,7 @@
     },
     "scripts": {
       "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
-      "script_count": 5,
+      "script_count": 8,
       "help_smoke_failed_count": 0
     },
     "permissions": {
@@ -600,8 +619,8 @@
   ],
   "compiler_warnings": [],
   "display_name": "简历工坊",
-  "short_description": "边聊边挖经历，生成可信、针对岗位且排版完成的简历",
-  "default_prompt": "使用 $lyz-resume 帮我从现有材料或一问一答开始，整理事实、匹配目标岗位，并交付可编辑 HTML 和可投递 PDF 简历。",
+  "short_description": "按岗位取舍经历，并用多种专业布局生成可信简历",
+  "default_prompt": "使用 $lyz-resume 从现有材料或一问一答开始，整理事实，按目标岗位选择和排序证据，再用合适的布局交付可编辑 HTML 和可投递 PDF 简历。",
   "canonical_metadata": "agents/interface.yaml",
   "canonical_format": "agent-skills",
   "adapter_targets": [

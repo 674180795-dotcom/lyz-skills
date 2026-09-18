@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "schema_version": "2.0",
+  "generated_at": "2026-09-18",
+  "previous": {
+    "name": "lyz-resume",
+    "version": "1.1.0",
+    "targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible",
+      "vscode"
+    ]
+  },
+  "current": {
+    "name": "lyz-resume",
+    "version": "2.0.0",
+    "targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible",
+      "vscode"
+    ]
+  },
+  "summary": {
+    "declared_bump": "major",
+    "recommended_bump": "patch",
+    "breaking_change_count": 0,
+    "added_target_count": 0,
+    "metadata_change_count": 0,
+    "checksum_change_count": 2,
+    "failure_count": 0,
+    "warning_count": 0
+  },
+  "upgrade_diff": {
+    "name_changed": false,
+    "added_targets": [],
+    "removed_targets": [],
+    "compatibility_changes": [],
+    "metadata_changes": [],
+    "checksum_changes": [
+      {
+        "field": "archive_sha256",
+        "from": "4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080",
+        "to": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63"
+      },
+      {
+        "field": "package_sha256",
+        "from": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4",
+        "to": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+      }
+    ]
+  },
+  "release_notes": [
+    "Recommended version bump: patch.",
+    "Package or archive checksum changed; reviewers should verify package artifacts before release.",
+    "Package verification evidence: reports/package_verification.md."
+  ],
+  "failures": [],
+  "warnings": [],
+  "artifacts": {
+    "previous_package": "/private/tmp/lyz-resume-registry-1.1.0.json",
+    "current_package": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/packages/lyz-resume.json",
+    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.md"
+  }
+}

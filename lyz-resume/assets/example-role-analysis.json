@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "target": {
     "role": "AI 产品经理",
     "company": "合成测试公司",
@@ -27,6 +27,7 @@
     }
   ],
   "positioning": "能把真实业务问题转成可验证 AI 产品原型的早期职业候选人",
+  "priority_outcomes": ["完成 AI 产品需求分析与原型验证", "使用数据分析补充产品判断"],
   "selected_evidence_ids": ["work-support-copilot", "project-feedback"],
   "gaps": ["没有公开的真实上线指标"],
   "excluded_items": ["与目标岗位无关的校园活动执行细节"]

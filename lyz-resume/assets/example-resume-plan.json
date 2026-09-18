@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "target": {"role": "AI 产品经理", "company": "合成测试公司"},
+  "content_mode": "targeted",
+  "role_thesis": "能把真实业务问题转成可验证 AI 产品原型，并用数据补充产品判断的早期职业候选人",
+  "priority_requirement_ids": ["req-product", "req-data"],
+  "evidence_decisions": [
+    {
+      "evidence_id": "work-support-copilot",
+      "requirement_ids": ["req-product"],
+      "tier": "core",
+      "placement": "experience:first",
+      "bullet_budget": 2,
+      "reason": "直接证明需求分析、原型设计、跨团队协作与试用验证"
+    },
+    {
+      "evidence_id": "project-feedback",
+      "requirement_ids": ["req-data"],
+      "tier": "supporting",
+      "placement": "projects:first",
+      "bullet_budget": 1,
+      "reason": "补充数据分析与独立交付证据"
+    }
+  ],
+  "section_order": ["experience", "projects", "education", "skills", "awards"],
+  "section_budget": {"experience": 2, "projects": 1, "education": 1, "skills": 2, "awards": 0},
+  "first_page_story": ["AI 产品需求拆解", "原型与试用验证", "数据分析补充判断"],
+  "exclusions": ["与目标岗位无关的校园活动执行细节"],
+  "confirmation": {"status": "confirmed", "confirmed_at": "2026-09-18"}
+}

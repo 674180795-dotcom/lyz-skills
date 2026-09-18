@@ -1,11 +1,13 @@
 # 事实与数据契约
 
-## 三层数据
+## 四层数据
 
 ```text
 candidate-ledger.json  私有事实、证据、疑点、确认状态
         +
 role-analysis.json     JD/岗位要求、证据映射、缺口
+        ↓
+resume-plan.json       当前岗位版本的取舍、排序、篇幅和第一页叙事
         ↓
 resume-data.json       只含允许公开和渲染的内容
 ```
@@ -16,12 +18,14 @@ resume-data.json       只含允许公开和渲染的内容
 
 - `assets/candidate-ledger.schema.json`
 - `assets/role-analysis.schema.json`
+- `assets/resume-plan.schema.json`
 - `assets/resume-data.schema.json`
 
 可运行示例：
 
 - `assets/example-ledger.json`
 - `assets/example-role-analysis.json`
+- `assets/example-resume-plan.json`
 - `assets/example-resume.json`
 
 ## 事实账本
@@ -58,11 +62,17 @@ resume-data.json       只含允许公开和渲染的内容
 
 `gap` 不得通过把 JD 词汇抄进技能栏来消失。岗位知识只能帮助理解和提问，不能成为候选人事实来源。
 
+## 简历计划
+
+`resume-plan.json` 是岗位分析与公开成稿之间的私有桥梁。每条证据必须标为 `core / supporting / brief / omit`，并记录关联要求、成稿位置、bullet 上限和取舍理由。计划还要记录 `role_thesis`、优先岗位要求、章节顺序、章节预算和第一页叙事。
+
+`resume-data.json` 的经历条目必须保留 `evidence_ids`、`requirement_ids` 和 `priority` 作为不可见追溯字段；渲染器不得公开这些字段。用 `scripts/validate_alignment.py` 检查计划与成稿是否一致。
+
 ## 多岗位
 
 先判断证据集合是否相近：
 
-- 相近：如产品经理 / AI 产品经理，共用母版并派生排序和措辞；
+- 相近：如产品经理 / AI 产品经理，共用事实账本，但分别派生计划、排序和措辞；
 - 明显不同：如产品经理 / 平面设计师，生成两个独立 `role-analysis` 与 `resume-data`；
 - 永远共用 `candidate-ledger`。
 

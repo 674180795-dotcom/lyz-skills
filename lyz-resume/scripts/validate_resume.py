@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
 import shutil
@@ -54,6 +55,17 @@ REFERENCE_STYLE_CHECKS = {
 }
 
 
+def _load_v2_validator():
+    """Load the additive v2 validator while preserving the v1 rollback path."""
+    path = Path(__file__).with_name("validate_resume_v2.py")
+    spec = importlib.util.spec_from_file_location("lyz_resume_validator_v2", path)
+    if not spec or not spec.loader:
+        raise RuntimeError("无法加载 validate_resume_v2.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def find_pdf_tool(name: str) -> str | None:
     direct = shutil.which(name)
     if direct:
@@ -99,6 +111,8 @@ def collect_texts(data: Any) -> list[str]:
 
 
 def validate_data(data: dict[str, Any]) -> tuple[list[str], list[str], dict[str, int]]:
+    if data.get("version") == 2 or isinstance(data.get("design"), dict):
+        return _load_v2_validator().validate_data(data)
     errors: list[str] = []
     warnings: list[str] = []
     counts = {"education": 0, "experience": 0, "projects": 0, "skills": 0, "bullets": 0, "result_bullets": 0, "weak_openings": 0}
@@ -399,6 +413,14 @@ def inspect_pdf(pdf: Path, expected: list[str], *, theme: str, require_theme_fon
 
 
 def main() -> None:
+    if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
+        try:
+            candidate = json.loads(Path(sys.argv[1]).expanduser().read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            candidate = None
+        if isinstance(candidate, dict) and candidate.get("version") == 2:
+            _load_v2_validator().main()
+            return
     parser = argparse.ArgumentParser(description="检查求职简历数据与可选 HTML/PDF 产物。")
     parser.add_argument("input", help="resume-data.json 路径")
     parser.add_argument("--html", help="同时检查生成的 HTML 样式与字体声明")

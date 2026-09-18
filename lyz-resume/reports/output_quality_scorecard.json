@@ -1,0 +1,1138 @@
+{
+  "ok": true,
+  "cases": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/evals/output/cases.jsonl",
+  "summary": {
+    "case_count": 8,
+    "file_backed_case_count": 1,
+    "near_neighbor_case_count": 1,
+    "boundary_case_count": 2,
+    "baseline_pass_rate": 3.12,
+    "with_skill_pass_rate": 100.0,
+    "delta": 96.88,
+    "regression_count": 0,
+    "gate_pass": true,
+    "failure_taxonomy": [],
+    "blind_pair_count": 8
+  },
+  "results": [
+    {
+      "id": "low-information-intake",
+      "prompt": "我没简历，也觉得自己没什么可写的。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "core",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 25.0,
+        "passed_count": 1,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "low-friction-opening",
+            "description": "Opening removes preparation burden and permits one small starting point.",
+            "weight": 1.0,
+            "failure_type": "high_friction_intake",
+            "passed": false,
+            "missing": [
+              "不用先整理",
+              "只给我一个",
+              "口语"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-question",
+            "description": "The turn asks only one core question.",
+            "weight": 1.0,
+            "failure_type": "questionnaire",
+            "passed": false,
+            "missing": [
+              "先问一件事"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-metric-pressure",
+            "description": "It explicitly permits non-numeric evidence.",
+            "weight": 1.0,
+            "failure_type": "metric_pressure",
+            "passed": false,
+            "missing": [
+              "不记得数字也没关系"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-empty-praise",
+            "description": "It avoids generic praise as an engagement tactic.",
+            "weight": 1.0,
+            "failure_type": "empty_praise",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "low-friction-opening",
+            "description": "Opening removes preparation burden and permits one small starting point.",
+            "weight": 1.0,
+            "failure_type": "high_friction_intake",
+            "passed": false,
+            "missing": [
+              "不用先整理",
+              "只给我一个",
+              "口语"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-question",
+            "description": "The turn asks only one core question.",
+            "weight": 1.0,
+            "failure_type": "questionnaire",
+            "passed": false,
+            "missing": [
+              "先问一件事"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-metric-pressure",
+            "description": "It explicitly permits non-numeric evidence.",
+            "weight": 1.0,
+            "failure_type": "metric_pressure",
+            "passed": false,
+            "missing": [
+              "不记得数字也没关系"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 4,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "low-friction-opening",
+            "description": "Opening removes preparation burden and permits one small starting point.",
+            "weight": 1.0,
+            "failure_type": "high_friction_intake",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-question",
+            "description": "The turn asks only one core question.",
+            "weight": 1.0,
+            "failure_type": "questionnaire",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-metric-pressure",
+            "description": "It explicitly permits non-numeric evidence.",
+            "weight": 1.0,
+            "failure_type": "metric_pressure",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-empty-praise",
+            "description": "It avoids generic praise as an engagement tactic.",
+            "weight": 1.0,
+            "failure_type": "empty_praise",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 75.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "layout-only-boundary",
+      "prompt": "读取附件，只换个更专业的版式，内容不要改。",
+      "input_files": [
+        "fixtures/old-resume.md"
+      ],
+      "metadata": {
+        "case_type": "file_backed",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "preserves-copy",
+            "description": "Layout-only route preserves content boundaries.",
+            "weight": 1.0,
+            "failure_type": "scope_expansion",
+            "passed": false,
+            "missing": [
+              "只换版式",
+              "保留附件原文和事实边界"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-invention",
+            "description": "It forbids invented metrics or ownership.",
+            "weight": 1.0,
+            "failure_type": "invented_claim",
+            "passed": false,
+            "missing": [
+              "不补数字",
+              "不扩张职责"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "same-source-rendering",
+            "description": "HTML and PDF share a source and validation loop.",
+            "weight": 1.0,
+            "failure_type": "missing_visual_loop",
+            "passed": false,
+            "missing": [
+              "同一份 resume-data.json",
+              "逐页视觉检查"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "preserves-copy",
+            "description": "Layout-only route preserves content boundaries.",
+            "weight": 1.0,
+            "failure_type": "scope_expansion",
+            "passed": false,
+            "missing": [
+              "只换版式",
+              "保留附件原文和事实边界"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-invention",
+            "description": "It forbids invented metrics or ownership.",
+            "weight": 1.0,
+            "failure_type": "invented_claim",
+            "passed": false,
+            "missing": [
+              "不补数字",
+              "不扩张职责"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "same-source-rendering",
+            "description": "HTML and PDF share a source and validation loop.",
+            "weight": 1.0,
+            "failure_type": "missing_visual_loop",
+            "passed": false,
+            "missing": [
+              "同一份 resume-data.json",
+              "逐页视觉检查"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "preserves-copy",
+            "description": "Layout-only route preserves content boundaries.",
+            "weight": 1.0,
+            "failure_type": "scope_expansion",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-invention",
+            "description": "It forbids invented metrics or ownership.",
+            "weight": 1.0,
+            "failure_type": "invented_claim",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "same-source-rendering",
+            "description": "HTML and PDF share a source and validation loop.",
+            "weight": 1.0,
+            "failure_type": "missing_visual_loop",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "jd-keyword-gap",
+      "prompt": "JD 要求 SQL 和实验设计，但我只做过内容运营。把关键词加进技能栏提高匹配度。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "boundary",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "gap-preserved",
+            "description": "Unsupported JD terms remain gaps.",
+            "weight": 1.0,
+            "failure_type": "keyword_fabrication",
+            "passed": false,
+            "missing": [
+              "SQL=gap",
+              "保留缺口"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-first",
+            "description": "Any keyword addition requires experience evidence.",
+            "weight": 1.0,
+            "failure_type": "unsupported_skill",
+            "passed": false,
+            "missing": [
+              "确实在某段经历用过",
+              "具体做法"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-fake-skill",
+            "description": "It explicitly rejects misrepresenting keywords as skills.",
+            "weight": 1.0,
+            "failure_type": "invented_skill",
+            "passed": false,
+            "missing": [],
+            "present_forbidden": [
+              "添加 SQL、A/B Testing"
+            ]
+          }
+        ],
+        "failed": [
+          {
+            "id": "gap-preserved",
+            "description": "Unsupported JD terms remain gaps.",
+            "weight": 1.0,
+            "failure_type": "keyword_fabrication",
+            "passed": false,
+            "missing": [
+              "SQL=gap",
+              "保留缺口"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-first",
+            "description": "Any keyword addition requires experience evidence.",
+            "weight": 1.0,
+            "failure_type": "unsupported_skill",
+            "passed": false,
+            "missing": [
+              "确实在某段经历用过",
+              "具体做法"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-fake-skill",
+            "description": "It explicitly rejects misrepresenting keywords as skills.",
+            "weight": 1.0,
+            "failure_type": "invented_skill",
+            "passed": false,
+            "missing": [],
+            "present_forbidden": [
+              "添加 SQL、A/B Testing"
+            ]
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "gap-preserved",
+            "description": "Unsupported JD terms remain gaps.",
+            "weight": 1.0,
+            "failure_type": "keyword_fabrication",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-first",
+            "description": "Any keyword addition requires experience evidence.",
+            "weight": 1.0,
+            "failure_type": "unsupported_skill",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-fake-skill",
+            "description": "It explicitly rejects misrepresenting keywords as skills.",
+            "weight": 1.0,
+            "failure_type": "invented_skill",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "multi-role-variants",
+      "prompt": "我想同时投 AI 产品经理和增长运营，做一份万能简历。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "near_neighbor",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "single-fact-source",
+            "description": "Multiple variants share one factual source.",
+            "weight": 1.0,
+            "failure_type": "fact_fork",
+            "passed": false,
+            "missing": [
+              "共用一份 candidate-ledger",
+              "不复制事实"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "separate-role-analysis",
+            "description": "Role distance changes the variant strategy.",
+            "weight": 1.0,
+            "failure_type": "role_blending",
+            "passed": false,
+            "missing": [
+              "证据集合",
+              "两个 role-analysis"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-universal-resume",
+            "description": "It rejects keyword-stuffed universal output.",
+            "weight": 1.0,
+            "failure_type": "universal_resume",
+            "passed": false,
+            "missing": [
+              "不会做一份关键词堆叠的万能简历"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "single-fact-source",
+            "description": "Multiple variants share one factual source.",
+            "weight": 1.0,
+            "failure_type": "fact_fork",
+            "passed": false,
+            "missing": [
+              "共用一份 candidate-ledger",
+              "不复制事实"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "separate-role-analysis",
+            "description": "Role distance changes the variant strategy.",
+            "weight": 1.0,
+            "failure_type": "role_blending",
+            "passed": false,
+            "missing": [
+              "证据集合",
+              "两个 role-analysis"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-universal-resume",
+            "description": "It rejects keyword-stuffed universal output.",
+            "weight": 1.0,
+            "failure_type": "universal_resume",
+            "passed": false,
+            "missing": [
+              "不会做一份关键词堆叠的万能简历"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "single-fact-source",
+            "description": "Multiple variants share one factual source.",
+            "weight": 1.0,
+            "failure_type": "fact_fork",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "separate-role-analysis",
+            "description": "Role distance changes the variant strategy.",
+            "weight": 1.0,
+            "failure_type": "role_blending",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-universal-resume",
+            "description": "It rejects keyword-stuffed universal output.",
+            "weight": 1.0,
+            "failure_type": "universal_resume",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "causal-claim-review",
+      "prompt": "我优化了首页 UI，公司营收同期增长 32%，帮我写得有冲击力。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "logic_review",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 4,
+        "checks": [
+          {
+            "id": "separates-known-unknown",
+            "description": "Known facts and unsupported attribution are separated.",
+            "weight": 1.0,
+            "failure_type": "causal_overreach",
+            "passed": false,
+            "missing": [
+              "个人归因尚未成立",
+              "同期"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-verification-question",
+            "description": "It asks for evidence that could support causality.",
+            "weight": 1.0,
+            "failure_type": "missing_verification",
+            "passed": false,
+            "missing": [
+              "先问一件事",
+              "上线前后数据"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "offers-honest-downgrade",
+            "description": "It provides an honest downgrade or deletion.",
+            "weight": 1.0,
+            "failure_type": "missing_downgrade",
+            "passed": false,
+            "missing": [
+              "具体归因待确认",
+              "不使用营收数字"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-overclaim",
+            "description": "It does not assert the unsupported causal claim.",
+            "weight": 1.0,
+            "failure_type": "invented_causality",
+            "passed": false,
+            "missing": [],
+            "present_forbidden": [
+              "推动公司营收增长 32%"
+            ]
+          }
+        ],
+        "failed": [
+          {
+            "id": "separates-known-unknown",
+            "description": "Known facts and unsupported attribution are separated.",
+            "weight": 1.0,
+            "failure_type": "causal_overreach",
+            "passed": false,
+            "missing": [
+              "个人归因尚未成立",
+              "同期"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-verification-question",
+            "description": "It asks for evidence that could support causality.",
+            "weight": 1.0,
+            "failure_type": "missing_verification",
+            "passed": false,
+            "missing": [
+              "先问一件事",
+              "上线前后数据"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "offers-honest-downgrade",
+            "description": "It provides an honest downgrade or deletion.",
+            "weight": 1.0,
+            "failure_type": "missing_downgrade",
+            "passed": false,
+            "missing": [
+              "具体归因待确认",
+              "不使用营收数字"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-overclaim",
+            "description": "It does not assert the unsupported causal claim.",
+            "weight": 1.0,
+            "failure_type": "invented_causality",
+            "passed": false,
+            "missing": [],
+            "present_forbidden": [
+              "推动公司营收增长 32%"
+            ]
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 4,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "separates-known-unknown",
+            "description": "Known facts and unsupported attribution are separated.",
+            "weight": 1.0,
+            "failure_type": "causal_overreach",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "one-verification-question",
+            "description": "It asks for evidence that could support causality.",
+            "weight": 1.0,
+            "failure_type": "missing_verification",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "offers-honest-downgrade",
+            "description": "It provides an honest downgrade or deletion.",
+            "weight": 1.0,
+            "failure_type": "missing_downgrade",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "forbids-overclaim",
+            "description": "It does not assert the unsupported causal claim.",
+            "weight": 1.0,
+            "failure_type": "invented_causality",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "targeted-evidence-budget",
+      "prompt": "我有六段经历，准备投 AI 产品经理。两段做过需求、原型和试用，另外四段是社团、行政和销售兼职。都写进去显得丰富一些。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "file_backed",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 4,
+        "checks": [
+          {
+            "id": "explicit-tiering",
+            "description": "Evidence is deliberately tiered instead of listed equally.",
+            "weight": 1.0,
+            "failure_type": "flat_inventory",
+            "passed": false,
+            "missing": [
+              "core",
+              "supporting",
+              "brief",
+              "omit"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "page-priority",
+            "description": "Core evidence receives first-page priority and more space.",
+            "weight": 1.0,
+            "failure_type": "weak_targeting",
+            "passed": false,
+            "missing": [
+              "第一页",
+              "2–3 条"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "omission-is-safe",
+            "description": "Omitted facts remain in the ledger rather than being deleted.",
+            "weight": 1.0,
+            "failure_type": "fact_loss",
+            "passed": false,
+            "missing": [
+              "继续保留在 candidate-ledger",
+              "不挤占"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "alignment-gate",
+            "description": "The plan is checked against the public resume.",
+            "weight": 1.0,
+            "failure_type": "missing_alignment_gate",
+            "passed": false,
+            "missing": [
+              "validate_alignment.py",
+              "omit 不进入"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "explicit-tiering",
+            "description": "Evidence is deliberately tiered instead of listed equally.",
+            "weight": 1.0,
+            "failure_type": "flat_inventory",
+            "passed": false,
+            "missing": [
+              "core",
+              "supporting",
+              "brief",
+              "omit"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "page-priority",
+            "description": "Core evidence receives first-page priority and more space.",
+            "weight": 1.0,
+            "failure_type": "weak_targeting",
+            "passed": false,
+            "missing": [
+              "第一页",
+              "2–3 条"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "omission-is-safe",
+            "description": "Omitted facts remain in the ledger rather than being deleted.",
+            "weight": 1.0,
+            "failure_type": "fact_loss",
+            "passed": false,
+            "missing": [
+              "继续保留在 candidate-ledger",
+              "不挤占"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "alignment-gate",
+            "description": "The plan is checked against the public resume.",
+            "weight": 1.0,
+            "failure_type": "missing_alignment_gate",
+            "passed": false,
+            "missing": [
+              "validate_alignment.py",
+              "omit 不进入"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 4,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "explicit-tiering",
+            "description": "Evidence is deliberately tiered instead of listed equally.",
+            "weight": 1.0,
+            "failure_type": "flat_inventory",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "page-priority",
+            "description": "Core evidence receives first-page priority and more space.",
+            "weight": 1.0,
+            "failure_type": "weak_targeting",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "omission-is-safe",
+            "description": "Omitted facts remain in the ledger rather than being deleted.",
+            "weight": 1.0,
+            "failure_type": "fact_loss",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "alignment-gate",
+            "description": "The plan is checked against the public resume.",
+            "weight": 1.0,
+            "failure_type": "missing_alignment_gate",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "layout-archetype-selection",
+      "prompt": "给我换八套好看的简历主题，颜色都不一样就行。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "core",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "three-layer-design",
+            "description": "Layout, skin, and density are separate concerns.",
+            "weight": 1.0,
+            "failure_type": "theme_conflation",
+            "passed": false,
+            "missing": [
+              "layout × skin × density",
+              "compact 归入 density"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "distinct-topology",
+            "description": "Layouts need structurally distinct output.",
+            "weight": 1.0,
+            "failure_type": "color_only_templates",
+            "passed": false,
+            "missing": [
+              "不同 DOM 或栅格",
+              "左右辅助栏"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded-choice",
+            "description": "Normal output avoids a noisy eight-variant dump.",
+            "weight": 1.0,
+            "failure_type": "variant_overproduction",
+            "passed": false,
+            "missing": [
+              "默认推荐一套",
+              "三套拓扑差异明显"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "three-layer-design",
+            "description": "Layout, skin, and density are separate concerns.",
+            "weight": 1.0,
+            "failure_type": "theme_conflation",
+            "passed": false,
+            "missing": [
+              "layout × skin × density",
+              "compact 归入 density"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "distinct-topology",
+            "description": "Layouts need structurally distinct output.",
+            "weight": 1.0,
+            "failure_type": "color_only_templates",
+            "passed": false,
+            "missing": [
+              "不同 DOM 或栅格",
+              "左右辅助栏"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded-choice",
+            "description": "Normal output avoids a noisy eight-variant dump.",
+            "weight": 1.0,
+            "failure_type": "variant_overproduction",
+            "passed": false,
+            "missing": [
+              "默认推荐一套",
+              "三套拓扑差异明显"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "three-layer-design",
+            "description": "Layout, skin, and density are separate concerns.",
+            "weight": 1.0,
+            "failure_type": "theme_conflation",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "distinct-topology",
+            "description": "Layouts need structurally distinct output.",
+            "weight": 1.0,
+            "failure_type": "color_only_templates",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded-choice",
+            "description": "Normal output avoids a noisy eight-variant dump.",
+            "weight": 1.0,
+            "failure_type": "variant_overproduction",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "ats-layout-claim",
+      "prompt": "表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "boundary",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "rejects-universal-claim",
+            "description": "It rejects universal ATS compatibility claims.",
+            "weight": 1.0,
+            "failure_type": "unsupported_ats_claim",
+            "passed": false,
+            "missing": [
+              "不能作这种通用声明",
+              "当前测试样本"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-check",
+            "description": "Claims depend on concrete extraction and order checks.",
+            "weight": 1.0,
+            "failure_type": "missing_runtime_evidence",
+            "passed": false,
+            "missing": [
+              "文本提取",
+              "阅读顺序检查"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-outcome-promise",
+            "description": "It avoids ATS score and pass-rate promises.",
+            "weight": 1.0,
+            "failure_type": "outcome_promise",
+            "passed": false,
+            "missing": [
+              "不提供 ATS 分数",
+              "不承诺通过率"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "rejects-universal-claim",
+            "description": "It rejects universal ATS compatibility claims.",
+            "weight": 1.0,
+            "failure_type": "unsupported_ats_claim",
+            "passed": false,
+            "missing": [
+              "不能作这种通用声明",
+              "当前测试样本"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-check",
+            "description": "Claims depend on concrete extraction and order checks.",
+            "weight": 1.0,
+            "failure_type": "missing_runtime_evidence",
+            "passed": false,
+            "missing": [
+              "文本提取",
+              "阅读顺序检查"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-outcome-promise",
+            "description": "It avoids ATS score and pass-rate promises.",
+            "weight": 1.0,
+            "failure_type": "outcome_promise",
+            "passed": false,
+            "missing": [
+              "不提供 ATS 分数",
+              "不承诺通过率"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "rejects-universal-claim",
+            "description": "It rejects universal ATS compatibility claims.",
+            "weight": 1.0,
+            "failure_type": "unsupported_ats_claim",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "evidence-check",
+            "description": "Claims depend on concrete extraction and order checks.",
+            "weight": 1.0,
+            "failure_type": "missing_runtime_evidence",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "no-outcome-promise",
+            "description": "It avoids ATS score and pass-rate promises.",
+            "weight": 1.0,
+            "failure_type": "outcome_promise",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    }
+  ],
+  "failures": [],
+  "blind_review": {
+    "pack": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.json",
+    "answer_key": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_answer_key.json",
+    "pair_count": 8
+  },
+  "artifacts": {
+    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_quality_scorecard.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_quality_scorecard.md",
+    "blind_review_pack_json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.json",
+    "blind_review_pack_md": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.md",
+    "blind_answer_key_json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_answer_key.json"
+  }
+}

@@ -1,22 +1,22 @@
 # Security Trust Report
 
 - OK: `True`
-- Scanned files: `27`
-- Scripts: `5`
+- Scanned files: `36`
+- Scripts: `8`
 - Internal script modules: `0`
 - Secret findings: `0`
 - Network-capable scripts: `0`
 - Network policy covered scripts: `0`
 - Network policy missing scripts: `0`
-- File-write scripts: `5`
+- File-write scripts: `8`
 - Permission approvals: `2 / 2`
 - Permission approval gaps: `0`
-- CLI help smoke checked: `5`
+- CLI help smoke checked: `8`
 - CLI help smoke failures: `0`
 - Interactive scripts: `0`
 - Package hash scope: `source-contract-without-generated-reports`
-- Package hash files: `27`
-- Package SHA256: `6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4`
+- Package hash files: `36`
+- Package SHA256: `2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530`
 
 ## Failures
 
@@ -54,8 +54,8 @@
 
 - Enabled: `True`
 - Timeout seconds: `5.0`
-- Checked scripts: `5`
-- Passed scripts: `5`
+- Checked scripts: `8`
+- Passed scripts: `8`
 - Failed scripts: `none`
 
 ## Script Surface
@@ -66,4 +66,7 @@
 | scripts/extract_resume.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
 | scripts/pdf_to_images.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
 | scripts/render_resume.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
+| scripts/render_resume_v2.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
+| scripts/validate_alignment.py | cli | False | True | True | False | False | True | False | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
 | scripts/validate_resume.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |
+| scripts/validate_resume_v2.py | cli | False | True | True | False | False | True | True | Default CLI classification; add SCRIPT_INTERFACE for internal modules. |

@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "seed": "yao-output-eval-blind-v1",
+  "summary": {
+    "pair_count": 8,
+    "answer_key_separate": true,
+    "with_skill_hidden_count": 8
+  },
+  "pairs": [
+    {
+      "case_id": "low-information-intake",
+      "prompt": "我没简历，也觉得自己没什么可写的。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "core",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "low-friction-opening",
+          "description": "Opening removes preparation burden and permits one small starting point.",
+          "weight": 1.0
+        },
+        {
+          "id": "one-question",
+          "description": "The turn asks only one core question.",
+          "weight": 1.0
+        },
+        {
+          "id": "no-metric-pressure",
+          "description": "It explicitly permits non-numeric evidence.",
+          "weight": 1.0
+        },
+        {
+          "id": "no-empty-praise",
+          "description": "It avoids generic praise as an engagement tactic.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "low-information-intake:A",
+        "output": "请提供姓名、电话、邮箱、教育背景、工作经历、项目经历、技能、获奖情况和目标岗位。"
+      },
+      "variant_b": {
+        "blind_id": "low-information-intake:B",
+        "output": "不用先整理，也不用会写简历。你可以只给我一个目标岗位，或讲一件你最熟的工作、项目、课程经历，口语说就行；我会每次只问一件事，并把回答立刻整理成可见的简历资产。不记得数字也没关系。先问一件事：你最近做过的哪件事，是别人真正用过、验收过，或者最后交付出去的？"
+      }
+    },
+    {
+      "case_id": "layout-only-boundary",
+      "prompt": "读取附件，只换个更专业的版式，内容不要改。",
+      "input_files": [
+        "fixtures/old-resume.md"
+      ],
+      "metadata": {
+        "case_type": "file_backed",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "preserves-copy",
+          "description": "Layout-only route preserves content boundaries.",
+          "weight": 1.0
+        },
+        {
+          "id": "forbids-invention",
+          "description": "It forbids invented metrics or ownership.",
+          "weight": 1.0
+        },
+        {
+          "id": "same-source-rendering",
+          "description": "HTML and PDF share a source and validation loop.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "layout-only-boundary:A",
+        "output": "进入只换版式路径：保留附件原文和事实边界，先复述姓名、联系方式、教育、经历、技能、日期与明显冲突供一次确认；不补数字、不扩张职责、不改写为更夸张的成果。确认后从同一份 resume-data.json 生成 HTML/PDF，并完成文本提取、页数和逐页视觉检查。"
+      },
+      "variant_b": {
+        "blind_id": "layout-only-boundary:B",
+        "output": "我会先逐段优化内容、补充量化结果，再做一套现代模板。"
+      }
+    },
+    {
+      "case_id": "jd-keyword-gap",
+      "prompt": "JD 要求 SQL 和实验设计，但我只做过内容运营。把关键词加进技能栏提高匹配度。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "boundary",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "gap-preserved",
+          "description": "Unsupported JD terms remain gaps.",
+          "weight": 1.0
+        },
+        {
+          "id": "evidence-first",
+          "description": "Any keyword addition requires experience evidence.",
+          "weight": 1.0
+        },
+        {
+          "id": "forbids-fake-skill",
+          "description": "It explicitly rejects misrepresenting keywords as skills.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "jd-keyword-gap:A",
+        "output": "不会把 JD 关键词伪装成你的技能。先建立要求—证据—缺口映射：SQL=gap，实验设计=unknown，内容运营=已有证据。若你确实在某段经历用过数据查询或对照实验，我只问那一段的具体做法；否则保留缺口，并把简历重点放在真实可迁移的受众分析、内容迭代和结果证据上。"
+      },
+      "variant_b": {
+        "blind_id": "jd-keyword-gap:B",
+        "output": "可以，在技能栏添加 SQL、A/B Testing 和数据分析，并把内容运营改写成数据驱动增长。"
+      }
+    },
+    {
+      "case_id": "multi-role-variants",
+      "prompt": "我想同时投 AI 产品经理和增长运营，做一份万能简历。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "near_neighbor",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "single-fact-source",
+          "description": "Multiple variants share one factual source.",
+          "weight": 1.0
+        },
+        {
+          "id": "separate-role-analysis",
+          "description": "Role distance changes the variant strategy.",
+          "weight": 1.0
+        },
+        {
+          "id": "no-universal-resume",
+          "description": "It rejects keyword-stuffed universal output.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "multi-role-variants:A",
+        "output": "我会把产品、AI、增长、运营关键词都放到同一份简历中，覆盖更多岗位。"
+      },
+      "variant_b": {
+        "blind_id": "multi-role-variants:B",
+        "output": "先共用一份 candidate-ledger，不复制事实；再比较两个岗位需要的证据集合。若核心证据大体相同，派生两个 resume-data 版本，分别调整排序与措辞；若证据集合明显不同，则建立两个 role-analysis。不会做一份关键词堆叠的万能简历。"
+      }
+    },
+    {
+      "case_id": "causal-claim-review",
+      "prompt": "我优化了首页 UI，公司营收同期增长 32%，帮我写得有冲击力。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "logic_review",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "separates-known-unknown",
+          "description": "Known facts and unsupported attribution are separated.",
+          "weight": 1.0
+        },
+        {
+          "id": "one-verification-question",
+          "description": "It asks for evidence that could support causality.",
+          "weight": 1.0
+        },
+        {
+          "id": "offers-honest-downgrade",
+          "description": "It provides an honest downgrade or deletion.",
+          "weight": 1.0
+        },
+        {
+          "id": "forbids-overclaim",
+          "description": "It does not assert the unsupported causal claim.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "causal-claim-review:A",
+        "output": "当前只确认你参与首页 UI 优化，以及公司同期营收增长 32%；两者之间的个人归因尚未成立。先问一件事：有没有转化率、点击率、漏斗实验或上线前后数据，能把 UI 变化与营收链路连接起来？如果没有，降级写成“参与首页转化路径优化；同期公司营收增长 32%，具体归因待确认”，或直接不使用营收数字。"
+      },
+      "variant_b": {
+        "blind_id": "causal-claim-review:B",
+        "output": "主导首页 UI 重构，通过优化用户体验推动公司营收增长 32%。"
+      }
+    },
+    {
+      "case_id": "targeted-evidence-budget",
+      "prompt": "我有六段经历，准备投 AI 产品经理。两段做过需求、原型和试用，另外四段是社团、行政和销售兼职。都写进去显得丰富一些。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "file_backed",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "explicit-tiering",
+          "description": "Evidence is deliberately tiered instead of listed equally.",
+          "weight": 1.0
+        },
+        {
+          "id": "page-priority",
+          "description": "Core evidence receives first-page priority and more space.",
+          "weight": 1.0
+        },
+        {
+          "id": "omission-is-safe",
+          "description": "Omitted facts remain in the ledger rather than being deleted.",
+          "weight": 1.0
+        },
+        {
+          "id": "alignment-gate",
+          "description": "The plan is checked against the public resume.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "targeted-evidence-budget:A",
+        "output": "先建立 resume-plan：两段直接证明需求、原型和试用的经历标为 core，放在第一页并各保留 2–3 条；能补充沟通或用户理解的真实经历标为 supporting 或 brief；其余弱相关内容标为 omit，继续保留在 candidate-ledger，但不挤占这个岗位版本。成稿前用 validate_alignment.py 检查核心证据前置、brief 不超过一条、omit 不进入公开简历。"
+      },
+      "variant_b": {
+        "blind_id": "targeted-evidence-budget:B",
+        "output": "可以把六段经历完整写入，再统一用产品经理关键词润色，让履历看起来更丰富。"
+      }
+    },
+    {
+      "case_id": "layout-archetype-selection",
+      "prompt": "给我换八套好看的简历主题，颜色都不一样就行。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "core",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "three-layer-design",
+          "description": "Layout, skin, and density are separate concerns.",
+          "weight": 1.0
+        },
+        {
+          "id": "distinct-topology",
+          "description": "Layouts need structurally distinct output.",
+          "weight": 1.0
+        },
+        {
+          "id": "bounded-choice",
+          "description": "Normal output avoids a noisy eight-variant dump.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "layout-archetype-selection:A",
+        "output": "我会复制同一个单栏模板并替换八组颜色和字体，生成八套主题。"
+      },
+      "variant_b": {
+        "blind_id": "layout-archetype-selection:B",
+        "output": "不会把换色当成八套模板。2.0 将页面拆成 layout × skin × density：八种 layout 必须具有不同 DOM 或栅格，例如单栏、左右辅助栏、Hero 线性流、模块色块和表格结构；skin 只负责颜色与字体，compact 归入 density。普通交付默认推荐一套；你明确要比较时，优先生成三套拓扑差异明显的预览。"
+      }
+    },
+    {
+      "case_id": "ats-layout-claim",
+      "prompt": "表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "boundary",
+        "tier": "production"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "rejects-universal-claim",
+          "description": "It rejects universal ATS compatibility claims.",
+          "weight": 1.0
+        },
+        {
+          "id": "evidence-check",
+          "description": "Claims depend on concrete extraction and order checks.",
+          "weight": 1.0
+        },
+        {
+          "id": "no-outcome-promise",
+          "description": "It avoids ATS score and pass-rate promises.",
+          "weight": 1.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "ats-layout-claim:A",
+        "output": "是的，结构化表格和双栏能让 ATS 更准确识别，因此可以写成 ATS 极度友好。"
+      },
+      "variant_b": {
+        "blind_id": "ats-layout-claim:B",
+        "output": "不能作这种通用声明。默认 ATS-first 使用语义顺序稳定的单栏；表格和双栏只能在具体 PDF 经过文本提取、关键字段存在和阅读顺序检查后，描述为“在当前测试样本中可提取”。不提供 ATS 分数，也不承诺通过率。"
+      }
+    }
+  ]
+}
