@@ -13,6 +13,8 @@ resume-data.json       允许公开和渲染的成稿
 
 禁止跳过 `resume-plan.json` 直接把全部事实改写进简历。只换版式路径例外，但仍要把 `content_mode` 设为 `layout-only` 并保留原有内容边界。
 
+计划只允许引用 `status: confirmed` 的证据。任何仍在 `uncertainties` 中、材料冲突或用户以“大概/可能”表达的信息都不得进入 `evidence_decisions`；先向用户确认，无法确认则设为 `omit`。最终 `confirmation.status` 未变为 `confirmed` 时，`validate_alignment.py` 必须阻止成稿。
+
 ## 岗位定位
 
 先写一句 `role_thesis`：招聘者读完第一页后应形成的一个判断。它必须同时包含目标岗位、候选人的核心证据方向和可信边界，不能是“认真负责、学习能力强”等人格形容词。

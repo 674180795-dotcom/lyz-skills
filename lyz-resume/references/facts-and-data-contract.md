@@ -80,10 +80,14 @@ resume-data.json       只含允许公开和渲染的内容
 
 账本默认只留在用户指定的本地目录。不要收集身份证号、密码、令牌、宗教、婚育、民族、完整住址或无关健康信息。公开 HTML/PDF 不渲染 `source_note`、疑点和私人证据路径。
 
-照片字段默认：
+照片字段必须记录用户的明确选择：
 
 ```json
-"photo": {"enabled": false, "source": null}
+"photo": {"enabled": false, "decision": "declined", "source": null}
 ```
 
-只有用户主动要求并提供图片时开启。图片只用于排版；不得从外貌推断年龄、性别、民族、健康或其他敏感信息。上传的是旧简历截图时，它属于输入材料，不等于头像。
+Skill 必须主动提醒用户上传证件照，同时允许明确回复“不使用照片”。提供时使用 `decision: provided`、`enabled: true` 和本地 `source`；拒绝时使用 `decision: declined`、`enabled: false`。图片只用于排版；不得从外貌推断年龄、性别、民族、健康或其他敏感信息。上传的是旧简历截图时，它属于输入材料，不等于头像。
+
+## 疑点与公开边界
+
+未确认信息只保存在 `candidate-ledger.json` 的 `uncertainties` 中。涉及日期、职责归属、公司/学校名称、工具、数字、结果、身份和联系方式时，不允许用“听起来合理”代替确认。生成 `resume-plan.json` 前向用户展示精简事实与取舍摘要；`confirmation.status` 只有在用户明确确认后才能设为 `confirmed`。无法确认的内容应从 `resume-data.json` 省略，而不是降级成“待确认”文本。

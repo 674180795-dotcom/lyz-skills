@@ -1,18 +1,18 @@
 {
   "ok": true,
-  "cases": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/evals/output/cases.jsonl",
+  "cases": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/evals/output/cases.jsonl",
   "summary": {
-    "case_count": 8,
+    "case_count": 9,
     "file_backed_case_count": 1,
     "near_neighbor_case_count": 1,
-    "boundary_case_count": 2,
-    "baseline_pass_rate": 3.12,
+    "boundary_case_count": 3,
+    "baseline_pass_rate": 2.78,
     "with_skill_pass_rate": 100.0,
-    "delta": 96.88,
+    "delta": 97.22,
     "regression_count": 0,
     "gate_pass": true,
     "failure_taxonomy": [],
-    "blind_pair_count": 8
+    "blind_pair_count": 9
   },
   "results": [
     {
@@ -562,7 +562,7 @@
             "passed": false,
             "missing": [
               "个人归因尚未成立",
-              "同期"
+              "疑点不会进入公开简历"
             ],
             "present_forbidden": []
           },
@@ -579,14 +579,14 @@
             "present_forbidden": []
           },
           {
-            "id": "offers-honest-downgrade",
-            "description": "It provides an honest downgrade or deletion.",
+            "id": "omits-unconfirmed-claim",
+            "description": "Unconfirmed claims are omitted rather than marked pending in public output.",
             "weight": 1.0,
-            "failure_type": "missing_downgrade",
+            "failure_type": "unconfirmed_public_claim",
             "passed": false,
             "missing": [
-              "具体归因待确认",
-              "不使用营收数字"
+              "无法确认",
+              "删除营收数字"
             ],
             "present_forbidden": []
           },
@@ -611,7 +611,7 @@
             "passed": false,
             "missing": [
               "个人归因尚未成立",
-              "同期"
+              "疑点不会进入公开简历"
             ],
             "present_forbidden": []
           },
@@ -628,14 +628,14 @@
             "present_forbidden": []
           },
           {
-            "id": "offers-honest-downgrade",
-            "description": "It provides an honest downgrade or deletion.",
+            "id": "omits-unconfirmed-claim",
+            "description": "Unconfirmed claims are omitted rather than marked pending in public output.",
             "weight": 1.0,
-            "failure_type": "missing_downgrade",
+            "failure_type": "unconfirmed_public_claim",
             "passed": false,
             "missing": [
-              "具体归因待确认",
-              "不使用营收数字"
+              "无法确认",
+              "删除营收数字"
             ],
             "present_forbidden": []
           },
@@ -676,10 +676,10 @@
             "present_forbidden": []
           },
           {
-            "id": "offers-honest-downgrade",
-            "description": "It provides an honest downgrade or deletion.",
+            "id": "omits-unconfirmed-claim",
+            "description": "Unconfirmed claims are omitted rather than marked pending in public output.",
             "weight": 1.0,
-            "failure_type": "missing_downgrade",
+            "failure_type": "unconfirmed_public_claim",
             "passed": true,
             "missing": [],
             "present_forbidden": []
@@ -867,7 +867,7 @@
     },
     {
       "id": "layout-archetype-selection",
-      "prompt": "给我换八套好看的简历主题，颜色都不一样就行。",
+      "prompt": "只保留指定的六套简历版式，但颜色别总是一样；参考模板颜色自由组合。",
       "input_files": [],
       "metadata": {
         "case_type": "core",
@@ -876,35 +876,49 @@
       "baseline": {
         "score": 0.0,
         "passed_count": 0,
-        "failed_count": 3,
+        "failed_count": 4,
         "checks": [
           {
+            "id": "six-layouts-only",
+            "description": "Only the six approved layouts remain selectable.",
+            "weight": 1.0,
+            "failure_type": "retired_layout_leak",
+            "passed": false,
+            "missing": [
+              "只保留",
+              "六种"
+            ],
+            "present_forbidden": []
+          },
+          {
             "id": "three-layer-design",
-            "description": "Layout, skin, and density are separate concerns.",
+            "description": "Layout, skin, and density remain separate concerns.",
             "weight": 1.0,
             "failure_type": "theme_conflation",
             "passed": false,
             "missing": [
               "layout × skin × density",
-              "compact 归入 density"
+              "自由组合"
             ],
             "present_forbidden": []
           },
           {
-            "id": "distinct-topology",
-            "description": "Layouts need structurally distinct output.",
+            "id": "palette-variety",
+            "description": "Reference-derived colors are available and auto selection varies by layout.",
             "weight": 1.0,
-            "failure_type": "color_only_templates",
+            "failure_type": "fixed_color",
             "passed": false,
             "missing": [
-              "不同 DOM 或栅格",
-              "左右辅助栏"
+              "深蓝金",
+              "雾粉",
+              "薄荷",
+              "skin: auto"
             ],
             "present_forbidden": []
           },
           {
             "id": "bounded-choice",
-            "description": "Normal output avoids a noisy eight-variant dump.",
+            "description": "Normal output avoids a noisy variant dump.",
             "weight": 1.0,
             "failure_type": "variant_overproduction",
             "passed": false,
@@ -917,32 +931,46 @@
         ],
         "failed": [
           {
+            "id": "six-layouts-only",
+            "description": "Only the six approved layouts remain selectable.",
+            "weight": 1.0,
+            "failure_type": "retired_layout_leak",
+            "passed": false,
+            "missing": [
+              "只保留",
+              "六种"
+            ],
+            "present_forbidden": []
+          },
+          {
             "id": "three-layer-design",
-            "description": "Layout, skin, and density are separate concerns.",
+            "description": "Layout, skin, and density remain separate concerns.",
             "weight": 1.0,
             "failure_type": "theme_conflation",
             "passed": false,
             "missing": [
               "layout × skin × density",
-              "compact 归入 density"
+              "自由组合"
             ],
             "present_forbidden": []
           },
           {
-            "id": "distinct-topology",
-            "description": "Layouts need structurally distinct output.",
+            "id": "palette-variety",
+            "description": "Reference-derived colors are available and auto selection varies by layout.",
             "weight": 1.0,
-            "failure_type": "color_only_templates",
+            "failure_type": "fixed_color",
             "passed": false,
             "missing": [
-              "不同 DOM 或栅格",
-              "左右辅助栏"
+              "深蓝金",
+              "雾粉",
+              "薄荷",
+              "skin: auto"
             ],
             "present_forbidden": []
           },
           {
             "id": "bounded-choice",
-            "description": "Normal output avoids a noisy eight-variant dump.",
+            "description": "Normal output avoids a noisy variant dump.",
             "weight": 1.0,
             "failure_type": "variant_overproduction",
             "passed": false,
@@ -956,12 +984,21 @@
       },
       "with_skill": {
         "score": 100.0,
-        "passed_count": 3,
+        "passed_count": 4,
         "failed_count": 0,
         "checks": [
           {
+            "id": "six-layouts-only",
+            "description": "Only the six approved layouts remain selectable.",
+            "weight": 1.0,
+            "failure_type": "retired_layout_leak",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
             "id": "three-layer-design",
-            "description": "Layout, skin, and density are separate concerns.",
+            "description": "Layout, skin, and density remain separate concerns.",
             "weight": 1.0,
             "failure_type": "theme_conflation",
             "passed": true,
@@ -969,17 +1006,17 @@
             "present_forbidden": []
           },
           {
-            "id": "distinct-topology",
-            "description": "Layouts need structurally distinct output.",
+            "id": "palette-variety",
+            "description": "Reference-derived colors are available and auto selection varies by layout.",
             "weight": 1.0,
-            "failure_type": "color_only_templates",
+            "failure_type": "fixed_color",
             "passed": true,
             "missing": [],
             "present_forbidden": []
           },
           {
             "id": "bounded-choice",
-            "description": "Normal output avoids a noisy eight-variant dump.",
+            "description": "Normal output avoids a noisy variant dump.",
             "weight": 1.0,
             "failure_type": "variant_overproduction",
             "passed": true,
@@ -995,7 +1032,7 @@
     },
     {
       "id": "ats-layout-claim",
-      "prompt": "表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
+      "prompt": "双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。",
       "input_files": [],
       "metadata": {
         "case_type": "boundary",
@@ -1120,19 +1157,147 @@
       "delta": 100.0,
       "winner": "with_skill",
       "failure_taxonomy": []
+    },
+    {
+      "id": "photo-and-uncertainty-checkpoint",
+      "prompt": "直接先帮我出最终简历吧。证件照我之后再说，日期和项目数字你觉得合理就补上。",
+      "input_files": [],
+      "metadata": {
+        "case_type": "boundary",
+        "tier": "production"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "photo-reminder",
+            "description": "The skill proactively asks for a photo or explicit decline.",
+            "weight": 1.0,
+            "failure_type": "missing_photo_decision",
+            "passed": false,
+            "missing": [
+              "请上传证件照",
+              "不使用照片"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "uncertainty-boundary",
+            "description": "Uncertain facts stay private until confirmed.",
+            "weight": 1.0,
+            "failure_type": "unconfirmed_public_claim",
+            "passed": false,
+            "missing": [
+              "不会写进公开简历",
+              "私有疑点清单"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "omit-not-guess",
+            "description": "Unresolved facts are omitted rather than invented.",
+            "weight": 1.0,
+            "failure_type": "invented_fact",
+            "passed": false,
+            "missing": [
+              "无法确认就删除",
+              "不会自行补齐"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "photo-reminder",
+            "description": "The skill proactively asks for a photo or explicit decline.",
+            "weight": 1.0,
+            "failure_type": "missing_photo_decision",
+            "passed": false,
+            "missing": [
+              "请上传证件照",
+              "不使用照片"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "uncertainty-boundary",
+            "description": "Uncertain facts stay private until confirmed.",
+            "weight": 1.0,
+            "failure_type": "unconfirmed_public_claim",
+            "passed": false,
+            "missing": [
+              "不会写进公开简历",
+              "私有疑点清单"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "omit-not-guess",
+            "description": "Unresolved facts are omitted rather than invented.",
+            "weight": 1.0,
+            "failure_type": "invented_fact",
+            "passed": false,
+            "missing": [
+              "无法确认就删除",
+              "不会自行补齐"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "photo-reminder",
+            "description": "The skill proactively asks for a photo or explicit decline.",
+            "weight": 1.0,
+            "failure_type": "missing_photo_decision",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "uncertainty-boundary",
+            "description": "Uncertain facts stay private until confirmed.",
+            "weight": 1.0,
+            "failure_type": "unconfirmed_public_claim",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "omit-not-guess",
+            "description": "Unresolved facts are omitted rather than invented.",
+            "weight": 1.0,
+            "failure_type": "invented_fact",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
     }
   ],
   "failures": [],
   "blind_review": {
-    "pack": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.json",
-    "answer_key": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_answer_key.json",
-    "pair_count": 8
+    "pack": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_blind_review_pack.json",
+    "answer_key": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_blind_answer_key.json",
+    "pair_count": 9
   },
   "artifacts": {
-    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_quality_scorecard.json",
-    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_quality_scorecard.md",
-    "blind_review_pack_json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.json",
-    "blind_review_pack_md": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_review_pack.md",
-    "blind_answer_key_json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/output_blind_answer_key.json"
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_quality_scorecard.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_quality_scorecard.md",
+    "blind_review_pack_json": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_blind_review_pack.json",
+    "blind_review_pack_md": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_blind_review_pack.md",
+    "blind_answer_key_json": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/output_blind_answer_key.json"
   }
 }

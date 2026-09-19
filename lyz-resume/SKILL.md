@@ -3,7 +3,7 @@ name: lyz-resume
 description: 将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。
 metadata:
   author: Ling99
-  version: "2.0.0"
+  version: "3.0.0"
 ---
 
 # 简历工坊
@@ -21,12 +21,13 @@ metadata:
 
 1. 在用户工作区创建独立输出目录，保留原文件。识别输入与最短可行路径。
 2. 维护私有 `candidate-ledger.json`、`role-analysis.json` 与 `resume-plan.json`；数据结构见 [事实与数据契约](references/facts-and-data-contract.md)。推断只进疑点，不进事实。
-3. 若信息不足，每次执行“具体认可 → 价值回声 → 一个问题”。允许“跳过 / 不知道 / 先出草稿”；不要发巨型问卷、空泛夸奖或重复追问。用 `scripts/assess_intake.py` 选择下一缺口。
+3. 若信息不足，每次执行“具体认可 → 价值回声 → 一个问题”。允许“跳过 / 不知道 / 先出草稿”；不要发巨型问卷、空泛夸奖或重复追问。用 `scripts/assess_intake.py` 选择下一缺口。任何拿不准的日期、归属、工具、数字、身份或教育信息只进疑点清单，不得进入公开简历。
 4. JD 优先于通用岗位知识。无 JD 时只用 [岗位镜头](references/role-lenses.md) 帮助理解和提问，绝不反向制造技能、术语或指标。
 5. 达到 `workable` 后先做岗位计划：把证据分为 `core / supporting / brief / omit`，确定第一页叙事、章节顺序和 bullet 预算。弱相关经历不得与核心证据等量展开。
-6. 用户确认事实与取舍摘要后写 `resume-data.json`。先运行 `validate_alignment.py` 与 `validate_resume.py`，再运行 `render_resume.py` 生成同源 HTML/PDF。
-7. 布局选择读取 [视觉原型与选择](references/visual-design-system.md)。默认只生成一个推荐版本；用户要求比较时最多生成三种拓扑明显不同的版本。
-8. 按 [渲染与验收](references/rendering-and-validation.md) 将 PDF 转成逐页图片并实际查看。先删弱内容，再调布局与间距；禁止以不可读小字硬塞一页。
+6. 在成稿前必须明确提醒一次：“请上传证件照（JPG、PNG 或 WebP，建议正面、浅色背景）；如果不想放照片，请明确回复‘不使用照片’。”把结果记录为 `provided` 或 `declined`；未明确选择时不得完成最终渲染。
+7. 先把已确认事实、岗位取舍和仍有疑点压缩成短摘要，请用户确认。能确认的更新账本；不能确认的字段或 claim 从成稿删除，不得把“待确认”写进简历。确认后写 `resume-data.json`，运行 `validate_alignment.py` 与 `validate_resume.py`，再用 `render_resume.py` 生成同源 HTML/PDF。
+8. 布局选择读取 [视觉原型与选择](references/visual-design-system.md)。只使用六种保留布局；布局和配色独立组合，`skin: auto` 按布局选择推荐色。默认只生成一个推荐版本；用户要求比较时最多生成三种拓扑明显不同的版本。
+9. 按 [渲染与验收](references/rendering-and-validation.md) 将 PDF 转成逐页图片并实际查看。先删弱内容，再调布局与间距；禁止以不可读小字硬塞一页。
 
 ## 对话规则
 
@@ -35,11 +36,12 @@ metadata:
 - 每次回答后展示一小段已捕获事实或可用草稿，让用户立刻看到回报。
 - 连续三轮没有新增事实时停止同类追问，改用选择题式回忆提示、请用户提供材料，或按当前证据降级生成。
 - 不诱导用户猜数字；没有数字时使用交付、验收、范围、质量、风险、采用情况等真实结果。
+- 用户说“不确定”“大概”“可能”或材料相互冲突时，先反馈当前可用部分，再只问一个最影响真实性的问题；若仍无法确认，明确告知该内容会被省略并继续完成其余部分。
 
 ## 交付契约
 
-默认交付 `candidate-ledger.json`、`role-analysis.json`、`resume-plan.json`、`resume-data.json`、`resume.html`、`resume.pdf`、`alignment-validation.json` 与 `validation.json`。照片默认关闭；开启时只把它当排版资产，不从外貌推断个人信息。最终 PDF 必须为 A4、1–2 页、正文不低于 9.1pt、文本可提取，并经逐页视觉复查。
+默认交付 `candidate-ledger.json`、`role-analysis.json`、`resume-plan.json`、`resume-data.json`、`resume.html`、`resume.pdf`、`alignment-validation.json` 与 `validation.json`。照片不是默认开启或默认关闭，而是必须提醒后由用户明确选择；开启时只把它当排版资产，不从外貌推断个人信息。最终 PDF 必须为 A4、1–2 页、正文不低于 9.1pt、文本可提取，并经逐页视觉复查。
 
-不得承诺 ATS 分数、面试邀约或就业结果。任何无法确认的 claim 必须删除、降级或清楚标注为待确认。
+不得承诺 ATS 分数、面试邀约或就业结果。任何无法确认的 claim 必须留在私有疑点清单并向用户确认；最终无法确认时删除，不得在公开简历里标注“待确认”。
 
 机器可读 Schema、设计原型与样例位于 `assets/`；触发和输出回归位于 `evals/`。修改路由、岗位计划、布局或数据契约后必须重跑对应评测。

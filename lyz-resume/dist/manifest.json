@@ -1,7 +1,7 @@
 {
   "name": "lyz-resume",
   "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "platform": "generic",
   "skill_root": "lyz-resume",
   "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
@@ -70,7 +70,7 @@
   "compiled_contract": {
     "name": "lyz-resume",
     "title": "简历工坊",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
     "job_to_be_done": "Evidence-grounded resume authoring and PDF validation：接收某位求职者不完整的旧简历、零散经历或口述材料，以低负担单问访谈补齐可验证事实，再针对一个明确岗位生成并验收可直接投递的简历。",
     "trigger": {

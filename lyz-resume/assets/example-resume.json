@@ -2,8 +2,8 @@
   "version": 2,
   "language": "zh-CN",
   "design": {
-    "layout": "classic-single-column",
-    "skin": "swiss-red",
+    "layout": "hero-header-linear",
+    "skin": "auto",
     "density": "auto",
     "render_profile": "balanced"
   },
@@ -24,7 +24,7 @@
     "location": "上海",
     "links": [{"label": "作品集", "url": "https://example.com/portfolio"}],
     "summary": "围绕真实业务问题完成 AI 产品需求拆解、原型设计和试用验证，能使用数据分析补充产品判断。",
-    "photo": {"enabled": false, "source": null}
+    "photo": {"enabled": false, "decision": "declined", "source": null}
   },
   "education": [
     {

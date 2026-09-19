@@ -1,8 +1,8 @@
 # Upgrade Check
 
 - OK: `True`
-- Previous: `lyz-resume 1.1.0`
-- Current: `lyz-resume 2.0.0`
+- Previous: `lyz-resume 2.0.0`
+- Current: `lyz-resume 3.0.0`
 - Declared bump: `major`
 - Recommended bump: `patch`
 - Breaking changes: `0`

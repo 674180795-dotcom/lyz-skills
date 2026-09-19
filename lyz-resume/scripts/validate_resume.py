@@ -23,7 +23,7 @@ ALLOWED_EVIDENCE = {
     "conservative_estimate",
 }
 PLACEHOLDER_RE = re.compile(
-    r"(?:待补充|待确认|待填写|示例文本|你的名字|姓名_[^_]|XXX|TBD|TODO|N/?A|lorem ipsum|\[[^\]]*(?:填|insert|placeholder)[^\]]*\])",
+    r"(?:待补充|待确认|待填写|示例文本|你的名字|姓名_[^_]|XXX|TBD|TODO|\bN/?A\b|lorem ipsum|\[[^\]]*(?:填|insert|placeholder)[^\]]*\])",
     re.IGNORECASE,
 )
 ESTIMATE_MARKER_RE = re.compile(r"(?:约|大约|近|超过|不少于|~|≈|\d+\s*[-–—]\s*\d+)")

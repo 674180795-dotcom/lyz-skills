@@ -2,12 +2,12 @@
 
 This v0 scorecard compares static without-skill and with-skill outputs using assertion grading.
 
-- Cases: `8`
-- Baseline pass rate: `3.12`
+- Cases: `9`
+- Baseline pass rate: `2.78`
 - With-skill pass rate: `100.0`
-- Delta: `96.88`
+- Delta: `97.22`
 - Regressions: `0`
-- Blind A/B pairs: `8`
+- Blind A/B pairs: `9`
 - Gate pass: `True`
 
 Blind review artifacts are generated separately so reviewers can inspect A/B outputs without seeing the answer key.
@@ -25,6 +25,7 @@ Run output review adjudication after reviewer decisions are recorded; pending ca
 | targeted-evidence-budget | 0.0 | 100.0 | 100.0 | with_skill | None |
 | layout-archetype-selection | 0.0 | 100.0 | 100.0 | with_skill | None |
 | ats-layout-claim | 0.0 | 100.0 | 100.0 | with_skill | None |
+| photo-and-uncertainty-checkpoint | 0.0 | 100.0 | 100.0 | with_skill | None |
 
 ## Failure Taxonomy
 

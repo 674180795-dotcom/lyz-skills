@@ -2,12 +2,12 @@
 
 - OK: `True`
 - Package: `lyz-resume`
-- Version: `2.0.0`
+- Version: `3.0.0`
 - Maturity: `production`
 - Owner: `Ling99`
 - License: `MIT`
-- Package SHA256: `2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530`
-- Archive SHA256: `e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63`
+- Package SHA256: `2a96cf96b47ed4be34e0924b62ba8ecde1be2d3e887293ce2f8abdffc52f6670`
+- Archive SHA256: `82beae7151ebf6b70d41ec419dfa9a7f33e432befdc112e069fe473bc3273821`
 - Install simulated: `True`
 
 ## Compatibility
@@ -31,7 +31,7 @@
 
 ## Artifacts
 
-- index: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/index.json`
-- package: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/packages/lyz-resume.json`
-- json: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/registry_audit.json`
-- markdown: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/registry_audit.md`
+- index: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/registry/index.json`
+- package: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/registry/packages/lyz-resume.json`
+- json: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/registry_audit.json`
+- markdown: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/registry_audit.md`

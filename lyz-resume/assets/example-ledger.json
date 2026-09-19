@@ -12,7 +12,8 @@
     "email": "zhou.ning@example.com",
     "phone": "138-0000-1357",
     "location": "上海",
-    "links": ["https://example.com/portfolio"]
+    "links": ["https://example.com/portfolio"],
+    "photo": {"status": "declined", "source": null}
   },
   "education": [
     {"school": "东海大学（合成测试）", "degree": "本科", "major": "信息管理", "end": "2025.06"}

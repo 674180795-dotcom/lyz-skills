@@ -109,6 +109,19 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
             blocking=True,
         )
 
+    photo = basics.get("photo") if isinstance(basics.get("photo"), dict) else {}
+    photo_status = str(photo.get("status", "pending"))
+    if photo_status not in {"provided", "declined"}:
+        warnings.append("尚未确认是否使用证件照")
+        add_gap(
+            gaps,
+            field="basics.photo.status",
+            question="请上传证件照（JPG、PNG 或 WebP，建议正面、浅色背景）；如果不想放照片，请明确回复“不使用照片”。",
+            why="先记录明确选择，避免遗漏照片或替用户擅自决定。",
+            impact=4,
+            friction=0,
+        )
+
     evidence_items = data.get("evidence_items") if isinstance(data.get("evidence_items"), list) else []
     known_ids: set[str] = set()
     complete_items: list[dict[str, Any]] = []
@@ -239,6 +252,9 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
         for item in uncertainties
         if isinstance(item, dict) and item.get("blocking") is True and item.get("resolved") is not True
     ]
+    unresolved_uncertainties = [
+        item for item in uncertainties if isinstance(item, dict) and item.get("resolved") is not True
+    ]
     if blocking_uncertainties:
         errors.append(f"有 {len(blocking_uncertainties)} 项阻断性疑点未解决")
         highest = blocking_uncertainties[0]
@@ -250,6 +266,16 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
             impact=5,
             friction=1,
             blocking=True,
+        )
+    elif unresolved_uncertainties:
+        highest = unresolved_uncertainties[0]
+        add_gap(
+            gaps,
+            field="uncertainties",
+            question=str(highest.get("question") or "这项信息还拿不准。你能确认吗？如果不能，我会把它从简历中删除。"),
+            why="未确认内容只能留在私有疑点清单，不能进入公开简历。",
+            impact=4,
+            friction=1,
         )
 
     confirmation = data.get("confirmation") if isinstance(data.get("confirmation"), dict) else {}
@@ -300,6 +326,8 @@ def assess(data: dict[str, Any]) -> dict[str, Any]:
             "job_requirements": len(requirements),
             "mapped_job_requirements": mapped_requirements,
             "blocking_uncertainties": len(blocking_uncertainties),
+            "unresolved_uncertainties": len(unresolved_uncertainties),
+            "photo_status": photo_status,
         },
         "errors": errors,
         "warnings": warnings,

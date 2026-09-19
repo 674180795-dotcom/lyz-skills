@@ -1,8 +1,8 @@
 # 简历工坊（lyz-resume）
 
-这是一个完整的求职简历生产 Skill：从旧简历、零散经历或低信息对话开始，维护可追溯事实，按 JD 或岗位方向取舍证据、重排篇幅，再通过八种页面原型完成 HTML/PDF 渲染和逐页视觉验收。
+这是一个完整的求职简历生产 Skill：从旧简历、零散经历或低信息对话开始，维护可追溯事实，按 JD 或岗位方向取舍证据、重排篇幅，再通过六种页面原型和多套可组合配色完成 HTML/PDF 渲染与逐页视觉验收。
 
-2.0 的两项核心变化：新增 `resume-plan.json`，强制区分核心、辅助、压缩和排除证据；把旧版“主题”拆为布局、皮肤与密度，提供八种真正不同的页面拓扑。旧版 v1 `theme` 文件仍可渲染。
+3.0 在岗位化取舍基础上收敛为六种页面拓扑，加入从参考模板提炼的多套配色，并把证件照选择与未确认事实拦截变成成稿门禁。旧版 v1 `theme` 文件仍可渲染。
 
 ## 安装
 
@@ -42,14 +42,14 @@ alignment-validation.json 岗位计划与成稿一致性
 validation.json         内容与文件验证结果
 ```
 
-入口是 [SKILL.md](SKILL.md)。岗位化取舍见 [targeted-composition.md](references/targeted-composition.md)，八种页面原型见 [visual-design-system.md](references/visual-design-system.md)。确定性操作放在 `scripts/`；可运行样例、Schema 和设计注册表放在 `assets/`。
+入口是 [SKILL.md](SKILL.md)。岗位化取舍见 [targeted-composition.md](references/targeted-composition.md)，六种页面原型与配色库见 [visual-design-system.md](references/visual-design-system.md)。确定性操作放在 `scripts/`；可运行样例、Schema 和设计注册表放在 `assets/`。
 
 典型验证与渲染：
 
 ```bash
 python3 scripts/validate_alignment.py role-analysis.json resume-plan.json resume-data.json
 python3 scripts/validate_resume.py resume-data.json
-python3 scripts/render_resume.py resume-data.json --layout classic-single-column --skin classic-navy --density auto --output-dir output
+python3 scripts/render_resume.py resume-data.json --layout hero-header-linear --skin auto --density auto --output-dir output
 ```
 
 运行要求为 Python 3.10+。macOS 自带 Python 3.9 不能运行 2.0 脚本。

@@ -1,10 +1,10 @@
 # Package Verification
 
 - OK: `True`
-- Package directory: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/dist`
+- Package directory: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/dist`
 - Targets: `4 / 4` adapters present
 - Archive present: `True`
-- Archive SHA256: `e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63`
+- Archive SHA256: `82beae7151ebf6b70d41ec419dfa9a7f33e432befdc112e069fe473bc3273821`
 - Failures: `0`
 - Warnings: `0`
 
@@ -12,7 +12,7 @@
 
 | Check | Status | Detail |
 | --- | --- | --- |
-| `package-manifest` | `pass` | Package manifest exists: /Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/dist/manifest.json |
+| `package-manifest` | `pass` | Package manifest exists: /Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/dist/manifest.json |
 | `openai-adapter` | `pass` | Adapter exists for target: openai |
 | `openai-field-name` | `pass` | openai adapter includes field: name |
 | `openai-field-description` | `pass` | openai adapter includes field: description |

@@ -18,7 +18,7 @@ DESIGN_SYSTEM = json.loads((ROOT / "assets" / "design-archetypes.json").read_tex
 ALLOWED_EVIDENCE = {"source_resume", "user_confirmed", "repository_verified", "document_verified", "conservative_estimate"}
 ALLOWED_SECTIONS = ("education", "experience", "projects", "skills", "awards")
 DATE_RE = re.compile(r"^(\d{4})[.\-/](\d{1,2})$")
-PLACEHOLDER_RE = re.compile(r"(?:待补充|待确认|待填写|示例文本|你的名字|XXX|TBD|TODO|N/?A|lorem ipsum)", re.IGNORECASE)
+PLACEHOLDER_RE = re.compile(r"(?:待补充|待确认|待填写|示例文本|你的名字|XXX|TBD|TODO|\bN/?A\b|lorem ipsum)", re.IGNORECASE)
 WEAK_OPENING_RE = re.compile(r"^(?:主要)?(?:负责|参与|协助|熟悉|了解|学习|帮助)|^(?:responsible for|helped|assisted with|familiar with)\b", re.IGNORECASE)
 RESULT_SIGNAL_RE = re.compile(r"(?:\d|%|上线|交付|验收|部署|发布|完成|实现|覆盖|测试|验证|采用|解决|降低|减少|提升|提高|缩短|节省|获奖|deployed|launched|delivered|shipped|tested|validated|reduced|increased|improved|completed|implemented|resolved)", re.IGNORECASE)
 SUMMARY_CLICHE_RE = re.compile(r"(?:学习能力强|责任心强|沟通能力强|团队合作精神|热爱技术|积极主动|hard[- ]working|team player|fast learner)", re.IGNORECASE)
@@ -69,7 +69,7 @@ def validate_data(data: dict[str, Any]) -> tuple[list[str], list[str], dict[str,
     density, profile = str(design.get("density", "")), str(design.get("render_profile", ""))
     if layout not in DESIGN_SYSTEM["layouts"]:
         errors.append("design.layout 无效")
-    if skin not in DESIGN_SYSTEM["skins"]:
+    if skin != "auto" and skin not in DESIGN_SYSTEM["skins"]:
         errors.append("design.skin 无效")
     if density not in {"auto", "sparse", "balanced", "dense"}:
         errors.append("design.density 无效")
@@ -94,12 +94,21 @@ def validate_data(data: dict[str, Any]) -> tuple[list[str], list[str], dict[str,
         if not isinstance(link, dict) or not valid_url(str(link.get("url", ""))):
             errors.append(f"basics.links[{index}] URL 无效")
     photo = basics.get("photo") if isinstance(basics.get("photo"), dict) else {}
+    decision = str(photo.get("decision", ""))
+    if decision not in {"provided", "declined"}:
+        errors.append("必须记录证件照决定：provided 或 declined")
     if photo.get("enabled") is True:
+        if decision != "provided":
+            errors.append("启用照片时 decision 必须为 provided")
         if layout in DESIGN_SYSTEM["layouts"] and not DESIGN_SYSTEM["layouts"][layout]["supports_photo"]:
             errors.append(f"{layout} 不支持照片")
         source = str(photo.get("source", "")).strip()
         if not source or source.startswith(("http://", "https://", "data:")):
             errors.append("照片必须是本地文件")
+    elif decision == "provided":
+        errors.append("decision=provided 时必须启用照片")
+    elif decision == "declined" and photo.get("enabled") is not False:
+        errors.append("明确不使用照片时 enabled 必须为 false")
     section_order = data.get("section_order")
     if section_order is not None:
         if not isinstance(section_order, list) or len(section_order) != len(set(section_order)):
@@ -190,12 +199,14 @@ def inspect_html(path: Path, expected_design: dict[str, Any]) -> tuple[list[str]
         return ["HTML 文件不存在"], warnings, facts
     text = path.read_text(encoding="utf-8", errors="replace")
     layout = str(expected_design.get("layout", "")); skin = str(expected_design.get("skin", ""))
+    if skin == "auto" and layout in DESIGN_SYSTEM["layouts"]:
+        skin = DESIGN_SYSTEM["layouts"][layout]["recommended_skins"][0]
     for marker, value in (("data-layout", layout), ("data-skin", skin)):
         if f'{marker}="{value}"' not in text:
             errors.append(f"HTML {marker} 与预期不符")
-    if '<meta name="resume-layout-system" content="archetype-skin-density-2.0">' not in text:
-        errors.append("HTML 缺少 2.0 布局系统标记")
-    expected_dom = {"classic-single-column": "resume-classic", "asymmetric-left-sidebar": "resume-left-sidebar", "sidebar-left-hero": "resume-sidebar-hero", "hero-header-blocks": "resume-hero-blocks", "hero-header-linear": "resume-hero-linear", "asymmetric-right-sidebar": "resume-right-sidebar", "tabular-structured": "resume-table", "banner-accent-flow": "resume-banner"}.get(layout)
+    if '<meta name="resume-layout-system" content="archetype-skin-density-3.0">' not in text:
+        errors.append("HTML 缺少 3.0 布局系统标记")
+    expected_dom = {"asymmetric-left-sidebar": "resume-left-sidebar", "sidebar-left-hero": "resume-sidebar-hero", "hero-header-blocks": "resume-hero-blocks", "hero-header-linear": "resume-hero-linear", "asymmetric-right-sidebar": "resume-right-sidebar", "banner-accent-flow": "resume-banner"}.get(layout)
     if expected_dom and expected_dom not in text:
         errors.append(f"HTML 缺少 {layout} 的独立 DOM 标记")
     if re.search(r"@font-face\s*\{[^}]*https?://", text, re.IGNORECASE | re.DOTALL):
@@ -254,8 +265,9 @@ def inspect_pdf(path: Path, expected: list[str]) -> tuple[list[str], list[str], 
         extracted = completed.stdout.strip(); facts["extracted_characters"] = len(extracted)
         if len(extracted) < 100:
             errors.append("PDF 文本提取失败或文本过少")
+        normalized = re.sub(r"\s+", "", extracted)
         for value in expected:
-            if value and value not in extracted:
+            if value and re.sub(r"\s+", "", value) not in normalized:
                 errors.append(f"PDF 文本中缺少关键字段：{value}")
     else:
         warnings.append("pdftotext 不可用；文本提取为 missing evidence")

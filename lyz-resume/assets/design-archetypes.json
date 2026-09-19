@@ -1,60 +1,52 @@
 {
-  "version": "2.0.0",
+  "version": "3.0.0",
   "layouts": {
-    "classic-single-column": {
-      "label": "经典单栏堆叠",
-      "capacity": ["balanced", "dense"],
-      "render_profiles": ["ats-first", "balanced", "human-first"],
+    "sidebar-left-hero": {
+      "label": "左栏与英雄头部复合",
+      "capacity": ["balanced"],
+      "render_profiles": ["human-first"],
       "supports_photo": true,
-      "best_for": ["稳定阅读顺序", "内容较多", "正式投递"]
+      "recommended_skins": ["temple-blue", "navy-gold", "charcoal"],
+      "best_for": ["定位鲜明", "中等信息量", "人工阅读"]
     },
     "asymmetric-left-sidebar": {
       "label": "左侧不对称双栏",
       "capacity": ["sparse", "balanced"],
       "render_profiles": ["balanced", "human-first"],
       "supports_photo": true,
+      "recommended_skins": ["powder-blue", "sage-mint", "dusty-rose"],
       "best_for": ["技能快览", "跨职能经历", "人工阅读"]
     },
-    "sidebar-left-hero": {
-      "label": "左栏与英雄头部复合",
-      "capacity": ["balanced"],
-      "render_profiles": ["human-first"],
+    "asymmetric-right-sidebar": {
+      "label": "右侧辅助栏",
+      "capacity": ["sparse", "balanced"],
+      "render_profiles": ["balanced", "human-first"],
       "supports_photo": true,
-      "best_for": ["定位鲜明", "中等信息量", "人工阅读"]
+      "recommended_skins": ["sage-mint", "powder-blue", "charcoal"],
+      "best_for": ["成果快览", "产品运营", "人工阅读"]
+    },
+    "hero-header-linear": {
+      "label": "英雄头部与线性流",
+      "capacity": ["balanced", "dense"],
+      "render_profiles": ["ats-first", "balanced", "human-first"],
+      "supports_photo": true,
+      "recommended_skins": ["navy-gold", "classic-navy", "azure-blue"],
+      "best_for": ["资深经历", "一至两页", "线性深读"]
     },
     "hero-header-blocks": {
       "label": "英雄头部与模块色块",
       "capacity": ["sparse", "balanced"],
       "render_profiles": ["human-first"],
       "supports_photo": true,
+      "recommended_skins": ["dusty-rose", "fresh-lime", "temple-blue"],
       "best_for": ["复合型新人", "内容模块清晰", "视觉展示"]
-    },
-    "hero-header-linear": {
-      "label": "英雄头部与线性流",
-      "capacity": ["balanced", "dense"],
-      "render_profiles": ["balanced", "human-first"],
-      "supports_photo": true,
-      "best_for": ["资深经历", "一至两页", "线性深读"]
-    },
-    "asymmetric-right-sidebar": {
-      "label": "右侧辅助栏",
-      "capacity": ["sparse", "balanced"],
-      "render_profiles": ["balanced", "human-first"],
-      "supports_photo": false,
-      "best_for": ["成果快览", "产品运营", "人工阅读"]
-    },
-    "tabular-structured": {
-      "label": "表格结构化排版",
-      "capacity": ["balanced", "dense"],
-      "render_profiles": ["balanced"],
-      "supports_photo": false,
-      "best_for": ["字段对齐", "传统行业", "阅读顺序需专项验证"]
     },
     "banner-accent-flow": {
       "label": "薄条幅与装饰流",
       "capacity": ["sparse", "balanced"],
       "render_profiles": ["balanced", "human-first"],
       "supports_photo": true,
+      "recommended_skins": ["modern-red", "azure-blue", "campus-green"],
       "best_for": ["应届与实习", "内容较少", "轻量视觉识别"]
     }
   },
@@ -71,37 +63,90 @@
       "body_font": "Palatino, Georgia, 'Songti SC', 'STSong', serif",
       "heading_font": "Palatino, Georgia, 'Songti SC', 'STSong', serif"
     },
-    "swiss-red": {
-      "label": "瑞士红",
-      "paper": "#FCFCFA", "ink": "#101214", "muted": "#5E6266", "line": "#D9DDDE", "brand": "#B83B32", "tint": "#F7EBE9", "accent": "#B83B32",
-      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
-      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    "temple-blue": {
+      "label": "天宫蓝金",
+      "paper": "#FFFFFF", "ink": "#414141", "muted": "#69727C", "line": "#D7DEE6", "brand": "#1C487C", "tint": "#EDF3F8", "accent": "#C19F67",
+      "source_reference": "简历模板-天宫蓝色版.docx",
+      "body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
     },
-    "tech-blue": {
-      "label": "技术蓝",
-      "paper": "#FFFFFF", "ink": "#15212B", "muted": "#5C6871", "line": "#D8E0E5", "brand": "#08658F", "tint": "#EAF3F8", "accent": "#2E8DB7",
-      "body_font": "'IBM Plex Sans', 'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif",
-      "heading_font": "'IBM Plex Sans', 'Avenir Next', 'PingFang SC', sans-serif"
-    },
-    "campus-green": {
-      "label": "清新绿",
-      "paper": "#FFFDF8", "ink": "#17231F", "muted": "#64706B", "line": "#DDE8E2", "brand": "#176A58", "tint": "#EAF5F1", "accent": "#C58A4B",
+    "dusty-rose": {
+      "label": "雾粉玫瑰",
+      "paper": "#FFFDFD", "ink": "#3F3030", "muted": "#786666", "line": "#E6CFCE", "brand": "#953735", "tint": "#F2DCDB", "accent": "#D99694",
+      "source_reference": "简历模板-粉色版.docx",
       "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
       "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
     },
     "navy-gold": {
       "label": "深蓝金",
-      "paper": "#FFFFFF", "ink": "#22272E", "muted": "#66707A", "line": "#D5D9DE", "brand": "#2F4058", "tint": "#E9EDF2", "accent": "#B8945A",
+      "paper": "#FFFFFF", "ink": "#22272E", "muted": "#66707A", "line": "#D5D9DE", "brand": "#17375E", "tint": "#E9EDF2", "accent": "#CE9B00",
+      "source_reference": "简历模板-蓝金色版.docx",
       "body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif",
       "heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+    },
+    "powder-blue": {
+      "label": "淡雅浅蓝",
+      "paper": "#FFFFFF", "ink": "#283746", "muted": "#687887", "line": "#D5E0E9", "brand": "#1F497D", "tint": "#EEF3F7", "accent": "#7EA0C3",
+      "source_reference": "淡蓝色简历模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "azure-blue": {
+      "label": "明快亮蓝",
+      "paper": "#FFFFFF", "ink": "#172633", "muted": "#63727E", "line": "#D8E9F3", "brand": "#0070C0", "tint": "#EAF6FD", "accent": "#32AEFE",
+      "source_reference": "简约蓝与极简蓝模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "fresh-lime": {
+      "label": "清新青柠",
+      "paper": "#FFFFFB", "ink": "#26321F", "muted": "#697262", "line": "#DDE8D2", "brand": "#5E8F2E", "tint": "#F2F8EA", "accent": "#92D050",
+      "source_reference": "清新简约模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "sage-mint": {
+      "label": "鼠尾草薄荷",
+      "paper": "#FFFEFB", "ink": "#22332C", "muted": "#68756F", "line": "#D8E7E0", "brand": "#4F8871", "tint": "#EDF7F2", "accent": "#94C9AF",
+      "source_reference": "淡雅绿色模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "charcoal": {
+      "label": "现代炭灰",
+      "paper": "#FFFFFF", "ink": "#202020", "muted": "#646464", "line": "#CFCDCD", "brand": "#404040", "tint": "#F0F0F0", "accent": "#A6A6A6",
+      "source_reference": "现代黑模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "modern-red": {
+      "label": "现代赤红",
+      "paper": "#FFFFFF", "ink": "#292323", "muted": "#746767", "line": "#E3D4D4", "brand": "#CB4546", "tint": "#F7EAEA", "accent": "#C00000",
+      "source_reference": "红色简历模板系列",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
+    },
+    "campus-green": {
+      "label": "校园青绿",
+      "paper": "#FFFDF8", "ink": "#17231F", "muted": "#64706B", "line": "#DDE8E2", "brand": "#176A58", "tint": "#EAF5F1", "accent": "#BFA666",
+      "body_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+      "heading_font": "'Avenir Next', 'Helvetica Neue', 'PingFang SC', sans-serif"
     }
   },
+  "retired_layout_mapping": {
+    "classic-single-column": "hero-header-linear",
+    "tabular-structured": "asymmetric-right-sidebar"
+  },
+  "retired_skin_mapping": {
+    "swiss-red": "modern-red",
+    "tech-blue": "azure-blue"
+  },
   "legacy_mapping": {
-    "ats-classic": {"layout": "classic-single-column", "skin": "classic-navy", "density": "balanced"},
-    "kami": {"layout": "classic-single-column", "skin": "editorial-ink", "density": "balanced"},
-    "swiss": {"layout": "classic-single-column", "skin": "swiss-red", "density": "balanced"},
-    "tech": {"layout": "classic-single-column", "skin": "tech-blue", "density": "balanced"},
+    "ats-classic": {"layout": "hero-header-linear", "skin": "classic-navy", "density": "balanced"},
+    "kami": {"layout": "hero-header-linear", "skin": "editorial-ink", "density": "balanced"},
+    "swiss": {"layout": "banner-accent-flow", "skin": "modern-red", "density": "balanced"},
+    "tech": {"layout": "hero-header-linear", "skin": "azure-blue", "density": "balanced"},
     "campus": {"layout": "banner-accent-flow", "skin": "campus-green", "density": "balanced"},
-    "compact": {"layout": "classic-single-column", "skin": "classic-navy", "density": "dense"}
+    "compact": {"layout": "hero-header-linear", "skin": "classic-navy", "density": "dense"}
   }
 }

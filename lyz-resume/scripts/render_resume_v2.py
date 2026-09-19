@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DESIGN_SYSTEM = json.loads((ROOT / "assets" / "design-archetypes.json").read_text(encoding="utf-8"))
 LAYOUT_ORDER = tuple(DESIGN_SYSTEM["layouts"])
 SKIN_ORDER = tuple(DESIGN_SYSTEM["skins"])
+SKIN_CHOICES = ("auto",) + SKIN_ORDER
 LEGACY_THEMES = tuple(DESIGN_SYSTEM["legacy_mapping"])
 REFERENCE_STYLES = {
     "rc-003": {"label": "RC003 高密蓝线", "theme": "compact"},
@@ -130,14 +131,20 @@ def resolve_design(
     raw = data.get("design") if isinstance(data.get("design"), dict) else {}
     legacy = str(theme or data.get("theme") or "").strip()
     inherited = DESIGN_SYSTEM["legacy_mapping"].get(legacy, {})
+    requested_layout = str(layout or raw.get("layout") or inherited.get("layout") or "hero-header-linear")
+    requested_layout = DESIGN_SYSTEM.get("retired_layout_mapping", {}).get(requested_layout, requested_layout)
+    requested_skin = str(skin or raw.get("skin") or inherited.get("skin") or "auto")
+    requested_skin = DESIGN_SYSTEM.get("retired_skin_mapping", {}).get(requested_skin, requested_skin)
     chosen = {
-        "layout": str(layout or raw.get("layout") or inherited.get("layout") or "classic-single-column"),
-        "skin": str(skin or raw.get("skin") or inherited.get("skin") or "classic-navy"),
+        "layout": requested_layout,
+        "skin": requested_skin,
         "density": str(density or raw.get("density") or inherited.get("density") or "auto"),
         "render_profile": str(render_profile or raw.get("render_profile") or "balanced"),
     }
     if chosen["layout"] not in LAYOUT_ORDER:
         raise ValueError(f"未知布局：{chosen['layout']}")
+    if chosen["skin"] == "auto":
+        chosen["skin"] = DESIGN_SYSTEM["layouts"][chosen["layout"]]["recommended_skins"][0]
     if chosen["skin"] not in SKIN_ORDER:
         raise ValueError(f"未知皮肤：{chosen['skin']}")
     if chosen["density"] not in {"auto", "sparse", "balanced", "dense"}:
@@ -251,24 +258,19 @@ def layout_markup(data: dict[str, Any], design: dict[str, str], portrait: str, l
     all_sections = "".join(section_html(section, labels, bodies) for section in order)
     main_sections = "".join(section_html(section, labels, bodies) for section in order if section in {"experience", "projects", "awards"})
     side_sections = "".join(section_html(section, labels, bodies, "section-compact") for section in order if section in {"skills", "education"})
-    if layout == "classic-single-column":
-        return f'<main class="resume resume-classic"><header>{identity_content(basics, target, portrait)}</header>{all_sections}</main>'
     if layout == "asymmetric-left-sidebar":
         return f'''<article class="resume resume-left-sidebar"><aside>{portrait}{render_contact(basics)}{side_sections}</aside><main><header>{identity_content(basics, target, "", contact=False)}</header>{main_sections}</main></article>'''
     if layout == "sidebar-left-hero":
-        return f'''<article class="resume resume-sidebar-hero"><header class="hero">{identity_content(basics, target, portrait)}</header><aside>{render_contact(basics)}{side_sections}</aside><main>{main_sections}</main></article>'''
+        return f'''<article class="resume resume-sidebar-hero"><header class="hero">{identity_content(basics, target, portrait)}</header><aside>{side_sections}</aside><main>{main_sections}</main></article>'''
     if layout == "hero-header-blocks":
         cards = "".join(section_html(section, labels, bodies, "card card-wide" if section in {"experience", "projects"} else "card") for section in order)
         return f'''<article class="resume resume-hero-blocks"><header class="hero">{identity_content(basics, target, portrait)}</header><div class="block-grid">{cards}</div></article>'''
     if layout == "hero-header-linear":
         return f'''<article class="resume resume-hero-linear"><header class="hero">{identity_content(basics, target, portrait)}</header><main>{all_sections}</main></article>'''
     if layout == "asymmetric-right-sidebar":
-        right = render_contact(basics) + "".join(section_html(section, labels, bodies, "section-compact") for section in order if section in {"skills", "education", "awards"})
+        right = portrait + render_contact(basics) + "".join(section_html(section, labels, bodies, "section-compact") for section in order if section in {"skills", "education", "awards"})
         left = "".join(section_html(section, labels, bodies) for section in order if section in {"experience", "projects"})
         return f'''<article class="resume resume-right-sidebar"><main><header>{identity_content(basics, target, "", contact=False)}</header>{left}</main><aside>{right}</aside></article>'''
-    if layout == "tabular-structured":
-        rows = "".join(f'<tr class="table-section"><th scope="row">{esc(labels[section])}</th><td>{bodies[section]}</td></tr>' for section in order if bodies.get(section, "").strip())
-        return f'''<article class="resume resume-tabular"><header>{identity_content(basics, target, "")}</header><table class="resume-table"><tbody>{rows}</tbody></table></article>'''
     return f'''<article class="resume resume-banner"><header class="banner">{identity_content(basics, target, portrait)}</header><main>{all_sections}</main></article>'''
 
 
@@ -311,11 +313,6 @@ def design_css(layout: str) -> str:
     @media screen { .resume { box-shadow: 0 2mm 8mm rgba(0,0,0,.12); } }
     '''
     variants = {
-        "classic-single-column": '''
-          :root { --page-margin: 11mm 14mm; }
-          .resume-classic header { margin-bottom: 4mm; padding-bottom: 2.8mm; border-bottom: .7pt solid var(--brand); }
-          .resume-classic .section:first-of-type { margin-top: 0; }
-        ''',
         "asymmetric-left-sidebar": '''
           :root { --page-margin: 0; }
           .resume-left-sidebar { display: grid; grid-template-columns: 58mm 1fr; width: 210mm; min-height: 297mm; }
@@ -372,19 +369,12 @@ def design_css(layout: str) -> str:
           .resume-right-sidebar { display: grid; grid-template-columns: 1fr 43mm; gap: 7mm; }
           .resume-right-sidebar > main header { padding-bottom: 3mm; border-bottom: .7pt solid var(--brand); }
           .resume-right-sidebar > aside { padding: 5mm 4mm; background: var(--tint); }
+          .resume-right-sidebar > aside .portrait { display: block; width: 25mm; height: 31mm; margin: 0 auto 4mm; }
           .resume-right-sidebar > aside .contact { display: block; }
           .resume-right-sidebar > aside .contact span, .resume-right-sidebar > aside .contact a { display: block; margin-bottom: 1.4mm; }
           .resume-right-sidebar > aside .contact .dot { display: none; }
           .resume-right-sidebar > aside .skill-row { display: block; }
           .resume-right-sidebar > aside .skill-row span { display: block; margin-top: .5mm; }
-        ''',
-        "tabular-structured": '''
-          :root { --page-margin: 10mm 13mm; }
-          .resume-tabular header { padding-bottom: 3mm; border-bottom: 1pt solid var(--brand); }
-          .resume-table { width: 100%; margin-top: 4mm; border-collapse: collapse; table-layout: fixed; }
-          .resume-table th { width: 28mm; padding: 3mm 3mm 3mm 0; color: var(--brand); font-family: var(--heading-font); font-size: var(--section-size); text-align: left; vertical-align: top; border-bottom: .55pt solid var(--line); }
-          .resume-table td { padding: 3mm 0 3mm 4mm; vertical-align: top; border-bottom: .55pt solid var(--line); overflow-wrap: anywhere; }
-          .resume-table .entry:first-child { padding-top: 0; }
         ''',
         "banner-accent-flow": '''
           :root { --page-margin: 0; }
@@ -415,7 +405,7 @@ def make_html(
     photo = basics.get("photo") if isinstance(basics.get("photo"), dict) else {}
     photo_uri = str(photo.get("_data_uri", "")).strip() if photo.get("enabled") is True else ""
     if photo_uri and not DESIGN_SYSTEM["layouts"][design["layout"]]["supports_photo"]:
-        raise ValueError(f"{design['layout']} 不支持照片；请关闭照片或更换布局")
+        raise ValueError(f"{design['layout']} 不支持照片")
     portrait = f'<img class="portrait" src="{esc(photo_uri)}" alt="{esc(photo.get("_alt") or basics.get("name") or "证件照")}">' if photo_uri else ""
     language = str(data.get("language", "zh-CN"))
     labels = BILINGUAL_LABELS if reference_style == "rc-109" and language == "zh-CN" else LABELS.get(language, LABELS["zh-CN"])
@@ -434,7 +424,7 @@ def make_html(
 <html lang="{'en' if language == 'en' else 'zh-CN'}" data-layout="{design['layout']}" data-skin="{design['skin']}" data-density="{design['density']}" data-render-profile="{design['render_profile']}">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
-  <meta name="generator" content="Resume Studio 2.0 local renderer"><meta name="resume-layout-system" content="archetype-skin-density-2.0"><meta name="resume-typography-system" content="2.0">
+  <meta name="generator" content="Resume Studio 3.0 local renderer"><meta name="resume-layout-system" content="archetype-skin-density-3.0"><meta name="resume-typography-system" content="3.0">
   <title>{title}</title><style>:root{{{css_vars};}}{design_css(design['layout'])}</style>
 </head><body class="layout-{design['layout']} skin-{design['skin']} density-{design['density']}">{markup}</body></html>'''
 
@@ -497,9 +487,9 @@ def render_one(data: dict[str, Any], design: dict[str, str], output_dir: Path, b
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="将 v2 结构化简历渲染为八种布局的本地 HTML/PDF。")
+    parser = argparse.ArgumentParser(description="将 v2 结构化简历渲染为六种布局的本地 HTML/PDF。")
     parser.add_argument("input"); parser.add_argument("--output-dir", "-o", default="output"); parser.add_argument("--basename")
-    parser.add_argument("--layout", choices=LAYOUT_ORDER); parser.add_argument("--skin", choices=SKIN_ORDER); parser.add_argument("--density", choices=("auto", "sparse", "balanced", "dense")); parser.add_argument("--render-profile", choices=("ats-first", "balanced", "human-first"))
+    parser.add_argument("--layout", choices=LAYOUT_ORDER); parser.add_argument("--skin", choices=SKIN_CHOICES); parser.add_argument("--density", choices=("auto", "sparse", "balanced", "dense")); parser.add_argument("--render-profile", choices=("ats-first", "balanced", "human-first"))
     parser.add_argument("--theme", choices=LEGACY_THEMES, help="兼容旧版主题"); parser.add_argument("--reference-style", choices=REFERENCE_STYLE_ORDER); parser.add_argument("--all-layouts", action="store_true"); parser.add_argument("--html-only", action="store_true")
     args = parser.parse_args()
     input_path = Path(args.input).expanduser().resolve()
@@ -520,10 +510,10 @@ def main() -> None:
                 profile = args.render_profile or ("balanced" if "balanced" in meta["render_profiles"] else "human-first")
                 requested_density = args.density or "auto"
                 try:
-                    selections.append(resolve_design(data, layout=layout, skin=args.skin, density=requested_density, render_profile=profile))
+                    selections.append(resolve_design(data, layout=layout, skin=args.skin or "auto", density=requested_density, render_profile=profile))
                 except ValueError:
                     fallback_density = "balanced" if "balanced" in meta["capacity"] else meta["capacity"][0]
-                    selections.append(resolve_design(data, layout=layout, skin=args.skin, density=fallback_density, render_profile=profile))
+                    selections.append(resolve_design(data, layout=layout, skin=args.skin or "auto", density=fallback_density, render_profile=profile))
         else:
             selections = [resolve_design(data, layout=args.layout, skin=args.skin, density=args.density, render_profile=args.render_profile, theme=args.theme, reference_style=args.reference_style)]
     except ValueError as exc:
@@ -539,7 +529,7 @@ def main() -> None:
         print(f"简历渲染失败：{exc}", file=sys.stderr); raise SystemExit(4) from exc
     manifest = {"ok": True, "input": str(input_path), "renderer": None if args.html_only or not browser else Path(browser).name, "set_type": "all_layouts" if args.all_layouts else "single", "layout_count": len(outputs), "outputs": outputs}
     if len(outputs) > 1:
-        manifest_path = output_dir / f"{base}_八布局清单.json"; manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"); manifest["manifest"] = str(manifest_path)
+        manifest_path = output_dir / f"{base}_六布局清单.json"; manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"); manifest["manifest"] = str(manifest_path)
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
 
 

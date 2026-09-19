@@ -99,25 +99,67 @@ class ResumeStudioTests(unittest.TestCase):
 
     def test_all_layouts_have_distinct_dom(self) -> None:
         markers = {
-            "classic-single-column": "resume-classic",
-            "asymmetric-left-sidebar": "resume-left-sidebar",
             "sidebar-left-hero": "resume-sidebar-hero",
-            "hero-header-blocks": "resume-hero-blocks",
-            "hero-header-linear": "resume-hero-linear",
+            "asymmetric-left-sidebar": "resume-left-sidebar",
             "asymmetric-right-sidebar": "resume-right-sidebar",
-            "tabular-structured": "resume-table",
+            "hero-header-linear": "resume-hero-linear",
+            "hero-header-blocks": "resume-hero-blocks",
             "banner-accent-flow": "resume-banner",
         }
+        self.assertEqual(list(self.renderer_v2.DESIGN_SYSTEM["layouts"]), list(markers))
         for layout, marker in markers.items():
             meta = self.renderer_v2.DESIGN_SYSTEM["layouts"][layout]
+            self.assertTrue(meta["supports_photo"])
             rendered = self.renderer_v2.make_html(
                 self.resume,
                 layout=layout,
+                skin="auto",
                 density=meta["capacity"][0],
                 render_profile=meta["render_profiles"][0],
             )
             self.assertIn(f'data-layout="{layout}"', rendered)
             self.assertIn(marker, rendered)
+
+    def test_auto_skin_varies_by_layout(self) -> None:
+        expected = {
+            "sidebar-left-hero": "temple-blue",
+            "asymmetric-left-sidebar": "powder-blue",
+            "asymmetric-right-sidebar": "sage-mint",
+            "hero-header-linear": "navy-gold",
+            "hero-header-blocks": "dusty-rose",
+            "banner-accent-flow": "modern-red",
+        }
+        selected = {
+            layout: self.renderer_v2.resolve_design(
+                self.resume,
+                layout=layout,
+                skin="auto",
+                density="auto",
+                render_profile=self.renderer_v2.DESIGN_SYSTEM["layouts"][layout]["render_profiles"][0],
+            )["skin"]
+            for layout in expected
+        }
+        self.assertEqual(selected, expected)
+
+    def test_photo_choice_is_prompted_but_does_not_block_content_work(self) -> None:
+        ledger = json.loads(json.dumps(self.ledger, ensure_ascii=False))
+        ledger["basics"]["photo"] = {"status": "pending", "source": None}
+        result = self.intake.assess(ledger)
+        self.assertTrue(result["ok"])
+        self.assertTrue(any(item["field"] == "basics.photo.status" for item in result["next_questions"]))
+
+    def test_missing_photo_decision_blocks_final_resume_validation(self) -> None:
+        resume = json.loads(json.dumps(self.resume, ensure_ascii=False))
+        resume["basics"]["photo"] = {"enabled": False, "source": None}
+        errors, _, _ = self.validator.validate_data(resume)
+        self.assertTrue(any("证件照决定" in message for message in errors))
+
+    def test_unconfirmed_plan_cannot_enter_final_resume(self) -> None:
+        role = json.loads((ROOT / "assets/example-role-analysis.json").read_text(encoding="utf-8"))
+        plan = json.loads((ROOT / "assets/example-resume-plan.json").read_text(encoding="utf-8"))
+        plan["confirmation"] = {"status": "pending"}
+        errors, _, _ = self.alignment.validate_alignment(role, plan, self.resume)
+        self.assertTrue(any("尚未获得用户明确确认" in message for message in errors))
 
     def test_local_photo_is_embedded(self) -> None:
         png = base64.b64decode(
@@ -127,7 +169,7 @@ class ResumeStudioTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             photo = Path(temp_dir) / "portrait.png"
             photo.write_bytes(png)
-            resume["basics"]["photo"] = {"enabled": True, "source": str(photo)}
+            resume["basics"]["photo"] = {"enabled": True, "decision": "provided", "source": str(photo)}
             self.renderer.hydrate_photo(resume, Path(temp_dir))
             rendered = self.renderer.make_html(resume)
         self.assertIn('class="portrait"', rendered)

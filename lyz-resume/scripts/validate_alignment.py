@@ -65,6 +65,10 @@ def validate_alignment(
     if not role_target or len({role_target, plan_target, resume_target}) != 1:
         errors.append("role-analysis、resume-plan 与 resume-data 的目标岗位必须一致")
 
+    confirmation = plan.get("confirmation") if isinstance(plan.get("confirmation"), dict) else {}
+    if confirmation.get("status") != "confirmed":
+        errors.append("resume-plan 尚未获得用户明确确认；未确认内容不得进入成稿")
+
     requirements = {
         str(item.get("id", "")).strip(): item
         for item in role.get("requirements", []) or []
@@ -162,6 +166,7 @@ def validate_alignment(
         "omitted_evidence": sorted(omitted),
         "core_evidence": sorted(core_ids),
         "visible_evidence_order": visible_order,
+        "plan_confirmation": str(confirmation.get("status", "missing")),
     }
     return errors, warnings, facts
 

@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "skill_dir": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume",
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume",
   "summary": {
     "scanned_files": 36,
     "script_count": 8,
@@ -23,7 +23,7 @@
     "interactive_script_count": 0,
     "package_hash_scope": "source-contract-without-generated-reports",
     "package_hash_file_count": 36,
-    "package_sha256": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+    "package_sha256": "2a96cf96b47ed4be34e0924b62ba8ecde1be2d3e887293ce2f8abdffc52f6670"
   },
   "failures": [],
   "warnings": [],
@@ -229,7 +229,7 @@
         "timed_out": false,
         "passed": true,
         "has_help_text": true,
-        "stdout_excerpt": "usage: render_resume_v2.py [-h] [--output-dir OUTPUT_DIR]\n                           [--basename BASENAME]\n                           [--layout {classic-single-column,asymmetric-left-sidebar,sidebar-left-hero,hero-header-blocks,hero-header-",
+        "stdout_excerpt": "usage: render_resume_v2.py [-h] [--output-dir OUTPUT_DIR]\n                           [--basename BASENAME]\n                           [--layout {sidebar-left-hero,asymmetric-left-sidebar,asymmetric-right-sidebar,hero-header-linear,hero-head",
         "stderr_excerpt": ""
       },
       {
@@ -355,7 +355,7 @@
     "remote_metadata_policy": "allow-metadata-only"
   },
   "artifacts": {
-    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/security_trust_report.json",
-    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/security_trust_report.md"
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/security_trust_report.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/security_trust_report.md"
   }
 }

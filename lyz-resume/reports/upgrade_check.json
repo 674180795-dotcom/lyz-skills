@@ -1,10 +1,10 @@
 {
   "ok": true,
   "schema_version": "2.0",
-  "generated_at": "2026-09-18",
+  "generated_at": "2026-09-19",
   "previous": {
     "name": "lyz-resume",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "targets": [
       "openai",
       "claude",
@@ -15,7 +15,7 @@
   },
   "current": {
     "name": "lyz-resume",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "targets": [
       "openai",
       "claude",
@@ -43,13 +43,13 @@
     "checksum_changes": [
       {
         "field": "archive_sha256",
-        "from": "4780f379e65355c0b5cfb543f426ade499c03b753495e5a98e2a419dd31a1080",
-        "to": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63"
+        "from": "e8492050333d187baf29c4a86cef19ea86280b135753aa09eda83720651bfe63",
+        "to": "82beae7151ebf6b70d41ec419dfa9a7f33e432befdc112e069fe473bc3273821"
       },
       {
         "field": "package_sha256",
-        "from": "6652cccef3eb6cad42f594f5f955375e30f45b1fefd5c9d69bf7cdd33b4d46a4",
-        "to": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530"
+        "from": "2ca585d97070669a915d210e75184855f159d2f8209fdeb5d8bfda9b6f488530",
+        "to": "2a96cf96b47ed4be34e0924b62ba8ecde1be2d3e887293ce2f8abdffc52f6670"
       }
     ]
   },
@@ -61,9 +61,9 @@
   "failures": [],
   "warnings": [],
   "artifacts": {
-    "previous_package": "/private/tmp/lyz-resume-registry-1.1.0.json",
-    "current_package": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/registry/packages/lyz-resume.json",
-    "json": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.json",
-    "markdown": "/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/reports/upgrade_check.md"
+    "previous_package": "/private/tmp/lyz-resume-v2-package.json",
+    "current_package": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/registry/packages/lyz-resume.json",
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/upgrade_check.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/reports/upgrade_check.md"
   }
 }

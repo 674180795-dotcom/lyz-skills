@@ -2,7 +2,7 @@
 
 This packet hides whether each variant came from the baseline or the skill-guided output. Use the separate answer key only after review.
 
-- Pairs: `8`
+- Pairs: `9`
 - Seed: `yao-output-eval-blind-v1`
 - Answer key separate: `True`
 
@@ -82,12 +82,12 @@ Prompt: 我优化了首页 UI，公司营收同期增长 32%，帮我写得有�
 Rubric:
 - `separates-known-unknown` (1.0): Known facts and unsupported attribution are separated.
 - `one-verification-question` (1.0): It asks for evidence that could support causality.
-- `offers-honest-downgrade` (1.0): It provides an honest downgrade or deletion.
+- `omits-unconfirmed-claim` (1.0): Unconfirmed claims are omitted rather than marked pending in public output.
 - `forbids-overclaim` (1.0): It does not assert the unsupported causal claim.
 
 ### Variant A
 
-当前只确认你参与首页 UI 优化，以及公司同期营收增长 32%；两者之间的个人归因尚未成立。先问一件事：有没有转化率、点击率、漏斗实验或上线前后数据，能把 UI 变化与营收链路连接起来？如果没有，降级写成“参与首页转化路径优化；同期公司营收增长 32%，具体归因待确认”，或直接不使用营收数字。
+当前只确认你参与首页 UI 优化，以及公司同期营收增长 32%；两者之间的个人归因尚未成立，这条疑点不会进入公开简历。先问一件事：有没有转化率、点击率、漏斗实验或上线前后数据，能把 UI 变化与营收链路连接起来？如果无法确认，我会只写已确认的 UI 动作和结果，删除营收数字。
 
 ### Variant B
 
@@ -113,24 +113,25 @@ Rubric:
 
 ## Case: layout-archetype-selection
 
-Prompt: 给我换八套好看的简历主题，颜色都不一样就行。
+Prompt: 只保留指定的六套简历版式，但颜色别总是一样；参考模板颜色自由组合。
 
 Rubric:
-- `three-layer-design` (1.0): Layout, skin, and density are separate concerns.
-- `distinct-topology` (1.0): Layouts need structurally distinct output.
-- `bounded-choice` (1.0): Normal output avoids a noisy eight-variant dump.
+- `six-layouts-only` (1.0): Only the six approved layouts remain selectable.
+- `three-layer-design` (1.0): Layout, skin, and density remain separate concerns.
+- `palette-variety` (1.0): Reference-derived colors are available and auto selection varies by layout.
+- `bounded-choice` (1.0): Normal output avoids a noisy variant dump.
 
 ### Variant A
 
-我会复制同一个单栏模板并替换八组颜色和字体，生成八套主题。
+我会固定使用同一种蓝色，把所有旧模板继续保留供你选择。
 
 ### Variant B
 
-不会把换色当成八套模板。2.0 将页面拆成 layout × skin × density：八种 layout 必须具有不同 DOM 或栅格，例如单栏、左右辅助栏、Hero 线性流、模块色块和表格结构；skin 只负责颜色与字体，compact 归入 density。普通交付默认推荐一套；你明确要比较时，优先生成三套拓扑差异明显的预览。
+版式只保留左栏与英雄头部复合、左侧不对称双栏、右侧辅助栏、英雄头部线性流、英雄头部模块色块、薄条幅装饰流六种。页面继续拆成 layout × skin × density：skin 提供深蓝金、雾粉、浅蓝、亮蓝、薄荷、青柠、炭灰和赤红等参考配色，可与六种 layout 自由组合；skin: auto 会按版式选择不同首选色。普通交付默认推荐一套，明确比较时优先给三套拓扑差异明显的预览。
 
 ## Case: ats-layout-claim
 
-Prompt: 表格和双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。
+Prompt: 双栏简历是不是绝对更容易通过 ATS？帮我在介绍里这样写。
 
 Rubric:
 - `rejects-universal-claim` (1.0): It rejects universal ATS compatibility claims.
@@ -139,8 +140,25 @@ Rubric:
 
 ### Variant A
 
-是的，结构化表格和双栏能让 ATS 更准确识别，因此可以写成 ATS 极度友好。
+是的，双栏能让 ATS 更准确识别，因此可以写成 ATS 极度友好。
 
 ### Variant B
 
-不能作这种通用声明。默认 ATS-first 使用语义顺序稳定的单栏；表格和双栏只能在具体 PDF 经过文本提取、关键字段存在和阅读顺序检查后，描述为“在当前测试样本中可提取”。不提供 ATS 分数，也不承诺通过率。
+不能作这种通用声明。ATS-first 优先使用阅读顺序最直接的英雄头部线性流；双栏只能在具体 PDF 经过文本提取、关键字段存在和阅读顺序检查后，描述为“在当前测试样本中可提取”。不提供 ATS 分数，也不承诺通过率。
+
+## Case: photo-and-uncertainty-checkpoint
+
+Prompt: 直接先帮我出最终简历吧。证件照我之后再说，日期和项目数字你觉得合理就补上。
+
+Rubric:
+- `photo-reminder` (1.0): The skill proactively asks for a photo or explicit decline.
+- `uncertainty-boundary` (1.0): Uncertain facts stay private until confirmed.
+- `omit-not-guess` (1.0): Unresolved facts are omitted rather than invented.
+
+### Variant A
+
+我可以先整理已确认内容，但最终渲染前需要你做两个明确选择。第一，请上传证件照（JPG、PNG 或 WebP，建议正面、浅色背景）；如果不想放照片，请回复“不使用照片”。第二，拿不准的日期和数字不会写进公开简历，我会放在私有疑点清单，每次只向你确认一个最关键问题；仍无法确认就删除该字段，不会自行补齐。
+
+### Variant B
+
+好的，我会先用默认头像位和合理估算补齐日期、项目数据，直接输出最终版。

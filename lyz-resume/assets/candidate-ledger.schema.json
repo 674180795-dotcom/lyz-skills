@@ -22,13 +22,22 @@
     "basics": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "email"],
+      "required": ["name", "email", "photo"],
       "properties": {
         "name": {"type": "string"},
         "email": {"type": "string"},
         "phone": {"type": "string"},
         "location": {"type": "string"},
-        "links": {"type": "array", "items": {"type": "string"}}
+        "links": {"type": "array", "items": {"type": "string"}},
+        "photo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": {"enum": ["pending", "provided", "declined"]},
+            "source": {"type": ["string", "null"]}
+          }
+        }
       }
     },
     "education": {"type": "array", "items": {"type": "object"}},

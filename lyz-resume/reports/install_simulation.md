@@ -1,7 +1,7 @@
 # Install Simulation
 
 - OK: `True`
-- Package directory: `/Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/dist`
+- Package directory: `/Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/dist`
 - Archive extracted: `True`
 - Entrypoint loaded: `True`
 - Manifest loaded: `True`
@@ -16,7 +16,7 @@
 
 | Check | Status | Detail |
 | --- | --- | --- |
-| `archive-present` | `pass` | Package archive exists: /Users/ling99/Codexfiles/Codex/.agents/skills/lyz-resume/dist/lyz-resume.zip |
+| `archive-present` | `pass` | Package archive exists: /Users/ling99/Codexfiles/Codex/lyz-skills-release/lyz-resume/dist/lyz-resume.zip |
 | `archive-safe-paths` | `pass` | Archive has no absolute or parent-traversal entries |
 | `single-top-level` | `pass` | Archive top-level directory is lyz-resume |
 | `entrypoint-load` | `pass` | Installed SKILL.md frontmatter is readable |

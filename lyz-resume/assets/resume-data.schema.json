@@ -13,8 +13,8 @@
     "design": {
       "type": "object", "additionalProperties": false, "required": ["layout", "skin", "density", "render_profile"],
       "properties": {
-        "layout": {"enum": ["classic-single-column", "asymmetric-left-sidebar", "sidebar-left-hero", "hero-header-blocks", "hero-header-linear", "asymmetric-right-sidebar", "tabular-structured", "banner-accent-flow"]},
-        "skin": {"enum": ["classic-navy", "editorial-ink", "swiss-red", "tech-blue", "campus-green", "navy-gold"]},
+        "layout": {"enum": ["sidebar-left-hero", "asymmetric-left-sidebar", "asymmetric-right-sidebar", "hero-header-linear", "hero-header-blocks", "banner-accent-flow"]},
+        "skin": {"enum": ["auto", "classic-navy", "editorial-ink", "temple-blue", "dusty-rose", "navy-gold", "powder-blue", "azure-blue", "fresh-lime", "sage-mint", "charcoal", "modern-red", "campus-green"]},
         "density": {"enum": ["auto", "sparse", "balanced", "dense"]},
         "render_profile": {"enum": ["ats-first", "balanced", "human-first"]}
       }
@@ -36,7 +36,7 @@
       "properties": {
         "name": {"type": "string"}, "headline": {"type": "string"}, "phone": {"type": "string"}, "email": {"type": "string"}, "location": {"type": "string"}, "summary": {"type": "string"},
         "links": {"type": "array", "items": {"type": "object", "required": ["label", "url"], "properties": {"label": {"type": "string"}, "url": {"type": "string"}}}},
-        "photo": {"type": "object", "required": ["enabled"], "properties": {"enabled": {"type": "boolean"}, "source": {"type": ["string", "null"]}, "alt": {"type": "string"}}}
+        "photo": {"type": "object", "additionalProperties": false, "required": ["enabled", "decision"], "properties": {"enabled": {"type": "boolean"}, "decision": {"enum": ["provided", "declined"]}, "source": {"type": ["string", "null"]}, "alt": {"type": "string"}}}
       }
     },
     "education": {"type": "array", "items": {"type": "object"}},
@@ -47,7 +47,7 @@
   },
   "allOf": [
     {"if": {"properties": {"version": {"const": 1}}}, "then": {"required": ["theme"]}},
-    {"if": {"properties": {"version": {"const": 2}}}, "then": {"required": ["design", "targeting"]}}
+    {"if": {"properties": {"version": {"const": 2}}}, "then": {"required": ["design", "targeting"], "properties": {"basics": {"required": ["photo"]}}}}
   ],
   "$defs": {
     "entries": {

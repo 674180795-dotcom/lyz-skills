@@ -33,15 +33,15 @@ python3 "$SKILL_DIR/scripts/validate_resume.py" resume-data.json --output valida
 
 ```bash
 python3 "$SKILL_DIR/scripts/render_resume.py" resume-data.json \
-  --layout classic-single-column \
-  --skin classic-navy \
+  --layout hero-header-linear \
+  --skin auto \
   --density auto \
   --output-dir output
 ```
 
-布局与选择规则见 [视觉原型与选择](visual-design-system.md)。旧版 `--theme` 仍可用于 v1 文件；新版优先使用 `--layout / --skin / --density / --render-profile`。内部验收八种布局时可运行 `--all-layouts`，普通用户默认只生成一个推荐版本。
+布局与选择规则见 [视觉原型与选择](visual-design-system.md)。旧版 `--theme` 仍可用于 v1 文件；新版优先使用 `--layout / --skin / --density / --render-profile`。内部验收六种保留布局时可运行 `--all-layouts`，此时未指定 `--skin` 会使用各布局的推荐色；普通用户默认只生成一个推荐版本。
 
-照片默认关闭。用户主动要求时，在 `basics.photo` 中设置 `enabled: true` 与本地 `source`。渲染器把图片嵌入 HTML，最终文件不依赖绝对本地路径。
+最终渲染前必须先提醒用户上传证件照或明确选择不使用。提供照片时，在 `basics.photo` 中设置 `decision: provided`、`enabled: true` 与本地 `source`；拒绝时设置 `decision: declined`、`enabled: false`。渲染器把图片嵌入 HTML，最终文件不依赖绝对本地路径。
 
 ## 5. 文件验证
 
