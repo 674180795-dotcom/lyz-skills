@@ -8,7 +8,7 @@
 
 | Skill | 状态 | 用途 | 文档 | 离线包 |
 | --- | --- | --- | --- | --- |
-| **lyz-resume**（简历工坊） | 可用 · v1.1.0 | 从旧简历、JD、零散经历或口述开始，生成可信、针对岗位的 HTML/PDF 简历 | [使用说明](lyz-resume/README.md) · [执行入口](lyz-resume/SKILL.md) | [下载 ZIP](lyz-resume/dist/lyz-resume.zip) |
+| **lyz-resume**（简历工坊） | 可用 · v3.0.0 | 从旧简历、JD、零散经历或口述开始，生成可信、针对岗位的 HTML/PDF 简历；3.0 强化岗位化取舍、六种保留排版、多配色组合、证件照提醒和未确认事实拦截 | [使用说明](lyz-resume/README.md) · [执行入口](lyz-resume/SKILL.md) | [下载 ZIP](lyz-resume/dist/lyz-resume.zip) |
 
 以后新增的 Skill 都会先登记在这里。首页只负责索引、安装和通用约定；每项 Skill 的具体用法放在它自己的目录中。
 
@@ -26,6 +26,12 @@ npx -y skills add 674180795-dotcom/lyz-skills -g -a codex --skill <skill-name> -
 
 ```bash
 npx -y skills add 674180795-dotcom/lyz-skills -g -a codex --skill lyz-resume -y
+```
+
+这条命令安装仓库默认分支。若要在合并到默认分支前试用当前发布候选分支，请指定 Git ref：
+
+```bash
+npx -y skills add 674180795-dotcom/lyz-skills#feat/lyz-resume-v2-targeted-layouts -g -a codex --skill lyz-resume -y
 ```
 
 查看仓库中的 Skill：
