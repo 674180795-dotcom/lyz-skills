@@ -1,0 +1,22 @@
+{
+  "recommended_threshold": 0.33,
+  "should_trigger": [
+    {"text": "用能拖动参数的离线网页教我理解傅里叶变换，先让我猜结果。", "family": "interactive_math"},
+    {"text": "把牛鞭效应做成可探索解释：先预测，再运行单文件 HTML 沙箱。", "family": "causal_system"},
+    {"text": "I want an explorable explanation of Bayesian base rates, with a slider and a closed-book transfer quiz.", "family": "probability"},
+    {"text": "让我通过调节局部规则，亲眼看懂群体涌现，再考我能不能迁移。", "family": "emergence"},
+    {"text": "解释 Transformer 的一个最小机制，给我无需安装就能运行的交互页面。", "family": "algorithm"}
+  ],
+  "should_not_trigger": [
+    {"text": "一句话定义什么是傅里叶变换。", "family": "definition_only"},
+    {"text": "把这篇物理文章翻译成中文。", "family": "translation"},
+    {"text": "给这个仪表盘加一个漂亮的滑块，但不需要教学内容。", "family": "web_ui"},
+    {"text": "请只画一张静态示意图，用于论文配图。", "family": "static_visual"},
+    {"text": "用对话情境教我机会成本，不要写网页或代码。", "family": "dialogue_tutor"}
+  ],
+  "near_neighbor": [
+    {"text": "给我讲清楚傅里叶变换，但只用文字，不要交互页面。", "family": "prose_only"},
+    {"text": "做一个销售数据的交互式网页仪表盘，不用于教学。", "family": "dashboard"},
+    {"text": "帮我做一张可视化海报，主题是概率。", "family": "poster"}
+  ]
+}

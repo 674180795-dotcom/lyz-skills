@@ -1,0 +1,16 @@
+{
+  "positive_concepts": {
+    "interactive_lesson": {
+      "weight": 0.68,
+      "phrases": ["可探索解释", "可探索", "交互页面", "交互网页", "交互沙箱", "单文件 html", "可运行 html", "离线网页", "交互", "滑块", "调节局部规则", "explorable explanation", "slider", "interactive page", "html5"]
+    },
+    "model_learning": {
+      "weight": 0.32,
+      "phrases": ["理解机制", "理解", "预测", "闭卷", "考我", "迁移", "心智模型", "因果", "learn", "understand", "quiz"]
+    }
+  },
+  "negative_concepts": {
+    "definition_only": {"weight": 0.8, "exclusive": true, "phrases": ["一句话定义", "只要定义", "只要总结", "翻译成中文", "只用文字", "不要交互页面"]},
+    "not_a_lesson": {"weight": 0.8, "exclusive": true, "phrases": ["不需要教学", "不用于教学", "不要写网页", "静态示意图", "静态图", "可视化海报"]}
+  }
+}

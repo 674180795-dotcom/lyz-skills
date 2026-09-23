@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.0.0",
+  "name": "lyz-explanation",
+  "title": "lyz-explanation：解释编译器",
+  "job_to_be_done": "Turn one hard concept at a time into a guided, offline, single-file interactive causal lesson and verify the learner's transferable mental model.",
+  "trigger_surface": {
+    "description": "把复杂概念编译成可探索解释：先收集学习者的直觉预测，再交付一个完整因果单元与零依赖、单文件 HTML5 交互沙箱，最后用闭卷建模题判定或修复心智模型。Use when 用户要求通过可运行交互理解机制、算法、概率、数学或涌现系统。不要用于仅需定义、摘要、静态图、现成网页开发或无教学目标的可视化。",
+    "should_trigger": ["用可运行 HTML 交互理解复杂概念", "用参数滑块探索因果机制并接受闭卷考核"],
+    "should_not_trigger": ["只要概念定义或摘要", "只做静态图或一般网页设计", "只用对话情境教学且不要代码"],
+    "edge_cases": ["用户请求跳过预测时尊重其控制权并说明状态", "无法给出忠实可操作机制时缩小单元或核实，不伪造模拟"]
+  },
+  "workflow": {
+    "steps": ["S0 收集真实先验预测", "建立 Knowledge IR 与认知瓶颈，裁决唯一主锚", "S1 编译完整因果单元和离线 HTML", "S2 等待 3–5 道闭卷建模题答案", "S3 依据因果理由判定通关或输出微型可运行修复实验"],
+    "decision_points": ["机械装配或局部规则到宏观模式", "当前预测是否真正暴露误区", "模拟是否忠实及其边界", "关键因果链是否通过新案例检验"],
+    "failure_modes": ["只交文字或静态图", "HTML 依赖 CDN 或默认白屏", "混用多重隐喻", "脑筋急转弯冒充公平冲突", "答案方向正确但理由错误仍通关", "离线页面假装可以可靠地语义判卷"]
+  },
+  "resources": {
+    "references": ["references/compiler-protocol.md", "references/source-patterns.md"],
+    "scripts": ["scripts/check_sandbox.py"],
+    "assets": [],
+    "reports": ["reports/output_quality_scorecard.md"]
+  },
+  "eval_plan": {
+    "trigger": ["evals/trigger_cases.json"],
+    "output": ["离线 HTML 静态预检", "浏览器默认态、滑块、重置和闭卷遮蔽检查"],
+    "adversarial": ["用户预测正确时不得伪造错误", "不能把页面离线评分称为模型判卷", "随机单次结果不得被写成必然"],
+    "baseline": "A generic prose tutor answer or a decorative slider without a causal lesson."
+  },
+  "risk": {"output_risk": "medium", "execution_risk": "low", "trust_boundary": "personal"},
+  "governance": {"owner": "unspecified", "maturity": "production", "review_cadence": "on meaningful revisions", "review_due": ""},
+  "targets": ["agent-skills", "system-prompt"],
+  "source_files": ["SKILL.md", "SYSTEM_PROMPT.md", "agents/interface.yaml"]
+}

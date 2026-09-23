@@ -1,0 +1,26 @@
+interface:
+  display_name: "lyz-explanation"
+  short_description: "把硬概念编译成可探索的单文件交互课"
+  default_prompt: "使用 $lyz-explanation 教我理解一个复杂概念：先让我预测，再交付完整因果单元、离线 HTML 沙箱和闭卷建模题。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "agent-skills-source"
+    claude: "agent-skills-source"
+    generic: "system-prompt-fallback"
+    vscode: "agent-skills-source"

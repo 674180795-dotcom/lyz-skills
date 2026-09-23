@@ -9,6 +9,7 @@
 | Skill | 状态 | 用途 | 文档 | 离线包 |
 | --- | --- | --- | --- | --- |
 | **lyz-resume**（简历工坊） | 可用 · v1.1.0 | 从旧简历、JD、零散经历或口述开始，生成可信、针对岗位的 HTML/PDF 简历 | [使用说明](lyz-resume/README.md) · [执行入口](lyz-resume/SKILL.md) | [下载 ZIP](lyz-resume/dist/lyz-resume.zip) |
+| **lyz-explanation**（解释编译器） | 试用 · v0.1.0 | 从先验预测出发，把复杂概念编译为离线 HTML 交互实验，并以闭卷建模题检验理解 | [使用说明](lyz-explanation/README.md) · [执行入口](lyz-explanation/SKILL.md) · [通用 System Prompt](lyz-explanation/SYSTEM_PROMPT.md) | [下载 ZIP](lyz-explanation/dist/lyz-explanation.zip) |
 
 以后新增的 Skill 都会先登记在这里。首页只负责索引、安装和通用约定；每项 Skill 的具体用法放在它自己的目录中。
 

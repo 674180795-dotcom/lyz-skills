@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>每轮增长算在谁身上？｜lyz-explanation 样例</title>
+  <style>
+    :root{font:16px/1.55 system-ui,sans-serif;color:#1d2733;background:#f4f7fa}
+    *{box-sizing:border-box}body{max-width:780px;margin:0 auto;padding:18px}
+    main{display:grid;gap:16px}#learning:not([hidden]){display:grid;gap:16px}section{background:white;border:1px solid #d0d9e2;border-radius:12px;padding:18px}
+    h1,h2{line-height:1.2;margin:0 0 12px}p{margin:9px 0}ol{padding-left:1.4rem}
+    input[type=range]{display:block;width:100%;margin:16px 0 8px;touch-action:none}
+    svg{width:100%;height:auto;display:block;border:1px solid #e1e6ed;background:#fff}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+    button{font:inherit;background:#e9f1fa;border:1px solid #6e9cca;border-radius:7px;padding:7px 12px;cursor:pointer}
+    button:hover{background:#d7e9f9}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #0a6ac3;outline-offset:2px}
+    .metric{display:flex;gap:20px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+    .blue{color:#155caa}.orange{color:#a14c00}textarea{width:100%;min-height:10rem;font:inherit}
+    #error{color:#a20000;font-weight:bold}
+    @media(max-width:480px){body{padding:8px}section{padding:14px}.metric{display:block}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<main>
+  <div id="learning">
+    <section>
+      <h1>每轮增长算在谁身上？</h1>
+      <p>从 100 开始，连续增长 8 轮。你可能猜“增长率翻倍，总增加量也翻倍”。先在心里记下预测，再调节增长率。</p>
+      <p>本单元只研究一个关系：下一轮增长是按<strong>最初的 100</strong> 算，还是按<strong>此刻的总量</strong>算。</p>
+    </section>
+    <section>
+      <h2>同一初态，两条规则</h2>
+      <label for="rate">每轮增长率：<output id="rateValue">20%</output></label>
+      <input id="rate" type="range" min="0" max="40" step="1" value="20">
+      <div class="controls">
+        <button type="button" data-rate="0">边界：0%</button>
+        <button type="button" data-rate="10">试 10%</button>
+        <button type="button" data-rate="40">边界：40%</button>
+        <button type="button" id="reset">重置为 20%</button>
+      </div>
+      <svg viewBox="0 0 370 245" role="img" aria-labelledby="chartTitle chartDesc">
+        <title id="chartTitle">简单增长和复利增长的 8 轮轨迹</title>
+        <desc id="chartDesc">横轴为轮次，纵轴为总量。蓝线每轮按当前总量增长，橙线每轮只按最初 100 增长。</desc>
+        <path d="M42 20V210H342" fill="none" stroke="#555" stroke-width="1.5"/>
+        <text x="5" y="22" font-size="12">1500</text><text x="12" y="213" font-size="12">100</text>
+        <text x="41" y="233" font-size="12">0</text><text x="333" y="233" font-size="12">8 轮</text>
+        <path id="compoundLine" fill="none" stroke="#155caa" stroke-width="3"/>
+        <path id="simpleLine" fill="none" stroke="#a14c00" stroke-width="3" stroke-dasharray="5 4"/>
+        <circle id="compoundPoint" r="5" fill="#155caa"/>
+        <circle id="simplePoint" r="5" fill="#a14c00"/>
+      </svg>
+      <p class="metric" aria-live="polite"><span class="blue">按当前总量：<output id="compoundResult">429.98</output></span><span class="orange">按初始量：<output id="simpleResult">260.00</output></span><span>差额：<output id="gapResult">169.98</output></span></p>
+      <p id="error" role="alert" hidden></p>
+    </section>
+    <section>
+      <h2>先验证，再解释</h2>
+      <ol>
+        <li>把增长率设为 0%。两条线为什么重合？</li>
+        <li>比较 10% 和 20%。按当前总量计算时，8 轮的新增量是否恰好翻倍？</li>
+        <li>设为 40%。蓝线在哪几轮开始明显离开橙线？想想每轮“新增量的基数”是什么。</li>
+      </ol>
+      <p>橙线每轮固定增加 <code>100 × r</code>；蓝线每轮增加 <code>上一轮总量 × r</code>。第一次两者相同，第二次起蓝线把先前增长也放入基数。因此差距会积累。这种“增长又参与下一轮增长”的规则叫<strong>复利</strong>或<strong>复合增长</strong>。</p>
+      <p>回到整体：起点、轮数和增长率相同，唯一被改动的是每轮取哪个基数。这里固定为 8 轮、0–40% 的非负恒定增长率；它是确定性的数学玩具模型，没有费用、上限、随机波动或现实市场条件，不能用于预测投资收益、人口或疫情。</p>
+    </section>
+  </div>
+  <section id="exam">
+    <h2>闭卷建模</h2>
+    <p>完成上面的操作后，遮蔽讲解和图形，凭记忆回答。页面不会自动判卷；把答案贴回对话。</p>
+    <button id="startExam" type="button">遮蔽解释，开始闭卷</button>
+    <div id="questions" hidden>
+      <ol>
+        <li>从 100 开始，增长率 10%，只进行 2 轮。第二轮按当前总量的规则会得到多少？请按轮说明。</li>
+        <li>若第二轮起永远只按最初的 100 增长，曲线会怎样改变？为什么？</li>
+        <li>增长率为 0 时两条规则会怎样？这个实验能区分两条机制吗？</li>
+        <li>把“每轮增长”换成一个会繁殖的细胞群，哪一个条件使同一模型适用？说出一个现实中会令该模型失效的条件。</li>
+      </ol>
+      <label for="answers">你的回答</label>
+      <textarea id="answers" placeholder="按 1–4 题编号作答；回答结果和理由。"></textarea>
+      <p>手动复制回答并贴回对话。你可以回看页面，但那就不属于闭卷尝试。</p>
+    </div>
+  </section>
+</main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const rate=$("rate"), maxValue=1500;
+const xPixel=n=>42+37.5*n;
+const yPixel=value=>210-190*(value-100)/(maxValue-100);
+function series(r,compound){
+  const values=[100];
+  for(let n=1;n<=8;n++) values.push(compound?values[n-1]*(1+r):values[n-1]+100*r);
+  return values;
+}
+function path(values){
+  return values.map((value,n)=>`${n?"L":"M"}${xPixel(n).toFixed(2)} ${yPixel(value).toFixed(2)}`).join(" ");
+}
+function render(){
+  const percent=Number(rate.value);
+  if(!Number.isFinite(percent)||percent<0||percent>40) throw Error("增长率超出 0–40% 范围");
+  const r=percent/100, compound=series(r,true), simple=series(r,false);
+  const cv=compound[8], sv=simple[8];
+  if(!Number.isFinite(cv)||!Number.isFinite(sv)) throw Error("计算结果无效");
+  $("rateValue").textContent=percent+"%";
+  $("compoundResult").textContent=cv.toFixed(2);
+  $("simpleResult").textContent=sv.toFixed(2);
+  $("gapResult").textContent=(cv-sv).toFixed(2);
+  $("compoundLine").setAttribute("d",path(compound));
+  $("simpleLine").setAttribute("d",path(simple));
+  $("compoundPoint").setAttribute("cx",xPixel(8));
+  $("compoundPoint").setAttribute("cy",yPixel(cv));
+  $("simplePoint").setAttribute("cx",xPixel(8));
+  $("simplePoint").setAttribute("cy",yPixel(sv));
+}
+function safelyRender(){
+  try{render();$("error").hidden=true}
+  catch(error){$("error").hidden=false;$("error").textContent="交互无法运行："+error.message}
+}
+let queued=false;
+rate.addEventListener("input",()=>{
+  if(queued)return;
+  queued=true;
+  requestAnimationFrame(()=>{queued=false;safelyRender()});
+});
+document.querySelectorAll("[data-rate]").forEach(button=>button.addEventListener("click",()=>{
+  rate.value=button.dataset.rate;safelyRender();
+}));
+$("reset").addEventListener("click",()=>{rate.value="20";safelyRender()});
+$("startExam").addEventListener("click",()=>{
+  $("learning").hidden=true;
+  $("questions").hidden=false;
+  $("startExam").hidden=true;
+  $("answers").focus();
+});
+safelyRender();
+</script>
+</body>
+</html>
