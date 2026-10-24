@@ -1,0 +1,38 @@
+name: 1688tofeishu
+version: "1.0.0"
+description: Automated mobile inspection, OCR extraction, and Feishu Bitable/Docx delivery for 1688 factory inquiries.
+triggers:
+  - "1688 聊天记录"
+  - "抓取工厂沟通"
+  - "询盘比价"
+  - "回访供应商"
+  - "整理1688报价"
+  - "消息页面抓取"
+inputs:
+  device_id:
+    type: string
+    description: ADB device identifier (optional, auto-detected if single device)
+  factory_keywords:
+    type: list
+    description: List of factory names or keywords to inspect in 1688 message list
+  app_token:
+    type: string
+    description: Feishu Base app token (optional, auto-creates if omitted)
+  table_id:
+    type: string
+    description: Feishu Base table id
+outputs:
+  bitable_url:
+    type: string
+    description: Direct web link to Feishu Bitable with full comparison records
+  docx_url:
+    type: string
+    description: Direct web link to Feishu Docx mobile-first report
+  summary:
+    type: string
+    description: Concise 200-word decision brief for mobile chat display
+dependencies:
+  - tesseract
+  - adb
+  - python3
+  - requests
