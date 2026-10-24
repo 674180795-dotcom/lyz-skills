@@ -1,0 +1,78 @@
+name: lyz-1688connect
+version: 1.0.0
+description: Autonomous 1688 factory outreach and slot-based state machine inquiry engine.
+
+inputs:
+  product_category:
+    type: string
+    description: Name/category of the product (e.g. 魔术贴, 不锈钢书签, 亚克力立牌, 织唛章).
+    required: true
+  dimensions:
+    type: string
+    description: Physical dimensions and thickness (e.g. 8cm×5cm, 直径7cm, 厚度0.6mm).
+    required: true
+  material_and_craft:
+    type: string
+    description: Material and processing specifications (e.g. 高密平织+锁边+魔术贴公毛面).
+    required: true
+  order_qty:
+    type: integer
+    description: Target batch order quantity (e.g. 300, 500, 1000).
+    required: true
+  artwork_path:
+    type: string
+    description: Local path to design artwork image to push to mobile camera roll.
+    required: false
+  ship_deadline_date:
+    type: string
+    description: Hard deadline for order completion (e.g. 11月15日, 7天内).
+    required: false
+  max_followup_rounds:
+    type: integer
+    description: Maximum delta follow-up rounds before stopping (default 3).
+    default: 3
+
+outputs:
+  inquiry_records:
+    type: array
+    description: List of evaluated supplier sourcing inquiry records.
+    items:
+      type: object
+      properties:
+        factory_name:
+          type: string
+        status:
+          type: string
+          enum: [completed, partially_quoted, rejected_by_factory, timed_out]
+        feasibility:
+          type: string
+        suggested_process:
+          type: string
+        unit_price:
+          type: number
+        pack_price:
+          type: number
+        total_unit_price:
+          type: number
+        is_free_shipping:
+          type: boolean
+        shipping_fee:
+          type: number
+        sample_fee:
+          type: number
+        is_sample_refundable:
+          type: boolean
+        tax_point:
+          type: number
+        tax_included_unit_price:
+          type: number
+        lead_time_ok:
+          type: boolean
+        contact_info:
+          type: array
+          items:
+            type: string
+        slots_completion_rate:
+          type: number
+        rounds_conducted:
+          type: integer
