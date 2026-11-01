@@ -1,0 +1,19 @@
+interface:
+  display_name: "播客成稿"
+  short_description: "校勘播客转录，编辑成有主线、有细节的公众号访谈长文"
+  default_prompt: "使用 $lyz-podcast-article，先逐份读完提供的转录并核对实际嘉宾、主题与附带背景，通过preflight后再校勘和成文。问答必须来自本文件，润色后重审，delivery-check通过后交付Markdown成稿与独立校勘记录。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets: [openai]
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"

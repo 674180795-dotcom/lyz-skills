@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "90f9613a6bee9163cd0c196016fa0ac3434b6059",
+  "execution_kind": "deterministic command, synthetic file-backed fixture",
+  "case": "Farza正文 / Nikita标题 / WEB-only TBH-Gas问答",
+  "baseline_ready": true,
+  "updated_ready": false,
+  "updated_errors": [
+    "legacy work has no source gate; prepare a new work directory",
+    "normalized text no longer matches source snapshot",
+    "article guest metadata differs from source identity",
+    "C1: attributed speech needs transcript paragraphs",
+    "coverage 4: Q&A cannot be backed by external/editorial content",
+    "coverage 5: Q&A cannot be backed by external/editorial content",
+    "speaker needs transcript paragraphs",
+    "speaker Nikita Bier: exact transcript support required",
+    "confirmed speaker name absent from transcript support",
+    "semantic review is not bound to current article",
+    "quality review is not bound to current article"
+  ],
+  "note": "Not an end-to-end model generation or replay of original three DOCX files. Current valid-intake web-only rejection independently covered by unittest."
+}

@@ -1,0 +1,1 @@
+{"schema_version":"1.0","default_policy":{"allow_network":false},"scripts":{},"note":"No packaged network code. Host agent performs explicitly authorized public-source verification."}

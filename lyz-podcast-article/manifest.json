@@ -1,0 +1,29 @@
+{
+  "name": "lyz-podcast-article",
+  "version": "0.2.0",
+  "owner": "ling99",
+  "updated_at": "2026-11-02",
+  "review_cadence": "quarterly",
+  "status": "experimental",
+  "maturity_tier": "production",
+  "context_budget_tier": "production",
+  "skill_archetype": "production",
+  "target_platforms": [
+    "openai"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "evals",
+    "reports",
+    "security"
+  ],
+  "input_files": "file-backed fixture: local-only 10 paired transcripts/articles; reports/corpus-index.json stores hashes, not private paths",
+  "output_contract": "Per-input preflight identity/read receipts + 文章.md or 文章_待核稿.md + _editorial/校勘记录.md; current-hash delivery-check before downstream delivery",
+  "rollback_boundary": "Keep source input immutable; new work directory per run; deployment rollback through Skills Manager to previous version; no publishing",
+  "network": "Host agent uses read-only public research tools; packaged Python script has no network",
+  "release_state": "candidate",
+  "lifecycle_stage": "production",
+  "review_policy": "每次规则变更及新增5篇实际使用后复核；最长90天",
+  "license": "UNLICENSED"
+}

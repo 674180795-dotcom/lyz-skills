@@ -1,0 +1,64 @@
+{
+  "should_trigger": [
+    {
+      "text": "使用播客成稿，把这份字幕整理成公众号文章",
+      "family": "article"
+    },
+    {
+      "text": "把访谈逐字稿校勘并编辑成公众号长文",
+      "family": "article"
+    },
+    {
+      "text": "播客字幕转公众号文章，保留精编问答",
+      "family": "article"
+    },
+    {
+      "text": "把多人对谈转录整理成科技商业访谈长文",
+      "family": "article"
+    },
+    {
+      "text": "把这份docx访谈转录用播客成稿整理成公众号文章",
+      "family": "docx"
+    },
+    {
+      "text": "三份播客转录依次成稿，附带节目标题可能有误，以原文内容核对",
+      "family": "batch"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "仅用三句话总结这份字幕",
+      "family": "excluded"
+    },
+    {
+      "text": "只校对字幕错别字，不改写成文章",
+      "family": "excluded"
+    },
+    {
+      "text": "把音频转成字幕",
+      "family": "excluded"
+    },
+    {
+      "text": "把这篇文章发布到公众号",
+      "family": "excluded"
+    }
+  ],
+  "near_neighbor": [
+    {
+      "text": "根据这期播客做短视频口播文案",
+      "family": "neighbor"
+    },
+    {
+      "text": "这篇已经写好的文章只需要润色",
+      "family": "neighbor"
+    },
+    {
+      "text": "提取访谈中的全部原始问题，不创作文章",
+      "family": "neighbor"
+    },
+    {
+      "text": "仅校字幕，即使素材中提到公众号文章也不要成稿",
+      "family": "neighbor"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "positive_concepts": {
+    "source": {
+      "phrases": [
+        "播客",
+        "字幕",
+        "访谈",
+        "逐字稿",
+        "对谈",
+        "转录"
+      ],
+      "weight": 0.4
+    },
+    "artifact": {
+      "phrases": [
+        "公众号",
+        "长文",
+        "成稿",
+        "精编问答"
+      ],
+      "weight": 0.6
+    }
+  },
+  "negative_concepts": {
+    "summary": {
+      "phrases": [
+        "仅用三句话",
+        "总结",
+        "只校对",
+        "只校字幕",
+        "仅校字幕",
+        "音频转",
+        "发布到",
+        "短视频",
+        "只需要润色",
+        "不创作文章",
+        "不要成稿"
+      ],
+      "weight": 1.0,
+      "exclusive": true
+    }
+  },
+  "fallback_positive_concepts": [
+    "source",
+    "artifact"
+  ],
+  "threshold": 0.6
+}
