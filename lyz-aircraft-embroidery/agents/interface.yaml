@@ -1,0 +1,19 @@
+interface:
+  display_name: "航空刺绣设计"
+  short_description: "用型号保真与模块化视觉语法生成原创战机刺绣产品图"
+  default_prompt: "使用 $lyz-aircraft-embroidery，读取参考图，锁定指定战机外形，继承参考的审美判断与主体场景关系，编译简短提示并实际调用AI生图，交付完整单章产品图片与真实验收结果。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets: [openai]
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter; image generation requires host tool"

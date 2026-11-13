@@ -1,0 +1,130 @@
+{
+  "version": "0.1.0",
+  "brief": {
+    "aircraft": "J-35A",
+    "composition": "axial",
+    "shape": "hexagon",
+    "rhythm": "parallel",
+    "palette": "navy_ice",
+    "text": "",
+    "ratio": "1:1",
+    "reference_images": [
+      {
+        "sample_id": "S19",
+        "role": "material"
+      }
+    ]
+  },
+  "identity_lock": {
+    "name": "Shenyang J-35A single-seat land-based variant",
+    "features": [
+      "pointed nose and blended fuselage",
+      "swept trapezoidal main wings",
+      "two outward-canted vertical fins",
+      "paired rear horizontal tailplanes",
+      "two rear engine nozzles",
+      "no forebody canards"
+    ],
+    "avoid_features": [
+      "forebody canards",
+      "single engine",
+      "carrier wing-fold emphasis"
+    ],
+    "source": "user corpus S01; https://www.chinanews.com/gn/2024/11-11/10316987.shtml",
+    "evidence_status": "verified",
+    "evidence_scope": "public gross layout plus sample visual; no production block details"
+  },
+  "patterns": [
+    "P_IDENTITY",
+    "P_HIERARCHY",
+    "C_AXIAL",
+    "B_PARALLEL",
+    "P_THREAD",
+    "P_EDGE",
+    "P_PRESENT"
+  ],
+  "priority": [
+    "aircraft_identity",
+    "parameter_orthogonality",
+    "pattern_diversity"
+  ],
+  "adjustments": [],
+  "fbs_selection": [
+    {
+      "id": "F01",
+      "function": "型号认同",
+      "expected_behavior": "Recognizable specified model",
+      "positive": "Use only the locked geometry card",
+      "negative": "hybrid aircraft",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "identity"
+    },
+    {
+      "id": "F02",
+      "function": "织物真实",
+      "expected_behavior": "Visible thread structure",
+      "positive": "directional thread fills, satin-stitched contours, raised stitched rim",
+      "negative": "printed fabric, enamel, molded plastic",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "texture"
+    },
+    {
+      "id": "F03",
+      "function": "缩小可读",
+      "expected_behavior": "Unbroken silhouette",
+      "positive": "one dominant aircraft with clear negative space",
+      "negative": "competing subjects, clutter",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "hierarchy"
+    },
+    {
+      "id": "F04",
+      "function": "系列收藏",
+      "expected_behavior": "Consistent base system",
+      "positive": "closed geometric patch, limited thread palette",
+      "negative": "random colors, mismatched borders",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "series"
+    },
+    {
+      "id": "F05",
+      "function": "原创重组",
+      "expected_behavior": "No borrowed brand arrangement",
+      "positive": "original arrangement of abstract forms",
+      "negative": "copied logos, copied mascots",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "originality"
+    },
+    {
+      "id": "F06",
+      "function": "方向感",
+      "expected_behavior": "Clear movement without occlusion",
+      "positive": "sparse directional bands behind aircraft",
+      "negative": "trails crossing aircraft features",
+      "positive_weight": 3,
+      "negative_weight": 4,
+      "scope": "rhythm"
+    },
+    {
+      "id": "F08",
+      "function": "产品展示",
+      "expected_behavior": "Complete patch readable",
+      "positive": "complete isolated patch, soft side light",
+      "negative": "cropped rim, props",
+      "positive_weight": 2,
+      "negative_weight": 3,
+      "scope": "photography"
+    }
+  ],
+  "word_count": 168,
+  "visual_validation": "not_run",
+  "image_generated": false,
+  "weight_semantics": "selection priority; no model-native numerical weighting",
+  "actual_image_generated": true,
+  "source_revision_note": "initial smoke prompt before color-role binding; preserved verbatim"
+}

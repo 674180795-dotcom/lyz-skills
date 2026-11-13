@@ -1,0 +1,77 @@
+{
+  "recommended_threshold": 0.55,
+  "should_trigger": [
+    {
+      "text": "给军迷做歼20刺绣章，实际生图",
+      "family": "embroidery"
+    },
+    {
+      "text": "按上传的刺绣样本换成歼35A战机，生成产品图片",
+      "family": "embroidery"
+    },
+    {
+      "text": "为中国战机军迷设计一套魔术贴章",
+      "family": "embroidery"
+    },
+    {
+      "text": "把这批战机士气章拆成可重组的生图规则",
+      "family": "embroidery"
+    },
+    {
+      "text": "中国战机刺绣产品换构图但保持型号",
+      "family": "embroidery"
+    },
+    {
+      "text": "帮我为歼20刺绣章写一份提示词，不用生图",
+      "family": "embroidery"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "解释FBS设计理论",
+      "family": "excluded"
+    },
+    {
+      "text": "帮我制作服装印花",
+      "family": "excluded"
+    },
+    {
+      "text": "根据照片输出工厂针版文件",
+      "family": "excluded"
+    },
+    {
+      "text": "分析歼20军事性能",
+      "family": "excluded"
+    },
+    {
+      "text": "画一张汽车广告海报",
+      "family": "excluded"
+    },
+    {
+      "text": "把已有刺绣图片批量改文件名",
+      "family": "excluded"
+    }
+  ],
+  "near_neighbor": [
+    {
+      "text": "给战机画一张航空海报",
+      "family": "neighbor"
+    },
+    {
+      "text": "设计歼20马克杯",
+      "family": "neighbor"
+    },
+    {
+      "text": "只解释Leborg视觉语法",
+      "family": "neighbor"
+    },
+    {
+      "text": "把战机图案变成T恤印花",
+      "family": "neighbor"
+    },
+    {
+      "text": "生成普通猫咪刺绣图",
+      "family": "neighbor"
+    }
+  ]
+}

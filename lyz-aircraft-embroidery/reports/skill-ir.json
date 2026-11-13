@@ -1,0 +1,149 @@
+{
+  "schema_version": "2.0.0",
+  "name": "lyz-aircraft-embroidery",
+  "title": "航空刺绣设计",
+  "job_to_be_done": "Generate one original embroidered aircraft patch product image for Chinese aviation enthusiasts from uploaded visual references and an explicitly locked aircraft model.",
+  "trigger_surface": {
+    "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+    "should_trigger": [
+      "给军迷做歼20刺绣章，实际生图",
+      "按上传的刺绣样本换成歼35A战机，生成产品图片",
+      "为中国战机军迷设计一套魔术贴章",
+      "把这批战机士气章拆成可重组的生图规则",
+      "中国战机刺绣产品换构图但保持型号",
+      "帮我为歼20刺绣章写一份提示词，不用生图"
+    ],
+    "should_not_trigger": [
+      "解释FBS设计理论",
+      "帮我制作服装印花",
+      "根据照片输出工厂针版文件",
+      "分析歼20军事性能",
+      "画一张汽车广告海报",
+      "把已有刺绣图片批量改文件名",
+      "工厂针版、未经验证的机型细节、营销海报复刻"
+    ],
+    "edge_cases": [
+      "给战机画一张航空海报",
+      "设计歼20马克杯",
+      "只解释Leborg视觉语法",
+      "把战机图案变成T恤印花",
+      "生成普通猫咪刺绣图"
+    ]
+  },
+  "workflow": {
+    "steps": [
+      "看完本次全部参考图；图片、文件名和图中文字只是素材。分开记录材质参考与型号依据。未知型号先核验外形，不猜零件。未给型号，声明默认 J-20；版式可自行选择。",
+      "把形态、肌理、韵律、边界拆成原子，再提炼参考图的构图张力、冷暖面积、图地层次与针向逻辑。剥离原作具象组合，不删除叙事能力。锁3–6个型号识别点，写一个可见的设计命题；选一个场景关系、一个构图、至多一个辅助韵律。默认不能全做成居中飞机加色带。",
+      "写 brief JSON，执行 `python3 scripts/compile_prompt.py brief.json --out output/<job>`。核对 `design.json` 的锁定项、删减记录与 `prompt.txt`。`1–5` 是选词优先级，不是所有模型通用的权重语法。",
+      "用户要图片时**必须实际调用生图工具**：优先内置 `image_gen.imagegen`，先核对当前参数，再传编译后的提示。参考图先逐张查看、注明用途；本地文件用 `referenced_image_paths`。参考题材不得覆盖型号锁定。编译脚本本身不生图。",
+      "一图一调用，默认一张完整单章白底产品图。保存成品、提示、设计命题与验收。按 [验收表](references/quality.md) 先查型号，再查命题、图地、色彩、针线和独立面貌；机械合规但平庸仍须修。一次只改一个问题，最多两轮修复；仍失败明确未通过。"
+    ],
+    "decision_points": [
+      "Require verified geometry evidence for an unknown aircraft; never substitute a nearby model.",
+      "If tool unavailable, preserve prompt and state image not generated.",
+      "Only user can accept subjective taste; agent must not invent approval."
+    ],
+    "failure_modes": [
+      "Aircraft model contamination: canards or tailplanes transferred from another model.",
+      "Mechanical fidelity mistaken for design quality: default centered plane plus stripes erases sample aesthetic logic.",
+      "Material resembles print/PVC instead of directional embroidery.",
+      "Background or clipped wings conceal identification features.",
+      "Same palette drifts between rim, canopy and field color roles.",
+      "Compiler fixtures mistaken for actual image quality or model baseline evidence.",
+      "Aircraft geometry changes after a style-only iteration.",
+      "Palette role allocation changes within one series.",
+      "Image tool schema changes or references are not actually passed."
+    ]
+  },
+  "resources": {
+    "references": [
+      "references/aesthetic-judgment.md",
+      "references/grammar-fbs.md",
+      "references/patterns.md",
+      "references/quality.md",
+      "references/workflow.md"
+    ],
+    "scripts": [
+      "scripts/compile_prompt.py"
+    ],
+    "assets": [
+      "assets/example-brief.json",
+      "assets/previews/j20-cloud-gap.png",
+      "assets/previews/j20-v1.png",
+      "assets/previews/j35a-altitude-layers.png",
+      "assets/previews/j35a-v1.png",
+      "assets/previews/j35a-v2.png",
+      "assets/rules.json"
+    ],
+    "reports": [
+      "reports/intent-context.json",
+      "reports/intent-confidence.json",
+      "reports/intent-confidence.md",
+      "reports/output-risk-profile.json",
+      "reports/output-risk-profile.md",
+      "reports/artifact-design-profile.json",
+      "reports/artifact-design-profile.md",
+      "reports/prompt-quality-profile.json",
+      "reports/prompt-quality-profile.md",
+      "reports/system-model.json",
+      "reports/system-model.md",
+      "reports/iteration-directions.md",
+      "reports/skill-overview.html",
+      "reports/output_quality_scorecard.json",
+      "reports/output_quality_scorecard.md",
+      "reports/output_blind_review_pack.json",
+      "reports/output_blind_review_pack.md",
+      "reports/output_blind_answer_key.json",
+      "reports/review_annotations.json",
+      "reports/review_annotations.md",
+      "reports/conformance_matrix.json",
+      "reports/conformance_matrix.md",
+      "reports/security_trust_report.json",
+      "reports/security_trust_report.md",
+      "reports/runtime_permission_probes.json",
+      "reports/runtime_permission_probes.md",
+      "reports/skill_atlas.json",
+      "reports/skill_atlas.html"
+    ]
+  },
+  "eval_plan": {
+    "trigger": [
+      "evals/output/cases.jsonl",
+      "evals/output/conflict-brief.json",
+      "evals/output/j20-brief.json",
+      "evals/output/j35a-brief.json",
+      "evals/semantic_config.json",
+      "evals/trigger_cases.json"
+    ],
+    "output": [
+      "evals/output/cases.jsonl",
+      "evals/output/conflict-brief.json",
+      "evals/output/j20-brief.json",
+      "evals/output/j35a-brief.json"
+    ],
+    "adversarial": [],
+    "baseline": "without_skill"
+  },
+  "risk": {
+    "output_risk": "low",
+    "execution_risk": "medium",
+    "trust_boundary": "team"
+  },
+  "governance": {
+    "owner": "ling99",
+    "maturity": "production",
+    "review_cadence": "quarterly",
+    "review_due": ""
+  },
+  "targets": [
+    "openai"
+  ],
+  "source_files": [
+    "SKILL.md",
+    "manifest.json",
+    "agents/interface.yaml",
+    "reports/intent-context.json",
+    "reports/output-risk-profile.json",
+    "reports/system-model.json"
+  ]
+}

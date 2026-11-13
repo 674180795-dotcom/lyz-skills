@@ -1,0 +1,14 @@
+Use case: product-mockup.
+One embroidered aircraft patch depicting Chengdu J-20 single-seat baseline.
+Identity lock: long pointed fuselage; paired forebody canards ahead of broad delta main wings; two outward-canted vertical fins; two rear engine nozzles; no separate conventional horizontal tailplanes.
+Aircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.
+A point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.
+The aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.
+Directional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.
+Curved scene contours counterbalance the aircraft’s straight edges.
+Thread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.
+No lettering.
+Front near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.
+Input image 1: aircraft geometry only; preserve identity locks.
+Input image 2: thread and rim texture only; do not copy its subject, text or layout.
+Avoid: single engine, conventional rear horizontal tailplanes, missing forebody canards, text, hybrid aircraft, printed fabric, enamel, molded plastic, competing subjects, clutter, random colors, mismatched borders.

@@ -1,0 +1,713 @@
+{
+  "ok": true,
+  "workspace_root": "/Users/ling99/Codexfiles/Codex/lyz-skills",
+  "summary": {
+    "skill_count": 6,
+    "actionable_skill_count": 6,
+    "route_collision_count": 0,
+    "actionable_route_collision_count": 0,
+    "owner_gap_count": 3,
+    "actionable_owner_gap_count": 3,
+    "stale_count": 3,
+    "actionable_stale_count": 3,
+    "shared_resource_count": 1,
+    "no_route_opportunity_count": 0,
+    "telemetry_report_count": 1,
+    "drift_signal_count": 3,
+    "actionable_drift_signal_count": 3,
+    "non_actionable_issue_count": 0
+  },
+  "scope_policy": {
+    "present": false,
+    "path": "skill_atlas/policy.json",
+    "rules": []
+  },
+  "catalog": {
+    "workspace_root": "/Users/ling99/Codexfiles/Codex/lyz-skills",
+    "generated_at": "2026-11-14",
+    "skills": [
+      {
+        "name": "1688tofeishu",
+        "path": "1688tofeishu",
+        "description": "MUST USE when the user wants to inspect, scrape, extract, or catalog 1688 mobile app merchant chat records (1688 聊天记录 / 抓取工厂沟通 / 询盘比价 / 回访供应商 / 整理1688报价 / 消息页面抓取), parse structured quotes (大货单价、打样费、包装背卡费、税点、交期保障), and deliver comparison results into Feishu Bitable (多维表格) and mobile-first Feishu Docx (飞书云文档垂直卡片流). Uses dynamic semantic anchoring, safe navigation state machines, and auto-archiving to 「Antigravity 报告归档」.",
+        "owner": "",
+        "version": "",
+        "status": "",
+        "maturity": "",
+        "updated_at": "",
+        "review_cadence": "",
+        "targets": [],
+        "resources": [
+          "scripts/conversation_harvester.py",
+          "scripts/feishu_deliverer.py",
+          "scripts/ocr_extractor.py",
+          "references/anti-stalling-navigation.md",
+          "references/feishu-schema-guidelines.md"
+        ],
+        "token_set": [
+          "1688",
+          "anchoring",
+          "antigravity",
+          "app",
+          "auto-archiving",
+          "bitable",
+          "catalog",
+          "chat",
+          "comparison",
+          "deliver",
+          "docx",
+          "dynamic",
+          "extract",
+          "feishu",
+          "inspect",
+          "machines",
+          "merchant",
+          "mobile",
+          "mobile-first",
+          "must",
+          "navigation",
+          "or",
+          "parse",
+          "quotes",
+          "records",
+          "results",
+          "safe",
+          "scrape",
+          "semantic",
+          "state",
+          "structured",
+          "user",
+          "uses",
+          "wants",
+          "交期保障",
+          "包装背卡费",
+          "回访供应商",
+          "多维表格",
+          "大货单价",
+          "打样费",
+          "抓取工厂沟通",
+          "报告归档",
+          "整理1688报价",
+          "消息页面抓取",
+          "税点",
+          "聊天记录",
+          "询盘比价",
+          "飞书云文档垂直卡片流"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": false,
+          "report": "1688tofeishu/reports/adoption_drift_report.json",
+          "risk_band": "missing",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "name": "lyz-1688connect",
+        "path": "lyz-1688connect",
+        "description": "MUST USE when the user wants to autonomously reach out to 1688 manufacturers, execute contractual inquiries (合发建约), perform slot-based delta follow-ups (差量催问/状态机追问), handle specification drift and re-quoting (规格变更重算), or conduct multi-turn commercial negotiation for industrial/custom products (魔术贴/徽章/书签/服饰辅料/五金塑胶等). Implements 10 universal parameter slots, anti-violation contact capture, and hardware safety state machines.",
+        "owner": "",
+        "version": "",
+        "status": "",
+        "maturity": "",
+        "updated_at": "",
+        "review_cadence": "",
+        "targets": [],
+        "resources": [
+          "scripts/inquiry_dispatcher.py",
+          "scripts/state_machine_runner.py",
+          "references/hardware-guardians.md",
+          "references/inquiry-templates.md",
+          "references/state-machine-protocol.md",
+          "references/universal-slots.md"
+        ],
+        "token_set": [
+          "10",
+          "1688",
+          "anti-violation",
+          "autonomously",
+          "capture",
+          "commercial",
+          "conduct",
+          "contact",
+          "contractual",
+          "custom",
+          "delta",
+          "drift",
+          "execute",
+          "follow-ups",
+          "handle",
+          "hardware",
+          "implements",
+          "industrial",
+          "inquiries",
+          "machines",
+          "manufacturers",
+          "multi-turn",
+          "must",
+          "negotiation",
+          "or",
+          "out",
+          "parameter",
+          "perform",
+          "products",
+          "re-quoting",
+          "reach",
+          "safety",
+          "slot-based",
+          "slots",
+          "specification",
+          "state",
+          "universal",
+          "user",
+          "wants",
+          "书签",
+          "五金塑胶等",
+          "合发建约",
+          "差量催问",
+          "徽章",
+          "服饰辅料",
+          "状态机追问",
+          "规格变更重算",
+          "魔术贴"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": false,
+          "report": "lyz-1688connect/reports/adoption_drift_report.json",
+          "risk_band": "missing",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "name": "lyz-aircraft-embroidery",
+        "path": "lyz-aircraft-embroidery",
+        "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+        "owner": "ling99",
+        "version": "0.1.0",
+        "status": "experimental",
+        "maturity": "production",
+        "updated_at": "2026-11-14",
+        "review_cadence": "quarterly",
+        "targets": [
+          "openai"
+        ],
+        "resources": [
+          "scripts/compile_prompt.py",
+          "references/grammar-fbs.md",
+          "references/patterns.md",
+          "references/quality.md",
+          "references/workflow.md",
+          "assets/example-brief.json",
+          "assets/j20-v1.png",
+          "assets/j35a-v1.png",
+          "assets/rules.json"
+        ],
+        "token_set": [
+          "为中国战机军迷设计原创刺绣产品图片",
+          "仅解释理论",
+          "军事性能分析不使用此技能",
+          "士气章",
+          "换型号设计与系列生图",
+          "服装印花",
+          "根据上传的刺绣章样本",
+          "编译简短提示并实际调用ai生图",
+          "适用于战机刺绣章",
+          "针版文件",
+          "锁定机型特征",
+          "魔术贴章的参考拆解"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": true,
+          "report": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 1
+        }
+      },
+      {
+        "name": "lyz-explanation",
+        "path": "lyz-explanation",
+        "description": "把复杂概念编译成可探索解释：先收集学习者的直觉预测，再交付一个完整因果单元与零依赖、单文件 HTML5 交互沙箱，最后用闭卷建模题判定或修复心智模型。Use when 用户要求通过可运行交互理解机制、算法、概率、数学或涌现系统。不要用于仅需定义、摘要、静态图、现成网页开发或无教学目标的可视化。",
+        "owner": "",
+        "version": "",
+        "status": "",
+        "maturity": "",
+        "updated_at": "",
+        "review_cadence": "",
+        "targets": [],
+        "resources": [
+          "scripts/check_sandbox.py",
+          "references/compiler-protocol.md",
+          "references/source-patterns.md"
+        ],
+        "token_set": [
+          "html5",
+          "不要用于仅需定义",
+          "交互沙箱",
+          "先收集学习者的直觉预测",
+          "再交付一个完整因果单元与零依赖",
+          "单文件",
+          "把复杂概念编译成可探索解释",
+          "摘要",
+          "数学或涌现系统",
+          "最后用闭卷建模题判定或修复心智模型",
+          "概率",
+          "现成网页开发或无教学目标的可视化",
+          "用户要求通过可运行交互理解机制",
+          "算法",
+          "静态图"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": false,
+          "report": "lyz-explanation/reports/adoption_drift_report.json",
+          "risk_band": "missing",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "name": "lyz-podcast-article",
+        "path": "lyz-podcast-article",
+        "description": "将播客字幕、访谈转录（md、txt、docx）整理为保留原话语气的公众号访谈长文 Markdown。适用于“播客成稿”“字幕转公众号文章”“采访整理成专业媒体文章”；默认只交付一份文章，不接管仅摘要、音频转写、平台发布或短视频文案。",
+        "owner": "ling99",
+        "version": "0.3.0",
+        "status": "experimental",
+        "maturity": "production",
+        "updated_at": "2026-11-13",
+        "review_cadence": "quarterly",
+        "targets": [
+          "openai"
+        ],
+        "resources": [
+          "scripts/article_tools.py",
+          "scripts/compact_article.py",
+          "references/editorial.md",
+          "references/quality.md",
+          "references/source-gate.md",
+          "references/template.md",
+          "references/verification.md"
+        ],
+        "token_set": [
+          "docx",
+          "markdown",
+          "md",
+          "txt",
+          "不接管仅摘要",
+          "字幕转公众号文章",
+          "将播客字幕",
+          "平台发布或短视频文案",
+          "播客成稿",
+          "整理为保留原话语气的公众号访谈长文",
+          "访谈转录",
+          "适用于",
+          "采访整理成专业媒体文章",
+          "音频转写",
+          "默认只交付一份文章"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": false,
+          "report": "lyz-podcast-article/reports/adoption_drift_report.json",
+          "risk_band": "missing",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "name": "lyz-resume",
+        "path": "lyz-resume",
+        "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
+        "owner": "Ling99",
+        "version": "1.1.0",
+        "status": "active",
+        "maturity": "production",
+        "updated_at": "2026-09-18",
+        "review_cadence": "quarterly",
+        "targets": [
+          "openai",
+          "claude",
+          "generic",
+          "agent-skills-compatible",
+          "vscode"
+        ],
+        "resources": [
+          "scripts/assess_intake.py",
+          "scripts/extract_resume.py",
+          "scripts/pdf_to_images.py",
+          "scripts/render_resume.py",
+          "scripts/validate_resume.py",
+          "references/facts-and-data-contract.md",
+          "references/installation-and-portability.md",
+          "references/intake-and-momentum.md",
+          "references/rendering-and-validation.md",
+          "references/role-analysis-and-writing.md",
+          "references/role-lenses.md",
+          "assets/candidate-ledger.schema.json",
+          "assets/example-ledger.json",
+          "assets/example-resume.json",
+          "assets/example-role-analysis.json",
+          "assets/resume-data.schema.json",
+          "assets/role-analysis.schema.json"
+        ],
+        "token_set": [
+          "cv",
+          "html",
+          "jd",
+          "pdf",
+          "不用于学术",
+          "不知道写什么",
+          "优化或审查简历",
+          "作品集网站",
+          "加入可选照片和生成可投递",
+          "只换版式",
+          "多岗位版本",
+          "定制",
+          "将旧简历",
+          "并完成",
+          "排版",
+          "求职信",
+          "职业规划",
+          "职位代投或单纯模拟面试",
+          "适用于从零做简历",
+          "零散经历",
+          "项目材料或口述回答整理为可信且针对岗位的求职简历",
+          "验证与视觉复查"
+        ],
+        "atlas_scope": "release",
+        "actionable": true,
+        "scope_reason": "default release-actionable skill",
+        "telemetry": {
+          "report_present": false,
+          "report": "lyz-resume/reports/adoption_drift_report.json",
+          "risk_band": "missing",
+          "event_count": 0,
+          "adoption_sample_count": 0,
+          "adoption_rate": 0,
+          "candidate_count": 0
+        }
+      }
+    ],
+    "summary": {
+      "skill_count": 6,
+      "actionable_skill_count": 6,
+      "route_collision_count": 0,
+      "actionable_route_collision_count": 0,
+      "owner_gap_count": 3,
+      "actionable_owner_gap_count": 3,
+      "stale_count": 3,
+      "actionable_stale_count": 3,
+      "shared_resource_count": 1,
+      "no_route_opportunity_count": 0,
+      "telemetry_report_count": 1,
+      "drift_signal_count": 3,
+      "actionable_drift_signal_count": 3,
+      "non_actionable_issue_count": 0
+    }
+  },
+  "route_collisions": [],
+  "actionable_route_collisions": [],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "name": "1688tofeishu",
+        "path": "1688tofeishu"
+      },
+      {
+        "name": "lyz-1688connect",
+        "path": "lyz-1688connect"
+      },
+      {
+        "name": "lyz-aircraft-embroidery",
+        "path": "lyz-aircraft-embroidery"
+      },
+      {
+        "name": "lyz-explanation",
+        "path": "lyz-explanation"
+      },
+      {
+        "name": "lyz-podcast-article",
+        "path": "lyz-podcast-article"
+      },
+      {
+        "name": "lyz-resume",
+        "path": "lyz-resume"
+      }
+    ],
+    "shared_resources": [
+      {
+        "resource": "references/quality.md",
+        "skills": [
+          "lyz-aircraft-embroidery",
+          "lyz-podcast-article"
+        ]
+      }
+    ]
+  },
+  "stale_skills": [
+    {
+      "name": "1688tofeishu",
+      "path": "1688tofeishu",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-1688connect",
+      "path": "lyz-1688connect",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-explanation",
+      "path": "lyz-explanation",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    }
+  ],
+  "actionable_stale_skills": [
+    {
+      "name": "1688tofeishu",
+      "path": "1688tofeishu",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-1688connect",
+      "path": "lyz-1688connect",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-explanation",
+      "path": "lyz-explanation",
+      "reason": "missing updated_at",
+      "actionable": true,
+      "scope": "release"
+    }
+  ],
+  "owner_review_gaps": [
+    {
+      "name": "1688tofeishu",
+      "path": "1688tofeishu",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-1688connect",
+      "path": "lyz-1688connect",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-explanation",
+      "path": "lyz-explanation",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    }
+  ],
+  "actionable_owner_review_gaps": [
+    {
+      "name": "1688tofeishu",
+      "path": "1688tofeishu",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-1688connect",
+      "path": "lyz-1688connect",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    },
+    {
+      "name": "lyz-explanation",
+      "path": "lyz-explanation",
+      "missing": [
+        "owner",
+        "review_cadence",
+        "maturity"
+      ],
+      "actionable": true,
+      "scope": "release"
+    }
+  ],
+  "drift_signals": [
+    {
+      "name": "lyz-aircraft-embroidery",
+      "path": "lyz-aircraft-embroidery",
+      "source": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Start with a small metadata-only sample before using telemetry for release decisions.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0,
+        "adoption_rate": 0,
+        "missed_trigger_count": 0,
+        "wrong_trigger_count": 0,
+        "bad_output_count": 0,
+        "missing_resource_count": 0,
+        "script_error_count": 0,
+        "review_overdue_count": 0
+      }
+    },
+    {
+      "name": "lyz-podcast-article",
+      "path": "lyz-podcast-article",
+      "source": "lyz-podcast-article/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0
+      }
+    },
+    {
+      "name": "lyz-resume",
+      "path": "lyz-resume",
+      "source": "lyz-resume/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0
+      }
+    }
+  ],
+  "actionable_drift_signals": [
+    {
+      "name": "lyz-aircraft-embroidery",
+      "path": "lyz-aircraft-embroidery",
+      "source": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Start with a small metadata-only sample before using telemetry for release decisions.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0,
+        "adoption_rate": 0,
+        "missed_trigger_count": 0,
+        "wrong_trigger_count": 0,
+        "bad_output_count": 0,
+        "missing_resource_count": 0,
+        "script_error_count": 0,
+        "review_overdue_count": 0
+      }
+    },
+    {
+      "name": "lyz-podcast-article",
+      "path": "lyz-podcast-article",
+      "source": "lyz-podcast-article/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0
+      }
+    },
+    {
+      "name": "lyz-resume",
+      "path": "lyz-resume",
+      "source": "lyz-resume/reports/adoption_drift_report.json",
+      "risk_band": "no-data",
+      "signal_types": [
+        "no telemetry"
+      ],
+      "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+      "actionable": true,
+      "scope": "release",
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0
+      }
+    }
+  ],
+  "no_route_opportunities": [],
+  "artifacts": {
+    "catalog": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/catalog.json",
+    "route_overlap_matrix": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/route_overlap_matrix.csv",
+    "dependency_graph": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/dependency_graph.json",
+    "stale_skills": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/stale_skills.json",
+    "owner_review_gaps": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/owner_review_gaps.json",
+    "drift_signals": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/drift_signals.json",
+    "no_route_opportunities": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/no_route_opportunities.json",
+    "report_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/skill_atlas.json",
+    "report_html": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/skill_atlas.html"
+  }
+}

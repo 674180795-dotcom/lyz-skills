@@ -1,0 +1,160 @@
+{
+  "version": "0.1.0",
+  "brief": {
+    "aircraft": "J-20",
+    "composition": "diagonal",
+    "shape": "hexagon",
+    "rhythm": "arc",
+    "palette": "navy_amber",
+    "text": "",
+    "ratio": "1:1",
+    "concept": "cloud_gap",
+    "heading": "upper right",
+    "reference_images": [
+      {
+        "sample_id": "S19",
+        "role": "geometry"
+      },
+      {
+        "sample_id": "S23",
+        "role": "material"
+      }
+    ]
+  },
+  "identity_lock": {
+    "name": "Chengdu J-20 single-seat baseline",
+    "features": [
+      "long pointed fuselage",
+      "paired forebody canards ahead of broad delta main wings",
+      "two outward-canted vertical fins",
+      "two rear engine nozzles",
+      "no separate conventional horizontal tailplanes"
+    ],
+    "avoid_features": [
+      "single engine",
+      "conventional rear horizontal tailplanes",
+      "missing forebody canards"
+    ],
+    "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
+    "evidence_status": "verified",
+    "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified"
+  },
+  "patterns": [
+    "P_IDENTITY",
+    "P_HIERARCHY",
+    "C_DIAGONAL",
+    "N_CLOUD_GAP",
+    "B_ARC",
+    "P_THREAD",
+    "P_EDGE",
+    "P_PRESENT"
+  ],
+  "priority": [
+    "aircraft_identity",
+    "parameter_orthogonality",
+    "pattern_diversity"
+  ],
+  "adjustments": [],
+  "fbs_selection": [
+    {
+      "id": "F01",
+      "function": "型号认同",
+      "expected_behavior": "Recognizable specified model",
+      "positive": "Use only the locked geometry card",
+      "negative": "hybrid aircraft",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "identity"
+    },
+    {
+      "id": "F02",
+      "function": "织物真实",
+      "expected_behavior": "Visible thread structure",
+      "positive": "directional thread fills, satin-stitched contours, raised stitched rim",
+      "negative": "printed fabric, enamel, molded plastic",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "texture"
+    },
+    {
+      "id": "F03",
+      "function": "缩小可读",
+      "expected_behavior": "Unbroken silhouette",
+      "positive": "one dominant aircraft with clear negative space",
+      "negative": "competing subjects, clutter",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "hierarchy"
+    },
+    {
+      "id": "F04",
+      "function": "系列收藏",
+      "expected_behavior": "Consistent base system",
+      "positive": "closed geometric patch, limited thread palette",
+      "negative": "random colors, mismatched borders",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "series"
+    },
+    {
+      "id": "F05",
+      "function": "原创重组",
+      "expected_behavior": "No borrowed brand arrangement",
+      "positive": "original arrangement of abstract forms",
+      "negative": "copied logos, copied mascots",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "originality"
+    },
+    {
+      "id": "F10",
+      "function": "参考审美的设计逻辑",
+      "expected_behavior": "A coherent event organizes subject, scene, contrast and thread direction",
+      "positive": "one coherent subject-scene relationship, deliberate directional counterpoint",
+      "negative": "generic centered aircraft plus decorative stripes, unrelated visual effects",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "aesthetic"
+    },
+    {
+      "id": "F06",
+      "function": "方向感",
+      "expected_behavior": "Clear movement without occlusion",
+      "positive": "sparse directional bands behind aircraft",
+      "negative": "trails crossing aircraft features",
+      "positive_weight": 3,
+      "negative_weight": 4,
+      "scope": "rhythm"
+    },
+    {
+      "id": "F08",
+      "function": "产品展示",
+      "expected_behavior": "Complete patch readable",
+      "positive": "complete isolated patch, soft side light",
+      "negative": "cropped rim, props",
+      "positive_weight": 2,
+      "negative_weight": 3,
+      "scope": "photography"
+    }
+  ],
+  "word_count": 219,
+  "visual_validation": "not_run",
+  "aesthetic_plan": {
+    "name": "破晓切线",
+    "function": "以角形机体切开曲线场景，形成明确的穿越事件",
+    "contrast": "angular aircraft versus curved cloud masses; cool field with one concentrated warm opening",
+    "source_patterns": [
+      "S01: 云层围合与主体穿越",
+      "S23: 小面积暖亮竖向事件对抗冷灰横向主体",
+      "S03: 同向线向强化斜势"
+    ],
+    "omit": [
+      "explosion mushroom cloud",
+      "large sun plus lightning plus grid",
+      "copied source text or layout"
+    ],
+    "gesture": "diagonal breakthrough through a curved enclosure"
+  },
+  "image_generated": false,
+  "weight_semantics": "selection priority; no model-native numerical weighting"
+}

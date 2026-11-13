@@ -1,0 +1,13 @@
+{
+  "skill_name": "lyz-aircraft-embroidery",
+  "artifact": "single isolated embroidered aircraft patch product image",
+  "hierarchy": "identity hard gate plus visible design thesis, figure-ground tension, deliberate color areas and scene-specific thread organization",
+  "prompt_budget": "230 whitespace-separated words max; every phrase must render a relationship",
+  "anti_patterns": [
+    "generic luxury adjectives",
+    "multiple motifs",
+    "native weighting syntax without model support"
+  ],
+  "evidence": "reports/live-generation.json",
+  "status": "candidate; independent review missing"
+}

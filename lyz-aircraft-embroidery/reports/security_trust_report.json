@@ -1,0 +1,143 @@
+{
+  "ok": true,
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+  "summary": {
+    "scanned_files": 23,
+    "script_count": 1,
+    "internal_module_count": 0,
+    "secret_findings": 0,
+    "dependency_files": [],
+    "network_script_count": 0,
+    "network_policy_covered_count": 0,
+    "network_policy_missing_count": 0,
+    "file_write_script_count": 1,
+    "permission_required_count": 1,
+    "permission_approved_count": 0,
+    "permission_missing_count": 0,
+    "permission_invalid_count": 1,
+    "permission_expired_count": 0,
+    "help_smoke_checked_count": 1,
+    "help_smoke_failed_count": 0,
+    "interactive_script_count": 0,
+    "package_hash_scope": "source-contract-without-generated-reports",
+    "package_hash_file_count": 23,
+    "package_sha256": "cc5c801c673368d298c6ce02d8fca0f1ddb88f1a007de98db172d939de66969a"
+  },
+  "failures": [],
+  "warnings": [
+    "No dependency or lock file detected",
+    "Permission approvals invalid: file_write"
+  ],
+  "secrets": [],
+  "scripts": [
+    {
+      "path": "scripts/compile_prompt.py",
+      "interface": "cli",
+      "interface_declared": false,
+      "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+      "has_argparse": true,
+      "has_main_guard": true,
+      "uses_input": false,
+      "uses_network": false,
+      "uses_file_write": true,
+      "uses_subprocess": false,
+      "network_urls": [],
+      "network_hosts": []
+    }
+  ],
+  "dependencies": {
+    "present": [],
+    "pinned": [],
+    "unpinned": []
+  },
+  "network_policy": {
+    "present": false,
+    "path": "security/network_policy.json",
+    "schema_version": "",
+    "network_script_count": 0,
+    "covered_scripts": [],
+    "missing_scripts": [],
+    "mismatches": [],
+    "default_policy": {}
+  },
+  "help_smoke": {
+    "enabled": true,
+    "timeout_seconds": 5.0,
+    "candidate_count": 1,
+    "checked_count": 1,
+    "passed_count": 1,
+    "failed_count": 0,
+    "skipped_count": 0,
+    "failed_scripts": [],
+    "results": [
+      {
+        "path": "scripts/compile_prompt.py",
+        "command": "python3 scripts/compile_prompt.py --help",
+        "returncode": 0,
+        "timed_out": false,
+        "passed": true,
+        "has_help_text": true,
+        "stdout_excerpt": "usage: compile_prompt.py [-h] --out OUT brief\n\nOffline brief-to-prompt compiler. The host agent invokes image generation.\n\npositional arguments:\n  brief\n\noptions:\n  -h, --help  show this help message and exit\n  --out OUT",
+        "stderr_excerpt": ""
+      }
+    ],
+    "skipped": []
+  },
+  "permission_governance": {
+    "present": true,
+    "path": "security/permission_policy.json",
+    "schema_version": "1.0",
+    "reviewed_at": "2026-11-14",
+    "required_capabilities": [
+      "file_write"
+    ],
+    "approved_capabilities": [],
+    "missing_capabilities": [],
+    "invalid_capabilities": [
+      "file_write"
+    ],
+    "expired_capabilities": [],
+    "approval_count": 0,
+    "required_count": 1,
+    "missing_count": 0,
+    "invalid_count": 1,
+    "expired_count": 0,
+    "approvals": [
+      {
+        "capability": "file_write",
+        "status": "invalid",
+        "scripts": [
+          "scripts/compile_prompt.py"
+        ],
+        "reviewer": "",
+        "scope": "scripts/compile_prompt.py --out task directory; originals unchanged; no overwrite",
+        "reason": "Personal candidate writes only requested prompt/design files under an explicit output directory; independent organizational governance review was not requested or performed.",
+        "expires_at": "",
+        "evidence": [
+          "security/permissions.md",
+          "reports/evidence.md"
+        ],
+        "target_enforcement": {
+          "openai": "Current host sandbox and task authorization; metadata-only adapter has no native enforcement.",
+          "claude": "Not targeted or claimed.",
+          "generic": "Not targeted or claimed.",
+          "vscode": "Not targeted or claimed."
+        },
+        "validation": [
+          "decision must be approved",
+          "reviewer is required",
+          "expires_at must be ISO date"
+        ]
+      }
+    ]
+  },
+  "trust_metadata": {
+    "source_tier": "local",
+    "remote_inline_execution": "forbid",
+    "remote_metadata_policy": "allow-metadata-only"
+  },
+  "artifacts": {
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/security_trust_report.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/security_trust_report.md"
+  }
+}

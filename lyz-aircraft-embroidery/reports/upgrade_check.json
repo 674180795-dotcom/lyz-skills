@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "status": "not_applicable_initial_release",
+  "summary": {
+    "declared_bump": "initial",
+    "recommended_bump": "initial",
+    "breaking_change_count": 0
+  },
+  "missing_evidence": [
+    "No prior package exists; no genuine upgrade diff is possible."
+  ],
+  "failures": [],
+  "warnings": [
+    "Initial release only; historical upgrade behavior untested."
+  ]
+}

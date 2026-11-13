@@ -1,0 +1,35 @@
+[
+  {
+    "name": "1688tofeishu",
+    "path": "1688tofeishu",
+    "missing": [
+      "owner",
+      "review_cadence",
+      "maturity"
+    ],
+    "actionable": true,
+    "scope": "release"
+  },
+  {
+    "name": "lyz-1688connect",
+    "path": "lyz-1688connect",
+    "missing": [
+      "owner",
+      "review_cadence",
+      "maturity"
+    ],
+    "actionable": true,
+    "scope": "release"
+  },
+  {
+    "name": "lyz-explanation",
+    "path": "lyz-explanation",
+    "missing": [
+      "owner",
+      "review_cadence",
+      "maturity"
+    ],
+    "actionable": true,
+    "scope": "release"
+  }
+]

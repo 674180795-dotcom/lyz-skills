@@ -1,0 +1,615 @@
+{
+  "ok": true,
+  "cases": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/evals/output/cases.jsonl",
+  "summary": {
+    "case_count": 5,
+    "file_backed_case_count": 3,
+    "near_neighbor_case_count": 1,
+    "boundary_case_count": 2,
+    "baseline_pass_rate": 0.0,
+    "with_skill_pass_rate": 100.0,
+    "delta": 100.0,
+    "regression_count": 0,
+    "gate_pass": true,
+    "failure_taxonomy": [],
+    "blind_pair_count": 5
+  },
+  "results": [
+    {
+      "id": "j20",
+      "prompt": "{\"aircraft\": \"J-20\"}",
+      "input_files": [
+        "j20-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "file-backed fixture",
+        "case_type": "file_backed"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 4,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "paired forebody canards ahead of broad delta main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "narrow dawn opening"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "paired forebody canards ahead of broad delta main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "narrow dawn opening"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 4,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "j35a",
+      "prompt": "{\"aircraft\": \"J-35A\"}",
+      "input_files": [
+        "j35a-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "file-backed fixture",
+        "case_type": "file_backed"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 4,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "swept trapezoidal main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "narrow dawn opening"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "swept trapezoidal main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "narrow dawn opening"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 4,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "design_event",
+            "description": "Contains visible scene relationship, not a bare aircraft stencil",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "conflict",
+      "prompt": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}",
+      "input_files": [
+        "conflict-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "boundary",
+        "case_type": "boundary"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 3,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "paired forebody canards ahead of broad delta main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Identity lock:",
+              "paired forebody canards ahead of broad delta main wings"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "Directional thread fills",
+              "raised stitched rim"
+            ],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "One embroidered aircraft patch",
+              "Image ratio"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 3,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "identity",
+            "description": "Specific model structure present",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "material",
+            "description": "Actual thread/rim instructions, not empty quality words",
+            "weight": 4.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          },
+          {
+            "id": "bounded",
+            "description": "One product with explicit projection and background",
+            "weight": 3.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "unknown",
+      "prompt": "{\"aircraft\": \"J-20S\"}",
+      "input_files": [],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "input-copy comparator; not a model baseline",
+        "category": "boundary",
+        "case_type": "boundary"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 1,
+        "checks": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "ERROR:"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "ERROR:"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 1,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    },
+    {
+      "id": "neighbor",
+      "prompt": "{\"style\": \"T-shirt print\"}",
+      "input_files": [],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "input-copy comparator; not a model baseline",
+        "category": "near-neighbor",
+        "case_type": "near_neighbor"
+      },
+      "baseline": {
+        "score": 0.0,
+        "passed_count": 0,
+        "failed_count": 1,
+        "checks": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "ERROR:"
+            ],
+            "present_forbidden": []
+          }
+        ],
+        "failed": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": false,
+            "missing": [
+              "ERROR:"
+            ],
+            "present_forbidden": []
+          }
+        ]
+      },
+      "with_skill": {
+        "score": 100.0,
+        "passed_count": 1,
+        "failed_count": 0,
+        "checks": [
+          {
+            "id": "fail_closed",
+            "description": "Does not invent a model or accept unbounded adjacent style",
+            "weight": 5.0,
+            "failure_type": "assertion_failed",
+            "passed": true,
+            "missing": [],
+            "present_forbidden": []
+          }
+        ],
+        "failed": []
+      },
+      "delta": 100.0,
+      "winner": "with_skill",
+      "failure_taxonomy": []
+    }
+  ],
+  "failures": [],
+  "blind_review": {
+    "pack": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.json",
+    "answer_key": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_answer_key.json",
+    "pair_count": 5
+  },
+  "artifacts": {
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_quality_scorecard.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_quality_scorecard.md",
+    "blind_review_pack_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.json",
+    "blind_review_pack_md": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.md",
+    "blind_answer_key_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_answer_key.json"
+  },
+  "evidence_scope": "deterministic input-copy comparator only; not image quality or independent model baseline"
+}

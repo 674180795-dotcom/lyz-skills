@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-11-14",
+  "capabilities": {
+    "file_write": {
+      "decision": "pending",
+      "reviewer": "",
+      "reason": "Personal candidate writes only requested prompt/design files under an explicit output directory; independent organizational governance review was not requested or performed.",
+      "scope": "scripts/compile_prompt.py --out task directory; originals unchanged; no overwrite",
+      "expires_at": "",
+      "evidence": [
+        "security/permissions.md",
+        "reports/evidence.md"
+      ],
+      "target_enforcement": {
+        "openai": "Current host sandbox and task authorization; metadata-only adapter has no native enforcement.",
+        "claude": "Not targeted or claimed.",
+        "generic": "Not targeted or claimed.",
+        "vscode": "Not targeted or claimed."
+      }
+    }
+  }
+}

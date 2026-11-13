@@ -1,0 +1,83 @@
+{
+  "ok": false,
+  "schema_version": "2.0",
+  "generated_at": "2026-11-14",
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+  "package_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist",
+  "summary": {
+    "target_count": 1,
+    "adapter_count": 1,
+    "archive_present": true,
+    "archive_sha256": "a38213b173cd7abadad24117100f874a27d80751cd38ba6f186723686a1e0579",
+    "archive_entry_count": 107,
+    "failure_count": 1,
+    "warning_count": 0
+  },
+  "checks": [
+    {
+      "id": "package-manifest",
+      "status": "pass",
+      "detail": "Package manifest exists: /Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/manifest.json"
+    },
+    {
+      "id": "openai-adapter",
+      "status": "pass",
+      "detail": "Adapter exists for target: openai"
+    },
+    {
+      "id": "archive-safe-paths",
+      "status": "pass",
+      "detail": "Archive has no absolute or parent-traversal entries"
+    },
+    {
+      "id": "archive-entry-lyz-aircraft-embroidery/SKILL.md",
+      "status": "pass",
+      "detail": "Archive contains lyz-aircraft-embroidery/SKILL.md"
+    },
+    {
+      "id": "archive-entry-lyz-aircraft-embroidery/manifest.json",
+      "status": "pass",
+      "detail": "Archive contains lyz-aircraft-embroidery/manifest.json"
+    },
+    {
+      "id": "archive-entry-lyz-aircraft-embroidery/agents/interface.yaml",
+      "status": "pass",
+      "detail": "Archive contains lyz-aircraft-embroidery/agents/interface.yaml"
+    },
+    {
+      "id": "archive-excludes-generated",
+      "status": "pass",
+      "detail": "Archive excludes generated dist/, .previews/, and tests/tmp* contents"
+    },
+    {
+      "id": "registry-ok",
+      "status": "fail",
+      "detail": "Registry audit is OK"
+    },
+    {
+      "id": "registry-name-match",
+      "status": "pass",
+      "detail": "Registry package name matches package manifest"
+    },
+    {
+      "id": "registry-version-match",
+      "status": "pass",
+      "detail": "Registry package version matches package manifest"
+    },
+    {
+      "id": "registry-compat-openai",
+      "status": "pass",
+      "detail": "Registry compatibility is reviewable for target: openai"
+    }
+  ],
+  "failures": [
+    "Registry audit is OK"
+  ],
+  "warnings": [],
+  "artifacts": {
+    "manifest": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/manifest.json",
+    "archive": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/lyz-aircraft-embroidery.zip",
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/package_verification.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/package_verification.md"
+  }
+}

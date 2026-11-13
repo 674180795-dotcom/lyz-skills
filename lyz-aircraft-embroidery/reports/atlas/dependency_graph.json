@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "name": "1688tofeishu",
+      "path": "1688tofeishu"
+    },
+    {
+      "name": "lyz-1688connect",
+      "path": "lyz-1688connect"
+    },
+    {
+      "name": "lyz-aircraft-embroidery",
+      "path": "lyz-aircraft-embroidery"
+    },
+    {
+      "name": "lyz-explanation",
+      "path": "lyz-explanation"
+    },
+    {
+      "name": "lyz-podcast-article",
+      "path": "lyz-podcast-article"
+    },
+    {
+      "name": "lyz-resume",
+      "path": "lyz-resume"
+    }
+  ],
+  "shared_resources": [
+    {
+      "resource": "references/quality.md",
+      "skills": [
+        "lyz-aircraft-embroidery",
+        "lyz-podcast-article"
+      ]
+    }
+  ]
+}

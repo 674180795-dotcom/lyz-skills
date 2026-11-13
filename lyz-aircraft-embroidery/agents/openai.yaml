@@ -1,0 +1,4 @@
+interface:
+  display_name: "航空刺绣设计"
+  short_description: "为军迷生成型号可信、针线质感明确的刺绣产品图"
+  default_prompt: "使用 $lyz-aircraft-embroidery，按参考图和指定战机设计原创刺绣章，实际调用生图并检查型号与针线质感。"

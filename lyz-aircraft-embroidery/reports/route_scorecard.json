@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "summary": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "total_cases": 17,
+    "misroute_count": 0,
+    "ambiguous_case_count": 0
+  },
+  "evidence_mode": "local concept-matching proxy; not host model routing"
+}

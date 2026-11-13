@@ -1,0 +1,30 @@
+{
+  "name": "lyz-aircraft-embroidery",
+  "version": "0.1.0",
+  "owner": "ling99",
+  "updated_at": "2026-11-14",
+  "status": "experimental",
+  "maturity_tier": "production",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "skill_archetype": "production",
+  "target_platforms": [
+    "openai"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "assets",
+    "evals",
+    "reports",
+    "security"
+  ],
+  "release_state": "candidate",
+  "license": "UNLICENSED",
+  "input_files": "file-backed fixture: 35 local images, 32 unique; reports/sample-ledger.json stores hashes, dimensions and observations; originals not distributed",
+  "output_contract": "actual embroidery product image plus prompt, parameter record and honest visual check; prompt-only when explicitly requested",
+  "rollback_boundary": "do not modify originals or overwrite outputs; remove installed skill to roll back; no external uploads except deliberate image generation reference use",
+  "network": "compiler offline; host may invoke built-in image generation and read-only primary research",
+  "review_policy": "review after model/tool schema changes, new aircraft cards or 5 real user feedbacks; at least quarterly"
+}

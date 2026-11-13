@@ -1,0 +1,16 @@
+skill_a,skill_b,path_a,path_b,score,status,actionable,scope_a,scope_b
+1688tofeishu,lyz-1688connect,1688tofeishu,lyz-1688connect,0.079,clear,True,release,release
+1688tofeishu,lyz-aircraft-embroidery,1688tofeishu,lyz-aircraft-embroidery,0.0,clear,True,release,release
+1688tofeishu,lyz-explanation,1688tofeishu,lyz-explanation,0.0,clear,True,release,release
+1688tofeishu,lyz-podcast-article,1688tofeishu,lyz-podcast-article,0.016,clear,True,release,release
+1688tofeishu,lyz-resume,1688tofeishu,lyz-resume,0.0,clear,True,release,release
+lyz-1688connect,lyz-aircraft-embroidery,lyz-1688connect,lyz-aircraft-embroidery,0.0,clear,True,release,release
+lyz-1688connect,lyz-explanation,lyz-1688connect,lyz-explanation,0.0,clear,True,release,release
+lyz-1688connect,lyz-podcast-article,lyz-1688connect,lyz-podcast-article,0.0,clear,True,release,release
+lyz-1688connect,lyz-resume,lyz-1688connect,lyz-resume,0.0,clear,True,release,release
+lyz-aircraft-embroidery,lyz-explanation,lyz-aircraft-embroidery,lyz-explanation,0.0,clear,True,release,release
+lyz-aircraft-embroidery,lyz-podcast-article,lyz-aircraft-embroidery,lyz-podcast-article,0.0,clear,True,release,release
+lyz-aircraft-embroidery,lyz-resume,lyz-aircraft-embroidery,lyz-resume,0.0,clear,True,release,release
+lyz-explanation,lyz-podcast-article,lyz-explanation,lyz-podcast-article,0.0,clear,True,release,release
+lyz-explanation,lyz-resume,lyz-explanation,lyz-resume,0.0,clear,True,release,release
+lyz-podcast-article,lyz-resume,lyz-podcast-article,lyz-resume,0.0,clear,True,release,release

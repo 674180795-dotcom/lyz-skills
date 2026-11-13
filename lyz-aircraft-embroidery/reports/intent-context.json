@@ -1,0 +1,21 @@
+{
+  "job": "Generate one original embroidered aircraft patch product image for Chinese aviation enthusiasts from uploaded visual references and an explicitly locked aircraft model.",
+  "real_inputs": [
+    "型号、参考图和可选构图；本次35张本地图集"
+  ],
+  "primary_output": "One saved actual product PNG image with its concise prompt.txt, design.json parameter locks and an honest pass/fail/uncertain visual acceptance record.",
+  "description": "围绕上传的刺绣章效果图，为中国战机军迷设计原创刺绣产品图片；提取视觉原子、锁定型号外形、按构图编译简短提示并调用AI生图。适用于战机刺绣章、士气章和魔术贴章；不用于真实飞行性能分析、针版文件或服装印花。",
+  "exclusions": [
+    "工厂针版、未经验证的机型细节、营销海报复刻"
+  ],
+  "constraints": [
+    "主体特征保真 > 参数正交 > 变体多样性"
+  ],
+  "standards": [
+    "型号可识别、针线材质明确、单一构图、无冗余修饰"
+  ],
+  "correction": "",
+  "user_references": [
+    "35 local embroidery product sample images; 32 unique hashes"
+  ]
+}

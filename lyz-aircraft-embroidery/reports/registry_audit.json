@@ -1,0 +1,83 @@
+{
+  "ok": false,
+  "schema_version": "2.0",
+  "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+  "registry_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry",
+  "package": {
+    "schema_version": "2.0",
+    "name": "lyz-aircraft-embroidery",
+    "version": "0.1.0",
+    "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+    "targets": [
+      "openai"
+    ],
+    "maturity": "production",
+    "owner": "ling99",
+    "review_cadence": "quarterly",
+    "trust_level": "local",
+    "license": "UNLICENSED",
+    "checksums": {
+      "package_sha256": "29f543bf1e6b52fa6cd78f6710415b2b4b8c638c7dabdda4efb902e3536ddb83",
+      "archive_sha256": "0f0238bc6b0fdfdafe05751cc5168f82cf1f70c39db867717fffca85ab9fcd9f"
+    },
+    "compatibility": {
+      "openai": "pass"
+    },
+    "source": {
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "skill_ir": "reports/skill-ir.json",
+      "ir_schema_version": "2.0.0",
+      "canonical_metadata": "agents/interface.yaml"
+    },
+    "artifacts": {
+      "overview_html": "reports/skill-overview.html",
+      "review_studio_html": "reports/review-studio.html",
+      "trust_report": "reports/security_trust_report.md",
+      "conformance_matrix": "reports/conformance_matrix.md",
+      "compiled_targets": "reports/compiled_targets.md",
+      "package_verification": "reports/package_verification.md",
+      "install_simulation": "reports/install_simulation.md",
+      "adoption_drift": "reports/adoption_drift_report.md",
+      "review_waivers": "reports/review_waivers.md",
+      "review_annotations": "reports/review_annotations.md",
+      "package_metadata": "registry/packages/lyz-aircraft-embroidery.json"
+    },
+    "distribution": {
+      "archive_verified": false,
+      "archive_sha256": "0f0238bc6b0fdfdafe05751cc5168f82cf1f70c39db867717fffca85ab9fcd9f",
+      "package_verification": "reports/package_verification.json",
+      "install_simulated": false,
+      "install_simulation": "reports/install_simulation.json"
+    },
+    "generated_at": "2026-11-14"
+  },
+  "index": {
+    "schema_version": "2.0",
+    "generated_at": "2026-11-14",
+    "package_count": 1,
+    "packages": [
+      {
+        "name": "lyz-aircraft-embroidery",
+        "version": "0.1.0",
+        "maturity": "production",
+        "owner": "ling99",
+        "targets": [
+          "openai"
+        ],
+        "package_metadata": "registry/packages/lyz-aircraft-embroidery.json",
+        "package_sha256": "29f543bf1e6b52fa6cd78f6710415b2b4b8c638c7dabdda4efb902e3536ddb83"
+      }
+    ]
+  },
+  "failures": [
+    "Package verification report exists but archive verification did not pass",
+    "Install simulation report exists but install simulation did not pass"
+  ],
+  "warnings": [],
+  "artifacts": {
+    "index": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry/index.json",
+    "package": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry/packages/lyz-aircraft-embroidery.json",
+    "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry_audit.json",
+    "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry_audit.md"
+  }
+}

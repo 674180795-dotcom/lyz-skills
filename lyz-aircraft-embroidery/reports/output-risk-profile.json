@@ -1,0 +1,19 @@
+{
+  "skill_name": "lyz-aircraft-embroidery",
+  "top_risks": [
+    "Aircraft model contamination: canards or tailplanes transferred from another model.",
+    "Mechanical fidelity mistaken for design quality: default centered plane plus stripes erases sample aesthetic logic.",
+    "Material resembles print/PVC instead of directional embroidery.",
+    "Background or clipped wings conceal identification features.",
+    "Same palette drifts between rim, canopy and field color roles.",
+    "Compiler fixtures mistaken for actual image quality or model baseline evidence."
+  ],
+  "evidence_mode": "author risk analysis, not user study",
+  "repairs": [
+    "lock geometry card",
+    "inspect actual threads and rim",
+    "remove competing background",
+    "bind palette roles",
+    "separate compiler tests from live image checks"
+  ]
+}

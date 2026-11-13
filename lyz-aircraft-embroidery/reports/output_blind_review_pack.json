@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0",
+  "seed": "yao-output-eval-blind-v1",
+  "summary": {
+    "pair_count": 5,
+    "answer_key_separate": true,
+    "with_skill_hidden_count": 5
+  },
+  "pairs": [
+    {
+      "case_id": "j20",
+      "prompt": "{\"aircraft\": \"J-20\"}",
+      "input_files": [
+        "j20-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "file-backed fixture",
+        "case_type": "file_backed"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "identity",
+          "description": "Specific model structure present",
+          "weight": 5.0
+        },
+        {
+          "id": "material",
+          "description": "Actual thread/rim instructions, not empty quality words",
+          "weight": 4.0
+        },
+        {
+          "id": "bounded",
+          "description": "One product with explicit projection and background",
+          "weight": 3.0
+        },
+        {
+          "id": "design_event",
+          "description": "Contains visible scene relationship, not a bare aircraft stencil",
+          "weight": 4.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "j20:A",
+        "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Chengdu J-20 single-seat baseline.\nIdentity lock: long pointed fuselage; paired forebody canards ahead of broad delta main wings; two outward-canted vertical fins; two rear engine nozzles; no separate conventional horizontal tailplanes.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nCurved scene contours counterbalance the aircraft’s straight edges.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: single engine, conventional rear horizontal tailplanes, missing forebody canards, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+      },
+      "variant_b": {
+        "blind_id": "j20:B",
+        "output": "{\"aircraft\": \"J-20\"}"
+      }
+    },
+    {
+      "case_id": "j35a",
+      "prompt": "{\"aircraft\": \"J-35A\"}",
+      "input_files": [
+        "j35a-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "file-backed fixture",
+        "case_type": "file_backed"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "identity",
+          "description": "Specific model structure present",
+          "weight": 5.0
+        },
+        {
+          "id": "material",
+          "description": "Actual thread/rim instructions, not empty quality words",
+          "weight": 4.0
+        },
+        {
+          "id": "bounded",
+          "description": "One product with explicit projection and background",
+          "weight": 3.0
+        },
+        {
+          "id": "design_event",
+          "description": "Contains visible scene relationship, not a bare aircraft stencil",
+          "weight": 4.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "j35a:A",
+        "output": "{\"aircraft\": \"J-35A\"}"
+      },
+      "variant_b": {
+        "blind_id": "j35a:B",
+        "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Shenyang J-35A single-seat land-based variant.\nIdentity lock: pointed nose and blended fuselage; swept trapezoidal main wings; two outward-canted vertical fins; paired rear horizontal tailplanes; two rear engine nozzles; no forebody canards.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nCurved scene contours counterbalance the aircraft’s straight edges.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: forebody canards, single engine, carrier wing-fold emphasis, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+      }
+    },
+    {
+      "case_id": "conflict",
+      "prompt": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}",
+      "input_files": [
+        "conflict-brief.json"
+      ],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "deterministic input-copy comparator; not a model baseline",
+        "category": "boundary",
+        "case_type": "boundary"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "identity",
+          "description": "Specific model structure present",
+          "weight": 5.0
+        },
+        {
+          "id": "material",
+          "description": "Actual thread/rim instructions, not empty quality words",
+          "weight": 4.0
+        },
+        {
+          "id": "bounded",
+          "description": "One product with explicit projection and background",
+          "weight": 3.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "conflict:A",
+        "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Chengdu J-20 single-seat baseline.\nIdentity lock: long pointed fuselage; paired forebody canards ahead of broad delta main wings; two outward-canted vertical fins; two rear engine nozzles; no separate conventional horizontal tailplanes.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: single engine, conventional rear horizontal tailplanes, missing forebody canards, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+      },
+      "variant_b": {
+        "blind_id": "conflict:B",
+        "output": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}"
+      }
+    },
+    {
+      "case_id": "unknown",
+      "prompt": "{\"aircraft\": \"J-20S\"}",
+      "input_files": [],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "input-copy comparator; not a model baseline",
+        "category": "boundary",
+        "case_type": "boundary"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "fail_closed",
+          "description": "Does not invent a model or accept unbounded adjacent style",
+          "weight": 5.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "unknown:A",
+        "output": "{\"aircraft\": \"J-20S\"}"
+      },
+      "variant_b": {
+        "blind_id": "unknown:B",
+        "output": "ERROR: Unknown aircraft: supply a verified subject_card; never substitute a nearby model"
+      }
+    },
+    {
+      "case_id": "neighbor",
+      "prompt": "{\"style\": \"T-shirt print\"}",
+      "input_files": [],
+      "metadata": {
+        "execution_mode": "command-compiled fixture",
+        "baseline_method": "input-copy comparator; not a model baseline",
+        "category": "near-neighbor",
+        "case_type": "near_neighbor"
+      },
+      "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+      "rubric": [
+        {
+          "id": "fail_closed",
+          "description": "Does not invent a model or accept unbounded adjacent style",
+          "weight": 5.0
+        }
+      ],
+      "variant_a": {
+        "blind_id": "neighbor:A",
+        "output": "{\"style\": \"T-shirt print\"}"
+      },
+      "variant_b": {
+        "blind_id": "neighbor:B",
+        "output": "ERROR: Brief must be an object using only documented fields"
+      }
+    }
+  ]
+}

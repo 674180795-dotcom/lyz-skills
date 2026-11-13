@@ -1,0 +1,696 @@
+{
+  "threshold": 0.55,
+  "threshold_explanation": "Aircraft intent AND embroidery-product intent required; documented exclusions penalized. This is a local proxy, not an independent model route evaluation.",
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "bucket_stats": {
+    "should_trigger": {
+      "total": 6,
+      "passed": 6,
+      "pass_rate": 1.0
+    },
+    "should_not_trigger": {
+      "total": 6,
+      "passed": 6,
+      "pass_rate": 1.0
+    },
+    "near_neighbor": {
+      "total": 5,
+      "passed": 5,
+      "pass_rate": 1.0
+    }
+  },
+  "family_stats": {
+    "embroidery": {
+      "total": 6,
+      "passed": 6,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "excluded": {
+      "total": 6,
+      "passed": 6,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    },
+    "neighbor": {
+      "total": 5,
+      "passed": 5,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "pass_rate": 1.0
+    }
+  },
+  "misfires": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "给军迷做歼20刺绣章，实际生图",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "歼20",
+                "军迷"
+              ],
+              "embroidery": [
+                "刺绣",
+                "刺绣章"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "按上传的刺绣样本换成歼35A战机，生成产品图片",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "战机",
+                "歼35A"
+              ],
+              "embroidery": [
+                "刺绣"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "为中国战机军迷设计一套魔术贴章",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "中国战机",
+                "战机",
+                "军迷"
+              ],
+              "embroidery": [
+                "魔术贴章"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "把这批战机士气章拆成可重组的生图规则",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "战机"
+              ],
+              "embroidery": [
+                "士气章"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "中国战机刺绣产品换构图但保持型号",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "中国战机",
+                "战机"
+              ],
+              "embroidery": [
+                "刺绣"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "帮我为歼20刺绣章写一份提示词，不用生图",
+        "family": "embroidery",
+        "score": 0.96,
+        "predicted_trigger": true,
+        "expected_trigger": true,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 1.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.04,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "歼20"
+              ],
+              "embroidery": [
+                "刺绣",
+                "刺绣章"
+              ]
+            },
+            "negative": {}
+          }
+        }
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "解释FBS设计理论",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "out_of_scope": [
+                "解释FBS"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "帮我制作服装印花",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "out_of_scope": [
+                "服装印花"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "根据照片输出工厂针版文件",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "out_of_scope": [
+                "针版文件"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "分析歼20军事性能",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "歼20"
+              ]
+            },
+            "negative": {
+              "out_of_scope": [
+                "军事性能"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "画一张汽车广告海报",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {}
+          }
+        }
+      },
+      {
+        "prompt": "把已有刺绣图片批量改文件名",
+        "family": "excluded",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "embroidery": [
+                "刺绣"
+              ]
+            },
+            "negative": {
+              "out_of_scope": [
+                "改文件名"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "给战机画一张航空海报",
+        "family": "neighbor",
+        "score": 0.46,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "战机"
+              ]
+            },
+            "negative": {}
+          }
+        },
+        "boundary_case": true
+      },
+      {
+        "prompt": "设计歼20马克杯",
+        "family": "neighbor",
+        "score": 0.46,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "歼20"
+              ]
+            },
+            "negative": {}
+          }
+        },
+        "boundary_case": true
+      },
+      {
+        "prompt": "只解释Leborg视觉语法",
+        "family": "neighbor",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.0,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {},
+            "negative": {
+              "out_of_scope": [
+                "只解释"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "把战机图案变成T恤印花",
+        "family": "neighbor",
+        "score": 0.0,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "aircraft"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [
+            "out_of_scope"
+          ],
+          "exclusive_negative_concepts": [
+            "out_of_scope"
+          ],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 1.0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "aircraft": [
+                "战机"
+              ]
+            },
+            "negative": {
+              "out_of_scope": [
+                "T恤印花"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "prompt": "生成普通猫咪刺绣图",
+        "family": "neighbor",
+        "score": 0.46,
+        "predicted_trigger": false,
+        "expected_trigger": false,
+        "passed": true,
+        "score_detail": {
+          "mode": "semantic-intent",
+          "desired_positive_concepts": [
+            "aircraft",
+            "embroidery"
+          ],
+          "matched_desired_concepts": [
+            "embroidery"
+          ],
+          "extra_positive_concepts": [],
+          "matched_negative_concepts": [],
+          "exclusive_negative_concepts": [],
+          "semantic_coverage": 0.5,
+          "support_score": 0,
+          "lexical_support": 0.0,
+          "negative_penalty": 0,
+          "coverage_boost": 0.0,
+          "concept_evidence": {
+            "positive": {
+              "embroidery": [
+                "刺绣"
+              ]
+            },
+            "negative": {}
+          }
+        },
+        "boundary_case": true
+      }
+    ]
+  },
+  "evidence_mode": "local concept-matching proxy; not host model routing"
+}

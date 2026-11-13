@@ -1,0 +1,34 @@
+{
+  "boundary_map": {
+    "owned_job": "Generate an original embroidered aircraft product image from locked model geometry and abstract visual grammar.",
+    "non_goals": [
+      "production stitch file",
+      "military performance",
+      "brand recreation"
+    ],
+    "human_judgment_boundary": [
+      "Require verified geometry evidence for an unknown aircraft; never substitute a nearby model.",
+      "If tool unavailable, preserve prompt and state image not generated.",
+      "Only user can accept subjective taste; agent must not invent approval."
+    ]
+  },
+  "drift_watch": [
+    {
+      "watch_signal": "Aircraft geometry changes after a style-only iteration."
+    },
+    {
+      "watch_signal": "Palette role allocation changes within one series."
+    },
+    {
+      "watch_signal": "Image tool schema changes or references are not actually passed."
+    }
+  ],
+  "feedback_loop": [
+    "Formulate Be",
+    "Compile S",
+    "Generate image",
+    "Observe Bs",
+    "Compare to Be",
+    "Repair one axis"
+  ]
+}

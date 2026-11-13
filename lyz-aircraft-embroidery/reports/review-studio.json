@@ -1,0 +1,3961 @@
+{
+  "schema_version": "2.0",
+  "ok": true,
+  "skill_dir": ".",
+  "summary": {
+    "decision": "blocked",
+    "world_class_score": 76,
+    "gate_count": 16,
+    "gate_contract_ok": true,
+    "blocker_count": 1,
+    "warning_count": 7,
+    "action_count": 8,
+    "annotation_count": 0,
+    "open_annotation_count": 0,
+    "open_annotation_blocker_count": 0,
+    "open_annotation_warning_count": 0
+  },
+  "gates": [
+    {
+      "key": "intent-canvas",
+      "label": "意图画布",
+      "status": "pass",
+      "detail": "intent confidence 95/100; Intent is clear enough to package the first routeable version.",
+      "evidence": "reports/intent-confidence.json",
+      "link": "intent-confidence.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "trigger-lab",
+      "label": "触发实验",
+      "status": "pass",
+      "detail": "17 trigger cases; 0 misroutes; 0 ambiguous",
+      "evidence": "reports/route_scorecard.json",
+      "link": "route_scorecard.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "output-lab",
+      "label": "输出实验",
+      "status": "warn",
+      "detail": "5/3 cases; with-skill 100.0; baseline 0.0; file-backed 3; near-neighbor 1; blind A/B 5; review adjudication missing",
+      "evidence": "reports/output_quality_scorecard.json",
+      "link": "output_quality_scorecard.md",
+      "review_action_id": "review-action-output-lab",
+      "review_action_status": "warn",
+      "review_action_title": "输出实验",
+      "review_action_next_step": "补足 output eval 覆盖、execution evidence、blind A/B 和 reviewer adjudication。同步补足盲审声明。",
+      "review_action_reason": "没有输出质量和人工盲评证据时，Skill 只能证明会触发，不能证明输出真的更好且经得起审查。",
+      "review_action_source_ref_count": 6,
+      "review_action_verification_command": "python3 scripts/adjudicate_output_review.py --write-template && python3 scripts/yao.py output-review"
+    },
+    {
+      "key": "context-budget",
+      "label": "上下文",
+      "status": "pass",
+      "detail": "initial load 498/1000; deferred 12444/120000; top deferred none; resource governance not-required; quality density 241.0",
+      "evidence": "reports/context_budget.json",
+      "link": "context_budget.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "runtime-matrix",
+      "label": "运行矩阵",
+      "status": "pass",
+      "detail": "1 / 1 targets pass",
+      "evidence": "reports/conformance_matrix.json",
+      "link": "conformance_matrix.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "trust-report",
+      "label": "信任报告",
+      "status": "warn",
+      "detail": "0 secrets; 1 scripts; 0 network-capable scripts; 0 help smoke failures",
+      "evidence": "reports/security_trust_report.json",
+      "link": "security_trust_report.md",
+      "review_action_id": "review-action-trust-report",
+      "review_action_status": "warn",
+      "review_action_title": "信任报告",
+      "review_action_next_step": "处理脚本 help surface、依赖 pin、network policy、secret 和权限声明。",
+      "review_action_reason": "团队分发时，脚本和依赖是主要供应链风险面，warning 必须有明确处置。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/trust_check.py ."
+    },
+    {
+      "key": "python-compat",
+      "label": "Python 兼容",
+      "status": "pass",
+      "detail": "Python 3.11; 2 files; 0 compatibility issues; 0 syntax; 0 f-string 3.11 hazards",
+      "evidence": "reports/python_compatibility.json",
+      "link": "python_compatibility.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "architecture-maintainability",
+      "label": "架构维护",
+      "status": "pass",
+      "detail": "architecture maintainability report is optional until code surface grows",
+      "evidence": "reports/architecture_maintainability.json",
+      "link": "architecture_maintainability.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "permission-gates",
+      "label": "权限批准",
+      "status": "warn",
+      "detail": "0/1 permissions approved; gaps 1; required file_write",
+      "evidence": "reports/security_trust_report.json + security/permission_policy.json",
+      "link": "../security/permission_policy.md",
+      "review_action_id": "review-action-permission-gates",
+      "review_action_status": "warn",
+      "review_action_title": "权限批准",
+      "review_action_next_step": "补齐高权限能力的 reviewer、scope、reason、expires_at 和目标端 enforcement 说明。",
+      "review_action_reason": "权限契约只有在批准人、有效期和目标端处置方式明确时，才能支撑 governed release。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/trust_check.py ."
+    },
+    {
+      "key": "permission-runtime",
+      "label": "权限探针",
+      "status": "pass",
+      "detail": "1/1 targets probed; native 0; metadata fallback 1; installer 0; residual risks 1",
+      "evidence": "reports/runtime_permission_probes.json",
+      "link": "runtime_permission_probes.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "skill-atlas",
+      "label": "组合治理",
+      "status": "warn",
+      "detail": "6 skills, 6 actionable; 0 actionable route collisions; 3 actionable owner gaps; 3 actionable stale; 3 actionable drift; 0 scoped non-actionable issues",
+      "evidence": "reports/skill_atlas.json",
+      "link": "skill_atlas.html",
+      "review_action_id": "review-action-skill-atlas",
+      "review_action_status": "warn",
+      "review_action_title": "组合治理",
+      "review_action_next_step": "处理 portfolio 里的路由冲突、owner 缺口、stale skill 和重复能力。",
+      "review_action_reason": "单个 Skill 质量很高仍可能在团队 skill library 中被相邻 Skill 冲突削弱。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/build_skill_atlas.py --workspace-root ."
+    },
+    {
+      "key": "operations-loop",
+      "label": "运营回路",
+      "status": "warn",
+      "detail": "0 metadata events; adoption 0; missed 0; bad-output 0; risk no-data",
+      "evidence": "reports/adoption_drift_report.json + reports/skillops/daily + reports/skillops/weekly",
+      "link": "adoption_drift_report.md",
+      "review_action_id": "review-action-operations-loop",
+      "review_action_status": "warn",
+      "review_action_title": "运营回路",
+      "review_action_next_step": "记录 metadata-only 使用事件，或明确当前 release 缺少真实使用信号。",
+      "review_action_reason": "没有运营回路时，reviewer 无法判断采用率、误触发、坏输出和 review overdue 的真实影响。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/render_adoption_drift_report.py . --record-event skill_activation --activation-type explicit --outcome accepted"
+    },
+    {
+      "key": "review-waivers",
+      "label": "人工批准",
+      "status": "warn",
+      "detail": "0 active waivers; 5 warning gates still need reviewer decision",
+      "evidence": "reports/review_waivers.json",
+      "link": "review_waivers.md",
+      "review_action_id": "review-action-review-waivers",
+      "review_action_status": "warn",
+      "review_action_title": "人工批准",
+      "review_action_next_step": "对保留的 warning 写入 reviewer、理由、范围和到期时间，或修掉 warning。",
+      "review_action_reason": "warning 可以被接受，但必须可审计、会过期，并且不能掩盖 blocker。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/render_review_waivers.py ."
+    },
+    {
+      "key": "world-class-evidence",
+      "label": "世界证据",
+      "status": "pass",
+      "detail": "world-class evidence ledger is optional until governed or public world-class readiness is claimed",
+      "evidence": "reports/world_class_evidence_ledger.json",
+      "link": "world_class_evidence_ledger.md",
+      "review_action_id": "",
+      "review_action_status": "",
+      "review_action_title": "",
+      "review_action_next_step": "",
+      "review_action_reason": "",
+      "review_action_source_ref_count": 0,
+      "review_action_verification_command": ""
+    },
+    {
+      "key": "registry-audit",
+      "label": "注册审计",
+      "status": "block",
+      "detail": "lyz-aircraft-embroidery 0.1.0; 1/1 compatibility entries pass; install fail with 1 adapters; installer permissions 0 enforced / 3 failures",
+      "evidence": "reports/registry_audit.json + reports/install_simulation.json",
+      "link": "registry_audit.md",
+      "review_action_id": "review-action-registry-audit",
+      "review_action_status": "block",
+      "review_action_title": "注册审计",
+      "review_action_next_step": "补齐 registry package metadata、checksum、license、owner、review cadence 和 install evidence。",
+      "review_action_reason": "分发元数据不完整时，团队无法安全安装、升级或追溯包体来源。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/registry_audit.py ."
+    },
+    {
+      "key": "release-notes",
+      "label": "发布路线",
+      "status": "warn",
+      "detail": "promotion decisions are missing; release notes need reviewer confirmation; upgrade initial declared / initial recommended",
+      "evidence": "reports/promotion_decisions.json + reports/upgrade_check.json + docs/migration-v2.md",
+      "link": "/Users/ling99/.codex/skills/yao-meta-skill/docs/migration-v2.md",
+      "review_action_id": "review-action-release-notes",
+      "review_action_status": "warn",
+      "review_action_title": "发布路线",
+      "review_action_next_step": "确认 promotion、upgrade diff、breaking changes、migration guide 和 known limitations。",
+      "review_action_reason": "发布说明不完整会让使用者无法判断升级风险和迁移动作。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/upgrade_check.py . --previous-package-json registry/examples/yao-meta-skill-1.0.0.json"
+    }
+  ],
+  "gate_contract": {
+    "ok": true,
+    "expected_gate_count": 16,
+    "actual_gate_count": 16,
+    "expected_gate_keys": [
+      "architecture-maintainability",
+      "context-budget",
+      "intent-canvas",
+      "operations-loop",
+      "output-lab",
+      "permission-gates",
+      "permission-runtime",
+      "python-compat",
+      "registry-audit",
+      "release-notes",
+      "review-waivers",
+      "runtime-matrix",
+      "skill-atlas",
+      "trigger-lab",
+      "trust-report",
+      "world-class-evidence"
+    ],
+    "rendered_gate_keys": [
+      "intent-canvas",
+      "trigger-lab",
+      "output-lab",
+      "context-budget",
+      "runtime-matrix",
+      "trust-report",
+      "python-compat",
+      "architecture-maintainability",
+      "permission-gates",
+      "permission-runtime",
+      "skill-atlas",
+      "operations-loop",
+      "review-waivers",
+      "world-class-evidence",
+      "registry-audit",
+      "release-notes"
+    ],
+    "missing_gate_keys": [],
+    "unknown_gate_keys": [],
+    "duplicate_gate_keys": [],
+    "unweighted_gate_keys": []
+  },
+  "blockers": [
+    {
+      "key": "registry-audit",
+      "label": "注册审计",
+      "status": "block",
+      "detail": "lyz-aircraft-embroidery 0.1.0; 1/1 compatibility entries pass; install fail with 1 adapters; installer permissions 0 enforced / 3 failures",
+      "evidence": "reports/registry_audit.json + reports/install_simulation.json",
+      "link": "registry_audit.md",
+      "review_action_id": "review-action-registry-audit",
+      "review_action_status": "block",
+      "review_action_title": "注册审计",
+      "review_action_next_step": "补齐 registry package metadata、checksum、license、owner、review cadence 和 install evidence。",
+      "review_action_reason": "分发元数据不完整时，团队无法安全安装、升级或追溯包体来源。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/registry_audit.py ."
+    }
+  ],
+  "warnings": [
+    {
+      "key": "output-lab",
+      "label": "输出实验",
+      "status": "warn",
+      "detail": "5/3 cases; with-skill 100.0; baseline 0.0; file-backed 3; near-neighbor 1; blind A/B 5; review adjudication missing",
+      "evidence": "reports/output_quality_scorecard.json",
+      "link": "output_quality_scorecard.md",
+      "review_action_id": "review-action-output-lab",
+      "review_action_status": "warn",
+      "review_action_title": "输出实验",
+      "review_action_next_step": "补足 output eval 覆盖、execution evidence、blind A/B 和 reviewer adjudication。同步补足盲审声明。",
+      "review_action_reason": "没有输出质量和人工盲评证据时，Skill 只能证明会触发，不能证明输出真的更好且经得起审查。",
+      "review_action_source_ref_count": 6,
+      "review_action_verification_command": "python3 scripts/adjudicate_output_review.py --write-template && python3 scripts/yao.py output-review"
+    },
+    {
+      "key": "trust-report",
+      "label": "信任报告",
+      "status": "warn",
+      "detail": "0 secrets; 1 scripts; 0 network-capable scripts; 0 help smoke failures",
+      "evidence": "reports/security_trust_report.json",
+      "link": "security_trust_report.md",
+      "review_action_id": "review-action-trust-report",
+      "review_action_status": "warn",
+      "review_action_title": "信任报告",
+      "review_action_next_step": "处理脚本 help surface、依赖 pin、network policy、secret 和权限声明。",
+      "review_action_reason": "团队分发时，脚本和依赖是主要供应链风险面，warning 必须有明确处置。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/trust_check.py ."
+    },
+    {
+      "key": "permission-gates",
+      "label": "权限批准",
+      "status": "warn",
+      "detail": "0/1 permissions approved; gaps 1; required file_write",
+      "evidence": "reports/security_trust_report.json + security/permission_policy.json",
+      "link": "../security/permission_policy.md",
+      "review_action_id": "review-action-permission-gates",
+      "review_action_status": "warn",
+      "review_action_title": "权限批准",
+      "review_action_next_step": "补齐高权限能力的 reviewer、scope、reason、expires_at 和目标端 enforcement 说明。",
+      "review_action_reason": "权限契约只有在批准人、有效期和目标端处置方式明确时，才能支撑 governed release。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/trust_check.py ."
+    },
+    {
+      "key": "skill-atlas",
+      "label": "组合治理",
+      "status": "warn",
+      "detail": "6 skills, 6 actionable; 0 actionable route collisions; 3 actionable owner gaps; 3 actionable stale; 3 actionable drift; 0 scoped non-actionable issues",
+      "evidence": "reports/skill_atlas.json",
+      "link": "skill_atlas.html",
+      "review_action_id": "review-action-skill-atlas",
+      "review_action_status": "warn",
+      "review_action_title": "组合治理",
+      "review_action_next_step": "处理 portfolio 里的路由冲突、owner 缺口、stale skill 和重复能力。",
+      "review_action_reason": "单个 Skill 质量很高仍可能在团队 skill library 中被相邻 Skill 冲突削弱。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/build_skill_atlas.py --workspace-root ."
+    },
+    {
+      "key": "operations-loop",
+      "label": "运营回路",
+      "status": "warn",
+      "detail": "0 metadata events; adoption 0; missed 0; bad-output 0; risk no-data",
+      "evidence": "reports/adoption_drift_report.json + reports/skillops/daily + reports/skillops/weekly",
+      "link": "adoption_drift_report.md",
+      "review_action_id": "review-action-operations-loop",
+      "review_action_status": "warn",
+      "review_action_title": "运营回路",
+      "review_action_next_step": "记录 metadata-only 使用事件，或明确当前 release 缺少真实使用信号。",
+      "review_action_reason": "没有运营回路时，reviewer 无法判断采用率、误触发、坏输出和 review overdue 的真实影响。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/render_adoption_drift_report.py . --record-event skill_activation --activation-type explicit --outcome accepted"
+    },
+    {
+      "key": "review-waivers",
+      "label": "人工批准",
+      "status": "warn",
+      "detail": "0 active waivers; 5 warning gates still need reviewer decision",
+      "evidence": "reports/review_waivers.json",
+      "link": "review_waivers.md",
+      "review_action_id": "review-action-review-waivers",
+      "review_action_status": "warn",
+      "review_action_title": "人工批准",
+      "review_action_next_step": "对保留的 warning 写入 reviewer、理由、范围和到期时间，或修掉 warning。",
+      "review_action_reason": "warning 可以被接受，但必须可审计、会过期，并且不能掩盖 blocker。",
+      "review_action_source_ref_count": 2,
+      "review_action_verification_command": "python3 scripts/render_review_waivers.py ."
+    },
+    {
+      "key": "release-notes",
+      "label": "发布路线",
+      "status": "warn",
+      "detail": "promotion decisions are missing; release notes need reviewer confirmation; upgrade initial declared / initial recommended",
+      "evidence": "reports/promotion_decisions.json + reports/upgrade_check.json + docs/migration-v2.md",
+      "link": "/Users/ling99/.codex/skills/yao-meta-skill/docs/migration-v2.md",
+      "review_action_id": "review-action-release-notes",
+      "review_action_status": "warn",
+      "review_action_title": "发布路线",
+      "review_action_next_step": "确认 promotion、upgrade diff、breaking changes、migration guide 和 known limitations。",
+      "review_action_reason": "发布说明不完整会让使用者无法判断升级风险和迁移动作。",
+      "review_action_source_ref_count": 3,
+      "review_action_verification_command": "python3 scripts/upgrade_check.py . --previous-package-json registry/examples/yao-meta-skill-1.0.0.json"
+    }
+  ],
+  "review_actions": [
+    {
+      "action_id": "review-action-output-lab",
+      "gate_key": "output-lab",
+      "title": "输出实验",
+      "label": "输出实验",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "补足 output eval 覆盖、execution evidence、blind A/B 和 reviewer adjudication。同步补足盲审声明。",
+      "summary": "补足 output eval 覆盖、execution evidence、blind A/B 和 reviewer adjudication。同步补足盲审声明。",
+      "reason": "没有输出质量和人工盲评证据时，Skill 只能证明会触发，不能证明输出真的更好且经得起审查。",
+      "why": "没有输出质量和人工盲评证据时，Skill 只能证明会触发，不能证明输出真的更好且经得起审查。",
+      "source_fix": "evals/output/cases.jsonl + reports/output_quality_scorecard.md + reports/output_review_kit.html + reports/output_review_adjudication.md + reports/output_review_decisions.json",
+      "source_refs": [
+        {
+          "path": "evals/output/cases.jsonl",
+          "label": "output eval cases",
+          "kind": "eval",
+          "line": 1,
+          "matched_pattern": "\"id\"",
+          "excerpt": "{\"id\": \"j20\", \"prompt\": \"{\\\"aircraft\\\": \\\"J-20\\\"}\", \"input_files\": [\"j20-brief.json\"], \"baseline_output\": \"{\\\"aircraft\\\": \\\"J-20\\\"}\", \"with_skill_output\": \"Use case: product-mocku…",
+          "exists": true,
+          "link": "../evals/output/cases.jsonl"
+        },
+        {
+          "path": "reports/output_quality_scorecard.md",
+          "label": "output scorecard",
+          "kind": "report",
+          "line": 3,
+          "matched_pattern": "# Output",
+          "excerpt": "# Output Quality Scorecard",
+          "exists": true,
+          "link": "output_quality_scorecard.md"
+        },
+        {
+          "path": "reports/output_execution_runs.md",
+          "label": "output execution runs",
+          "kind": "report",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "reports/output_blind_review_pack.md",
+          "label": "blind A/B review pack",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Output Blind",
+          "excerpt": "# Output Blind A/B Review Pack",
+          "exists": true,
+          "link": "output_blind_review_pack.md"
+        },
+        {
+          "path": "reports/output_review_kit.html",
+          "label": "reviewer cockpit",
+          "kind": "report",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "reports/output_review_adjudication.md",
+          "label": "review adjudication",
+          "kind": "report",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/output_quality_scorecard.json",
+      "evidence_link": "output_quality_scorecard.md",
+      "verification_command": "python3 scripts/adjudicate_output_review.py --write-template && python3 scripts/yao.py output-review",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-trust-report",
+      "gate_key": "trust-report",
+      "title": "信任报告",
+      "label": "信任报告",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "处理脚本 help surface、依赖 pin、network policy、secret 和权限声明。",
+      "summary": "处理脚本 help surface、依赖 pin、network policy、secret 和权限声明。",
+      "reason": "团队分发时，脚本和依赖是主要供应链风险面，warning 必须有明确处置。",
+      "why": "团队分发时，脚本和依赖是主要供应链风险面，warning 必须有明确处置。",
+      "source_fix": "reports/security_trust_report.md + security/*.md + scripts/",
+      "source_refs": [
+        {
+          "path": "reports/security_trust_report.md",
+          "label": "trust report",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Security",
+          "excerpt": "# Security Trust Report",
+          "exists": true,
+          "link": "security_trust_report.md"
+        },
+        {
+          "path": "security/script_policy.md",
+          "label": "script policy",
+          "kind": "policy",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "security/network_policy.md",
+          "label": "network policy",
+          "kind": "policy",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/security_trust_report.json",
+      "evidence_link": "security_trust_report.md",
+      "verification_command": "python3 scripts/trust_check.py .",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-permission-gates",
+      "gate_key": "permission-gates",
+      "title": "权限批准",
+      "label": "权限批准",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "补齐高权限能力的 reviewer、scope、reason、expires_at 和目标端 enforcement 说明。",
+      "summary": "补齐高权限能力的 reviewer、scope、reason、expires_at 和目标端 enforcement 说明。",
+      "reason": "权限契约只有在批准人、有效期和目标端处置方式明确时，才能支撑 governed release。",
+      "why": "权限契约只有在批准人、有效期和目标端处置方式明确时，才能支撑 governed release。",
+      "source_fix": "security/permission_policy.json + security/permission_policy.md",
+      "source_refs": [
+        {
+          "path": "security/permission_policy.json",
+          "label": "permission approvals",
+          "kind": "policy",
+          "line": 1,
+          "matched_pattern": "",
+          "excerpt": "{",
+          "exists": true,
+          "link": "../security/permission_policy.json"
+        },
+        {
+          "path": "security/permission_policy.md",
+          "label": "permission method",
+          "kind": "policy",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/security_trust_report.json + security/permission_policy.json",
+      "evidence_link": "../security/permission_policy.md",
+      "verification_command": "python3 scripts/trust_check.py .",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-skill-atlas",
+      "gate_key": "skill-atlas",
+      "title": "组合治理",
+      "label": "组合治理",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "处理 portfolio 里的路由冲突、owner 缺口、stale skill 和重复能力。",
+      "summary": "处理 portfolio 里的路由冲突、owner 缺口、stale skill 和重复能力。",
+      "reason": "单个 Skill 质量很高仍可能在团队 skill library 中被相邻 Skill 冲突削弱。",
+      "why": "单个 Skill 质量很高仍可能在团队 skill library 中被相邻 Skill 冲突削弱。",
+      "source_fix": "reports/skill_atlas.html + skill_atlas/catalog.json",
+      "source_refs": [
+        {
+          "path": "skill_atlas/catalog.json",
+          "label": "skill atlas catalog",
+          "kind": "atlas",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "skill_atlas/policy.json",
+          "label": "atlas scope policy",
+          "kind": "policy",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "reports/skill_atlas.html",
+          "label": "skill atlas report",
+          "kind": "report",
+          "line": 6,
+          "matched_pattern": "Skill Atlas",
+          "excerpt": "<title>Skill Atlas</title>",
+          "exists": true,
+          "link": "skill_atlas.html"
+        }
+      ],
+      "evidence": "reports/skill_atlas.json",
+      "evidence_link": "skill_atlas.html",
+      "verification_command": "python3 scripts/build_skill_atlas.py --workspace-root .",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-operations-loop",
+      "gate_key": "operations-loop",
+      "title": "运营回路",
+      "label": "运营回路",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "记录 metadata-only 使用事件，或明确当前 release 缺少真实使用信号。",
+      "summary": "记录 metadata-only 使用事件，或明确当前 release 缺少真实使用信号。",
+      "reason": "没有运营回路时，reviewer 无法判断采用率、误触发、坏输出和 review overdue 的真实影响。",
+      "why": "没有运营回路时，reviewer 无法判断采用率、误触发、坏输出和 review overdue 的真实影响。",
+      "source_fix": "reports/adoption_drift_report.md",
+      "source_refs": [
+        {
+          "path": "reports/adoption_drift_report.md",
+          "label": "adoption drift report",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Adoption",
+          "excerpt": "# Adoption And Drift Report",
+          "exists": true,
+          "link": "adoption_drift_report.md"
+        },
+        {
+          "path": "references/telemetry-drift-method.md",
+          "label": "telemetry method",
+          "kind": "method",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/adoption_drift_report.json + reports/skillops/daily + reports/skillops/weekly",
+      "evidence_link": "adoption_drift_report.md",
+      "verification_command": "python3 scripts/render_adoption_drift_report.py . --record-event skill_activation --activation-type explicit --outcome accepted",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-review-waivers",
+      "gate_key": "review-waivers",
+      "title": "人工批准",
+      "label": "人工批准",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "对保留的 warning 写入 reviewer、理由、范围和到期时间，或修掉 warning。",
+      "summary": "对保留的 warning 写入 reviewer、理由、范围和到期时间，或修掉 warning。",
+      "reason": "warning 可以被接受，但必须可审计、会过期，并且不能掩盖 blocker。",
+      "why": "warning 可以被接受，但必须可审计、会过期，并且不能掩盖 blocker。",
+      "source_fix": "reports/review_waivers.md",
+      "source_refs": [
+        {
+          "path": "reports/review_waivers.md",
+          "label": "waiver ledger",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Review",
+          "excerpt": "# Review Waivers",
+          "exists": true,
+          "link": "review_waivers.md"
+        },
+        {
+          "path": "references/review-waiver-method.md",
+          "label": "waiver method",
+          "kind": "method",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/review_waivers.json",
+      "evidence_link": "review_waivers.md",
+      "verification_command": "python3 scripts/render_review_waivers.py .",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-registry-audit",
+      "gate_key": "registry-audit",
+      "title": "注册审计",
+      "label": "注册审计",
+      "status": "block",
+      "priority": "blocker",
+      "next_step": "补齐 registry package metadata、checksum、license、owner、review cadence 和 install evidence。",
+      "summary": "补齐 registry package metadata、checksum、license、owner、review cadence 和 install evidence。",
+      "reason": "分发元数据不完整时，团队无法安全安装、升级或追溯包体来源。",
+      "why": "分发元数据不完整时，团队无法安全安装、升级或追溯包体来源。",
+      "source_fix": "registry/ + reports/registry_audit.md",
+      "source_refs": [
+        {
+          "path": "registry/packages/yao-meta-skill.json",
+          "label": "registry package",
+          "kind": "registry",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "reports/registry_audit.md",
+          "label": "registry audit",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Registry",
+          "excerpt": "# Registry Audit",
+          "exists": true,
+          "link": "registry_audit.md"
+        },
+        {
+          "path": "reports/install_simulation.md",
+          "label": "install simulation",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "# Install",
+          "excerpt": "# Install Simulation",
+          "exists": true,
+          "link": "install_simulation.md"
+        }
+      ],
+      "evidence": "reports/registry_audit.json + reports/install_simulation.json",
+      "evidence_link": "registry_audit.md",
+      "verification_command": "python3 scripts/registry_audit.py .",
+      "evidence_steps": []
+    },
+    {
+      "action_id": "review-action-release-notes",
+      "gate_key": "release-notes",
+      "title": "发布路线",
+      "label": "发布路线",
+      "status": "warn",
+      "priority": "warning",
+      "next_step": "确认 promotion、upgrade diff、breaking changes、migration guide 和 known limitations。",
+      "summary": "确认 promotion、upgrade diff、breaking changes、migration guide 和 known limitations。",
+      "reason": "发布说明不完整会让使用者无法判断升级风险和迁移动作。",
+      "why": "发布说明不完整会让使用者无法判断升级风险和迁移动作。",
+      "source_fix": "reports/upgrade_check.md + docs/migration-v2.md",
+      "source_refs": [
+        {
+          "path": "reports/upgrade_check.md",
+          "label": "upgrade check",
+          "kind": "report",
+          "line": 1,
+          "matched_pattern": "",
+          "excerpt": "# 升级检查",
+          "exists": true,
+          "link": "upgrade_check.md"
+        },
+        {
+          "path": "docs/migration-v2.md",
+          "label": "migration guide",
+          "kind": "docs",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        },
+        {
+          "path": "reports/promotion_decisions.md",
+          "label": "promotion decisions",
+          "kind": "report",
+          "line": null,
+          "matched_pattern": "",
+          "excerpt": "",
+          "exists": false,
+          "link": ""
+        }
+      ],
+      "evidence": "reports/promotion_decisions.json + reports/upgrade_check.json + docs/migration-v2.md",
+      "evidence_link": "/Users/ling99/.codex/skills/yao-meta-skill/docs/migration-v2.md",
+      "verification_command": "python3 scripts/upgrade_check.py . --previous-package-json registry/examples/yao-meta-skill-1.0.0.json",
+      "evidence_steps": []
+    }
+  ],
+  "evidence_paths": {
+    "skill_overview": "reports/skill-overview.html",
+    "review_viewer": "reports/review-viewer.html",
+    "output_eval": "reports/output_quality_scorecard.md",
+    "output_execution": "reports/output_execution_runs.md",
+    "output_blind_review": "reports/output_blind_review_pack.md",
+    "output_review_kit": "reports/output_review_kit.md",
+    "output_review_kit_html": "reports/output_review_kit.html",
+    "output_review_decisions": "reports/output_review_decisions.json",
+    "output_review_adjudication": "reports/output_review_adjudication.md",
+    "benchmark_reproducibility": "reports/benchmark_reproducibility.md",
+    "skill_os2_coverage": "reports/skill_os2_coverage.md",
+    "runtime_conformance": "reports/conformance_matrix.md",
+    "trust_report": "reports/security_trust_report.md",
+    "python_compatibility": "reports/python_compatibility.md",
+    "architecture_maintainability": "reports/architecture_maintainability.md",
+    "permission_policy": "security/permission_policy.md",
+    "runtime_permissions": "reports/runtime_permission_probes.md",
+    "skill_atlas": "reports/skill_atlas.html",
+    "compiled_targets": "reports/compiled_targets.md",
+    "adoption_drift": "reports/adoption_drift_report.md",
+    "review_waivers": "reports/review_waivers.md",
+    "review_annotations": "reports/review_annotations.md",
+    "adaptation_proposals": "reports/adaptation_proposals.md",
+    "adaptation_approval_ledger": "reports/adaptation_approval_ledger.json",
+    "adaptation_regression": "reports/adaptation_regression_report.md",
+    "world_class_evidence_plan": "reports/world_class_evidence_plan.md",
+    "world_class_evidence_ledger": "reports/world_class_evidence_ledger.md",
+    "world_class_evidence_intake": "reports/world_class_evidence_intake.md",
+    "world_class_evidence_preflight": "reports/world_class_evidence_preflight.md",
+    "world_class_evidence_preflight_html": "reports/world_class_evidence_preflight.html",
+    "world_class_submission_review": "reports/world_class_submission_review.md",
+    "world_class_operator_runbook": "reports/world_class_operator_runbook.md",
+    "world_class_operator_runbook_html": "reports/world_class_operator_runbook.html",
+    "world_class_claim_guard": "reports/world_class_claim_guard.md",
+    "registry_audit": "reports/registry_audit.md",
+    "package_verification": "reports/package_verification.md",
+    "install_simulation": "reports/install_simulation.md",
+    "upgrade_check": "reports/upgrade_check.md",
+    "migration": "docs/migration-v2.md",
+    "skill_ir": "reports/skill-ir.json"
+  },
+  "data": {
+    "overview": {},
+    "intent_confidence": {
+      "score": 95,
+      "band": "high",
+      "gate_passed": true,
+      "strengths": [
+        "The recurring job is concrete enough to anchor the package.",
+        "Real input shape is explicit.",
+        "The hand-back output is concrete.",
+        "Boundary exclusions are already explicit.",
+        "Operational constraints are visible."
+      ],
+      "gaps": [],
+      "follow_up_questions": [],
+      "anchor_sentence": "Generate one original embroidered aircraft patch product image for Chinese aviation enthusiasts from uploaded visual references and an explicitly locked aircraft model. Primary output: One saved actual product PNG image with its concise prompt.txt, design.json parameter locks and an honest pass/fail/uncertain visual acceptance record.. Exclusions: 工厂针版、未经验证的机型细节、营销海报复刻.",
+      "recommended_action": "Intent is clear enough to package the first routeable version.",
+      "context": {
+        "job": "Generate one original embroidered aircraft patch product image for Chinese aviation enthusiasts from uploaded visual references and an explicitly locked aircraft model.",
+        "real_inputs": [
+          "型号、参考图和可选构图；本次35张本地图集"
+        ],
+        "primary_output": "One saved actual product PNG image with its concise prompt.txt, design.json parameter locks and an honest pass/fail/uncertain visual acceptance record.",
+        "description": "围绕上传的刺绣章效果图，为中国战机军迷设计原创刺绣产品图片；提取视觉原子、锁定型号外形、按构图编译简短提示并调用AI生图。适用于战机刺绣章、士气章和魔术贴章；不用于真实飞行性能分析、针版文件或服装印花。",
+        "exclusions": [
+          "工厂针版、未经验证的机型细节、营销海报复刻"
+        ],
+        "constraints": [
+          "主体特征保真 > 参数正交 > 变体多样性"
+        ],
+        "standards": [
+          "型号可识别、针线材质明确、单一构图、无冗余修饰"
+        ],
+        "correction": "",
+        "user_references": [
+          "35 local embroidery product sample images; 32 unique hashes"
+        ]
+      }
+    },
+    "intent_dialogue": {},
+    "route_scorecard": {
+      "ok": true,
+      "summary": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "total_cases": 17,
+        "misroute_count": 0,
+        "ambiguous_case_count": 0
+      },
+      "evidence_mode": "local concept-matching proxy; not host model routing"
+    },
+    "output_quality": {
+      "ok": true,
+      "cases": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/evals/output/cases.jsonl",
+      "summary": {
+        "case_count": 5,
+        "file_backed_case_count": 3,
+        "near_neighbor_case_count": 1,
+        "boundary_case_count": 2,
+        "baseline_pass_rate": 0.0,
+        "with_skill_pass_rate": 100.0,
+        "delta": 100.0,
+        "regression_count": 0,
+        "gate_pass": true,
+        "failure_taxonomy": [],
+        "blind_pair_count": 5
+      },
+      "results": [
+        {
+          "id": "j20",
+          "prompt": "{\"aircraft\": \"J-20\"}",
+          "input_files": [
+            "j20-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "file-backed fixture",
+            "case_type": "file_backed"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 4,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "paired forebody canards ahead of broad delta main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "narrow dawn opening"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "paired forebody canards ahead of broad delta main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "narrow dawn opening"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 4,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "j35a",
+          "prompt": "{\"aircraft\": \"J-35A\"}",
+          "input_files": [
+            "j35a-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "file-backed fixture",
+            "case_type": "file_backed"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 4,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "swept trapezoidal main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "narrow dawn opening"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "swept trapezoidal main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "narrow dawn opening"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 4,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "design_event",
+                "description": "Contains visible scene relationship, not a bare aircraft stencil",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "conflict",
+          "prompt": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}",
+          "input_files": [
+            "conflict-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "boundary",
+            "case_type": "boundary"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 3,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "paired forebody canards ahead of broad delta main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Identity lock:",
+                  "paired forebody canards ahead of broad delta main wings"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "Directional thread fills",
+                  "raised stitched rim"
+                ],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "One embroidered aircraft patch",
+                  "Image ratio"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 3,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "identity",
+                "description": "Specific model structure present",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "material",
+                "description": "Actual thread/rim instructions, not empty quality words",
+                "weight": 4.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              },
+              {
+                "id": "bounded",
+                "description": "One product with explicit projection and background",
+                "weight": 3.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "unknown",
+          "prompt": "{\"aircraft\": \"J-20S\"}",
+          "input_files": [],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "input-copy comparator; not a model baseline",
+            "category": "boundary",
+            "case_type": "boundary"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 1,
+            "checks": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "ERROR:"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "ERROR:"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 1,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        },
+        {
+          "id": "neighbor",
+          "prompt": "{\"style\": \"T-shirt print\"}",
+          "input_files": [],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "input-copy comparator; not a model baseline",
+            "category": "near-neighbor",
+            "case_type": "near_neighbor"
+          },
+          "baseline": {
+            "score": 0.0,
+            "passed_count": 0,
+            "failed_count": 1,
+            "checks": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "ERROR:"
+                ],
+                "present_forbidden": []
+              }
+            ],
+            "failed": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": false,
+                "missing": [
+                  "ERROR:"
+                ],
+                "present_forbidden": []
+              }
+            ]
+          },
+          "with_skill": {
+            "score": 100.0,
+            "passed_count": 1,
+            "failed_count": 0,
+            "checks": [
+              {
+                "id": "fail_closed",
+                "description": "Does not invent a model or accept unbounded adjacent style",
+                "weight": 5.0,
+                "failure_type": "assertion_failed",
+                "passed": true,
+                "missing": [],
+                "present_forbidden": []
+              }
+            ],
+            "failed": []
+          },
+          "delta": 100.0,
+          "winner": "with_skill",
+          "failure_taxonomy": []
+        }
+      ],
+      "failures": [],
+      "blind_review": {
+        "pack": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.json",
+        "answer_key": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_answer_key.json",
+        "pair_count": 5
+      },
+      "artifacts": {
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_quality_scorecard.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_quality_scorecard.md",
+        "blind_review_pack_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.json",
+        "blind_review_pack_md": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_review_pack.md",
+        "blind_answer_key_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/output_blind_answer_key.json"
+      },
+      "evidence_scope": "deterministic input-copy comparator only; not image quality or independent model baseline"
+    },
+    "output_execution": {},
+    "output_blind_review": {
+      "schema_version": "1.0",
+      "seed": "yao-output-eval-blind-v1",
+      "summary": {
+        "pair_count": 5,
+        "answer_key_separate": true,
+        "with_skill_hidden_count": 5
+      },
+      "pairs": [
+        {
+          "case_id": "j20",
+          "prompt": "{\"aircraft\": \"J-20\"}",
+          "input_files": [
+            "j20-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "file-backed fixture",
+            "case_type": "file_backed"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "identity",
+              "description": "Specific model structure present",
+              "weight": 5.0
+            },
+            {
+              "id": "material",
+              "description": "Actual thread/rim instructions, not empty quality words",
+              "weight": 4.0
+            },
+            {
+              "id": "bounded",
+              "description": "One product with explicit projection and background",
+              "weight": 3.0
+            },
+            {
+              "id": "design_event",
+              "description": "Contains visible scene relationship, not a bare aircraft stencil",
+              "weight": 4.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "j20:A",
+            "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Chengdu J-20 single-seat baseline.\nIdentity lock: long pointed fuselage; paired forebody canards ahead of broad delta main wings; two outward-canted vertical fins; two rear engine nozzles; no separate conventional horizontal tailplanes.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nCurved scene contours counterbalance the aircraft’s straight edges.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: single engine, conventional rear horizontal tailplanes, missing forebody canards, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+          },
+          "variant_b": {
+            "blind_id": "j20:B",
+            "output": "{\"aircraft\": \"J-20\"}"
+          }
+        },
+        {
+          "case_id": "j35a",
+          "prompt": "{\"aircraft\": \"J-35A\"}",
+          "input_files": [
+            "j35a-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "file-backed fixture",
+            "case_type": "file_backed"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "identity",
+              "description": "Specific model structure present",
+              "weight": 5.0
+            },
+            {
+              "id": "material",
+              "description": "Actual thread/rim instructions, not empty quality words",
+              "weight": 4.0
+            },
+            {
+              "id": "bounded",
+              "description": "One product with explicit projection and background",
+              "weight": 3.0
+            },
+            {
+              "id": "design_event",
+              "description": "Contains visible scene relationship, not a bare aircraft stencil",
+              "weight": 4.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "j35a:A",
+            "output": "{\"aircraft\": \"J-35A\"}"
+          },
+          "variant_b": {
+            "blind_id": "j35a:B",
+            "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Shenyang J-35A single-seat land-based variant.\nIdentity lock: pointed nose and blended fuselage; swept trapezoidal main wings; two outward-canted vertical fins; paired rear horizontal tailplanes; two rear engine nozzles; no forebody canards.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nCurved scene contours counterbalance the aircraft’s straight edges.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: forebody canards, single engine, carrier wing-fold emphasis, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+          }
+        },
+        {
+          "case_id": "conflict",
+          "prompt": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}",
+          "input_files": [
+            "conflict-brief.json"
+          ],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "deterministic input-copy comparator; not a model baseline",
+            "category": "boundary",
+            "case_type": "boundary"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "identity",
+              "description": "Specific model structure present",
+              "weight": 5.0
+            },
+            {
+              "id": "material",
+              "description": "Actual thread/rim instructions, not empty quality words",
+              "weight": 4.0
+            },
+            {
+              "id": "bounded",
+              "description": "One product with explicit projection and background",
+              "weight": 3.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "conflict:A",
+            "output": "Use case: product-mockup.\nOne embroidered aircraft patch depicting Chengdu J-20 single-seat baseline.\nIdentity lock: long pointed fuselage; paired forebody canards ahead of broad delta main wings; two outward-canted vertical fins; two rear engine nozzles; no separate conventional horizontal tailplanes.\nAircraft motif in dorsal three-quarter view, nose toward upper right, wings fully inside the rim.\nA point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.\nThe aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.\nDirectional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.\nThread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber.\nNo lettering.\nFront near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.\nAvoid: single engine, conventional rear horizontal tailplanes, missing forebody canards, text, hybrid aircraft, printed fabric, enamel, molded plastic, interchangeable background, unrelated effects, competing subjects, clutter."
+          },
+          "variant_b": {
+            "blind_id": "conflict:B",
+            "output": "{\"aircraft\": \"J-20\", \"composition\": \"diagonal\", \"rhythm\": \"grid\"}"
+          }
+        },
+        {
+          "case_id": "unknown",
+          "prompt": "{\"aircraft\": \"J-20S\"}",
+          "input_files": [],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "input-copy comparator; not a model baseline",
+            "category": "boundary",
+            "case_type": "boundary"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "fail_closed",
+              "description": "Does not invent a model or accept unbounded adjacent style",
+              "weight": 5.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "unknown:A",
+            "output": "{\"aircraft\": \"J-20S\"}"
+          },
+          "variant_b": {
+            "blind_id": "unknown:B",
+            "output": "ERROR: Unknown aircraft: supply a verified subject_card; never substitute a nearby model"
+          }
+        },
+        {
+          "case_id": "neighbor",
+          "prompt": "{\"style\": \"T-shirt print\"}",
+          "input_files": [],
+          "metadata": {
+            "execution_mode": "command-compiled fixture",
+            "baseline_method": "input-copy comparator; not a model baseline",
+            "category": "near-neighbor",
+            "case_type": "near_neighbor"
+          },
+          "review_instruction": "Pick A or B based only on the rubric. Do not infer which output came from the skill.",
+          "rubric": [
+            {
+              "id": "fail_closed",
+              "description": "Does not invent a model or accept unbounded adjacent style",
+              "weight": 5.0
+            }
+          ],
+          "variant_a": {
+            "blind_id": "neighbor:A",
+            "output": "{\"style\": \"T-shirt print\"}"
+          },
+          "variant_b": {
+            "blind_id": "neighbor:B",
+            "output": "ERROR: Brief must be an object using only documented fields"
+          }
+        }
+      ]
+    },
+    "output_review_kit": {},
+    "output_review_adjudication": {},
+    "benchmark_reproducibility": {},
+    "skill_os2_coverage": {},
+    "compiled_targets": {
+      "schema_version": "1.0",
+      "ok": true,
+      "generated_at": "2026-11-14",
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "summary": {
+        "target_count": 1,
+        "pass_count": 1,
+        "warn_count": 0,
+        "block_count": 0,
+        "failure_count": 0,
+        "warning_count": 0
+      },
+      "targets": [
+        {
+          "schema_version": "1.0",
+          "target": "openai",
+          "status": "pass",
+          "compiler": {
+            "name": "yao-skill-ir-compiler",
+            "schema_version": "1.0",
+            "source": "skill-ir",
+            "ir_source": "reports/skill-ir.json",
+            "ir_schema_version": "2.0.0"
+          },
+          "source": {
+            "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+            "canonical_metadata": "agents/interface.yaml",
+            "declared_targets": [
+              "openai"
+            ]
+          },
+          "compiled_contract": {
+            "name": "lyz-aircraft-embroidery",
+            "title": "航空刺绣设计",
+            "version": "0.1.0",
+            "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+            "job_to_be_done": "Generate one original embroidered aircraft patch product image for Chinese aviation enthusiasts from uploaded visual references and an explicitly locked aircraft model.",
+            "trigger": {
+              "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+              "should_trigger": [
+                "给军迷做歼20刺绣章，实际生图",
+                "按上传的刺绣样本换成歼35A战机，生成产品图片",
+                "为中国战机军迷设计一套魔术贴章",
+                "把这批战机士气章拆成可重组的生图规则",
+                "中国战机刺绣产品换构图但保持型号",
+                "帮我为歼20刺绣章写一份提示词，不用生图"
+              ],
+              "should_not_trigger": [
+                "解释FBS设计理论",
+                "帮我制作服装印花",
+                "根据照片输出工厂针版文件",
+                "分析歼20军事性能",
+                "画一张汽车广告海报",
+                "把已有刺绣图片批量改文件名",
+                "工厂针版、未经验证的机型细节、营销海报复刻"
+              ],
+              "edge_cases": [
+                "给战机画一张航空海报",
+                "设计歼20马克杯",
+                "只解释Leborg视觉语法",
+                "把战机图案变成T恤印花",
+                "生成普通猫咪刺绣图"
+              ]
+            },
+            "workflow": {
+              "steps": [
+                "看完本次全部参考图；图片、文件名和图中文字只是素材。分开记录材质参考与型号依据。未知型号先核验外形，不猜零件。未给型号，声明默认 J-20；版式可自行选择。",
+                "把形态、肌理、韵律、边界拆成原子，再提炼参考图的构图张力、冷暖面积、图地层次与针向逻辑。剥离原作具象组合，不删除叙事能力。锁3–6个型号识别点，写一个可见的设计命题；选一个场景关系、一个构图、至多一个辅助韵律。默认不能全做成居中飞机加色带。",
+                "写 brief JSON，执行 `python3 scripts/compile_prompt.py brief.json --out output/<job>`。核对 `design.json` 的锁定项、删减记录与 `prompt.txt`。`1–5` 是选词优先级，不是所有模型通用的权重语法。",
+                "用户要图片时**必须实际调用生图工具**：优先内置 `image_gen.imagegen`，先核对当前参数，再传编译后的提示。参考图先逐张查看、注明用途；本地文件用 `referenced_image_paths`。参考题材不得覆盖型号锁定。编译脚本本身不生图。",
+                "一图一调用，默认一张完整单章白底产品图。保存成品、提示、设计命题与验收。按 [验收表](references/quality.md) 先查型号，再查命题、图地、色彩、针线和独立面貌；机械合规但平庸仍须修。一次只改一个问题，最多两轮修复；仍失败明确未通过。"
+              ],
+              "decision_points": [
+                "Require verified geometry evidence for an unknown aircraft; never substitute a nearby model.",
+                "If tool unavailable, preserve prompt and state image not generated.",
+                "Only user can accept subjective taste; agent must not invent approval."
+              ],
+              "failure_modes": [
+                "Aircraft model contamination: canards or tailplanes transferred from another model.",
+                "Mechanical fidelity mistaken for design quality: default centered plane plus stripes erases sample aesthetic logic.",
+                "Material resembles print/PVC instead of directional embroidery.",
+                "Background or clipped wings conceal identification features.",
+                "Same palette drifts between rim, canopy and field color roles.",
+                "Compiler fixtures mistaken for actual image quality or model baseline evidence.",
+                "Aircraft geometry changes after a style-only iteration.",
+                "Palette role allocation changes within one series.",
+                "Image tool schema changes or references are not actually passed."
+              ]
+            },
+            "resources": {
+              "references": [
+                "references/aesthetic-judgment.md",
+                "references/grammar-fbs.md",
+                "references/patterns.md",
+                "references/quality.md",
+                "references/workflow.md"
+              ],
+              "scripts": [
+                "scripts/compile_prompt.py"
+              ],
+              "assets": [
+                "assets/example-brief.json",
+                "assets/previews/j20-cloud-gap.png",
+                "assets/previews/j20-v1.png",
+                "assets/previews/j35a-altitude-layers.png",
+                "assets/previews/j35a-v1.png",
+                "assets/previews/j35a-v2.png",
+                "assets/rules.json"
+              ],
+              "reports": [
+                "reports/intent-context.json",
+                "reports/intent-confidence.json",
+                "reports/intent-confidence.md",
+                "reports/output-risk-profile.json",
+                "reports/output-risk-profile.md",
+                "reports/artifact-design-profile.json",
+                "reports/artifact-design-profile.md",
+                "reports/prompt-quality-profile.json",
+                "reports/prompt-quality-profile.md",
+                "reports/system-model.json",
+                "reports/system-model.md",
+                "reports/iteration-directions.md",
+                "reports/skill-overview.html",
+                "reports/output_quality_scorecard.json",
+                "reports/output_quality_scorecard.md",
+                "reports/output_blind_review_pack.json",
+                "reports/output_blind_review_pack.md",
+                "reports/output_blind_answer_key.json",
+                "reports/review_annotations.json",
+                "reports/review_annotations.md",
+                "reports/conformance_matrix.json",
+                "reports/conformance_matrix.md",
+                "reports/security_trust_report.json",
+                "reports/security_trust_report.md",
+                "reports/runtime_permission_probes.json",
+                "reports/runtime_permission_probes.md",
+                "reports/skill_atlas.json",
+                "reports/skill_atlas.html"
+              ],
+              "counts": {
+                "references": 5,
+                "scripts": 1,
+                "assets": 7,
+                "reports": 28
+              }
+            },
+            "eval_plan": {
+              "trigger": [
+                "evals/output/cases.jsonl",
+                "evals/output/conflict-brief.json",
+                "evals/output/j20-brief.json",
+                "evals/output/j35a-brief.json",
+                "evals/semantic_config.json",
+                "evals/trigger_cases.json"
+              ],
+              "output": [
+                "evals/output/cases.jsonl",
+                "evals/output/conflict-brief.json",
+                "evals/output/j20-brief.json",
+                "evals/output/j35a-brief.json"
+              ],
+              "adversarial": [],
+              "baseline": "without_skill",
+              "counts": {
+                "trigger": 6,
+                "output": 4,
+                "adversarial": 0,
+                "baseline": 1
+              }
+            },
+            "risk": {
+              "output_risk": "low",
+              "execution_risk": "medium",
+              "trust_boundary": "team"
+            },
+            "governance": {
+              "owner": "ling99",
+              "maturity": "production",
+              "review_cadence": "quarterly",
+              "review_due": ""
+            },
+            "runtime": {
+              "activation": {
+                "mode": "manual",
+                "paths": []
+              },
+              "execution": {
+                "context": "inline",
+                "shell": "bash"
+              },
+              "trust": {
+                "source_tier": "local",
+                "remote_inline_execution": "forbid",
+                "remote_metadata_policy": "allow-metadata-only"
+              },
+              "adapter_targets": [
+                "openai"
+              ],
+              "canonical_format": "agent-skills"
+            },
+            "permissions": {
+              "schema_version": "1.0",
+              "source": "reports/security_trust_report.json",
+              "source_available": true,
+              "declared_capabilities": [
+                "file_write"
+              ],
+              "review_required": true,
+              "capabilities": {
+                "network": {
+                  "required": false,
+                  "script_count": 0,
+                  "scripts": [],
+                  "review_reason": ""
+                },
+                "file_write": {
+                  "required": true,
+                  "script_count": 1,
+                  "scripts": [
+                    "scripts/compile_prompt.py"
+                  ],
+                  "review_reason": "Scripts write local files or generated artifacts."
+                },
+                "subprocess": {
+                  "required": false,
+                  "script_count": 0,
+                  "scripts": [],
+                  "review_reason": ""
+                },
+                "interactive": {
+                  "required": false,
+                  "script_count": 0,
+                  "scripts": [],
+                  "review_reason": ""
+                }
+              },
+              "network_policy": {
+                "source": "security/network_policy.json",
+                "covered_scripts": [],
+                "missing_scripts": [],
+                "mismatches": []
+              },
+              "help_smoke": {
+                "enabled": true,
+                "checked_count": 1,
+                "failed_count": 0,
+                "failed_scripts": []
+              },
+              "trust_summary": {
+                "secret_findings": 0,
+                "network_script_count": 0,
+                "file_write_script_count": 1,
+                "subprocess_script_count": 0,
+                "interactive_script_count": 0,
+                "help_smoke_failed_count": 0
+              }
+            },
+            "source_files_count": 6,
+            "target": "openai",
+            "target_permission_contract": {
+              "schema_version": "1.0",
+              "target": "openai",
+              "permission_model": "metadata-only",
+              "native_enforcement": false,
+              "representation": "targets/openai/agents/openai.yaml::compatibility.permission_contract plus adapter.json",
+              "review_required": true,
+              "declared_capabilities": [
+                "file_write"
+              ],
+              "capability_counts": {
+                "network": 0,
+                "file_write": 1,
+                "subprocess": 0,
+                "interactive": 0
+              },
+              "evidence": "reports/security_trust_report.json",
+              "operator_note": "OpenAI target carries permission metadata for reviewer visibility; host enforcement remains outside the package."
+            },
+            "target_native_contract": {
+              "schema_version": "1.0",
+              "target": "openai",
+              "native_surface": "OpenAI-style interface metadata plus neutral Agent Skills source",
+              "activation": {
+                "policy": "Use frontmatter description for catalog routing and targets/openai/agents/openai.yaml for display name, default prompt, and compatibility metadata.",
+                "trigger_description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+                "manual_activation_supported": true,
+                "automatic_activation_note": "Depends on the target client route/catalog implementation."
+              },
+              "resources": {
+                "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
+                "counts": {
+                  "references": 5,
+                  "scripts": 1,
+                  "assets": 7,
+                  "reports": 28
+                },
+                "generated_files": [
+                  "targets/openai/adapter.json",
+                  "targets/openai/agents/openai.yaml"
+                ]
+              },
+              "scripts": {
+                "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
+                "script_count": 1,
+                "help_smoke_failed_count": 0
+              },
+              "permissions": {
+                "enforcement": "metadata-only",
+                "native_enforcement": false,
+                "declared_capabilities": [
+                  "file_write"
+                ],
+                "review_required": true
+              },
+              "review": {
+                "artifacts": [
+                  "targets/openai/agents/openai.yaml",
+                  "targets/openai/adapter.json",
+                  "reports/review-studio.html"
+                ],
+                "fallback_behavior": "If OpenAI-native metadata is ignored, the package remains readable as neutral Agent Skills source.",
+                "unsupported_native_features": [
+                  "client-native permission prompts",
+                  "provider-executed scripts",
+                  "client-native script permission prompts are represented as permission contract metadata"
+                ]
+              },
+              "install_scope": "plugin or skill package consumer"
+            },
+            "degradation_strategy": "metadata-adapter; image generation requires host tool",
+            "target_runtime": {
+              "adapter_mode": "metadata-adapter",
+              "generated_files": [
+                "targets/openai/adapter.json",
+                "targets/openai/agents/openai.yaml"
+              ],
+              "metadata_mapping": {
+                "display_name": "targets/openai/agents/openai.yaml::interface.display_name",
+                "default_prompt": "targets/openai/agents/openai.yaml::interface.default_prompt",
+                "activation": "targets/openai/agents/openai.yaml::compatibility.activation_mode",
+                "execution": "targets/openai/agents/openai.yaml::compatibility.execution_context",
+                "trust": "targets/openai/agents/openai.yaml::compatibility.trust_level",
+                "permissions": "targets/openai/agents/openai.yaml::compatibility.permission_contract",
+                "degradation": "targets/openai/agents/openai.yaml::compatibility.degradation_strategy"
+              },
+              "preserved_semantics": [
+                "trigger",
+                "workflow-counts",
+                "resources",
+                "eval-plan",
+                "risk",
+                "governance",
+                "runtime",
+                "trust",
+                "permissions"
+              ],
+              "native_surface": "OpenAI-style interface metadata plus neutral Agent Skills source"
+            }
+          },
+          "permission_contract": {
+            "schema_version": "1.0",
+            "source": "reports/security_trust_report.json",
+            "source_available": true,
+            "declared_capabilities": [
+              "file_write"
+            ],
+            "review_required": true,
+            "capabilities": {
+              "network": {
+                "required": false,
+                "script_count": 0,
+                "scripts": [],
+                "review_reason": ""
+              },
+              "file_write": {
+                "required": true,
+                "script_count": 1,
+                "scripts": [
+                  "scripts/compile_prompt.py"
+                ],
+                "review_reason": "Scripts write local files or generated artifacts."
+              },
+              "subprocess": {
+                "required": false,
+                "script_count": 0,
+                "scripts": [],
+                "review_reason": ""
+              },
+              "interactive": {
+                "required": false,
+                "script_count": 0,
+                "scripts": [],
+                "review_reason": ""
+              }
+            },
+            "network_policy": {
+              "source": "security/network_policy.json",
+              "covered_scripts": [],
+              "missing_scripts": [],
+              "mismatches": []
+            },
+            "help_smoke": {
+              "enabled": true,
+              "checked_count": 1,
+              "failed_count": 0,
+              "failed_scripts": []
+            },
+            "trust_summary": {
+              "secret_findings": 0,
+              "network_script_count": 0,
+              "file_write_script_count": 1,
+              "subprocess_script_count": 0,
+              "interactive_script_count": 0,
+              "help_smoke_failed_count": 0
+            }
+          },
+          "target_permission_contract": {
+            "schema_version": "1.0",
+            "target": "openai",
+            "permission_model": "metadata-only",
+            "native_enforcement": false,
+            "representation": "targets/openai/agents/openai.yaml::compatibility.permission_contract plus adapter.json",
+            "review_required": true,
+            "declared_capabilities": [
+              "file_write"
+            ],
+            "capability_counts": {
+              "network": 0,
+              "file_write": 1,
+              "subprocess": 0,
+              "interactive": 0
+            },
+            "evidence": "reports/security_trust_report.json",
+            "operator_note": "OpenAI target carries permission metadata for reviewer visibility; host enforcement remains outside the package."
+          },
+          "target_native_contract": {
+            "schema_version": "1.0",
+            "target": "openai",
+            "native_surface": "OpenAI-style interface metadata plus neutral Agent Skills source",
+            "activation": {
+              "policy": "Use frontmatter description for catalog routing and targets/openai/agents/openai.yaml for display name, default prompt, and compatibility metadata.",
+              "trigger_description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+              "manual_activation_supported": true,
+              "automatic_activation_note": "Depends on the target client route/catalog implementation."
+            },
+            "resources": {
+              "strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
+              "counts": {
+                "references": 5,
+                "scripts": 1,
+                "assets": 7,
+                "reports": 28
+              },
+              "generated_files": [
+                "targets/openai/adapter.json",
+                "targets/openai/agents/openai.yaml"
+              ]
+            },
+            "scripts": {
+              "strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
+              "script_count": 1,
+              "help_smoke_failed_count": 0
+            },
+            "permissions": {
+              "enforcement": "metadata-only",
+              "native_enforcement": false,
+              "declared_capabilities": [
+                "file_write"
+              ],
+              "review_required": true
+            },
+            "review": {
+              "artifacts": [
+                "targets/openai/agents/openai.yaml",
+                "targets/openai/adapter.json",
+                "reports/review-studio.html"
+              ],
+              "fallback_behavior": "If OpenAI-native metadata is ignored, the package remains readable as neutral Agent Skills source.",
+              "unsupported_native_features": [
+                "client-native permission prompts",
+                "provider-executed scripts",
+                "client-native script permission prompts are represented as permission contract metadata"
+              ]
+            },
+            "install_scope": "plugin or skill package consumer"
+          },
+          "target_transform": {
+            "target": "openai",
+            "adapter_mode": "metadata-adapter",
+            "generated_files": [
+              "targets/openai/adapter.json",
+              "targets/openai/agents/openai.yaml"
+            ],
+            "metadata_mapping": {
+              "display_name": "targets/openai/agents/openai.yaml::interface.display_name",
+              "default_prompt": "targets/openai/agents/openai.yaml::interface.default_prompt",
+              "activation": "targets/openai/agents/openai.yaml::compatibility.activation_mode",
+              "execution": "targets/openai/agents/openai.yaml::compatibility.execution_context",
+              "trust": "targets/openai/agents/openai.yaml::compatibility.trust_level",
+              "permissions": "targets/openai/agents/openai.yaml::compatibility.permission_contract",
+              "degradation": "targets/openai/agents/openai.yaml::compatibility.degradation_strategy"
+            },
+            "preserved_semantics": [
+              "trigger",
+              "workflow-counts",
+              "resources",
+              "eval-plan",
+              "risk",
+              "governance",
+              "runtime",
+              "trust",
+              "permissions"
+            ],
+            "degradation_strategy": "metadata-adapter; image generation requires host tool",
+            "permission_representation": "targets/openai/agents/openai.yaml::compatibility.permission_contract plus adapter.json",
+            "native_surface": "OpenAI-style interface metadata plus neutral Agent Skills source",
+            "activation_policy": "Use frontmatter description for catalog routing and targets/openai/agents/openai.yaml for display name, default prompt, and compatibility metadata.",
+            "resource_strategy": "Ship the neutral source tree and expose OpenAI-facing interface metadata as a generated companion file.",
+            "script_strategy": "Keep scripts as local package resources; expose help-smoke and permission metadata for reviewer approval before execution.",
+            "permission_enforcement": "metadata-only"
+          },
+          "unsupported_features": [
+            "client-native script permission prompts are represented as permission contract metadata"
+          ],
+          "warnings": [],
+          "failures": []
+        }
+      ],
+      "failures": [],
+      "warnings": [],
+      "artifacts": {
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/compiled_targets.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/compiled_targets.md"
+      }
+    },
+    "conformance": {
+      "ok": true,
+      "skill": "lyz-aircraft-embroidery",
+      "targets": [
+        {
+          "target": "openai",
+          "status": "pass",
+          "checks": [
+            "SKILL.md exists",
+            "frontmatter name exists",
+            "frontmatter description exists",
+            "description length <= 1024",
+            "name is runtime-safe",
+            "manifest.name exists",
+            "manifest.version exists",
+            "manifest.owner exists",
+            "manifest.status exists",
+            "manifest.maturity_tier exists",
+            "manifest.review_cadence exists",
+            "manifest declares openai",
+            "interface.display_name exists",
+            "interface.short_description exists",
+            "interface.default_prompt exists",
+            "adapter target declares openai",
+            "activation mode exists",
+            "execution context exists",
+            "execution shell exists",
+            "trust source tier exists",
+            "openai degradation note exists",
+            "Skill IR schema_version is 2.0.0",
+            "Skill IR name matches frontmatter",
+            "Skill IR description matches frontmatter",
+            "references resource resolves: references/aesthetic-judgment.md",
+            "references resource resolves: references/grammar-fbs.md",
+            "references resource resolves: references/patterns.md",
+            "references resource resolves: references/quality.md",
+            "references resource resolves: references/workflow.md",
+            "scripts resource resolves: scripts/compile_prompt.py",
+            "assets resource resolves: assets/example-brief.json",
+            "assets resource resolves: assets/previews/j20-cloud-gap.png",
+            "assets resource resolves: assets/previews/j20-v1.png",
+            "assets resource resolves: assets/previews/j35a-altitude-layers.png",
+            "assets resource resolves: assets/previews/j35a-v1.png",
+            "assets resource resolves: assets/previews/j35a-v2.png"
+          ],
+          "failures": [],
+          "warnings": []
+        }
+      ],
+      "summary": {
+        "target_count": 1,
+        "pass_count": 1,
+        "fail_count": 0
+      },
+      "artifacts": {
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/conformance_matrix.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/conformance_matrix.md"
+      }
+    },
+    "runtime_permissions": {
+      "schema_version": "1.0",
+      "ok": true,
+      "skill_dir": ".",
+      "package_dir": "dist",
+      "expected_capabilities": [
+        "file_write"
+      ],
+      "summary": {
+        "target_count": 1,
+        "pass_count": 1,
+        "fail_count": 0,
+        "native_enforcement_count": 0,
+        "metadata_fallback_count": 1,
+        "residual_risk_count": 1,
+        "required_capability_count": 1,
+        "failure_count": 0,
+        "installer_enforcement_source_status": "present",
+        "installer_enforcement_target_count": 1,
+        "installer_enforcement_pass_count": 0,
+        "installer_permission_enforced_count": 0,
+        "installer_permission_failure_count": 3,
+        "installer_permission_capability_count": 1,
+        "world_class_native_evidence_ready": false,
+        "installer_enforcement_ready": false
+      },
+      "installer_enforcement": {
+        "source": "reports/install_simulation.json",
+        "source_status": "present",
+        "package_dir_matches": true,
+        "summary": {
+          "installer_permission_enforced_count": 0,
+          "installer_permission_failure_count": 3,
+          "permission_target_count": 1,
+          "permission_capability_count": 1,
+          "failure_count": 3
+        }
+      },
+      "targets": [
+        {
+          "target": "openai",
+          "status": "pass",
+          "adapter": "dist/targets/openai/adapter.json",
+          "permission_model": "metadata-only",
+          "native_enforcement": false,
+          "metadata_fallback_explicit": true,
+          "installer_enforcement": {
+            "target": "openai",
+            "source_status": "present",
+            "enforced": false,
+            "enforced_capabilities": [],
+            "missing_capabilities": [
+              "file_write"
+            ],
+            "failure_details": [
+              "permission-openai-file_write-approved did not pass",
+              "permission-openai-file_write-target-enforcement did not pass"
+            ]
+          },
+          "assurance": "metadata-fallback-explicit",
+          "declared_capabilities": [
+            "file_write"
+          ],
+          "checks": [
+            {
+              "key": "adapter-present",
+              "passed": true,
+              "detail": "openai adapter.json is readable"
+            },
+            {
+              "key": "permission-contract-present",
+              "passed": true,
+              "detail": "openai adapter includes permission_contract"
+            },
+            {
+              "key": "target-contract-present",
+              "passed": true,
+              "detail": "openai adapter includes target_permission_contract"
+            },
+            {
+              "key": "source-available",
+              "passed": true,
+              "detail": "openai permission_contract links to an available trust report"
+            },
+            {
+              "key": "declared-capabilities-match",
+              "passed": true,
+              "detail": "openai target_permission_contract mirrors expected capabilities"
+            },
+            {
+              "key": "capability-counts-present",
+              "passed": true,
+              "detail": "openai target_permission_contract includes capability_counts"
+            },
+            {
+              "key": "native-enforcement-boolean",
+              "passed": true,
+              "detail": "openai target_permission_contract declares native_enforcement as a boolean"
+            },
+            {
+              "key": "representation-present",
+              "passed": true,
+              "detail": "openai target_permission_contract declares where permission metadata is represented"
+            },
+            {
+              "key": "operator-note-present",
+              "passed": true,
+              "detail": "openai target_permission_contract includes an operator_note"
+            },
+            {
+              "key": "review-required-matches",
+              "passed": true,
+              "detail": "openai review_required matches whether capabilities are required"
+            },
+            {
+              "key": "openai-yaml-present",
+              "passed": true,
+              "detail": "OpenAI permission metadata YAML is readable"
+            },
+            {
+              "key": "openai-yaml-permissions",
+              "passed": true,
+              "detail": "OpenAI YAML permission contract mirrors expected capabilities"
+            },
+            {
+              "key": "openai-yaml-native-flag",
+              "passed": true,
+              "detail": "OpenAI YAML declares native_enforcement as a boolean"
+            }
+          ],
+          "failures": [],
+          "residual_risks": [
+            "Client-native permission enforcement is not provided by this target; installer or operator must honor metadata."
+          ]
+        }
+      ],
+      "failures": [],
+      "artifacts": {
+        "json": "reports/runtime_permission_probes.json",
+        "markdown": "reports/runtime_permission_probes.md"
+      }
+    },
+    "trust": {
+      "ok": true,
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "summary": {
+        "scanned_files": 22,
+        "script_count": 1,
+        "internal_module_count": 0,
+        "secret_findings": 0,
+        "dependency_files": [],
+        "network_script_count": 0,
+        "network_policy_covered_count": 0,
+        "network_policy_missing_count": 0,
+        "file_write_script_count": 1,
+        "permission_required_count": 1,
+        "permission_approved_count": 0,
+        "permission_missing_count": 1,
+        "permission_invalid_count": 0,
+        "permission_expired_count": 0,
+        "help_smoke_checked_count": 1,
+        "help_smoke_failed_count": 0,
+        "interactive_script_count": 0,
+        "package_hash_scope": "source-contract-without-generated-reports",
+        "package_hash_file_count": 22,
+        "package_sha256": "29f543bf1e6b52fa6cd78f6710415b2b4b8c638c7dabdda4efb902e3536ddb83"
+      },
+      "failures": [],
+      "warnings": [
+        "No dependency or lock file detected",
+        "Permission approvals missing: file_write"
+      ],
+      "secrets": [],
+      "scripts": [
+        {
+          "path": "scripts/compile_prompt.py",
+          "interface": "cli",
+          "interface_declared": false,
+          "interface_reason": "Default CLI classification; add SCRIPT_INTERFACE for internal modules.",
+          "has_argparse": true,
+          "has_main_guard": true,
+          "uses_input": false,
+          "uses_network": false,
+          "uses_file_write": true,
+          "uses_subprocess": false,
+          "network_urls": [],
+          "network_hosts": []
+        }
+      ],
+      "dependencies": {
+        "present": [],
+        "pinned": [],
+        "unpinned": []
+      },
+      "network_policy": {
+        "present": false,
+        "path": "security/network_policy.json",
+        "schema_version": "",
+        "network_script_count": 0,
+        "covered_scripts": [],
+        "missing_scripts": [],
+        "mismatches": [],
+        "default_policy": {}
+      },
+      "help_smoke": {
+        "enabled": true,
+        "timeout_seconds": 5.0,
+        "candidate_count": 1,
+        "checked_count": 1,
+        "passed_count": 1,
+        "failed_count": 0,
+        "skipped_count": 0,
+        "failed_scripts": [],
+        "results": [
+          {
+            "path": "scripts/compile_prompt.py",
+            "command": "python3 scripts/compile_prompt.py --help",
+            "returncode": 0,
+            "timed_out": false,
+            "passed": true,
+            "has_help_text": true,
+            "stdout_excerpt": "usage: compile_prompt.py [-h] --out OUT brief\n\nOffline brief-to-prompt compiler. The host agent invokes image generation.\n\npositional arguments:\n  brief\n\noptions:\n  -h, --help  show this help message and exit\n  --out OUT",
+            "stderr_excerpt": ""
+          }
+        ],
+        "skipped": []
+      },
+      "permission_governance": {
+        "present": true,
+        "path": "security/permission_policy.json",
+        "schema_version": "",
+        "reviewed_at": "",
+        "required_capabilities": [
+          "file_write"
+        ],
+        "approved_capabilities": [],
+        "missing_capabilities": [
+          "file_write"
+        ],
+        "invalid_capabilities": [],
+        "expired_capabilities": [],
+        "approval_count": 0,
+        "required_count": 1,
+        "missing_count": 1,
+        "invalid_count": 0,
+        "expired_count": 0,
+        "approvals": [
+          {
+            "capability": "file_write",
+            "status": "missing",
+            "scripts": [
+              "scripts/compile_prompt.py"
+            ],
+            "validation": [
+              "approval entry is missing"
+            ]
+          }
+        ]
+      },
+      "trust_metadata": {
+        "source_tier": "local",
+        "remote_inline_execution": "forbid",
+        "remote_metadata_policy": "allow-metadata-only"
+      },
+      "artifacts": {
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/security_trust_report.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/security_trust_report.md"
+      }
+    },
+    "python_compatibility": {
+      "schema_version": "1.0",
+      "ok": true,
+      "generated_at": "2026-11-14",
+      "root": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "summary": {
+        "target_python": "3.11",
+        "file_count": 2,
+        "issue_count": 0,
+        "syntax_error_count": 0,
+        "fstring_311_violation_count": 0,
+        "decision": "pass"
+      },
+      "rules": [
+        {
+          "key": "current-python-syntax",
+          "reason": "Every scanned Python source file must compile under the running interpreter."
+        },
+        {
+          "key": "fstring-expression-backslash",
+          "reason": "Python 3.11 rejects backslashes inside f-string expressions; keep escaping outside the expression."
+        }
+      ],
+      "files": [
+        {
+          "path": "evals/test_compiler.py",
+          "ok": true,
+          "issue_count": 0,
+          "issues": []
+        },
+        {
+          "path": "scripts/compile_prompt.py",
+          "ok": true,
+          "issue_count": 0,
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "artifacts": {
+        "json": "reports/python_compatibility.json",
+        "markdown": "reports/python_compatibility.md"
+      }
+    },
+    "architecture_maintainability": {},
+    "context_budget": {
+      "ok": true,
+      "failures": [],
+      "warnings": [],
+      "stats": {
+        "context_budget_tier": "production",
+        "context_budget_limit": 1000,
+        "skill_body_tokens": 312,
+        "other_text_tokens": 69437,
+        "estimated_initial_load_tokens": 498,
+        "estimated_total_text_tokens": 69749,
+        "deferred_resource_tokens": 12444,
+        "deferred_resource_warn_threshold": 120000,
+        "deferred_resource_dirs": [
+          {
+            "path": "assets",
+            "estimated_tokens": 5939,
+            "file_count": 2
+          },
+          {
+            "path": "scripts",
+            "estimated_tokens": 2649,
+            "file_count": 1
+          },
+          {
+            "path": "references",
+            "estimated_tokens": 2018,
+            "file_count": 5
+          },
+          {
+            "path": "evals",
+            "estimated_tokens": 1838,
+            "file_count": 6
+          }
+        ],
+        "large_deferred_resource_dirs": [],
+        "deferred_resource_governance": {
+          "status": "not-required",
+          "large_dir_count": 0,
+          "governed_large_dir_count": 0,
+          "directories": [],
+          "summary": "No large deferred resource directory exceeds the per-dir threshold."
+        },
+        "relevant_file_count": 97,
+        "unused_resource_dirs": [],
+        "quality_signal_points": 120,
+        "quality_density": 241.0
+      }
+    },
+    "promotion": {},
+    "atlas": {
+      "ok": true,
+      "workspace_root": "/Users/ling99/Codexfiles/Codex/lyz-skills",
+      "summary": {
+        "skill_count": 6,
+        "actionable_skill_count": 6,
+        "route_collision_count": 0,
+        "actionable_route_collision_count": 0,
+        "owner_gap_count": 3,
+        "actionable_owner_gap_count": 3,
+        "stale_count": 3,
+        "actionable_stale_count": 3,
+        "shared_resource_count": 1,
+        "no_route_opportunity_count": 0,
+        "telemetry_report_count": 1,
+        "drift_signal_count": 3,
+        "actionable_drift_signal_count": 3,
+        "non_actionable_issue_count": 0
+      },
+      "scope_policy": {
+        "present": false,
+        "path": "skill_atlas/policy.json",
+        "rules": []
+      },
+      "catalog": {
+        "workspace_root": "/Users/ling99/Codexfiles/Codex/lyz-skills",
+        "generated_at": "2026-11-14",
+        "skills": [
+          {
+            "name": "1688tofeishu",
+            "path": "1688tofeishu",
+            "description": "MUST USE when the user wants to inspect, scrape, extract, or catalog 1688 mobile app merchant chat records (1688 聊天记录 / 抓取工厂沟通 / 询盘比价 / 回访供应商 / 整理1688报价 / 消息页面抓取), parse structured quotes (大货单价、打样费、包装背卡费、税点、交期保障), and deliver comparison results into Feishu Bitable (多维表格) and mobile-first Feishu Docx (飞书云文档垂直卡片流). Uses dynamic semantic anchoring, safe navigation state machines, and auto-archiving to 「Antigravity 报告归档」.",
+            "owner": "",
+            "version": "",
+            "status": "",
+            "maturity": "",
+            "updated_at": "",
+            "review_cadence": "",
+            "targets": [],
+            "resources": [
+              "scripts/conversation_harvester.py",
+              "scripts/feishu_deliverer.py",
+              "scripts/ocr_extractor.py",
+              "references/anti-stalling-navigation.md",
+              "references/feishu-schema-guidelines.md"
+            ],
+            "token_set": [
+              "1688",
+              "anchoring",
+              "antigravity",
+              "app",
+              "auto-archiving",
+              "bitable",
+              "catalog",
+              "chat",
+              "comparison",
+              "deliver",
+              "docx",
+              "dynamic",
+              "extract",
+              "feishu",
+              "inspect",
+              "machines",
+              "merchant",
+              "mobile",
+              "mobile-first",
+              "must",
+              "navigation",
+              "or",
+              "parse",
+              "quotes",
+              "records",
+              "results",
+              "safe",
+              "scrape",
+              "semantic",
+              "state",
+              "structured",
+              "user",
+              "uses",
+              "wants",
+              "交期保障",
+              "包装背卡费",
+              "回访供应商",
+              "多维表格",
+              "大货单价",
+              "打样费",
+              "抓取工厂沟通",
+              "报告归档",
+              "整理1688报价",
+              "消息页面抓取",
+              "税点",
+              "聊天记录",
+              "询盘比价",
+              "飞书云文档垂直卡片流"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": false,
+              "report": "1688tofeishu/reports/adoption_drift_report.json",
+              "risk_band": "missing",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 0
+            }
+          },
+          {
+            "name": "lyz-1688connect",
+            "path": "lyz-1688connect",
+            "description": "MUST USE when the user wants to autonomously reach out to 1688 manufacturers, execute contractual inquiries (合发建约), perform slot-based delta follow-ups (差量催问/状态机追问), handle specification drift and re-quoting (规格变更重算), or conduct multi-turn commercial negotiation for industrial/custom products (魔术贴/徽章/书签/服饰辅料/五金塑胶等). Implements 10 universal parameter slots, anti-violation contact capture, and hardware safety state machines.",
+            "owner": "",
+            "version": "",
+            "status": "",
+            "maturity": "",
+            "updated_at": "",
+            "review_cadence": "",
+            "targets": [],
+            "resources": [
+              "scripts/inquiry_dispatcher.py",
+              "scripts/state_machine_runner.py",
+              "references/hardware-guardians.md",
+              "references/inquiry-templates.md",
+              "references/state-machine-protocol.md",
+              "references/universal-slots.md"
+            ],
+            "token_set": [
+              "10",
+              "1688",
+              "anti-violation",
+              "autonomously",
+              "capture",
+              "commercial",
+              "conduct",
+              "contact",
+              "contractual",
+              "custom",
+              "delta",
+              "drift",
+              "execute",
+              "follow-ups",
+              "handle",
+              "hardware",
+              "implements",
+              "industrial",
+              "inquiries",
+              "machines",
+              "manufacturers",
+              "multi-turn",
+              "must",
+              "negotiation",
+              "or",
+              "out",
+              "parameter",
+              "perform",
+              "products",
+              "re-quoting",
+              "reach",
+              "safety",
+              "slot-based",
+              "slots",
+              "specification",
+              "state",
+              "universal",
+              "user",
+              "wants",
+              "书签",
+              "五金塑胶等",
+              "合发建约",
+              "差量催问",
+              "徽章",
+              "服饰辅料",
+              "状态机追问",
+              "规格变更重算",
+              "魔术贴"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": false,
+              "report": "lyz-1688connect/reports/adoption_drift_report.json",
+              "risk_band": "missing",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 0
+            }
+          },
+          {
+            "name": "lyz-aircraft-embroidery",
+            "path": "lyz-aircraft-embroidery",
+            "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+            "owner": "ling99",
+            "version": "0.1.0",
+            "status": "experimental",
+            "maturity": "production",
+            "updated_at": "2026-11-14",
+            "review_cadence": "quarterly",
+            "targets": [
+              "openai"
+            ],
+            "resources": [
+              "scripts/compile_prompt.py",
+              "references/grammar-fbs.md",
+              "references/patterns.md",
+              "references/quality.md",
+              "references/workflow.md",
+              "assets/example-brief.json",
+              "assets/j20-v1.png",
+              "assets/j35a-v1.png",
+              "assets/rules.json"
+            ],
+            "token_set": [
+              "为中国战机军迷设计原创刺绣产品图片",
+              "仅解释理论",
+              "军事性能分析不使用此技能",
+              "士气章",
+              "换型号设计与系列生图",
+              "服装印花",
+              "根据上传的刺绣章样本",
+              "编译简短提示并实际调用ai生图",
+              "适用于战机刺绣章",
+              "针版文件",
+              "锁定机型特征",
+              "魔术贴章的参考拆解"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": true,
+              "report": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+              "risk_band": "no-data",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 1
+            }
+          },
+          {
+            "name": "lyz-explanation",
+            "path": "lyz-explanation",
+            "description": "把复杂概念编译成可探索解释：先收集学习者的直觉预测，再交付一个完整因果单元与零依赖、单文件 HTML5 交互沙箱，最后用闭卷建模题判定或修复心智模型。Use when 用户要求通过可运行交互理解机制、算法、概率、数学或涌现系统。不要用于仅需定义、摘要、静态图、现成网页开发或无教学目标的可视化。",
+            "owner": "",
+            "version": "",
+            "status": "",
+            "maturity": "",
+            "updated_at": "",
+            "review_cadence": "",
+            "targets": [],
+            "resources": [
+              "scripts/check_sandbox.py",
+              "references/compiler-protocol.md",
+              "references/source-patterns.md"
+            ],
+            "token_set": [
+              "html5",
+              "不要用于仅需定义",
+              "交互沙箱",
+              "先收集学习者的直觉预测",
+              "再交付一个完整因果单元与零依赖",
+              "单文件",
+              "把复杂概念编译成可探索解释",
+              "摘要",
+              "数学或涌现系统",
+              "最后用闭卷建模题判定或修复心智模型",
+              "概率",
+              "现成网页开发或无教学目标的可视化",
+              "用户要求通过可运行交互理解机制",
+              "算法",
+              "静态图"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": false,
+              "report": "lyz-explanation/reports/adoption_drift_report.json",
+              "risk_band": "missing",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 0
+            }
+          },
+          {
+            "name": "lyz-podcast-article",
+            "path": "lyz-podcast-article",
+            "description": "将播客字幕、访谈转录（md、txt、docx）整理为保留原话语气的公众号访谈长文 Markdown。适用于“播客成稿”“字幕转公众号文章”“采访整理成专业媒体文章”；默认只交付一份文章，不接管仅摘要、音频转写、平台发布或短视频文案。",
+            "owner": "ling99",
+            "version": "0.3.0",
+            "status": "experimental",
+            "maturity": "production",
+            "updated_at": "2026-11-13",
+            "review_cadence": "quarterly",
+            "targets": [
+              "openai"
+            ],
+            "resources": [
+              "scripts/article_tools.py",
+              "scripts/compact_article.py",
+              "references/editorial.md",
+              "references/quality.md",
+              "references/source-gate.md",
+              "references/template.md",
+              "references/verification.md"
+            ],
+            "token_set": [
+              "docx",
+              "markdown",
+              "md",
+              "txt",
+              "不接管仅摘要",
+              "字幕转公众号文章",
+              "将播客字幕",
+              "平台发布或短视频文案",
+              "播客成稿",
+              "整理为保留原话语气的公众号访谈长文",
+              "访谈转录",
+              "适用于",
+              "采访整理成专业媒体文章",
+              "音频转写",
+              "默认只交付一份文章"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": false,
+              "report": "lyz-podcast-article/reports/adoption_drift_report.json",
+              "risk_band": "missing",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 0
+            }
+          },
+          {
+            "name": "lyz-resume",
+            "path": "lyz-resume",
+            "description": "将旧简历、零散经历、JD、项目材料或口述回答整理为可信且针对岗位的求职简历，并完成 HTML/PDF 排版、验证与视觉复查。适用于从零做简历、不知道写什么、优化或审查简历、按 JD 定制、多岗位版本、只换版式、加入可选照片和生成可投递 PDF；不用于学术 CV、作品集网站、求职信、职业规划、职位代投或单纯模拟面试。",
+            "owner": "Ling99",
+            "version": "1.1.0",
+            "status": "active",
+            "maturity": "production",
+            "updated_at": "2026-09-18",
+            "review_cadence": "quarterly",
+            "targets": [
+              "openai",
+              "claude",
+              "generic",
+              "agent-skills-compatible",
+              "vscode"
+            ],
+            "resources": [
+              "scripts/assess_intake.py",
+              "scripts/extract_resume.py",
+              "scripts/pdf_to_images.py",
+              "scripts/render_resume.py",
+              "scripts/validate_resume.py",
+              "references/facts-and-data-contract.md",
+              "references/installation-and-portability.md",
+              "references/intake-and-momentum.md",
+              "references/rendering-and-validation.md",
+              "references/role-analysis-and-writing.md",
+              "references/role-lenses.md",
+              "assets/candidate-ledger.schema.json",
+              "assets/example-ledger.json",
+              "assets/example-resume.json",
+              "assets/example-role-analysis.json",
+              "assets/resume-data.schema.json",
+              "assets/role-analysis.schema.json"
+            ],
+            "token_set": [
+              "cv",
+              "html",
+              "jd",
+              "pdf",
+              "不用于学术",
+              "不知道写什么",
+              "优化或审查简历",
+              "作品集网站",
+              "加入可选照片和生成可投递",
+              "只换版式",
+              "多岗位版本",
+              "定制",
+              "将旧简历",
+              "并完成",
+              "排版",
+              "求职信",
+              "职业规划",
+              "职位代投或单纯模拟面试",
+              "适用于从零做简历",
+              "零散经历",
+              "项目材料或口述回答整理为可信且针对岗位的求职简历",
+              "验证与视觉复查"
+            ],
+            "atlas_scope": "release",
+            "actionable": true,
+            "scope_reason": "default release-actionable skill",
+            "telemetry": {
+              "report_present": false,
+              "report": "lyz-resume/reports/adoption_drift_report.json",
+              "risk_band": "missing",
+              "event_count": 0,
+              "adoption_sample_count": 0,
+              "adoption_rate": 0,
+              "candidate_count": 0
+            }
+          }
+        ],
+        "summary": {
+          "skill_count": 6,
+          "actionable_skill_count": 6,
+          "route_collision_count": 0,
+          "actionable_route_collision_count": 0,
+          "owner_gap_count": 3,
+          "actionable_owner_gap_count": 3,
+          "stale_count": 3,
+          "actionable_stale_count": 3,
+          "shared_resource_count": 1,
+          "no_route_opportunity_count": 0,
+          "telemetry_report_count": 1,
+          "drift_signal_count": 3,
+          "actionable_drift_signal_count": 3,
+          "non_actionable_issue_count": 0
+        }
+      },
+      "route_collisions": [],
+      "actionable_route_collisions": [],
+      "dependency_graph": {
+        "nodes": [
+          {
+            "name": "1688tofeishu",
+            "path": "1688tofeishu"
+          },
+          {
+            "name": "lyz-1688connect",
+            "path": "lyz-1688connect"
+          },
+          {
+            "name": "lyz-aircraft-embroidery",
+            "path": "lyz-aircraft-embroidery"
+          },
+          {
+            "name": "lyz-explanation",
+            "path": "lyz-explanation"
+          },
+          {
+            "name": "lyz-podcast-article",
+            "path": "lyz-podcast-article"
+          },
+          {
+            "name": "lyz-resume",
+            "path": "lyz-resume"
+          }
+        ],
+        "shared_resources": [
+          {
+            "resource": "references/quality.md",
+            "skills": [
+              "lyz-aircraft-embroidery",
+              "lyz-podcast-article"
+            ]
+          }
+        ]
+      },
+      "stale_skills": [
+        {
+          "name": "1688tofeishu",
+          "path": "1688tofeishu",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-1688connect",
+          "path": "lyz-1688connect",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-explanation",
+          "path": "lyz-explanation",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        }
+      ],
+      "actionable_stale_skills": [
+        {
+          "name": "1688tofeishu",
+          "path": "1688tofeishu",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-1688connect",
+          "path": "lyz-1688connect",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-explanation",
+          "path": "lyz-explanation",
+          "reason": "missing updated_at",
+          "actionable": true,
+          "scope": "release"
+        }
+      ],
+      "owner_review_gaps": [
+        {
+          "name": "1688tofeishu",
+          "path": "1688tofeishu",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-1688connect",
+          "path": "lyz-1688connect",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-explanation",
+          "path": "lyz-explanation",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        }
+      ],
+      "actionable_owner_review_gaps": [
+        {
+          "name": "1688tofeishu",
+          "path": "1688tofeishu",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-1688connect",
+          "path": "lyz-1688connect",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        },
+        {
+          "name": "lyz-explanation",
+          "path": "lyz-explanation",
+          "missing": [
+            "owner",
+            "review_cadence",
+            "maturity"
+          ],
+          "actionable": true,
+          "scope": "release"
+        }
+      ],
+      "drift_signals": [
+        {
+          "name": "lyz-aircraft-embroidery",
+          "path": "lyz-aircraft-embroidery",
+          "source": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Start with a small metadata-only sample before using telemetry for release decisions.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0,
+            "adoption_rate": 0,
+            "missed_trigger_count": 0,
+            "wrong_trigger_count": 0,
+            "bad_output_count": 0,
+            "missing_resource_count": 0,
+            "script_error_count": 0,
+            "review_overdue_count": 0
+          }
+        },
+        {
+          "name": "lyz-podcast-article",
+          "path": "lyz-podcast-article",
+          "source": "lyz-podcast-article/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0
+          }
+        },
+        {
+          "name": "lyz-resume",
+          "path": "lyz-resume",
+          "source": "lyz-resume/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0
+          }
+        }
+      ],
+      "actionable_drift_signals": [
+        {
+          "name": "lyz-aircraft-embroidery",
+          "path": "lyz-aircraft-embroidery",
+          "source": "lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Start with a small metadata-only sample before using telemetry for release decisions.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0,
+            "adoption_rate": 0,
+            "missed_trigger_count": 0,
+            "wrong_trigger_count": 0,
+            "bad_output_count": 0,
+            "missing_resource_count": 0,
+            "script_error_count": 0,
+            "review_overdue_count": 0
+          }
+        },
+        {
+          "name": "lyz-podcast-article",
+          "path": "lyz-podcast-article",
+          "source": "lyz-podcast-article/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0
+          }
+        },
+        {
+          "name": "lyz-resume",
+          "path": "lyz-resume",
+          "source": "lyz-resume/reports/adoption_drift_report.json",
+          "risk_band": "no-data",
+          "signal_types": [
+            "no telemetry"
+          ],
+          "recommendation": "Render adoption drift evidence or record a small metadata-only sample before release review.",
+          "actionable": true,
+          "scope": "release",
+          "summary": {
+            "event_count": 0,
+            "adoption_sample_count": 0
+          }
+        }
+      ],
+      "no_route_opportunities": [],
+      "artifacts": {
+        "catalog": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/catalog.json",
+        "route_overlap_matrix": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/route_overlap_matrix.csv",
+        "dependency_graph": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/dependency_graph.json",
+        "stale_skills": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/stale_skills.json",
+        "owner_review_gaps": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/owner_review_gaps.json",
+        "drift_signals": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/drift_signals.json",
+        "no_route_opportunities": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/atlas/no_route_opportunities.json",
+        "report_json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/skill_atlas.json",
+        "report_html": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/skill_atlas.html"
+      }
+    },
+    "adoption_drift": {
+      "ok": true,
+      "schema_version": "2.0",
+      "generated_at": "2026-11-13T16:57:52Z",
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "privacy_contract": {
+        "storage": "local-first",
+        "event_scope": "metadata-only",
+        "raw_content_allowed": false,
+        "raw_event_log_packaged": false,
+        "blocked_fields": [
+          "content",
+          "input",
+          "inputs",
+          "message",
+          "messages",
+          "note",
+          "output",
+          "outputs",
+          "prompt",
+          "raw",
+          "text",
+          "transcript"
+        ]
+      },
+      "summary": {
+        "event_count": 0,
+        "adoption_sample_count": 0,
+        "activation_count": 0,
+        "accepted_count": 0,
+        "edited_count": 0,
+        "rejected_count": 0,
+        "missed_count": 0,
+        "failed_count": 0,
+        "adoption_rate": 0,
+        "missed_trigger_count": 0,
+        "wrong_trigger_count": 0,
+        "bad_output_count": 0,
+        "script_error_count": 0,
+        "missing_resource_count": 0,
+        "review_overdue_count": 0,
+        "risk_band": "no-data",
+        "event_types": {},
+        "failure_types": {},
+        "source_types": {},
+        "command_counts": {}
+      },
+      "adoption_by_skill": [],
+      "next_iteration_candidates": [
+        {
+          "signal": "no telemetry",
+          "recommendation": "Start with a small metadata-only sample before using telemetry for release decisions."
+        }
+      ],
+      "recent_events": [],
+      "failures": [],
+      "artifacts": {
+        "events_jsonl": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/telemetry_events.jsonl",
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/adoption_drift_report.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/adoption_drift_report.md"
+      }
+    },
+    "daily_skillops": {},
+    "weekly_curator": {},
+    "review_waivers": {
+      "schema_version": "1.0",
+      "ok": true,
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "generated_at": "2026-11-14",
+      "summary": {
+        "waiver_count": 0,
+        "active_count": 0,
+        "expired_count": 0,
+        "invalid_count": 0,
+        "covered_gate_count": 0,
+        "covered_gate_keys": [],
+        "waiver_candidate_count": 0,
+        "waiverable_open_count": 0,
+        "non_waivable_count": 0
+      },
+      "policy": {
+        "blocker_waivers_allowed": false,
+        "minimum_reason_chars": 20,
+        "expires_required": true,
+        "review_studio_gate_keys": [
+          "architecture-maintainability",
+          "context-budget",
+          "intent-canvas",
+          "operations-loop",
+          "output-lab",
+          "permission-gates",
+          "permission-runtime",
+          "python-compat",
+          "registry-audit",
+          "release-notes",
+          "review-waivers",
+          "runtime-matrix",
+          "skill-atlas",
+          "trigger-lab",
+          "trust-report",
+          "world-class-evidence"
+        ],
+        "known_gate_keys": [
+          "architecture-maintainability",
+          "context-budget",
+          "intent-canvas",
+          "operations-loop",
+          "output-lab",
+          "permission-gates",
+          "permission-runtime",
+          "python-compat",
+          "registry-audit",
+          "release-notes",
+          "runtime-matrix",
+          "skill-atlas",
+          "trigger-lab",
+          "trust-report"
+        ],
+        "waiverable_gate_keys": [
+          "architecture-maintainability",
+          "context-budget",
+          "intent-canvas",
+          "operations-loop",
+          "output-lab",
+          "permission-gates",
+          "permission-runtime",
+          "python-compat",
+          "registry-audit",
+          "release-notes",
+          "runtime-matrix",
+          "skill-atlas",
+          "trigger-lab",
+          "trust-report"
+        ],
+        "non_waivable_gate_keys": [
+          "review-waivers",
+          "world-class-evidence"
+        ]
+      },
+      "waivers": [],
+      "waiver_candidates": [],
+      "failures": [],
+      "warnings": [],
+      "artifacts": {
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/review_waivers.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/review_waivers.md"
+      }
+    },
+    "review_annotations": {
+      "schema_version": "1.0",
+      "ok": true,
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "source": "reports/review_annotations_input.json",
+      "summary": {
+        "annotation_count": 0,
+        "open_count": 0,
+        "resolved_count": 0,
+        "deferred_count": 0,
+        "open_blocker_count": 0,
+        "open_warning_count": 0,
+        "linked_gate_count": 0,
+        "target_missing_count": 0,
+        "failure_count": 0
+      },
+      "annotations": [],
+      "failures": [],
+      "template_written": false,
+      "artifacts": {
+        "json": "reports/review_annotations.json",
+        "markdown": "reports/review_annotations.md"
+      }
+    },
+    "adaptation_proposals": {},
+    "adaptation_approval_ledger": {},
+    "adaptation_regression": {},
+    "world_class_evidence_ledger": {},
+    "world_class_evidence_intake": {},
+    "world_class_evidence_preflight": {},
+    "world_class_submission_review": {},
+    "world_class_operator_runbook": {},
+    "world_class_claim_guard": {},
+    "registry": {
+      "ok": false,
+      "schema_version": "2.0",
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "registry_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry",
+      "package": {
+        "schema_version": "2.0",
+        "name": "lyz-aircraft-embroidery",
+        "version": "0.1.0",
+        "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。",
+        "targets": [
+          "openai"
+        ],
+        "maturity": "production",
+        "owner": "ling99",
+        "review_cadence": "quarterly",
+        "trust_level": "local",
+        "license": "UNLICENSED",
+        "checksums": {
+          "package_sha256": "29f543bf1e6b52fa6cd78f6710415b2b4b8c638c7dabdda4efb902e3536ddb83",
+          "archive_sha256": "0f0238bc6b0fdfdafe05751cc5168f82cf1f70c39db867717fffca85ab9fcd9f"
+        },
+        "compatibility": {
+          "openai": "pass"
+        },
+        "source": {
+          "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+          "skill_ir": "reports/skill-ir.json",
+          "ir_schema_version": "2.0.0",
+          "canonical_metadata": "agents/interface.yaml"
+        },
+        "artifacts": {
+          "overview_html": "reports/skill-overview.html",
+          "review_studio_html": "reports/review-studio.html",
+          "trust_report": "reports/security_trust_report.md",
+          "conformance_matrix": "reports/conformance_matrix.md",
+          "compiled_targets": "reports/compiled_targets.md",
+          "package_verification": "reports/package_verification.md",
+          "install_simulation": "reports/install_simulation.md",
+          "adoption_drift": "reports/adoption_drift_report.md",
+          "review_waivers": "reports/review_waivers.md",
+          "review_annotations": "reports/review_annotations.md",
+          "package_metadata": "registry/packages/lyz-aircraft-embroidery.json"
+        },
+        "distribution": {
+          "archive_verified": false,
+          "archive_sha256": "0f0238bc6b0fdfdafe05751cc5168f82cf1f70c39db867717fffca85ab9fcd9f",
+          "package_verification": "reports/package_verification.json",
+          "install_simulated": false,
+          "install_simulation": "reports/install_simulation.json"
+        },
+        "generated_at": "2026-11-14"
+      },
+      "index": {
+        "schema_version": "2.0",
+        "generated_at": "2026-11-14",
+        "package_count": 1,
+        "packages": [
+          {
+            "name": "lyz-aircraft-embroidery",
+            "version": "0.1.0",
+            "maturity": "production",
+            "owner": "ling99",
+            "targets": [
+              "openai"
+            ],
+            "package_metadata": "registry/packages/lyz-aircraft-embroidery.json",
+            "package_sha256": "29f543bf1e6b52fa6cd78f6710415b2b4b8c638c7dabdda4efb902e3536ddb83"
+          }
+        ]
+      },
+      "failures": [
+        "Package verification report exists but archive verification did not pass",
+        "Install simulation report exists but install simulation did not pass"
+      ],
+      "warnings": [],
+      "artifacts": {
+        "index": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry/index.json",
+        "package": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry/packages/lyz-aircraft-embroidery.json",
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry_audit.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/registry_audit.md"
+      }
+    },
+    "package_verification": {
+      "ok": false,
+      "schema_version": "2.0",
+      "generated_at": "2026-11-14",
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "package_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist",
+      "summary": {
+        "target_count": 1,
+        "adapter_count": 1,
+        "archive_present": true,
+        "archive_sha256": "0f0238bc6b0fdfdafe05751cc5168f82cf1f70c39db867717fffca85ab9fcd9f",
+        "archive_entry_count": 90,
+        "failure_count": 1,
+        "warning_count": 0
+      },
+      "checks": [
+        {
+          "id": "package-manifest",
+          "status": "pass",
+          "detail": "Package manifest exists: /Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/manifest.json"
+        },
+        {
+          "id": "openai-adapter",
+          "status": "pass",
+          "detail": "Adapter exists for target: openai"
+        },
+        {
+          "id": "archive-safe-paths",
+          "status": "pass",
+          "detail": "Archive has no absolute or parent-traversal entries"
+        },
+        {
+          "id": "archive-entry-lyz-aircraft-embroidery/SKILL.md",
+          "status": "pass",
+          "detail": "Archive contains lyz-aircraft-embroidery/SKILL.md"
+        },
+        {
+          "id": "archive-entry-lyz-aircraft-embroidery/manifest.json",
+          "status": "pass",
+          "detail": "Archive contains lyz-aircraft-embroidery/manifest.json"
+        },
+        {
+          "id": "archive-entry-lyz-aircraft-embroidery/agents/interface.yaml",
+          "status": "pass",
+          "detail": "Archive contains lyz-aircraft-embroidery/agents/interface.yaml"
+        },
+        {
+          "id": "archive-excludes-generated",
+          "status": "pass",
+          "detail": "Archive excludes generated dist/, .previews/, and tests/tmp* contents"
+        },
+        {
+          "id": "registry-ok",
+          "status": "fail",
+          "detail": "Registry audit is OK"
+        },
+        {
+          "id": "registry-name-match",
+          "status": "pass",
+          "detail": "Registry package name matches package manifest"
+        },
+        {
+          "id": "registry-version-match",
+          "status": "pass",
+          "detail": "Registry package version matches package manifest"
+        },
+        {
+          "id": "registry-compat-openai",
+          "status": "pass",
+          "detail": "Registry compatibility is reviewable for target: openai"
+        }
+      ],
+      "failures": [
+        "Registry audit is OK"
+      ],
+      "warnings": [],
+      "artifacts": {
+        "manifest": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/manifest.json",
+        "archive": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/lyz-aircraft-embroidery.zip",
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/package_verification.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/package_verification.md"
+      }
+    },
+    "install_simulation": {
+      "ok": false,
+      "schema_version": "2.0",
+      "generated_at": "2026-11-14",
+      "skill_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery",
+      "package_dir": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist",
+      "install_root": "/private/tmp/embroidery-analysis/candidate-install-check/simulate-lyz-aircraft-embroidery",
+      "installed_skill_dir": "/private/tmp/embroidery-analysis/candidate-install-check/simulate-lyz-aircraft-embroidery/lyz-aircraft-embroidery",
+      "summary": {
+        "archive_present": true,
+        "archive_entry_count": 108,
+        "archive_extracted": true,
+        "entrypoint_loaded": true,
+        "manifest_loaded": true,
+        "interface_loaded": true,
+        "adapter_count": 1,
+        "installer_permission_enforced_count": 0,
+        "installer_permission_failure_count": 3,
+        "permission_target_count": 1,
+        "permission_capability_count": 1,
+        "install_root_is_temp": false,
+        "failure_count": 3,
+        "warning_count": 0
+      },
+      "checks": [
+        {
+          "id": "archive-present",
+          "status": "pass",
+          "detail": "Package archive exists: /Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/lyz-aircraft-embroidery.zip"
+        },
+        {
+          "id": "archive-safe-paths",
+          "status": "pass",
+          "detail": "Archive has no absolute or parent-traversal entries"
+        },
+        {
+          "id": "single-top-level",
+          "status": "pass",
+          "detail": "Archive top-level directory is lyz-aircraft-embroidery"
+        },
+        {
+          "id": "entrypoint-load",
+          "status": "pass",
+          "detail": "Installed SKILL.md frontmatter is readable"
+        },
+        {
+          "id": "entrypoint-name",
+          "status": "pass",
+          "detail": "Installed SKILL.md name matches package directory"
+        },
+        {
+          "id": "entrypoint-description",
+          "status": "pass",
+          "detail": "Installed SKILL.md description is present"
+        },
+        {
+          "id": "manifest-load",
+          "status": "pass",
+          "detail": "Installed manifest.json is readable"
+        },
+        {
+          "id": "manifest-name",
+          "status": "pass",
+          "detail": "Installed manifest name matches package manifest"
+        },
+        {
+          "id": "manifest-version",
+          "status": "pass",
+          "detail": "Installed manifest version matches package manifest"
+        },
+        {
+          "id": "interface-load",
+          "status": "pass",
+          "detail": "Installed agents/interface.yaml is readable"
+        },
+        {
+          "id": "overview-report",
+          "status": "pass",
+          "detail": "Installed overview report is present"
+        },
+        {
+          "id": "review-studio-report",
+          "status": "pass",
+          "detail": "Installed Review Studio report is present"
+        },
+        {
+          "id": "adapter-openai",
+          "status": "pass",
+          "detail": "openai adapter is readable after package install simulation"
+        },
+        {
+          "id": "adapter-openai-name",
+          "status": "pass",
+          "detail": "openai adapter name matches package manifest"
+        },
+        {
+          "id": "permission-policy-load",
+          "status": "fail",
+          "detail": "Installed permission policy is readable"
+        },
+        {
+          "id": "permission-openai-contract",
+          "status": "pass",
+          "detail": "openai adapter exposes target permission contract for installer enforcement"
+        },
+        {
+          "id": "permission-openai-file_write-approved",
+          "status": "fail",
+          "detail": "openai capability file_write has active reviewer approval"
+        },
+        {
+          "id": "permission-openai-file_write-target-enforcement",
+          "status": "fail",
+          "detail": "openai capability file_write has target enforcement note"
+        }
+      ],
+      "failures": [
+        "Installed permission policy is readable",
+        "openai capability file_write has active reviewer approval",
+        "openai capability file_write has target enforcement note"
+      ],
+      "warnings": [],
+      "artifacts": {
+        "archive": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/lyz-aircraft-embroidery.zip",
+        "package_manifest": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/dist/manifest.json",
+        "json": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/install_simulation.json",
+        "markdown": "/Users/ling99/Codexfiles/Codex/lyz-skills/lyz-aircraft-embroidery/reports/install_simulation.md"
+      }
+    },
+    "upgrade_check": {
+      "ok": true,
+      "status": "not_applicable_initial_release",
+      "summary": {
+        "declared_bump": "initial",
+        "recommended_bump": "initial",
+        "breaking_change_count": 0
+      },
+      "missing_evidence": [
+        "No prior package exists; no genuine upgrade diff is possible."
+      ],
+      "failures": [],
+      "warnings": [
+        "Initial release only; historical upgrade behavior untested."
+      ]
+    },
+    "manifest": {
+      "name": "lyz-aircraft-embroidery",
+      "version": "0.1.0",
+      "owner": "ling99",
+      "updated_at": "2026-11-14",
+      "status": "experimental",
+      "maturity_tier": "production",
+      "lifecycle_stage": "production",
+      "context_budget_tier": "production",
+      "review_cadence": "quarterly",
+      "skill_archetype": "production",
+      "target_platforms": [
+        "openai"
+      ],
+      "factory_components": [
+        "references",
+        "scripts",
+        "assets",
+        "evals",
+        "reports",
+        "security"
+      ],
+      "release_state": "candidate",
+      "license": "UNLICENSED",
+      "input_files": "file-backed fixture: 35 local images, 32 unique; reports/sample-ledger.json stores hashes, dimensions and observations; originals not distributed",
+      "output_contract": "actual embroidery product image plus prompt, parameter record and honest visual check; prompt-only when explicitly requested",
+      "rollback_boundary": "do not modify originals or overwrite outputs; remove installed skill to roll back; no external uploads except deliberate image generation reference use",
+      "network": "compiler offline; host may invoke built-in image generation and read-only primary research",
+      "review_policy": "review after model/tool schema changes, new aircraft cards or 5 real user feedbacks; at least quarterly"
+    },
+    "frontmatter": {
+      "name": "lyz-aircraft-embroidery",
+      "description": "根据上传的刺绣章样本，为中国战机军迷设计原创刺绣产品图片。适用于战机刺绣章、士气章、魔术贴章的参考拆解、换型号设计与系列生图；锁定机型特征，编译简短提示并实际调用AI生图。仅解释理论、服装印花、针版文件、军事性能分析不使用此技能。"
+    },
+    "interface": {
+      "interface": {
+        "display_name": "航空刺绣设计",
+        "short_description": "用型号保真与模块化视觉语法生成原创战机刺绣产品图",
+        "default_prompt": "使用 $lyz-aircraft-embroidery，读取参考图，锁定指定战机外形，继承参考的审美判断与主体场景关系，编译简短提示并实际调用AI生图，交付完整单章产品图片与真实验收结果。"
+      },
+      "compatibility": {
+        "canonical_format": "agent-skills",
+        "adapter_targets": [
+          "openai"
+        ],
+        "activation": {
+          "mode": "manual",
+          "paths": []
+        },
+        "execution": {
+          "context": "inline",
+          "shell": "bash"
+        },
+        "trust": {
+          "source_tier": "local",
+          "remote_inline_execution": "forbid",
+          "remote_metadata_policy": "allow-metadata-only"
+        },
+        "degradation": {
+          "openai": "metadata-adapter; image generation requires host tool"
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "html": "reports/review-studio.html",
+    "json": "reports/review-studio.json"
+  }
+}

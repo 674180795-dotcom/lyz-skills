@@ -1,0 +1,813 @@
+{
+  "version": "0.1.0",
+  "priority": [
+    "aircraft_identity",
+    "parameter_orthogonality",
+    "pattern_diversity"
+  ],
+  "weight_semantics": {
+    "1": "disposable detail",
+    "2": "presentation aid",
+    "3": "optional expression",
+    "4": "key visual behavior",
+    "5": "hard lock; identity first"
+  },
+  "defaults": {
+    "aircraft": "J-20",
+    "composition": "auto",
+    "shape": "hexagon",
+    "rhythm": "auto",
+    "palette": "auto",
+    "text": "",
+    "ratio": "1:1",
+    "reference_images": [],
+    "concept": "cloud_gap",
+    "heading": "auto"
+  },
+  "aircraft": {
+    "J-20": {
+      "name": "Chengdu J-20 single-seat baseline",
+      "features": [
+        "long pointed fuselage",
+        "paired forebody canards ahead of broad delta main wings",
+        "two outward-canted vertical fins",
+        "two rear engine nozzles",
+        "no separate conventional horizontal tailplanes"
+      ],
+      "avoid_features": [
+        "single engine",
+        "conventional rear horizontal tailplanes",
+        "missing forebody canards"
+      ],
+      "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
+      "evidence_status": "verified",
+      "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified"
+    },
+    "J-35A": {
+      "name": "Shenyang J-35A single-seat land-based variant",
+      "features": [
+        "pointed nose and blended fuselage",
+        "swept trapezoidal main wings",
+        "two outward-canted vertical fins",
+        "paired rear horizontal tailplanes",
+        "two rear engine nozzles",
+        "no forebody canards"
+      ],
+      "avoid_features": [
+        "forebody canards",
+        "single engine",
+        "carrier wing-fold emphasis"
+      ],
+      "source": "user corpus S01; https://gdb.hunan.gov.cn/hnsgfb/gdb08xcjx/gdb08xcjx03wkt/202411/t20241118_33963024.html",
+      "evidence_status": "verified",
+      "evidence_scope": "public gross layout plus sample visual; no production block details"
+    }
+  },
+  "compositions": {
+    "axial": {
+      "pattern": "C_AXIAL",
+      "prompt": "Aircraft motif in top view, nose pointing up, aligned with the patch axis."
+    },
+    "diagonal": {
+      "pattern": "C_DIAGONAL",
+      "prompt": "Aircraft motif in dorsal three-quarter view, nose toward {heading}, wings fully inside the rim."
+    },
+    "profile": {
+      "pattern": "C_PROFILE",
+      "prompt": "Aircraft motif in left side profile, nose right; use natural far-side occlusion."
+    }
+  },
+  "shapes": {
+    "hexagon": "point-up rounded hexagonal",
+    "circle": "circular",
+    "shield": "rounded shield-shaped"
+  },
+  "rhythms": {
+    "none": {
+      "pattern": null,
+      "prompt": ""
+    },
+    "parallel": {
+      "pattern": "B_PARALLEL",
+      "prompt": "Integrate directional bands into the scene; keep aircraft features clear."
+    },
+    "arc": {
+      "pattern": "B_ARC",
+      "prompt": "Curved scene contours counterbalance the aircraft’s straight edges."
+    },
+    "grid": {
+      "pattern": "B_GRID",
+      "prompt": "Faint large-spaced orthogonal grid behind the aircraft, interrupted by its silhouette."
+    }
+  },
+  "palettes": {
+    "navy_ice": {
+      "colors": [
+        "navy",
+        "ice blue",
+        "silver gray",
+        "ivory",
+        "muted red"
+      ],
+      "prompt": "Thread colors by role: field navy; rim muted red; aircraft silver gray; contours ivory; bands ice blue; canopy navy.",
+      "roles": {
+        "field": "navy",
+        "rim": "muted red",
+        "aircraft": "silver gray",
+        "contours": "ivory",
+        "bands": "ice blue",
+        "canopy": "navy"
+      }
+    },
+    "graphite_lime": {
+      "colors": [
+        "graphite",
+        "charcoal",
+        "pale gray",
+        "muted lime"
+      ],
+      "prompt": "Thread colors by role: field graphite; rim muted lime; aircraft pale gray; contours charcoal; bands charcoal; canopy charcoal.",
+      "roles": {
+        "field": "graphite",
+        "rim": "muted lime",
+        "aircraft": "pale gray",
+        "contours": "charcoal",
+        "bands": "charcoal",
+        "canopy": "charcoal"
+      }
+    },
+    "crimson_cream": {
+      "colors": [
+        "deep crimson",
+        "brick red",
+        "ivory",
+        "silver gray",
+        "charcoal"
+      ],
+      "prompt": "Thread colors by role: field deep crimson; rim brick red; aircraft silver gray; contours ivory; bands charcoal; canopy charcoal.",
+      "roles": {
+        "field": "deep crimson",
+        "rim": "brick red",
+        "aircraft": "silver gray",
+        "contours": "ivory",
+        "bands": "charcoal",
+        "canopy": "charcoal"
+      }
+    },
+    "navy_amber": {
+      "colors": [
+        "deep indigo",
+        "navy",
+        "silver gray",
+        "ivory",
+        "slate blue",
+        "amber"
+      ],
+      "roles": {
+        "field": "deep indigo",
+        "rim": "navy",
+        "aircraft": "silver gray",
+        "contours": "ivory",
+        "clouds": "slate blue",
+        "opening": "amber"
+      },
+      "prompt": "Thread colors: field deep indigo; rim navy; aircraft silver gray; contours ivory; clouds slate blue; opening amber."
+    },
+    "ice_sun": {
+      "colors": [
+        "navy",
+        "ice blue",
+        "charcoal",
+        "silver gray",
+        "pale amber"
+      ],
+      "roles": {
+        "field": "navy",
+        "rim": "ice blue",
+        "aircraft": "charcoal",
+        "contours": "silver gray",
+        "clouds": "ice blue",
+        "disc": "pale amber"
+      },
+      "prompt": "Thread colors: field navy; rim ice blue; aircraft charcoal; contours silver gray; clouds ice blue; disc pale amber."
+    },
+    "ember_slate": {
+      "colors": [
+        "deep crimson",
+        "oxblood",
+        "slate gray",
+        "ivory",
+        "amber",
+        "charcoal"
+      ],
+      "roles": {
+        "field": "deep crimson",
+        "rim": "oxblood",
+        "aircraft": "slate gray",
+        "contours": "ivory",
+        "light": "amber",
+        "horizon": "charcoal"
+      },
+      "prompt": "Thread colors: field deep crimson; rim oxblood; aircraft slate gray; contours ivory; light amber; horizon charcoal."
+    }
+  },
+  "ratios": [
+    "1:1",
+    "4:5",
+    "3:4"
+  ],
+  "atoms": [
+    {
+      "id": "M01",
+      "axis": "morphology",
+      "parameter": "closed geometric carrier",
+      "evidence": [
+        "S03",
+        "S06",
+        "S19"
+      ]
+    },
+    {
+      "id": "M02",
+      "axis": "morphology",
+      "parameter": "single dominant silhouette",
+      "evidence": [
+        "S03",
+        "S19",
+        "S25"
+      ]
+    },
+    {
+      "id": "M03",
+      "axis": "morphology",
+      "parameter": "layered figure-ground plane",
+      "evidence": [
+        "S18",
+        "S23",
+        "S28"
+      ]
+    },
+    {
+      "id": "T01",
+      "axis": "texture",
+      "parameter": "directional fill threads",
+      "evidence": [
+        "S19",
+        "S25",
+        "S30"
+      ]
+    },
+    {
+      "id": "T02",
+      "axis": "texture",
+      "parameter": "satin contour threads",
+      "evidence": [
+        "S17",
+        "S20",
+        "S24"
+      ]
+    },
+    {
+      "id": "T03",
+      "axis": "texture",
+      "parameter": "raised stitched rim",
+      "evidence": [
+        "S06",
+        "S19",
+        "S35"
+      ]
+    },
+    {
+      "id": "R01",
+      "axis": "rhythm",
+      "parameter": "parallel repetition",
+      "evidence": [
+        "S03",
+        "S11",
+        "S18"
+      ]
+    },
+    {
+      "id": "R02",
+      "axis": "rhythm",
+      "parameter": "single arc or curved band",
+      "evidence": [
+        "S28",
+        "S29",
+        "S31"
+      ]
+    },
+    {
+      "id": "R03",
+      "axis": "rhythm",
+      "parameter": "sparse grid",
+      "evidence": [
+        "S19",
+        "S31",
+        "S32"
+      ]
+    },
+    {
+      "id": "R04",
+      "axis": "rhythm",
+      "parameter": "opposed directional fields",
+      "evidence": [
+        "S18",
+        "S20",
+        "S25"
+      ]
+    },
+    {
+      "id": "E01",
+      "axis": "boundary",
+      "parameter": "continuous enclosure",
+      "evidence": [
+        "S01",
+        "S06",
+        "S24"
+      ]
+    },
+    {
+      "id": "E02",
+      "axis": "boundary",
+      "parameter": "inset whole subject",
+      "evidence": [
+        "S19",
+        "S25",
+        "S30"
+      ]
+    },
+    {
+      "id": "E03",
+      "axis": "boundary",
+      "parameter": "contrasting bounded rim",
+      "evidence": [
+        "S02",
+        "S18",
+        "S27"
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "P_IDENTITY",
+      "context": "All model-specific patches",
+      "problem": "Model confusion",
+      "forces": "simplification versus recognition",
+      "solution": "Lock visible aircraft features before style",
+      "consequence": "Model remains recognizable",
+      "requires": [],
+      "excludes": [],
+      "owns": [
+        "aircraft"
+      ]
+    },
+    {
+      "id": "P_HIERARCHY",
+      "context": "Small patch area",
+      "problem": "Multiple competing subjects",
+      "forces": "story versus readability",
+      "solution": "One aircraft; 65–78% of inner width",
+      "consequence": "Clear figure-ground separation",
+      "requires": [
+        "P_IDENTITY"
+      ],
+      "excludes": [],
+      "owns": [
+        "subject_scale"
+      ]
+    },
+    {
+      "id": "C_AXIAL",
+      "context": "Need to inspect geometry",
+      "problem": "Wing layouts hidden",
+      "forces": "symmetry versus motion",
+      "solution": "Top view, nose up, axis aligned",
+      "consequence": "Visible left-right structure",
+      "requires": [
+        "P_IDENTITY"
+      ],
+      "excludes": [
+        "C_DIAGONAL",
+        "C_PROFILE"
+      ],
+      "owns": [
+        "composition"
+      ]
+    },
+    {
+      "id": "C_DIAGONAL",
+      "context": "Want motion",
+      "problem": "Dynamic view can distort features",
+      "forces": "motion versus identity",
+      "solution": "Dorsal three-quarter, lower left to upper right",
+      "consequence": "Wings remain legible",
+      "requires": [
+        "P_IDENTITY"
+      ],
+      "excludes": [
+        "C_AXIAL",
+        "C_PROFILE",
+        "B_GRID"
+      ],
+      "owns": [
+        "composition"
+      ]
+    },
+    {
+      "id": "C_PROFILE",
+      "context": "Elongated aircraft",
+      "problem": "Foreshortening loses length",
+      "forces": "silhouette versus hidden far-side parts",
+      "solution": "Left side profile, nose right",
+      "consequence": "Readable full fuselage",
+      "requires": [
+        "P_IDENTITY"
+      ],
+      "excludes": [
+        "C_AXIAL",
+        "C_DIAGONAL",
+        "B_GRID"
+      ],
+      "owns": [
+        "composition"
+      ]
+    },
+    {
+      "id": "B_PARALLEL",
+      "context": "Static figure needs direction",
+      "problem": "Empty field or noisy trails",
+      "forces": "motion versus clutter",
+      "solution": "Three low-contrast bands behind aircraft",
+      "consequence": "One directional rhythm",
+      "requires": [
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "B_ARC",
+        "B_GRID"
+      ],
+      "owns": [
+        "rhythm"
+      ]
+    },
+    {
+      "id": "B_ARC",
+      "context": "Figure needs anchoring",
+      "problem": "Background can become second subject",
+      "forces": "enclosure versus dominance",
+      "solution": "One off-center arc behind aircraft",
+      "consequence": "Abstract support",
+      "requires": [
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "B_PARALLEL",
+        "B_GRID"
+      ],
+      "owns": [
+        "rhythm"
+      ]
+    },
+    {
+      "id": "B_GRID",
+      "context": "Axial technical motif",
+      "problem": "Dense grid competes",
+      "forces": "order versus noise",
+      "solution": "Large-spaced faint grid interrupted by silhouette",
+      "consequence": "Technical order without occlusion",
+      "requires": [
+        "C_AXIAL"
+      ],
+      "excludes": [
+        "C_DIAGONAL",
+        "C_PROFILE",
+        "B_PARALLEL",
+        "B_ARC"
+      ],
+      "owns": [
+        "rhythm"
+      ]
+    },
+    {
+      "id": "P_THREAD",
+      "context": "Image resembles print",
+      "problem": "No visible embroidery",
+      "forces": "clarity versus material",
+      "solution": "Directional thread fills and satin contours",
+      "consequence": "Visible thread structure",
+      "requires": [
+        "P_IDENTITY"
+      ],
+      "excludes": [],
+      "owns": [
+        "texture"
+      ]
+    },
+    {
+      "id": "P_EDGE",
+      "context": "Image resembles cropped art",
+      "problem": "No product enclosure",
+      "forces": "edge strength versus available area",
+      "solution": "Closed rounded stitched rim, 3% width",
+      "consequence": "Complete textile patch",
+      "requires": [
+        "P_THREAD"
+      ],
+      "excludes": [],
+      "owns": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "P_PRESENT",
+      "context": "Need catalog product view",
+      "problem": "Scene distracts",
+      "forces": "presentation versus motif",
+      "solution": "Front near-overhead product photo, white background",
+      "consequence": "Whole patch visible",
+      "requires": [
+        "P_EDGE"
+      ],
+      "excludes": [],
+      "owns": [
+        "photography"
+      ]
+    },
+    {
+      "id": "N_CLOUD_GAP",
+      "context": "Need a design event, not aircraft plus interchangeable decoration",
+      "problem": "Flat generic motif without an aesthetic thesis",
+      "forces": "narrative richness versus model readability",
+      "solution": "The aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.",
+      "consequence": "diagonal breakthrough through a curved enclosure",
+      "requires": [
+        "P_IDENTITY",
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "N_ALTITUDE",
+        "N_HORIZON",
+        "N_TECHNICAL"
+      ],
+      "owns": [
+        "scene_relation"
+      ]
+    },
+    {
+      "id": "N_ALTITUDE",
+      "context": "Need a design event, not aircraft plus interchangeable decoration",
+      "problem": "Flat generic motif without an aesthetic thesis",
+      "forces": "narrative richness versus model readability",
+      "solution": "A pale amber light disc sits off-center behind the aircraft’s rear half. Layered ice-blue cloud shelves sweep beneath its dark silhouette; deep navy negative space opens ahead. Use three flat embroidered depth planes, not a painted sky.",
+      "consequence": "offset luminous anchor and sweeping altitude layers",
+      "requires": [
+        "P_IDENTITY",
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "N_CLOUD_GAP",
+        "N_HORIZON",
+        "N_TECHNICAL"
+      ],
+      "owns": [
+        "scene_relation"
+      ]
+    },
+    {
+      "id": "N_HORIZON",
+      "context": "Need a design event, not aircraft plus interchangeable decoration",
+      "problem": "Flat generic motif without an aesthetic thesis",
+      "forces": "narrative richness versus model readability",
+      "solution": "A long cool-gray aircraft crosses a narrow vertical seam of amber light above a dark crimson horizon. Broad dark and warm stitched planes form the scene; reserve open space along the nose direction. No explosion or extra objects.",
+      "consequence": "horizontal/vertical counterpoint",
+      "requires": [
+        "P_IDENTITY",
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "N_CLOUD_GAP",
+        "N_ALTITUDE",
+        "N_TECHNICAL"
+      ],
+      "owns": [
+        "scene_relation"
+      ]
+    },
+    {
+      "id": "N_TECHNICAL",
+      "context": "Need a design event, not aircraft plus interchangeable decoration",
+      "problem": "Flat generic motif without an aesthetic thesis",
+      "forces": "narrative richness versus model readability",
+      "solution": "Use an offset low-contrast technical field with generous negative space; the aircraft silhouette is the only narrative subject.",
+      "consequence": "technical silhouette study; explicit choice only",
+      "requires": [
+        "P_IDENTITY",
+        "P_HIERARCHY"
+      ],
+      "excludes": [
+        "N_CLOUD_GAP",
+        "N_ALTITUDE",
+        "N_HORIZON"
+      ],
+      "owns": [
+        "scene_relation"
+      ]
+    }
+  ],
+  "fbs_lexicon": [
+    {
+      "id": "F01",
+      "function": "型号认同",
+      "expected_behavior": "Recognizable specified model",
+      "positive": "Use only the locked geometry card",
+      "negative": "hybrid aircraft",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "identity"
+    },
+    {
+      "id": "F02",
+      "function": "织物真实",
+      "expected_behavior": "Visible thread structure",
+      "positive": "directional thread fills, satin-stitched contours, raised stitched rim",
+      "negative": "printed fabric, enamel, molded plastic",
+      "positive_weight": 5,
+      "negative_weight": 5,
+      "scope": "texture"
+    },
+    {
+      "id": "F03",
+      "function": "缩小可读",
+      "expected_behavior": "Unbroken silhouette",
+      "positive": "one dominant aircraft with clear negative space",
+      "negative": "competing subjects, clutter",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "hierarchy"
+    },
+    {
+      "id": "F04",
+      "function": "系列收藏",
+      "expected_behavior": "Consistent base system",
+      "positive": "closed geometric patch, limited thread palette",
+      "negative": "random colors, mismatched borders",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "series"
+    },
+    {
+      "id": "F05",
+      "function": "原创重组",
+      "expected_behavior": "No borrowed brand arrangement",
+      "positive": "original arrangement of abstract forms",
+      "negative": "copied logos, copied mascots",
+      "positive_weight": 4,
+      "negative_weight": 4,
+      "scope": "originality"
+    },
+    {
+      "id": "F06",
+      "function": "方向感",
+      "expected_behavior": "Clear movement without occlusion",
+      "positive": "sparse directional bands behind aircraft",
+      "negative": "trails crossing aircraft features",
+      "positive_weight": 3,
+      "negative_weight": 4,
+      "scope": "rhythm"
+    },
+    {
+      "id": "F07",
+      "function": "标签可读",
+      "expected_behavior": "Exact short label",
+      "positive": "one short model label only",
+      "negative": "gibberish, extra slogans",
+      "positive_weight": 3,
+      "negative_weight": 4,
+      "scope": "text"
+    },
+    {
+      "id": "F08",
+      "function": "产品展示",
+      "expected_behavior": "Complete patch readable",
+      "positive": "complete isolated patch, soft side light",
+      "negative": "cropped rim, props",
+      "positive_weight": 2,
+      "negative_weight": 3,
+      "scope": "photography"
+    },
+    {
+      "id": "F09",
+      "function": "轻微表面变化",
+      "expected_behavior": "Small material variation",
+      "positive": "subtle thread sheen",
+      "negative": "glitter, holographic shine",
+      "positive_weight": 1,
+      "negative_weight": 2,
+      "scope": "optional"
+    },
+    {
+      "id": "F10",
+      "function": "参考审美的设计逻辑",
+      "expected_behavior": "A coherent event organizes subject, scene, contrast and thread direction",
+      "positive": "one coherent subject-scene relationship, deliberate directional counterpoint",
+      "negative": "interchangeable background, unrelated effects",
+      "positive_weight": 4,
+      "negative_weight": 5,
+      "scope": "aesthetic"
+    }
+  ],
+  "prompt_word_budget": 230,
+  "concepts": {
+    "cloud_gap": {
+      "name": "破晓切线",
+      "function": "以角形机体切开曲线场景，形成明确的穿越事件",
+      "composition": "diagonal",
+      "rhythm": "arc",
+      "palette": "navy_amber",
+      "pattern": "N_CLOUD_GAP",
+      "prompt": "The aircraft cuts diagonally through a narrow dawn opening in layered indigo clouds. Curling cloud masses compress the lower left; a small amber opening releases space ahead of the nose. Keep the entire aircraft readable.",
+      "contrast": "angular aircraft versus curved cloud masses; cool field with one concentrated warm opening",
+      "source_patterns": [
+        "S01: 云层围合与主体穿越",
+        "S23: 小面积暖亮竖向事件对抗冷灰横向主体",
+        "S03: 同向线向强化斜势"
+      ],
+      "omit": [
+        "explosion mushroom cloud",
+        "large sun plus lightning plus grid",
+        "copied source text or layout"
+      ],
+      "gesture": "diagonal breakthrough through a curved enclosure",
+      "heading": "upper right"
+    },
+    "altitude_layers": {
+      "name": "高空折光",
+      "function": "用前后层次与偏心光源衬托机体，让冷暖落在空间关系上",
+      "composition": "diagonal",
+      "rhythm": "parallel",
+      "palette": "ice_sun",
+      "pattern": "N_ALTITUDE",
+      "prompt": "A pale amber light disc sits off-center behind the aircraft’s rear half. Layered ice-blue cloud shelves sweep beneath its dark silhouette; deep navy negative space opens ahead. Use three flat embroidered depth planes, not a painted sky.",
+      "contrast": "dark aircraft against light disc; cold stepped cloud planes against restrained amber",
+      "source_patterns": [
+        "S17: 偏心圆面与前后叙事层",
+        "S03: 斜向分区线纹",
+        "S01: 深浅云与机体的图地分离"
+      ],
+      "omit": [
+        "two-aircraft timeline",
+        "year labels",
+        "decorative stars or extra emblems"
+      ],
+      "gesture": "offset luminous anchor and sweeping altitude layers",
+      "heading": "upper left"
+    },
+    "dawn_horizon": {
+      "name": "地平线对峙",
+      "function": "细长机身与窄竖光带交叉，使静态轮廓产生视觉张力",
+      "composition": "profile",
+      "rhythm": "parallel",
+      "palette": "ember_slate",
+      "pattern": "N_HORIZON",
+      "prompt": "A long cool-gray aircraft crosses a narrow vertical seam of amber light above a dark crimson horizon. Broad dark and warm stitched planes form the scene; reserve open space along the nose direction. No explosion or extra objects.",
+      "contrast": "horizontal silhouette versus vertical light seam; warm field versus cool aircraft",
+      "source_patterns": [
+        "S23: 横竖方向冲突与暖底冷机",
+        "S02: 地平线与背光叙事"
+      ],
+      "omit": [
+        "mushroom cloud",
+        "pilot portraits",
+        "historical claims or anniversaries"
+      ],
+      "gesture": "horizontal/vertical counterpoint",
+      "heading": "upper right"
+    },
+    "identity_study": {
+      "name": "技术识别章",
+      "function": "用户明确需要型号标本时使用克制构图，不能充当所有设计的默认",
+      "composition": "axial",
+      "rhythm": "grid",
+      "palette": "graphite_lime",
+      "pattern": "N_TECHNICAL",
+      "prompt": "Use an offset low-contrast technical field with generous negative space; the aircraft silhouette is the only narrative subject.",
+      "contrast": "clear model silhouette against restrained geometry",
+      "source_patterns": [
+        "S19: 工程几何与识别轮廓"
+      ],
+      "omit": [
+        "ornamental scene",
+        "multiple labels"
+      ],
+      "gesture": "technical silhouette study; explicit choice only",
+      "heading": "upper right"
+    }
+  },
+  "aesthetic_rules": {
+    "default_is_not_minimal": "Use cloud_gap or altitude_layers unless a technical study is explicitly requested.",
+    "attention_budget": "One main aircraft plus one scene event; up to three depth planes. Richness comes from relationships, not sticker accumulation.",
+    "originality": "Strip source-specific subject and arrangement while retaining its relational design operations. Generic clouds, horizons or light discs may be re-authored.",
+    "acceptance": "Fidelity alone cannot pass; require a clear event, controlled contrast and scene-specific thread organization."
+  }
+}

@@ -1,0 +1,12 @@
+Use case: product-mockup.
+One embroidered aircraft patch depicting Shenyang J-35A single-seat land-based variant.
+Identity lock: pointed nose and blended fuselage; swept trapezoidal main wings; two outward-canted vertical fins; paired rear horizontal tailplanes; two rear engine nozzles; no forebody canards.
+Aircraft motif in top view, nose pointing up, aligned with the patch axis.
+A point-up rounded hexagonal patch; one dominant aircraft with clear negative space; aircraft spans 65–78% of inner width.
+Directional thread fills, satin-stitched contours, raised stitched rim, rim about 3% of patch width.
+Three low-contrast parallel bands behind the aircraft; keep its silhouette clear.
+Five thread colors: navy, ice blue, silver gray, ivory, muted red.
+No lettering.
+Front near-overhead product photograph on white; soft side light, faint contact shadow; complete rim with 8% outer margin. Image ratio 1:1.
+Input image 1: thread and rim texture only; do not copy its subject, text or layout.
+Avoid: forebody canards, single engine, carrier wing-fold emphasis, text, hybrid aircraft, printed fabric, enamel, molded plastic, competing subjects, clutter, random colors, mismatched borders.

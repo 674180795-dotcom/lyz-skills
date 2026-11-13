@@ -1,0 +1,42 @@
+{
+  "positive_concepts": {
+    "aircraft": {
+      "phrases": [
+        "中国战机",
+        "战机",
+        "歼20",
+        "歼35A",
+        "军迷"
+      ],
+      "weight": 0.5
+    },
+    "embroidery": {
+      "phrases": [
+        "刺绣",
+        "刺绣章",
+        "士气章",
+        "魔术贴章"
+      ],
+      "weight": 0.5
+    }
+  },
+  "negative_concepts": {
+    "out_of_scope": {
+      "phrases": [
+        "只解释",
+        "解释FBS",
+        "针版文件",
+        "军事性能",
+        "服装印花",
+        "T恤印花",
+        "改文件名"
+      ],
+      "weight": 1.0,
+      "exclusive": true
+    }
+  },
+  "fallback_positive_concepts": [
+    "aircraft",
+    "embroidery"
+  ]
+}
