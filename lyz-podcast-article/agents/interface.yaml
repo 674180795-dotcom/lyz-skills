@@ -1,7 +1,7 @@
 interface:
   display_name: "播客成稿"
-  short_description: "校勘播客转录，编辑成有主线、有细节的公众号访谈长文"
-  default_prompt: "使用 $lyz-podcast-article，先逐份读完提供的转录并核对实际嘉宾、主题与附带背景，通过preflight后再校勘和成文。问答必须来自本文件，润色后重审，delivery-check通过后交付Markdown成稿与独立校勘记录。"
+  short_description: "忠实保留访谈语气，第一轮交付一份可读的Markdown文章"
+  default_prompt: "使用 $lyz-podcast-article，先读全本次转录，核对背景，写前选定真实问题与回答出处。最小编辑，保留口语与限定，禁止过度整理；使用好奇/回答且续段不重复标签。用compact_article.py临时会话检查并finish，仅交付一份Markdown，清理临时文件，不生成评分或审稿副本。"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets: [openai]

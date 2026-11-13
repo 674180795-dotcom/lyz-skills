@@ -18,20 +18,39 @@
         "allowed": false,
         "reason": "stdin is explicitly supplied transcript data, not an interactive approval."
       }
+    },
+    "scripts/compact_article.py": {
+      "file_write": {
+        "allowed": true,
+        "reason": "Create one owned OS temporary session and draft; deliver only the explicitly selected new Markdown file without overwriting; delete only owned session files after success."
+      },
+      "network": {
+        "allowed": false,
+        "reason": "No network code."
+      },
+      "subprocess": {
+        "allowed": false,
+        "reason": "No subprocess calls."
+      },
+      "interactive": {
+        "allowed": false,
+        "reason": "No interactive input."
+      }
     }
   },
   "note": "Metadata documents scope and is not native sandbox enforcement. Local CLI checks never establish factual truth.",
-  "reviewed_at": "2026-11-01",
+  "reviewed_at": "2026-11-13",
   "capabilities": {
     "file_write": {
       "decision": "approved",
       "reviewer": "Codex scope check against ling99 explicit implementation request, not a separate human security audit",
-      "reason": "The user explicitly requested creation of the skill and its Markdown outputs; file writes are confined by host permissions and the new-work-directory contract.",
-      "scope": "scripts/article_tools.py: user-selected work directory only",
+      "reason": "User requested this local upgrade and lean Markdown delivery; temporary cleanup is bounded to the exact owned directory, output cannot overwrite existing files. Metadata is not independent human approval.",
+      "scope": "article_tools.py legacy work directories; compact_article.py exact owned OS temporary directory and user-selected new Markdown output",
       "expires_at": "2027-01-30",
       "evidence": [
         "README.md",
-        "tests/test_article_tools.py"
+        "tests/test_article_tools.py",
+        "tests/test_compact_article.py"
       ],
       "target_enforcement": {
         "openai": "Host sandbox and explicit output path; metadata does not create native target enforcement.",

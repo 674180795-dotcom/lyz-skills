@@ -1,8 +1,8 @@
 {
   "name": "lyz-podcast-article",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "owner": "ling99",
-  "updated_at": "2026-11-02",
+  "updated_at": "2026-11-13",
   "review_cadence": "quarterly",
   "status": "experimental",
   "maturity_tier": "production",
@@ -19,8 +19,8 @@
     "security"
   ],
   "input_files": "file-backed fixture: local-only 10 paired transcripts/articles; reports/corpus-index.json stores hashes, not private paths",
-  "output_contract": "Per-input preflight identity/read receipts + 文章.md or 文章_待核稿.md + _editorial/校勘记录.md; current-hash delivery-check before downstream delivery",
-  "rollback_boundary": "Keep source input immutable; new work directory per run; deployment rollback through Skills Manager to previous version; no publishing",
+  "output_contract": "默认仅一份文章.md；好奇/回答只在问答开始标记；写前全文阅读与原问计划；两份系统临时文件，成功交付后清理；不上传发布",
+  "rollback_boundary": "原文不改；已存在输出不覆盖；保留旧审计CLI兼容；通过Skills Manager可回退技能版本",
   "network": "Host agent uses read-only public research tools; packaged Python script has no network",
   "release_state": "candidate",
   "lifecycle_stage": "production",
