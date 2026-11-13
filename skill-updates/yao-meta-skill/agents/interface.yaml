@@ -1,0 +1,26 @@
+interface:
+  display_name: "Yao Meta Skill"
+  short_description: "创建技能、迭代并收集人工评分"
+  default_prompt: "使用 $技能工坊 将我的工作流整理或迭代成可复用技能；迭代后交付实际成果和易懂的选项评分，复制分数回聊天后再判断是否通过。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    vscode: "agent-skills-source-with-vscode-notes"
