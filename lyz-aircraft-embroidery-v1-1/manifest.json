@@ -1,0 +1,28 @@
+{
+  "name": "lyz-aircraft-embroidery-v1-1",
+  "version": "1.1.0",
+  "owner": "ling99",
+  "updated_at": "2026-11-14",
+  "status": "experimental",
+  "skill_archetype": "scaffold",
+  "maturity_tier": "scaffold",
+  "context_budget_tier": "scaffold",
+  "review_cadence": "quarterly",
+  "target_platforms": [
+    "openai"
+  ],
+  "factory_components": [
+    "assets",
+    "references",
+    "scripts",
+    "evals",
+    "reports",
+    "security"
+  ],
+  "license": "UNLICENSED",
+  "input_files": "file-backed fixture: 35 local images / 32 unique hashes; originals not redistributed",
+  "output_contract": "same-series embroidered product image with prompt, family reference IDs and honest evaluation; current A/B success pending human ratings",
+  "rollback_boundary": "independent skill identifier; original lyz-aircraft-embroidery and its installed/deployed copies remain byte-identical",
+  "baseline": "lyz-aircraft-embroidery at 2833a7f4804e321336eb10dc02eed8ef4d24e224",
+  "release_state": "human-blind-evaluation-candidate"
+}

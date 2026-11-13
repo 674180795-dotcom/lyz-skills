@@ -1,0 +1,4 @@
+interface:
+  display_name: "航空刺绣设计 1.1"
+  short_description: "按原图系列的视觉省略、配色、视角和文字设计刺绣产品图"
+  default_prompt: "使用 $lyz-aircraft-embroidery-v1-1，依据上传样本生成同系列战机刺绣章。"

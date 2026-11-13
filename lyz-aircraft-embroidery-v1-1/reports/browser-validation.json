@@ -1,0 +1,14 @@
+{
+  "browser": "Ego Lite only",
+  "six_candidate_images_loaded": true,
+  "six_dimensions_per_image": true,
+  "total_score_fields": 36,
+  "radio_options": 180,
+  "all_real_scores_initially_empty": true,
+  "qa_draft_export_isolated": true,
+  "reference_expand_and_zoom": "pass",
+  "mobile_viewport_width": 390,
+  "mobile_content_width": 390,
+  "html_version_key_or_prompts_present": false,
+  "result_page_kept_for_user": true
+}

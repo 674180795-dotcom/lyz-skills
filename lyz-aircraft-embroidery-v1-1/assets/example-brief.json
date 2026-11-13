@@ -1,0 +1,8 @@
+{
+  "aircraft": "J-20",
+  "family": "kinetic_grid",
+  "pose": "dorsal_left",
+  "label": "J20",
+  "ratio": "1:1",
+  "reference_images": []
+}

@@ -1,0 +1,34 @@
+{
+  "network_imports": [],
+  "shell_execution": [],
+  "scanned_scripts": [
+    {
+      "path": "scripts/score_blind.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib"
+      ]
+    },
+    {
+      "path": "scripts/build_scoreboard.py",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ]
+    },
+    {
+      "path": "scripts/compile_prompt.py",
+      "imports": [
+        "argparse",
+        "copy",
+        "json",
+        "pathlib",
+        "re"
+      ]
+    }
+  ],
+  "independent_human_scores": "missing evidence"
+}

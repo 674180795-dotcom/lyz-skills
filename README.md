@@ -8,6 +8,7 @@
 
 | Skill | 状态 | 用途 | 文档 | 离线包 |
 | --- | --- | --- | --- | --- |
+| **lyz-aircraft-embroidery-v1-1**（航空刺绣设计 1.1） | 盲评试验 · v1.1.0 | 继承参考系列的结构省略、色块、视角与文字构图；与原版独立共存 | [使用说明](lyz-aircraft-embroidery-v1-1/README.md) · [执行入口](lyz-aircraft-embroidery-v1-1/SKILL.md) | 本轮以匿名评分判定，结果待评 |
 | **lyz-aircraft-embroidery**（航空刺绣设计） | 试用 · v0.1.0 | 从参考图提取视觉语法，锁定中国战机外形，实际生成刺绣章产品图 | [使用说明](lyz-aircraft-embroidery/README.md) · [执行入口](lyz-aircraft-embroidery/SKILL.md) | [下载 ZIP](lyz-aircraft-embroidery/dist/lyz-aircraft-embroidery.zip) |
 | **lyz-podcast-article**（播客成稿） | 试用 · v0.3.0 | 保留访谈口语与原意，默认交付一份公众号长文，写前核验真实问答 | [使用说明](lyz-podcast-article/README.md) · [执行入口](lyz-podcast-article/SKILL.md) | [下载 ZIP](lyz-podcast-article/dist/lyz-podcast-article.zip) |
 | **lyz-resume**（简历工坊） | 可用 · v1.1.0 | 从旧简历、JD、零散经历或口述开始，生成可信、针对岗位的 HTML/PDF 简历 | [使用说明](lyz-resume/README.md) · [执行入口](lyz-resume/SKILL.md) | [下载 ZIP](lyz-resume/dist/lyz-resume.zip) |

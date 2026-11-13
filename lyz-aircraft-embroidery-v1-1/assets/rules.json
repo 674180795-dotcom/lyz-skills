@@ -1,0 +1,178 @@
+{
+  "version": "1.1.0",
+  "priority": [
+    "aircraft_identity",
+    "parameter_orthogonality",
+    "pattern_diversity"
+  ],
+  "defaults": {
+    "aircraft": "J-20",
+    "family": "kinetic_grid",
+    "pose": "dorsal_left",
+    "label": "auto",
+    "ratio": "1:1",
+    "reference_images": []
+  },
+  "aircraft": {
+    "J-20": {
+      "name": "Chengdu J-20 single-seat baseline",
+      "features": [
+        "long pointed fuselage",
+        "paired forebody canards ahead of broad delta main wings",
+        "two outward-canted vertical fins",
+        "two rear engine nozzles",
+        "no separate conventional horizontal tailplanes"
+      ],
+      "avoid_features": [
+        "single engine",
+        "conventional rear horizontal tailplanes",
+        "missing forebody canards"
+      ],
+      "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
+      "evidence_status": "verified",
+      "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified"
+    },
+    "J-35A": {
+      "name": "Shenyang J-35A single-seat land-based variant",
+      "features": [
+        "pointed nose and blended fuselage",
+        "swept trapezoidal main wings",
+        "two outward-canted vertical fins",
+        "paired rear horizontal tailplanes",
+        "two rear engine nozzles",
+        "no forebody canards"
+      ],
+      "avoid_features": [
+        "forebody canards",
+        "single engine",
+        "carrier wing-fold emphasis"
+      ],
+      "source": "user corpus S01; https://gdb.hunan.gov.cn/hnsgfb/gdb08xcjx/gdb08xcjx03wkt/202411/t20241118_33963024.html",
+      "evidence_status": "verified",
+      "evidence_scope": "public gross layout plus sample visual; no production block details"
+    }
+  },
+  "families": {
+    "kinetic_grid": {
+      "name": "冷色技术动势",
+      "sources": [
+        "S19",
+        "S11",
+        "S21"
+      ],
+      "field": "Deep navy and cyan diagonal stitched fields, electric-lime sparse perspective grid in the upper field; leave the aircraft contour clear.",
+      "palette": "navy ground, cyan motion field, electric lime grid and rim; aircraft silver-gray with charcoal shadow masses",
+      "layout": "Oblique aircraft across the upper-middle; lower-left integrated model lettering balances the long foreground wing.",
+      "lettering": "Large condensed oblique block letters, navy fill, narrow cyan edge and small pale offset; lower-left, aligned to a diagonal field boundary.",
+      "stitch": "Compact directional fill, clean satin color boundaries, narrow flat stitched rim matching the lime accents.",
+      "forbidden": "mushroom clouds, moon disc, clouds invented independently of this family"
+    },
+    "cloud_ink": {
+      "name": "蓝白云染动势",
+      "sources": [
+        "S01",
+        "S03",
+        "S21"
+      ],
+      "field": "Layered pale blue, ultramarine and off-white cloud-flow shapes; irregular blue thread mixing inside the ground; short directional streaks follow the flight axis.",
+      "palette": "pale blue and off-white ground, ultramarine deep fields; aircraft pale silver above navy underside; restrained amber only at the twin exhausts",
+      "layout": "Oblique aircraft crosses a diagonal pale-to-blue field; retain open space ahead of its nose; lower-right model lettering sits inside the flow.",
+      "lettering": "Bold condensed model letters, blue fill and thin pale-blue embroidered edge; lower-right with a slight slant matching the patch geometry.",
+      "stitch": "Flat directional thread regions, subtle mixed-thread cloud fields, compact satin lettering and a narrow dark-blue stitched rim.",
+      "forbidden": "large sun or moon disc, ornamental gold-edged cloud scrolls, picture-frame borders"
+    },
+    "red_charge": {
+      "name": "红橙冲刺",
+      "sources": [
+        "S25",
+        "S20",
+        "S18",
+        "S23"
+      ],
+      "field": "Vermilion-red and dark-crimson angular fields; one amber diagonal motion slash passes behind the aircraft, with a short ivory directional accent.",
+      "palette": "vermilion and crimson dominate; amber motion band; silver-gray aircraft, charcoal shadow masses and restrained ivory highlights",
+      "layout": "Oblique aircraft advances across the central diagonal; place the model lettering as a bold lower-edge graphic anchor, counterbalancing its nose.",
+      "lettering": "Large slanted condensed model letters, ivory fill with narrow dark-red edge; integrated into the lower diagonal field, never a detached footer.",
+      "stitch": "Broad flat thread color regions; denser stitch direction changes only at aircraft major planes; narrow red stitched rim.",
+      "forbidden": "explosion mushroom cloud, flames wrapping every edge, copied slogans or anniversaries"
+    },
+    "night_contrast": {
+      "name": "夜色剪影",
+      "sources": [
+        "S24",
+        "S21",
+        "S19"
+      ],
+      "field": "Near-black ground with two large graphite counterforms; cyan accents outline selected outer aircraft edges, leaving deep interior shadow masses.",
+      "palette": "black and graphite ground; cyan aircraft highlights; deep navy shadow fill and a tiny amber accent",
+      "layout": "Strong oblique aircraft silhouette; an offset graphite counterform supports the long axis; large cyan model lettering anchors the lower-left.",
+      "lettering": "Tall condensed cyan model letters with a darker narrow offset; place against the darkest field in the lower-left.",
+      "stitch": "Low-relief thread fills, selective narrow satin contour and a slim charcoal rim, no padded relief.",
+      "forbidden": "copied panther mascot, silver outline around every internal panel, decorative stars"
+    }
+  },
+  "poses": {
+    "dorsal_left": "Dorsal three-quarter aircraft view, nose upper-left; fuselage about 20–30 degrees above horizontal, far wing foreshortened.",
+    "dorsal_right": "Dorsal three-quarter aircraft view, nose upper-right; fuselage about 20–30 degrees above horizontal, far wing foreshortened."
+  },
+  "common": {
+    "carrier": "One near-regular point-up hexagonal fabric patch, modestly rounded corners and a narrow stitched rim, about 2% of patch width.",
+    "simplification": "Translate the aircraft into 3 major flat tonal masses; preserve its silhouette and identifying wing/tail layout, omit panel seams, rivets and tiny mechanisms.",
+    "hierarchy": "Aircraft long-axis envelope about 75% of inner width; filled aircraft mass about one quarter of the patch; reserve 12–18% height for integrated lettering.",
+    "presentation": "Straight-on product photo, white background, whole patch visible with a small soft contact shadow; square image.",
+    "avoid": "photoreal miniature aircraft, ivory piping around every panel, inflated rope border, tiny caption below a giant aircraft, molded plastic, extra words or brand logos"
+  },
+  "fbs_lexicon": [
+    {
+      "F": "型号识别",
+      "Be": "不靠文字也能检查主要翼面组织",
+      "S_positive": "model card and reference silhouette; correct canards/tailplanes",
+      "S_negative": "hybrid aircraft or invented appendages",
+      "weight": 5
+    },
+    {
+      "F": "同系列归属",
+      "Be": "视觉省略与信息分区能与样本放在一起",
+      "S_positive": "same family color fields, glyph hierarchy and selective stitch contour",
+      "S_negative": "generic embroidered photograph in a thick frame",
+      "weight": 5
+    },
+    {
+      "F": "合理省略",
+      "Be": "大形优先，针线承接二维色块",
+      "S_positive": "three large flat aircraft tones, selective outer contour",
+      "S_negative": "rivets, panel seam piping, photographic gradients",
+      "weight": 4
+    },
+    {
+      "F": "色彩组织",
+      "Be": "主色面积与局部高色度形成前后层次",
+      "S_positive": "family-specific dominant field and focal accent",
+      "S_negative": "uniform navy-gold palette for every family",
+      "weight": 4
+    },
+    {
+      "F": "姿态",
+      "Be": "飞机在章内推进，投影能解释近远翼",
+      "S_positive": "shallow dorsal three-quarter, foreshortening",
+      "S_negative": "default vertical top view, forced symmetry",
+      "weight": 4
+    },
+    {
+      "F": "文字作为图形",
+      "Be": "型号是构图锚点，非最后补的小字",
+      "S_positive": "large integrated condensed slanted stitched label",
+      "S_negative": "tiny centered footer, random extra copy",
+      "weight": 4
+    },
+    {
+      "F": "真实刺绣",
+      "Be": "面填针和色块边界可见，章体仍薄",
+      "S_positive": "low-relief directional fill and compact narrow rim",
+      "S_negative": "padded cord edge or metallic molded relief",
+      "weight": 3
+    }
+  ],
+  "word_budget": 300,
+  "measurements": "Visual design starting ranges estimated from the provided samples; not pixel annotations or factory specifications."
+}

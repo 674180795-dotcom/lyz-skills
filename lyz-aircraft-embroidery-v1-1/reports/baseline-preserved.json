@@ -1,0 +1,10 @@
+{
+  "baseline_commit": "2833a7f4804e321336eb10dc02eed8ef4d24e224",
+  "unchanged": {
+    "source": true,
+    "installed": true,
+    "deployed": true
+  },
+  "evidence": "full SHA-256 per-file comparison, ignoring interpreter cache only",
+  "private_hash_list": "withheld alongside blind assignment"
+}

@@ -1,0 +1,12 @@
+{
+  "entrypoint_metadata": "pass",
+  "version": "1.1.0",
+  "relative_document_links": "pass",
+  "python_311_syntax": "pass",
+  "runtime_tests": 13,
+  "compiled_family_model_pose_configs": 16,
+  "blind_actual_calls": 6,
+  "human_ratings": "pending",
+  "iteration_success": "pending",
+  "original_skill": "byte-identical"
+}
