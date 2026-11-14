@@ -90,17 +90,16 @@ def compile_brief(raw):
             raise ValueError(f"Invalid design_plan.{field}")
     family = RULES["families"][brief["family"]]
     common = RULES["common"]
-    lines = ["Use case: product-mockup. Invent a NEW collection product; synthesize the examples, never reconstruct one image.",
+    lines = ["Use case: product-mockup. Design an ORIGINAL collection product, not a copied layout.",
              RULES["collection_grammar"]]
     for i, ref in enumerate(refs, 1):
-        meaning = ("count/order guide only; ignore its colors, labels, pose and layout"
+        meaning = ("aircraft shape/proportions only; ignore camouflage, annotations and layout"
                    if ref["role"] == "geometry" else
-                   "series grammar only; do not borrow its aircraft or layout")
-        lines.append(f"Reference {i} ({ref['aircraft']}): {meaning}.")
+                   "whole-corpus series grammar only; no aircraft or source layout")
+        lines.append(f"Ref {i}: {meaning}.")
     lines += [
         f"Target {brief['aircraft']}: " + "; ".join(card["features"]) + ".",
         "Forbidden structures: " + "; ".join(card["avoid_features"]) + ".",
-        card.get("topology", "Keep the verified wing/tail count and fore-aft order."),
         RULES["poses"][brief["pose"]],
         common["simplification"],
         common["carrier"],
@@ -108,7 +107,7 @@ def compile_brief(raw):
         RULES["compositions"][plan["composition"]],
         RULES["motifs"][plan["motif"]],
         "Colors: " + family["palette"] + ".",
-        (f'Only text: "{brief["label"]}". Preserve every character/digit. ' + RULES["lettering"][plan["lettering"]] if brief["label"] else "Omit all model lettering."),
+        (f'Only text: "{brief["label"]}". Exact characters. ' + RULES["lettering"][plan["lettering"]] if brief["label"] else "Omit all model lettering."),
         common["region_stitches"],
         common["presentation"],
     ]
@@ -124,7 +123,7 @@ def compile_brief(raw):
                   "text": RULES["lettering"][plan["lettering"]] if brief["label"] else "explicitly omitted",
                   "series": RULES["collection_grammar"]},
               "priority": RULES["priority"], "fbs_weights": RULES["fbs_lexicon"],
-              "reference_contract": {"geometry": "target identity only; new pose and composition", "series": "synthesize shared grammar; never reconstruct a single example"},
+              "reference_contract": {"geometry": "user aircraft identity and proportions, not camouflage or layout", "series": "whole-corpus graphic language, not a two-source style target"},
               "novelty_plan": {"changed_axes": ["composition", "background_motif", "lettering_layout"],
                                "composition": RULES["compositions"][plan["composition"]],
                                "motif": RULES["motifs"][plan["motif"]],

@@ -1,12 +1,13 @@
 {
-  "version": "1.1.4",
+  "version": "1.1.5",
   "priority": [
-    "aircraft_identity",
-    "parameter_orthogonality",
-    "pattern_diversity"
+    "embroidery_simplification",
+    "aircraft_background_type_relationship",
+    "whole_corpus_collection_language",
+    "original_design"
   ],
   "defaults": {
-    "aircraft": "J-10C",
+    "aircraft": "J-20",
     "family": "kinetic_grid",
     "pose": "dorsal_left",
     "label": "auto",
@@ -33,9 +34,9 @@
         "conventional rear horizontal tailplanes",
         "missing forebody canards"
       ],
-      "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
+      "source": "user-provided J-20 multiview image; local source and SHA-256 retained privately",
       "evidence_status": "verified",
-      "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified",
+      "evidence_scope": "follow the user-depicted aircraft proportions and recognition; illustration is not an authoritative engineering drawing",
       "topology": "Assembly: exactly TWO horizontal pairs, small front canards then broad delta main wings; TWO canted fins and TWO exhausts; no rear tailplanes."
     },
     "J-35A": {
@@ -172,11 +173,11 @@
   },
   "common": {
     "carrier": "One complete point-up hexagonal cloth patch, slim stitched rim.",
-    "simplification": "Use three dominant aircraft tones and one canopy mark; omit panel seams.",
-    "hierarchy": "Balance aircraft, negative space and glyphs; maintain margins.",
+    "simplification": "Preserve reference silhouette/proportions in 4–6 broad flat thread regions plus one canopy mark; merge camouflage, panels and rivets; avoid hairlines, tiny islands and seam piping.",
+    "hierarchy": "Jet, background and lettering form ONE purposeful graphic; clear margins and breathing space.",
     "presentation": "Front-facing white studio product photo, thin textile relief, square image.",
-    "avoid": "tracing, relabeled replicas, copied full layouts, hybrid aircraft, extra text, mascots, molded relief",
-    "region_stitches": "Directional fill on aircraft/background; compact satin only on glyphs and outer rim."
+    "avoid": "source-layout copying, extra text, unrelated decorative collage, photographic micro-detail, molded relief",
+    "region_stitches": "Broad directional fills; compact satin lettering/rim; flat textile relief."
   },
   "fbs_lexicon": [
     {
@@ -238,21 +239,21 @@
   ],
   "word_budget": 300,
   "measurements": "Visual design starting ranges estimated from the provided samples; not pixel annotations or factory specifications.",
-  "reference_strategy": "multi-example collection synthesis; subject identity separate from freely designed composition, background and typography; no single-image reconstruction",
+  "reference_strategy": "whole-corpus language and user aircraft source; single scene/action concept connects aircraft, background and type",
   "compositions": {
-    "climb_offset": "Off-center rising aircraft on the right; S-shaped negative-space corridor on the left; no horizontal field split.",
-    "banking_cove": "Banking aircraft upper-left; broad curved counterforms form an open asymmetrical cove around it.",
-    "intercept_fan": "Near-horizontal aircraft lower-middle; off-center angular ray fan behind one wing; quiet upper corner."
+    "climb_offset": "Rising diagonal jet: open space ahead of nose; background action trails behind, never across identifying wing edges.",
+    "banking_cove": "Banking jet: an open curved field bends with its turn; preserve negative space around canards and wing tips.",
+    "intercept_fan": "Low horizontal jet: trajectory field continues its long axis; the quiet upper field holds the model word."
   },
   "motifs": {
-    "broken_grid_cloud": "Fuse broken perspective grid into cloud-dyed thread islands, merging them into one rhythm with open regions.",
-    "tidal_ribbons": "Interweave two broad sea-flow ribbons and a broken warm accent arc as flat textile regions.",
-    "vector_facets": "Interlock three angular trajectory facets with one cool curved counterform; preserve breathing room."
+    "broken_grid_cloud": "Cloud-break story: one broad vapor opening follows the jet path; sparse grid fragments echo wing sweep, not an independent checkerboard.",
+    "tidal_ribbons": "Turning-flow story: two broad wake ribbons curve behind the jet and open toward its nose; no unrelated loops.",
+    "vector_facets": "Vector story: broad angular facets extend the jet direction and wing sweep; fewer large shapes, not scattered speed decorations."
   },
   "lettering": {
-    "side_stack": "One horizontal condensed word at left, read left-to-right; never stack individual characters.",
-    "right_pillar": "One horizontal condensed word at right, read left-to-right; keep clear of the aircraft.",
-    "upper_corner": "One horizontal cut-angle word upper-right, read left-to-right; generous clear margin."
+    "side_stack": "One horizontal word at left; slant/cut angles echo wing sweep, shared accent color; never stack characters.",
+    "right_pillar": "One horizontal word at right; its baseline answers the flight path and strokes echo wing geometry.",
+    "upper_corner": "One horizontal word in quiet upper space; cut terminals repeat the wing angle and one background accent."
   },
-  "collection_grammar": "Collection language: identifiable simplified aircraft, bold planar color blocks, selective vivid accents, integrated model glyphs, directional thread, slim embroidered boundary."
+  "collection_grammar": "Whole-corpus language: recognizable simplified silhouettes, bold stitched fields, purposeful scene/action symbolism, integrated condensed lettering; ignore posters and logos."
 }

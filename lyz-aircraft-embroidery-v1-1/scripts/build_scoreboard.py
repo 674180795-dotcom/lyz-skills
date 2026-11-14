@@ -23,12 +23,13 @@ def render_review(data):
         "r2": [("structure", 3, True), ("series", 3, True), ("color", 2, False), ("angle", 2, False), ("text", 1, False)],
         "r3": [("structure", 3, True), ("series", 3, True), ("originality", 3, True), ("aesthetic", 2, False), ("text", 1, False)],
         "r4": [("structure", 3, True), ("series", 3, True), ("originality", 3, True), ("aesthetic", 2, False), ("text", 1, False)],
+        "r5": [("simplification", 3, True), ("integration", 3, True), ("series", 3, True), ("aesthetic", 2, False), ("originality", 3, True)],
     }
     if data["rubric_version"] not in rubrics or len(data["criteria"]) != 5:
-        raise ValueError("Require a frozen r2/r3/r4 five-criterion rubric")
+        raise ValueError("Require a frozen five-criterion rubric")
     expected = rubrics[data["rubric_version"]]
-    variants_per_case = 1 if data["rubric_version"] == "r3" else 2
-    case_count = 5 if data["rubric_version"] == "r4" else 3
+    variants_per_case = 1 if data["rubric_version"] in {"r3", "r5"} else 2
+    case_count = {"r4": 5, "r5": 10}.get(data["rubric_version"], 3)
     for criterion, (name, weight, critical) in zip(data["criteria"], expected):
         if set(criterion) != {"id", "label", "weight", "critical", "target", "anchors"}:
             raise ValueError("Unknown criterion fields")
@@ -51,9 +52,15 @@ def render_review(data):
                 raise ValueError("Use anonymous images without private links")
             labels.append(variant["id"])
             relative_image(variant["image"])
-    expected_labels = list("ABCDEFGHIJ" if case_count == 5 else ("ABCDEF" if variants_per_case == 2 else "ABC"))
+    expected_labels = list("ABCDEFGHIJ" if case_count in {5, 10} else ("ABCDEF" if variants_per_case == 2 else "ABC"))
     if sorted(labels) != expected_labels:
         raise ValueError("Require the unique labels for the frozen evaluation mode")
+    if data["rubric_version"] == "r5":
+        if any(c["id"] != c["variants"][0]["id"] for c in data["cases"]):
+            raise ValueError("r5 case IDs must be anonymous labels, never paired task IDs")
+        first = data["cases"][0]
+        if any(any(c[field] != first[field] for field in ("title", "prompt", "references")) for c in data["cases"]):
+            raise ValueError("r5 public briefs must be shared, without pair-specific clues")
     encoded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")
     template = (ROOT / "assets/human-scorecard.html").read_text(encoding="utf-8")
     return re.sub(r'(<script type="application/json" id="review-data">)[\s\S]*?(</script>)',

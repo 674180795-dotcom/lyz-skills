@@ -1,8 +1,8 @@
 {
   "name": "lyz-aircraft-embroidery-v1-1",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "owner": "ling99",
-  "updated_at": "2026-11-14",
+  "updated_at": "2026-11-15",
   "status": "experimental",
   "skill_archetype": "scaffold",
   "maturity_tier": "scaffold",
@@ -20,8 +20,8 @@
     "security"
   ],
   "license": "UNLICENSED",
-  "input_files": "file-backed fixture: 35 local images / 32 unique hashes; originals not redistributed",
-  "output_contract": "original same-series aircraft products; five matched tasks, baseline and candidate five first images each; r4 blind human acceptance pending",
+  "input_files": "file-backed fixture: full35-image corpus/32 unique sources plus user J20 multiview; originals local only",
+  "output_contract": "original J20 embroidery product renders; preserve aircraft while simplifying for thread; integrate jet/background/type; full-corpus language; ten shuffled blind outputs pending human scores",
   "rollback_boundary": "independent skill identifier; original lyz-aircraft-embroidery and its installed/deployed copies remain byte-identical",
   "baseline": "lyz-aircraft-embroidery at 2833a7f4804e321336eb10dc02eed8ef4d24e224",
   "release_state": "experimental-human-evaluation-candidate"

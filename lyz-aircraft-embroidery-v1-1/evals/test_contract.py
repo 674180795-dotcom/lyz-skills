@@ -29,7 +29,7 @@ class RuntimeContract(unittest.TestCase):
                     p, d, _ = c.compile_brief(dict(aircraft=aircraft, family=family, pose=pose))
                     self.assertLessEqual(d["word_count"], 300)
                     self.assertEqual(d["identity_lock"], c.RULES["aircraft"][aircraft])
-                    self.assertIn("panel seams", p)
+                    self.assertIn("merge camouflage, panels and rivets", p.lower())
                     self.assertIn('Only text: "'+aircraft.replace('-', '')+'"', p)
 
     def test_wrong_aircraft_or_appendage_not_transferred(self):
@@ -40,7 +40,7 @@ class RuntimeContract(unittest.TestCase):
 
     def test_oblique_grid_is_not_automatically_deleted(self):
         p, _, _ = c.compile_brief({"family": "kinetic_grid", "pose": "dorsal_left"})
-        self.assertIn("perspective grid", p)
+        self.assertIn("grid fragments echo wing sweep", p)
         self.assertIn("three-quarter", p)
 
     def test_text_is_integrated_and_not_footer(self):
@@ -102,14 +102,15 @@ class RuntimeContract(unittest.TestCase):
             with self.assertRaises(ValueError): c.compile_brief({"aircraft": "J-20", "reference_images": [ref]})
             ref["role"] = "series"
             p, _, _ = c.compile_brief({"aircraft": "J-20", "reference_images": [ref]})
-            self.assertIn("do not borrow its aircraft", p)
+            self.assertIn("no aircraft or source layout", p)
 
     def test_identity_negatives_and_topology_reach_actual_request(self):
         for aircraft, card in c.RULES["aircraft"].items():
             p, _, request = c.compile_brief({"aircraft": aircraft})
             for forbidden in card["avoid_features"]:
                 self.assertIn(forbidden, request["prompt"])
-            self.assertIn(card["topology"], p)
+            for feature in card["features"]:
+                self.assertIn(feature, p)
 
     def test_outputs_never_overwritten(self):
         with tempfile.TemporaryDirectory() as t:
@@ -185,6 +186,37 @@ class BlindScoring(unittest.TestCase):
                               for label in "ABCDEFGHIJ"[i*2:i*2+2]]} for i in range(5)]}
         self.assertIn("synthetic-r4", b.render(data))
         data["cases"][4]["variants"].pop()
+        with self.assertRaises(ValueError): b.render(data)
+
+    def test_r5_integration_failure_cannot_hide_in_high_mean(self):
+        key = {"session": "synthetic-r5", "rubric_version": "r5", "nonce": "test-only",
+               "jobs": [{"task_id": f"T{i//2+1}", "label": label,
+                         "version": "baseline" if i % 2 == 0 else "candidate"}
+                        for i, label in enumerate("ABCDEFGHIJ")]}
+        r = {"session": key["session"], "rubric_version": "r5", "assignment_commitment_sha256": s.commitment(key),
+             "ratings": {label: {d: 3 if i % 2 == 0 else 5 for d in s.R5_WEIGHTS}
+                         for i, label in enumerate("ABCDEFGHIJ")}}
+        r["ratings"]["B"]["integration"] = 2
+        result = s.compare(r, key)
+        self.assertGreater(result["candidate_mean"], 4)
+        self.assertFalse(result["candidate_accepted"])
+        r["ratings"]["J"]["simplification"] = "N"
+        with self.assertRaises(ValueError): s.compare(r, key)
+
+    def test_r5_public_page_is_flat_and_rejects_pairing_metadata(self):
+        b = load("build_scoreboard")
+        criteria = [{"id": d, "label": d, "weight": w, "critical": d in s.R5_CORE,
+                     "target": "synthetic", "anchors": {"1": "low", "3": "mid", "5": "high"}}
+                    for d, w in s.R5_WEIGHTS.items()]
+        data = {"session_id": "synthetic-r5", "rubric_version": "r5", "title": "test", "intro": "test",
+                "criteria": criteria, "cases": [{"id": label, "title": "J20", "prompt": "same public brief", "references": [],
+                "variants": [{"id": label, "content": "anonymous", "image": f"images/{label}.png", "links": []}]}
+                for label in "ABCDEFGHIJ"]}
+        self.assertIn("synthetic-r5", b.render(data))
+        data["cases"][0]["id"] = "T1"
+        with self.assertRaises(ValueError): b.render(data)
+        data["cases"][0]["id"] = "A"
+        data["cases"][0]["task_id"] = "private-pair"
         with self.assertRaises(ValueError): b.render(data)
 
 

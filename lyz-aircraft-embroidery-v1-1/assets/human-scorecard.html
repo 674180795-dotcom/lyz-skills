@@ -34,6 +34,7 @@ fieldset{border:0;border-top:1px solid var(--line);margin:9px 0 0;padding:8px 0 
 legend{font-weight:650;padding:0 8px 0 0;font-size:14px}.badge{font-size:11px;color:var(--accent);font-weight:400;margin-left:8px}
 .standard{float:right;padding:0 4px;border:0;color:var(--muted);font-size:12px;background:transparent}
 .target{font-size:12px;line-height:1.35;color:var(--muted)}
+body[data-rubric="r5"] .target{display:none}
 .choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:6px}
 .choice{position:relative;text-align:center}.choice input{position:absolute;opacity:0;width:1px;height:1px}
 .choice span{display:flex;min-height:34px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-weight:650}
@@ -115,6 +116,7 @@ textarea{display:block;width:100%;min-height:90px;border:1px solid var(--line);b
     byId("copy").disabled = true;
     return;
   }
+  document.body.dataset.rubric = data.rubric_version;
   document.title = data.title;
   byId("title").textContent = data.title;
   byId("intro").textContent = data.intro;
@@ -209,7 +211,7 @@ textarea{display:block;width:100%;min-height:90px;border:1px solid var(--line);b
     const missing=groups.filter(g=>!scoreFor(g.group));
     if(missing.length){show(missing[0].panel);byId("notice").textContent="还有 "+missing.length+" 项未填；可选 N。";document.getElementsByName(missing[0].group)[0].focus();return;}
     const lines=["评分 "+data.session_id+" / "+data.rubric_version,"顺序："+data.criteria.map(c=>c.label).join(" | ")];
-    for(const task of data.cases)for(const v of task.variants)lines.push(task.id+"/"+v.id+"："+data.criteria.map(c=>scoreFor(task.id+"__"+v.id+"__"+c.id)).join(" "));
+    for(const task of data.cases)for(const v of task.variants)lines.push((data.rubric_version==="r5"?"":task.id+"/")+v.id+"："+data.criteria.map(c=>scoreFor(task.id+"__"+v.id+"__"+c.id)).join(" "));
     if(groups.some(g=>scoreFor(g.group)==="N"))lines.push("状态：含 N，待补评");
     if(byId("note").value.trim())lines.push("最要改："+byId("note").value.trim());
     const output=lines.join("\n");byId("copy-output").value=output;

@@ -8,6 +8,8 @@ from pathlib import Path
 DIMENSIONS = ("structure", "omission", "color", "angle", "text", "series")
 R4_WEIGHTS = {"structure": 3, "series": 3, "originality": 3, "aesthetic": 2, "text": 1}
 R4_CORE = ("structure", "series", "originality")
+R5_WEIGHTS = {"simplification": 3, "integration": 3, "series": 3, "aesthetic": 2, "originality": 3}
+R5_CORE = ("simplification", "integration", "series", "originality")
 
 
 def commitment(key):
@@ -17,7 +19,7 @@ def commitment(key):
 def compare(ratings, key):
     if not isinstance(ratings, dict) or not isinstance(key, dict):
         raise ValueError("Ratings and frozen key must be objects")
-    if key.get("rubric_version") == "r4":
+    if key.get("rubric_version") in {"r4", "r5"}:
         return compare_r4(ratings, key)
     if ratings.get("qa") is True:
         raise ValueError("QA exports are not real human ratings")
@@ -73,16 +75,19 @@ def compare(ratings, key):
 
 def compare_r4(ratings, key):
     """Fixed five-pair protocol; incomplete scores never reveal the assignment."""
-    if ratings.get("qa") is True or ratings.get("rubric_version") != "r4":
-        raise ValueError("Require real r4 human scores")
+    rubric = key["rubric_version"]
+    weights, core = (R5_WEIGHTS, R5_CORE) if rubric == "r5" else (R4_WEIGHTS, R4_CORE)
+    divisor = sum(weights.values())
+    if ratings.get("qa") is True or ratings.get("rubric_version") != rubric:
+        raise ValueError("Require real human scores for the frozen rubric")
     if ratings.get("session") != key.get("session") or ratings.get("assignment_commitment_sha256") != commitment(key):
         raise ValueError("Session or assignment commitment mismatch")
     values = ratings.get("ratings")
     if not isinstance(values, dict) or set(values) != set("ABCDEFGHIJ"):
         raise ValueError("Require ten anonymous entries A-J")
     for label, scores in values.items():
-        if not isinstance(scores, dict) or set(scores) != set(R4_WEIGHTS):
-            raise ValueError("Require exactly the five r4 dimensions")
+        if not isinstance(scores, dict) or set(scores) != set(weights):
+            raise ValueError("Require exactly the five frozen dimensions")
         if any(type(n) is not int or not 1 <= n <= 5 for n in scores.values()):
             raise ValueError(f"Incomplete/invalid human rating for {label}; no verdict can be issued")
     jobs = key.get("jobs", [])
@@ -96,12 +101,12 @@ def compare_r4(ratings, key):
             raise ValueError("Invalid/duplicate task-version assignment")
         scores = values[job["label"]]
         pair[version] = {"label": job["label"], "scores": scores,
-                         "mean": sum(scores[d] * w for d, w in R4_WEIGHTS.items()) / 12}
+                         "mean": sum(scores[d] * w for d, w in weights.items()) / divisor}
     if len(pairs) != 5 or any(set(p) != {"baseline", "candidate"} for p in pairs.values()):
         raise ValueError("Need five complete matched pairs")
-    means = {v: {d: sum(p[v]["scores"][d] for p in pairs.values()) / 5 for d in R4_WEIGHTS}
+    means = {v: {d: sum(p[v]["scores"][d] for p in pairs.values()) / 5 for d in weights}
              for v in ("baseline", "candidate")}
-    totals = {v: sum(means[v][d] * w for d, w in R4_WEIGHTS.items()) / 12 for v in means}
+    totals = {v: sum(means[v][d] * w for d, w in weights.items()) / divisor for v in means}
     rows = []
     for task, pair in sorted(pairs.items()):
         delta = pair["candidate"]["mean"] - pair["baseline"]["mean"]
@@ -109,12 +114,12 @@ def compare_r4(ratings, key):
                      "winner": "candidate" if delta > 1e-9 else ("baseline" if delta < -1e-9 else "tie")})
     checks = {
         "candidate_weighted_mean_at_least_4": totals["candidate"] >= 4 - 1e-9,
-        "every_candidate_core_at_least_3": all(p["candidate"]["scores"][d] >= 3 for p in pairs.values() for d in R4_CORE),
+        "every_candidate_core_at_least_3": all(p["candidate"]["scores"][d] >= 3 for p in pairs.values() for d in core),
         "delta_at_least_0_3": totals["candidate"] - totals["baseline"] >= .3 - 1e-9,
-        "each_core_mean_not_degraded": all(means["candidate"][d] >= means["baseline"][d] for d in R4_CORE),
+        "each_core_mean_not_degraded": all(means["candidate"][d] >= means["baseline"][d] for d in core),
         "at_least_three_paired_wins": sum(r["winner"] == "candidate" for r in rows) >= 3,
     }
-    return {"session": key["session"], "rubric_version": "r4", "status": "scored", "pairs": rows,
+    return {"session": key["session"], "rubric_version": rubric, "status": "scored", "pairs": rows,
             "dimension_means": means, "baseline_mean": totals["baseline"], "candidate_mean": totals["candidate"],
             "delta": totals["candidate"] - totals["baseline"], "checks": checks,
             "candidate_accepted": checks["candidate_weighted_mean_at_least_4"] and checks["every_candidate_core_at_least_3"],

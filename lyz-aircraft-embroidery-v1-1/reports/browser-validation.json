@@ -2,33 +2,52 @@
   "browser": "Ego Lite 2.2.1 only",
   "anonymous_images": 10,
   "score_fields": 50,
-  "viewports": [
-    [
-      1280,
-      800
-    ],
-    [
-      1024,
-      768
-    ],
-    [
-      800,
-      600
-    ],
-    [
-      390,
-      844
-    ]
+  "new_criteria": [
+    "simplification",
+    "integration",
+    "series",
+    "aesthetic",
+    "originality"
   ],
-  "image_left_scores_right": true,
-  "all_five_fields_visible": true,
-  "page_or_score_column_overflow": false,
+  "viewport_results": [
+    {
+      "width": 1280,
+      "height": 800,
+      "page_no_overflow": true,
+      "left_image_right_scores": true,
+      "all_five_visible": true,
+      "score_no_internal_scroll": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "page_no_overflow": true,
+      "left_image_right_scores": true,
+      "all_five_visible": true,
+      "score_no_internal_scroll": true
+    },
+    {
+      "width": 800,
+      "height": 600,
+      "page_no_overflow": true,
+      "left_image_right_scores": true,
+      "all_five_visible": true,
+      "score_no_internal_scroll": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "page_no_overflow": true,
+      "left_image_right_scores": true,
+      "all_five_visible": true,
+      "score_no_internal_scroll": true
+    }
+  ],
   "all_ten_images_loaded": true,
-  "r4_plain_text_copy": "pass",
-  "missing_scores_blocked": "pass",
-  "N_stays_pending": "pass",
-  "clipboard_fallback": "pass",
-  "refresh_score_retention": "pass",
+  "flat_A_to_J_navigation_and_copy": true,
+  "public_pair_ids_absent": true,
+  "full_standards_dialog": true,
+  "N_copy_missing_guard_persistence_fallback": "pass",
   "actual_scores_initially_selected": 0,
   "qa_session_isolated": true,
   "result_page_kept": true

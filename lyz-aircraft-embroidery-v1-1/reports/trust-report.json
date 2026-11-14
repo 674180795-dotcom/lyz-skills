@@ -31,10 +31,10 @@
       ]
     }
   ],
-  "independent_human_scores": "missing evidence for 1.1.4; pending_human",
-  "prior_iteration": "1.1.3 complete real human ratings; failed preregistered absolute acceptance",
+  "independent_human_scores": "missing evidence for 1.1.5; pending_human",
+  "prior_iteration": "1.1.4 complete real r4 human scores; failed",
   "private_materials": "excluded from Git and ZIP",
   "external_projects_executed": false,
-  "research_reference": "references/open-source-transfer.md",
-  "geometry_evidence_limit": "coarse subject-card topology schematic, not to scale; identical input to both versions; no independent expert/proportion/block certification"
+  "research_reference": "references/design-expansion.md",
+  "geometry_evidence_limit": "user J20 multiview used as visual identity source; not authoritative engineering or production evidence"
 }

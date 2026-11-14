@@ -1,7 +1,7 @@
 interface:
   display_name: "航空刺绣设计 1.1"
-  short_description: "融合多款系列语言，换机型原创扩款并真实生图"
-  default_prompt: "使用 $lyz-aircraft-embroidery-v1-1，选择其他机型，融合多款样本的设计语言，原创重组构图、背景和文字，生成同系列新款；不复刻单图。"
+  short_description: "全库归纳系列语言，联动飞机、背景与字体原创生图"
+  default_prompt: "使用 $lyz-aircraft-embroidery-v1-1，以用户指定J20为主体，归纳整套样本的产品语言，保原样地刺绣化简化，联动背景与字体原创设计；不复刻单图。"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets: [openai]
