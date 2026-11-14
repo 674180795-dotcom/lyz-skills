@@ -6,6 +6,8 @@
 
 原版`lyz-aircraft-embroidery`的源码、Skills Manager库与Codex部署逐文件SHA-256核对未变，只忽略解释器缓存。独立标识仍是`lyz-aircraft-embroidery-v1-1`，版本1.1.1；Skills Manager更新成功，Codex显式deploy成功，changed_pairs=0表示update已同步部署。
 
+收尾限制：安装与部署的SKILL、规则、编译器、评分页生成器及模板均已逐字节核对为1.1.1。其后新增的本交接文档尚未再次同步到安装副本：Skills Manager连续报告仓库busy，另一进程持锁。未删除锁或中断其他进程。继续工作以本仓库HANDOFF为准；锁释放后再执行skills check/update同步文档，不需要重生图。
+
 ## 实现与验证
 
 - 确认1.1.0的avoid_features及家族forbidden未全部进入实际提示；1.1.1补齐，并将翼面前后顺序和参考职责放在装饰之前。参考混型与立体表达偏移属于待验证假设，不能说已证实因果。
