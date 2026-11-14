@@ -3,20 +3,12 @@
   "shell_execution": [],
   "scanned_scripts": [
     {
-      "path": "scripts/score_blind.py",
-      "imports": [
-        "argparse",
-        "hashlib",
-        "json",
-        "pathlib"
-      ]
-    },
-    {
       "path": "scripts/build_scoreboard.py",
       "imports": [
         "argparse",
         "json",
-        "pathlib"
+        "pathlib",
+        "re"
       ]
     },
     {
@@ -28,7 +20,18 @@
         "pathlib",
         "re"
       ]
+    },
+    {
+      "path": "scripts/score_blind.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib"
+      ]
     }
   ],
-  "independent_human_scores": "missing evidence"
+  "independent_human_scores": "missing evidence for 1.1.1; pending_human",
+  "prior_iteration": "human-scored; failed",
+  "private_materials": "excluded from Git and ZIP"
 }

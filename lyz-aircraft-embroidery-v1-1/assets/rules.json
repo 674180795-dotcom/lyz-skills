@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "priority": [
     "aircraft_identity",
     "parameter_orthogonality",
@@ -30,7 +30,8 @@
       ],
       "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
       "evidence_status": "verified",
-      "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified"
+      "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified",
+      "topology": "Fore-to-aft: cockpit, small canards, broad swept delta wings, twin fins/nozzles; canards remain visibly separate ahead of main wings."
     },
     "J-35A": {
       "name": "Shenyang J-35A single-seat land-based variant",
@@ -49,7 +50,8 @@
       ],
       "source": "user corpus S01; https://gdb.hunan.gov.cn/hnsgfb/gdb08xcjx/gdb08xcjx03wkt/202411/t20241118_33963024.html",
       "evidence_status": "verified",
-      "evidence_scope": "public gross layout plus sample visual; no production block details"
+      "evidence_scope": "public gross layout plus sample visual; no production block details",
+      "topology": "Fore-to-aft: cockpit, trapezoidal main wings, smaller rear tailplanes, twin fins/nozzles; never add forward canards."
     }
   },
   "families": {
@@ -60,12 +62,12 @@
         "S11",
         "S21"
       ],
-      "field": "Deep navy and cyan diagonal stitched fields, electric-lime sparse perspective grid in the upper field; leave the aircraft contour clear.",
-      "palette": "navy ground, cyan motion field, electric lime grid and rim; aircraft silver-gray with charcoal shadow masses",
-      "layout": "Oblique aircraft across the upper-middle; lower-left integrated model lettering balances the long foreground wing.",
-      "lettering": "Large condensed oblique block letters, navy fill, narrow cyan edge and small pale offset; lower-left, aligned to a diagonal field boundary.",
-      "stitch": "Compact directional fill, clean satin color boundaries, narrow flat stitched rim matching the lime accents.",
-      "forbidden": "mushroom clouds, moon disc, clouds invented independently of this family"
+      "field": "Navy upper perspective grid field, diagonal cyan lower streak field, sparse electric-lime lines.",
+      "palette": "navy/cyan/lime; silver-gray aircraft, dark underside",
+      "layout": "Aircraft crosses the field boundary; integrated lower-left label.",
+      "lettering": "Condensed slanted navy glyphs, thin cyan edge, lower-left.",
+      "stitch": "Directional flat fills, narrow lime rim.",
+      "forbidden": "moon discs, invented clouds"
     },
     "cloud_ink": {
       "name": "蓝白云染动势",
@@ -74,12 +76,12 @@
         "S03",
         "S21"
       ],
-      "field": "Layered pale blue, ultramarine and off-white cloud-flow shapes; irregular blue thread mixing inside the ground; short directional streaks follow the flight axis.",
-      "palette": "pale blue and off-white ground, ultramarine deep fields; aircraft pale silver above navy underside; restrained amber only at the twin exhausts",
-      "layout": "Oblique aircraft crosses a diagonal pale-to-blue field; retain open space ahead of its nose; lower-right model lettering sits inside the flow.",
-      "lettering": "Bold condensed model letters, blue fill and thin pale-blue embroidered edge; lower-right with a slight slant matching the patch geometry.",
-      "stitch": "Flat directional thread regions, subtle mixed-thread cloud fields, compact satin lettering and a narrow dark-blue stitched rim.",
-      "forbidden": "large sun or moon disc, ornamental gold-edged cloud scrolls, picture-frame borders"
+      "field": "Pale blue/off-white cloud-dyed ground; irregular ultramarine mixed-thread islands, not uniform racing stripes.",
+      "palette": "pale blue/off-white dominate; navy aircraft shadows; tiny amber exhausts",
+      "layout": "Aircraft travels toward open pale space; integrated lower-right label.",
+      "lettering": "Condensed blue glyphs with thin pale edge, lower-right.",
+      "stitch": "Fine mixed-thread cloud fields, flat aircraft fills, slim navy rim.",
+      "forbidden": "gold cloud scrolls, sun discs"
     },
     "red_charge": {
       "name": "红橙冲刺",
@@ -89,12 +91,12 @@
         "S18",
         "S23"
       ],
-      "field": "Vermilion-red and dark-crimson angular fields; one amber diagonal motion slash passes behind the aircraft, with a short ivory directional accent.",
-      "palette": "vermilion and crimson dominate; amber motion band; silver-gray aircraft, charcoal shadow masses and restrained ivory highlights",
-      "layout": "Oblique aircraft advances across the central diagonal; place the model lettering as a bold lower-edge graphic anchor, counterbalancing its nose.",
-      "lettering": "Large slanted condensed model letters, ivory fill with narrow dark-red edge; integrated into the lower diagonal field, never a detached footer.",
-      "stitch": "Broad flat thread color regions; denser stitch direction changes only at aircraft major planes; narrow red stitched rim.",
-      "forbidden": "explosion mushroom cloud, flames wrapping every edge, copied slogans or anniversaries"
+      "field": "Red ground; narrow amber/ivory diagonal trails behind the aircraft, irregular crimson counterforms.",
+      "palette": "red/crimson dominate; silver-gray aircraft, charcoal shadows, amber accent",
+      "layout": "Aircraft crosses the red field; integrated lower-edge label.",
+      "lettering": "Slanted ivory glyphs, thin dark-red edge, lower diagonal.",
+      "stitch": "Flat directional thread regions; slim red rim.",
+      "forbidden": "copied slogans, ring nose intake, copied vintage wings"
     },
     "night_contrast": {
       "name": "夜色剪影",
@@ -103,24 +105,24 @@
         "S21",
         "S19"
       ],
-      "field": "Near-black ground with two large graphite counterforms; cyan accents outline selected outer aircraft edges, leaving deep interior shadow masses.",
-      "palette": "black and graphite ground; cyan aircraft highlights; deep navy shadow fill and a tiny amber accent",
-      "layout": "Strong oblique aircraft silhouette; an offset graphite counterform supports the long axis; large cyan model lettering anchors the lower-left.",
-      "lettering": "Tall condensed cyan model letters with a darker narrow offset; place against the darkest field in the lower-left.",
-      "stitch": "Low-relief thread fills, selective narrow satin contour and a slim charcoal rim, no padded relief.",
-      "forbidden": "copied panther mascot, silver outline around every internal panel, decorative stars"
+      "field": "Near-black ground, two graphite counterforms, selected cyan outer edges; deep interior shadow masses.",
+      "palette": "black/graphite, cyan highlights, navy aircraft shadow",
+      "layout": "Long oblique silhouette; integrated lower-left cyan label.",
+      "lettering": "Tall condensed cyan glyphs, narrow dark offset, lower-left.",
+      "stitch": "Low-relief fills, selective satin contours, slim charcoal rim.",
+      "forbidden": "panther mascot, decorative stars"
     }
   },
   "poses": {
-    "dorsal_left": "Dorsal three-quarter aircraft view, nose upper-left; fuselage about 20–30 degrees above horizontal, far wing foreshortened.",
-    "dorsal_right": "Dorsal three-quarter aircraft view, nose upper-right; fuselage about 20–30 degrees above horizontal, far wing foreshortened."
+    "dorsal_left": "Nose upper-left; shallow side/dorsal three-quarter, long slim fuselage; near wing below the spine, far wing shortened above it.",
+    "dorsal_right": "Nose upper-right; shallow side/dorsal three-quarter, long slim fuselage; near wing below the spine, far wing shortened above it."
   },
   "common": {
-    "carrier": "One near-regular point-up hexagonal fabric patch, modestly rounded corners and a narrow stitched rim, about 2% of patch width.",
-    "simplification": "Translate the aircraft into 3 major flat tonal masses; preserve its silhouette and identifying wing/tail layout, omit panel seams, rivets and tiny mechanisms.",
-    "hierarchy": "Aircraft long-axis envelope about 75% of inner width; filled aircraft mass about one quarter of the patch; reserve 12–18% height for integrated lettering.",
-    "presentation": "Straight-on product photo, white background, whole patch visible with a small soft contact shadow; square image.",
-    "avoid": "photoreal miniature aircraft, ivory piping around every panel, inflated rope border, tiny caption below a giant aircraft, molded plastic, extra words or brand logos"
+    "carrier": "Single point-up hexagonal cloth patch; slim stitched rim.",
+    "simplification": "Draw a flat textile illustration first: three dominant color masses, a small canopy mark; omit panel seams and rivets. Thread follows each plane, without sculpted bevels.",
+    "hierarchy": "Aircraft spans roughly 75% width; retain long slim proportions; model lettering occupies roughly 15% height.",
+    "presentation": "White studio background, whole patch front-facing, soft contact shadow, square image.",
+    "avoid": "miniature jet on fabric, extra aircraft silhouettes, thick piping, molded relief, extra text"
   },
   "fbs_lexicon": [
     {

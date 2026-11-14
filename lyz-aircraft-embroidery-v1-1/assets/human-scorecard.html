@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技能迭代 · 人工评分</title>
+<style>
+:root{color-scheme:light;--ink:#17272c;--muted:#52666b;--line:#cfdcda;--accent:#006b5d;--paper:#fff;--bg:#f4f6f3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"PingFang SC",sans-serif}main{max-width:850px;margin:auto;padding:40px 24px 140px}h1{font-size:32px;line-height:1.3;margin:10px 0 16px}h2{font-size:23px;margin:0 0 12px}h3{font-size:18px;margin:0}p{margin:8px 0 16px}.muted,small{color:var(--muted)}.eyebrow{font-size:13px;letter-spacing:.1em;color:var(--accent)}section{padding:28px 0;border-top:1px solid var(--line)}article{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin:16px 0 24px}.review-image{display:block;width:100%;height:auto;margin:16px 0}.reference-images{display:flex;gap:12px;flex-wrap:wrap}.reference-images img{width:160px;max-width:100%;height:160px;object-fit:contain}.material{white-space:pre-wrap;overflow-wrap:anywhere}.links{display:flex;flex-wrap:wrap;gap:16px}a{color:var(--accent)}fieldset{border:0;border-top:1px solid var(--line);margin:24px 0 0;padding:20px 0 0;min-width:0}legend{font-weight:650;padding:0 8px 0 0}.badge{font-weight:400;color:var(--accent);font-size:13px;margin-left:10px}.target{font-size:15px;color:var(--muted)}.choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:12px 0}.choice{position:relative;text-align:center}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice span{display:flex;min-height:48px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;background:white;cursor:pointer;font-weight:650}.choice input:checked+span{background:var(--accent);color:#fff;border-color:var(--accent)}.choice input:focus-visible+span{outline:3px solid #d58d25;outline-offset:3px}.choice small{display:block;font-size:11px;font-weight:400}.anchors{font-size:14px;color:var(--muted)}details{margin:8px 0}summary{cursor:pointer}textarea{display:block;width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:12px;background:white;color:var(--ink);font:inherit}button{border:1px solid var(--accent);border-radius:8px;padding:12px 20px;font:inherit;cursor:pointer;background:var(--accent);color:white}button.secondary{background:white;color:var(--accent)}button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #d58d25;outline-offset:2px}.bar{position:fixed;bottom:0;left:0;right:0;background:#fffffff5;border-top:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:24px;z-index:3}.bar p{margin:0;font-size:14px}.notice{min-height:28px;color:var(--accent)}#copy-output{min-height:170px;font:14px/1.7 ui-monospace,monospace}#fallback{padding:18px;border:1px solid var(--line);background:white;border-radius:10px}#error{color:#9a2517}.intro{max-width:700px}label[for=note]{display:block;font-weight:650;margin:16px 0 8px}@media(max-width:520px){main{padding:24px 16px 150px}h1{font-size:27px}article{padding:18px 14px}.bar{gap:12px;padding:12px 16px}.bar button{padding:10px 14px;font-size:15px}.choices{gap:6px}}
+</style>
+<main>
+  <header>
+    <div class="eyebrow">技能迭代 / 人工验收</div>
+    <h1 id="title">正在载入评分内容</h1>
+    <p id="intro" class="intro"></p>
+    <p id="session" class="muted"></p>
+    <p>先看成果，再逐项点选。1 无法使用 · 2 需大改 · 3 可用但要改 · 4 小改即可 · 5 可直接采用 · N 无法判断。没有预填分数。</p>
+  </header>
+  <p id="error" role="alert"></p>
+  <div id="cases"></div>
+  <section>
+    <h2>你的反馈</h2>
+    <label for="note">最想改的一点 <small>选填</small></label>
+    <textarea id="note" placeholder="可以留空，分数本身就是有效反馈。"></textarea>
+    <p class="muted">点“复制分数”，把文字粘贴回聊天即可。含 N 时会标记待补评，不会当作零分。</p>
+    <p id="notice" class="notice" role="status" aria-live="polite"></p>
+    <div id="fallback" hidden>
+      <label for="copy-output">复制受限时，请在下框按 Cmd/Ctrl+C，然后粘贴回聊天。</label>
+      <textarea id="copy-output" readonly></textarea>
+    </div>
+  </section>
+</main>
+<div class="bar"><p id="progress" aria-live="polite">尚未评分</p><button id="copy" type="button">复制分数</button></div>
+<!-- Agent: replace only this public data block. Never embed version mappings or real scores. -->
+<script type="application/json" id="review-data">
+{
+  "session_id": "example-review-001",
+  "rubric_version": "r1",
+  "title": "本轮技能成果，是否更好用？",
+  "intro": "这是模板示例，不是实际执行证据。使用时请换成真实任务、成果和有针对性的标准。",
+  "criteria": [
+    {"id":"goal","label":"有效","weight":3,"critical":true,"target":"成果是否完成这道任务的必要要求。","anchors":{"1":"主要要求未完成。","3":"主要要求完成，但仍有明显缺口。","5":"必要要求齐全，可以直接采用。"}},
+    {"id":"quality","label":"核心质量（请换成任务标准）","weight":3,"critical":true,"target":"替换为本轮最需要改善的具体能力。","anchors":{"1":"关键缺陷仍使成果不可用。","3":"有所改善，仍需明显调整。","5":"关键缺陷已解决，细节也可靠。"}},
+    {"id":"clarity","label":"易懂","weight":1,"critical":false,"target":"是否能理解成果和下一步操作。","anchors":{"1":"不知道结果是什么意思或怎么用。","3":"能理解，但要反复读或追问。","5":"一遍看懂，下一步清楚。"}}
+  ],
+  "cases": [{"id":"task1","title":"替换为实际任务","prompt":"在此放相同任务的要求。","variants":[{"id":"A","content":"在此放实际成果，或给出可打开的材料链接。","links":[]}]}]
+}
+</script>
+<script>
+"use strict";
+(() => {
+  const byId = id => document.getElementById(id);
+  const el = (tag, text, className) => {
+    const n = document.createElement(tag);
+    if (text !== undefined) n.textContent = text;
+    if (className) n.className = className;
+    return n;
+  };
+  const safeId = value => typeof value === "string" && /^[A-Za-z0-9_-]{1,80}$/.test(value);
+  let data;
+  try {
+    data = JSON.parse(byId("review-data").textContent);
+    if (!safeId(data.session_id) || !safeId(data.rubric_version)) throw Error("会话编号或标准版本无效");
+    if (!Array.isArray(data.criteria) || data.criteria.length < 3 || data.criteria.length > 5) throw Error("评分维度须为 3–5 项");
+    if (new Set(data.criteria.map(c => c.id)).size !== data.criteria.length) throw Error("维度编号重复");
+    for (const c of data.criteria) {
+      if (!safeId(c.id) || !c.label || !c.target || ![1,2,3].includes(c.weight) || typeof c.critical !== "boolean" || ![1,3,5].every(n => c.anchors?.[n])) throw Error("标准须包含有效编号、观察说明、重要性及 1/3/5 分锚点");
+    }
+    if (!data.criteria.some(c => c.critical)) throw Error("至少指定一个核心项");
+    if (!Array.isArray(data.cases) || !data.cases.length || new Set(data.cases.map(c => c.id)).size !== data.cases.length) throw Error("任务不能为空或重复");
+    for (const c of data.cases) {
+      if (!safeId(c.id) || !c.title || !c.prompt || !Array.isArray(c.variants) || !c.variants.length || new Set(c.variants.map(v => v.id)).size !== c.variants.length) throw Error("任务或候选信息不完整");
+      for (const v of c.variants) if (!safeId(v.id) || (!v.content && !v.links?.length)) throw Error("候选缺少成果材料");
+    }
+  } catch (e) {
+    byId("error").textContent = "评分内容有误，请让作者修正：" + e.message;
+    byId("copy").disabled = true;
+    return;
+  }
+  document.title = data.title;
+  byId("title").textContent = data.title;
+  byId("intro").textContent = data.intro;
+  byId("session").textContent = data.session_id + " / " + data.rubric_version;
+  const groups = [];
+  for (const task of data.cases) {
+    const section = el("section");
+    section.append(el("h2", task.title), el("p", task.prompt));
+    const imageNode = (src, alt) => {
+      const url = new URL(src, location.href);
+      if (!["http:","https:","file:"].includes(url.protocol)) throw Error("Invalid image URL");
+      const img = el("img"); img.src = url.href; img.alt = alt; img.className = "review-image"; return img;
+    };
+    const references = el("div", undefined, "reference-images");
+    for (const ref of task.references || []) references.append(imageNode(ref.image, ref.id));
+    section.append(references);
+    for (const variant of task.variants) {
+      const article = el("article");
+      article.append(el("h3", "成果 " + variant.id), el("p", variant.content || "", "material"));
+      if (variant.image) article.append(imageNode(variant.image, "Image " + variant.id));
+      const links = el("p", undefined, "links");
+      for (const link of variant.links || []) {
+        try {
+          const url = new URL(link.href, location.href);
+          if (!["http:","https:","file:"].includes(url.protocol)) throw Error("不支持的链接");
+          const a = el("a", link.label || "打开成果");
+          a.href = url.href; a.target = "_blank"; a.rel = "noopener noreferrer";
+          links.append(a);
+        } catch { links.append(el("span", "材料链接无效，请联系作者补充。")); }
+      }
+      if (links.childNodes.length) article.append(links);
+      for (const c of data.criteria) {
+        const group = task.id + "__" + variant.id + "__" + c.id;
+        groups.push({group, task:task.id, variant:variant.id, criterion:c.id});
+        const field = el("fieldset");
+        const legend = el("legend", c.label);
+        legend.append(el("span", c.critical ? "核心" : "一般", "badge"));
+        field.append(legend, el("div", c.target, "target"));
+        const choices = el("div", undefined, "choices");
+        for (const score of ["1","2","3","4","5","N"]) {
+          const label = el("label", undefined, "choice");
+          const radio = el("input");
+          radio.type = "radio"; radio.name = group; radio.value = score;
+          radio.setAttribute("aria-label", c.label + " " + (score === "N" ? "无法判断" : score + " 分"));
+          const span = el("span", score);
+          if (score === "N") span.title = "无法判断";
+          label.append(radio, span); choices.append(label);
+        }
+        const details = el("details", undefined, "anchors");
+        details.append(el("summary", "查看 1 / 3 / 5 分标准"));
+        for (const score of [1,3,5]) details.append(el("p", score + " 分：" + c.anchors[score]));
+        field.append(choices, details); article.append(field);
+      }
+      section.append(article);
+    }
+    byId("cases").append(section);
+  }
+  // Persist only this exact public task/rubric/content, preventing stale scores after edits.
+  const storageKey = "human-review:" + JSON.stringify(data);
+  const scoreFor = group => document.getElementsByName(group).length ? [...document.getElementsByName(group)].find(n => n.checked)?.value : undefined;
+  const refresh = () => {
+    const scores = Object.fromEntries(groups.map(g => [g.group,scoreFor(g.group)]).filter(([,v]) => v));
+    const count = Object.keys(scores).length;
+    byId("progress").textContent = "已填 " + count + " / " + groups.length;
+    try { localStorage.setItem(storageKey, JSON.stringify({scores,note:byId("note").value})); } catch {}
+    byId("fallback").hidden = true;
+    byId("notice").textContent = "";
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+    if (saved?.scores) for (const g of groups) {
+      const v = saved.scores[g.group];
+      for (const n of document.getElementsByName(g.group)) n.checked = n.value === v;
+    }
+    if (typeof saved?.note === "string") byId("note").value = saved.note;
+  } catch {}
+  byId("cases").addEventListener("change",refresh);
+  byId("note").addEventListener("input",refresh);
+  refresh();
+  byId("copy").addEventListener("click",async () => {
+    const missing = groups.filter(g => !scoreFor(g.group));
+    if (missing.length) {
+      byId("notice").textContent = "还有 " + missing.length + " 项未填；不确定的项可选 N。";
+      document.getElementsByName(missing[0].group)[0].focus();
+      return;
+    }
+    const lines = ["评分 " + data.session_id + " / " + data.rubric_version, "顺序：" + data.criteria.map(c => c.label).join(" | ")];
+    for (const task of data.cases) for (const v of task.variants) {
+      lines.push(task.id + "/" + v.id + "：" + data.criteria.map(c => scoreFor(task.id + "__" + v.id + "__" + c.id)).join(" "));
+    }
+    if (groups.some(g => scoreFor(g.group) === "N")) lines.push("状态：含 N，待补评");
+    if (byId("note").value.trim()) lines.push("最要改：" + byId("note").value.trim());
+    const output = lines.join("\n");
+    byId("copy-output").value = output;
+    try {
+      await navigator.clipboard.writeText(output);
+      byId("notice").textContent = "已复制，粘贴回聊天即可。";
+    } catch {
+      byId("fallback").hidden = false;
+      byId("copy-output").focus(); byId("copy-output").select();
+      byId("notice").textContent = "已生成分数，请复制下方选中文字。";
+    }
+  });
+})();
+</script>
+</html>

@@ -1,12 +1,16 @@
 {
+  "version": "1.1.1",
   "entrypoint_metadata": "pass",
-  "version": "1.1.0",
-  "relative_document_links": "pass",
   "python_311_syntax": "pass",
-  "runtime_tests": 13,
+  "runtime_tests": 15,
   "compiled_family_model_pose_configs": 16,
+  "two_reference_budget_checks": 16,
+  "prompt_word_limit": 300,
   "blind_actual_calls": 6,
-  "human_ratings": "pending",
-  "iteration_success": "pending",
+  "quality_retries": 0,
+  "review_renderer_reproduces_browser_tested_page": true,
+  "private_fields_rejected": true,
+  "human_ratings": "pending_human",
+  "iteration_success": "pending_human",
   "original_skill": "byte-identical"
 }

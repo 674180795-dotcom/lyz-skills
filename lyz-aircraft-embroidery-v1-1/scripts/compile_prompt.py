@@ -61,24 +61,34 @@ def compile_brief(raw):
         raise ValueError("Use at most two reference images")
     roles = set()
     for ref in refs:
-        if not isinstance(ref, dict) or set(ref) != {"path", "role"}:
-            raise ValueError("Each reference needs exactly path and role")
+        if not isinstance(ref, dict) or set(ref) != {"path", "role", "aircraft"}:
+            raise ValueError("Each reference needs exactly path, role and observed aircraft")
         if not isinstance(ref["role"], str) or ref["role"] not in {"geometry", "series"} or ref["role"] in roles:
             raise ValueError("Use distinct geometry and series roles")
         if not isinstance(ref["path"], str):
             raise ValueError("Reference path must be a string")
+        plain(ref["aircraft"], "reference aircraft", 40)
+        if ref["role"] == "geometry" and ref["aircraft"] != brief["aircraft"]:
+            raise ValueError("Geometry reference must show the target aircraft; do not borrow another model's wings")
         p = Path(ref["path"])
         if not p.is_absolute() or not p.is_file() or p.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
             raise ValueError("Reference must be an existing absolute local image path")
         roles.add(ref["role"])
     family = RULES["families"][brief["family"]]
     common = RULES["common"]
-    lines = [
-        "Use case: product-mockup. Design a new patch that belongs to the supplied embroidered product series.",
-        common["carrier"],
-        f"Subject: {card['name']}. " + "; ".join(card["features"]) + ".",
+    lines = ["Use case: product-mockup. One new embroidered patch in the reference series."]
+    for i, ref in enumerate(refs, 1):
+        meaning = ("TARGET silhouette/projection authority: preserve proportions and wing-overlap order; mirror only for requested heading"
+                   if ref["role"] == "geometry" else
+                   "COLOR/TEXTILE authority only; do not borrow its aircraft, appendages, slogans or logos")
+        lines.append(f"Reference {i} ({ref['aircraft']}): {meaning}.")
+    lines += [
+        f"Target {brief['aircraft']}: " + "; ".join(card["features"]) + ".",
+        "Forbidden structures: " + "; ".join(card["avoid_features"]) + ".",
+        card.get("topology", "Keep the verified wing/tail count and fore-aft order."),
         RULES["poses"][brief["pose"]],
         common["simplification"],
+        common["carrier"],
         common["hierarchy"] if brief["label"] else "Keep the main aircraft and background readable; no lettering.",
         family["layout"] if brief["label"] else "One oblique aircraft balanced by the family field; no text block.",
         family["field"],
@@ -87,11 +97,7 @@ def compile_brief(raw):
         family["stitch"],
         common["presentation"],
     ]
-    for i, ref in enumerate(refs, 1):
-        meaning = ("aircraft geometry, foreshortening and graphic simplification" if ref["role"] == "geometry" else
-                   "series layout, colors, lettering and stitch; retain target aircraft")
-        lines.append(f"Reference {i}: {meaning}.")
-    lines.append("Avoid: " + common["avoid"] + ".")
+    lines.append("Avoid: " + common["avoid"] + "; " + family["forbidden"] + ".")
     prompt = "\n".join(lines)
     count = len(prompt.split())
     if count > RULES["word_budget"]:
@@ -103,6 +109,7 @@ def compile_brief(raw):
                   "text": family["lettering"] if brief["label"] else "explicitly omitted",
                   "series": family["layout"]},
               "priority": RULES["priority"], "fbs_weights": RULES["fbs_lexicon"],
+              "reference_contract": {"geometry": "target silhouette/projection", "series": "color/textile only; foreign geometry excluded"},
               "image_generated": False, "human_rating": "pending"}
     request = {"kind": "host-agent-call-plan", "preferred_tool": "image_gen.imagegen", "prompt": prompt,
                "references_to_inspect_and_pass": refs, "transparent_background": False,

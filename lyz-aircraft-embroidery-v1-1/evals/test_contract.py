@@ -57,11 +57,28 @@ class RuntimeContract(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             image = Path(t) / "dummy.png"
             image.write_bytes(b'host must inspect image bytes before passing')
-            refs = [{"path": str(image), "role": role} for role in ("geometry", "series")]
+            refs = [{"path": str(image), "role": role, "aircraft": "J-35A"} for role in ("geometry", "series")]
             p, d, _ = c.compile_brief({"aircraft": "J-35A", "family": "cloud_ink", "reference_images": refs})
             self.assertLessEqual(d["word_count"], 300)
-            self.assertIn("series layout, colors, lettering", p)
+            self.assertIn("COLOR/TEXTILE authority only", p)
             with self.assertRaises(ValueError): c.compile_brief({"reference_images": [refs[0], refs[0]]})
+
+    def test_foreign_geometry_rejected_but_style_allowed(self):
+        with tempfile.TemporaryDirectory() as t:
+            image = Path(t) / "dummy.png"
+            image.write_bytes(b'host must inspect actual images')
+            ref = {"path": str(image), "role": "geometry", "aircraft": "J-35A"}
+            with self.assertRaises(ValueError): c.compile_brief({"aircraft": "J-20", "reference_images": [ref]})
+            ref["role"] = "series"
+            p, _, _ = c.compile_brief({"aircraft": "J-20", "reference_images": [ref]})
+            self.assertIn("do not borrow its aircraft", p)
+
+    def test_identity_negatives_and_topology_reach_actual_request(self):
+        for aircraft, card in c.RULES["aircraft"].items():
+            p, _, request = c.compile_brief({"aircraft": aircraft})
+            for forbidden in card["avoid_features"]:
+                self.assertIn(forbidden, request["prompt"])
+            self.assertIn(card["topology"], p)
 
     def test_outputs_never_overwritten(self):
         with tempfile.TemporaryDirectory() as t:
