@@ -76,11 +76,11 @@ def compile_brief(raw):
         roles.add(ref["role"])
     family = RULES["families"][brief["family"]]
     common = RULES["common"]
-    lines = ["Use case: product-mockup. One new embroidered patch in the reference series."]
+    lines = ["Use case: product-mockup. Create a sibling patch through reference-led graphic editing."]
     for i, ref in enumerate(refs, 1):
-        meaning = ("TARGET silhouette/projection authority: preserve proportions and wing-overlap order; mirror only for requested heading"
+        meaning = ("CONTENT/SPATIAL anchor: preserve flat embroidered aircraft silhouette, proportions, overlap order and simplified shading; mirror only for heading"
                    if ref["role"] == "geometry" else
-                   "COLOR/TEXTILE authority only; do not borrow its aircraft, appendages, slogans or logos")
+                   "STYLE donor: " + family["style_borrow"] + "; do not borrow its aircraft")
         lines.append(f"Reference {i} ({ref['aircraft']}): {meaning}.")
     lines += [
         f"Target {brief['aircraft']}: " + "; ".join(card["features"]) + ".",
@@ -95,6 +95,7 @@ def compile_brief(raw):
         "Colors: " + family["palette"] + ".",
         (f'Only text: "{brief["label"]}". ' + family["lettering"] if brief["label"] else "Omit all model lettering."),
         family["stitch"],
+        common["region_stitches"],
         common["presentation"],
     ]
     lines.append("Avoid: " + common["avoid"] + "; " + family["forbidden"] + ".")
@@ -109,7 +110,8 @@ def compile_brief(raw):
                   "text": family["lettering"] if brief["label"] else "explicitly omitted",
                   "series": family["layout"]},
               "priority": RULES["priority"], "fbs_weights": RULES["fbs_lexicon"],
-              "reference_contract": {"geometry": "target silhouette/projection", "series": "color/textile only; foreign geometry excluded"},
+              "reference_contract": {"geometry": "content/spatial anchor; preserve graphic aircraft", "series": family["style_borrow"]},
+              "execution_method": RULES["reference_strategy"],
               "image_generated": False, "human_rating": "pending"}
     request = {"kind": "host-agent-call-plan", "preferred_tool": "image_gen.imagegen", "prompt": prompt,
                "references_to_inspect_and_pass": refs, "transparent_background": False,

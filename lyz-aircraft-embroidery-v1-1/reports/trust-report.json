@@ -31,7 +31,9 @@
       ]
     }
   ],
-  "independent_human_scores": "missing evidence for 1.1.1; pending_human",
-  "prior_iteration": "human-scored; failed",
-  "private_materials": "excluded from Git and ZIP"
+  "independent_human_scores": "missing evidence for 1.1.2; pending_human",
+  "prior_iteration": "1.1.1 human-scored; failed",
+  "private_materials": "excluded from Git and ZIP",
+  "external_projects_executed": false,
+  "research_reference": "references/open-source-transfer.md"
 }

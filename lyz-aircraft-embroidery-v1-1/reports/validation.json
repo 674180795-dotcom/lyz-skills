@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "entrypoint_metadata": "pass",
   "python_311_syntax": "pass",
   "runtime_tests": 15,
@@ -12,5 +12,9 @@
   "private_fields_rejected": true,
   "human_ratings": "pending_human",
   "iteration_success": "pending_human",
-  "original_skill": "byte-identical"
+  "original_skill": "byte-identical",
+  "max_actual_prompt_words": 296,
+  "prior_iteration_human_status": "failed",
+  "reference_method": "content/spatial anchor + constrained style donor + region stitches",
+  "four_viewports_simultaneous_image_and_scores": true
 }

@@ -8,6 +8,8 @@
 
 1.1.1把型号卡avoid_features与家族forbidden送入实际prompt；1.1.0存储了这些字段却未全部输出。300词上限不变，结构与参考职责在装饰之前。
 
+1.1.2改为主参考驱动的图形转译：geometry是内容/空间锚，保留参考中飞机的平面剪影、比例、重叠和少量明暗面；只为目标朝向做镜像。series是风格供体，每个家族通过style_borrow限定只借哪些区域，不能借异型号机体。区域针线分开指定：机体方向填针、背景较安静填针、字形和窄边缎面针。该方法借鉴开源项目的职责分解，没有实际执行Adapter、ControlNet或SVG针版转换。
+
 新型号先验证公开外形或用户几何参考，再传verified subject_card；不能拿近似型号顶替。卡片状态是记录，不是验证本身。仅讨论可见外形，不推断性能。
 
 编译器生成prompt.txt、design.json和request.json，离线、不读图、不生图。request是Agent调用计划，不是API请求体。模型工具使用当前接口，示例：`{prompt: <prompt.txt>, referenced_image_paths: <逐张看过的本地路径>, transparent_background: false}`。无引用时省略路径字段。不要编造seed、独立negative_prompt或尺寸参数。

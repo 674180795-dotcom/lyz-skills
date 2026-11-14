@@ -1,6 +1,6 @@
 {
   "name": "lyz-aircraft-embroidery-v1-1",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "owner": "ling99",
   "updated_at": "2026-11-14",
   "status": "experimental",
@@ -21,7 +21,7 @@
   ],
   "license": "UNLICENSED",
   "input_files": "file-backed fixture: 35 local images / 32 unique hashes; originals not redistributed",
-  "output_contract": "same-series embroidered product image; geometry-first prompt; five-criterion human evaluation pending_human",
+  "output_contract": "reference-led embroidered graphic; content/spatial/style contracts; bounded image-left scores-right review; pending_human",
   "rollback_boundary": "independent skill identifier; original lyz-aircraft-embroidery and its installed/deployed copies remain byte-identical",
   "baseline": "lyz-aircraft-embroidery at 2833a7f4804e321336eb10dc02eed8ef4d24e224",
   "release_state": "experimental-human-evaluation-candidate"

@@ -31,6 +31,8 @@ Playbooks: [Method](references/skill-engineering-method.md), [Intent](references
 
 Every iteration (this meta-skill and Scaffold included) must follow [Human Evaluation](references/human-evaluation.md): freeze 3–5 task criteria/thresholds, run actual outputs, collect human scores via the [option/copy template](assets/human-scorecard.html) or chat. No JSON/reason required. Missing/N stays `pending_human`; critical failures override averages. Automated checks/waivers cannot substitute. Allow coexisting versions or explicit replacement; trial installation is not acceptance.
 
+Image scorecards keep a bounded image on the left and its scores on the right in one viewport; switch candidates in place. Never force scrolling between the image and its scoring controls.
+
 ## Skill OS 2.0 Gates
 
 Before production/library/governed/team release, run Skill IR, target compiler, trigger + output eval, Skill Atlas, conformance, trust, registry/package/install, upgrade, drift, waiver, and Review Studio gates.

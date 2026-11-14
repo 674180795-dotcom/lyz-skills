@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "priority": [
     "aircraft_identity",
     "parameter_orthogonality",
@@ -62,12 +62,13 @@
         "S11",
         "S21"
       ],
-      "field": "Navy upper perspective grid field, diagonal cyan lower streak field, sparse electric-lime lines.",
+      "field": "Keep the anchor's navy upper field, sparse lime perspective grid and cyan diagonal lower field; change grid spacing and streak grouping for a sibling design.",
       "palette": "navy/cyan/lime; silver-gray aircraft, dark underside",
       "layout": "Aircraft crosses the field boundary; integrated lower-left label.",
-      "lettering": "Condensed slanted navy glyphs, thin cyan edge, lower-left.",
+      "lettering": "Preserve the anchor's tall dark-blue glyph character and narrow pale edge, integrated lower-left; do not enlarge into a sports-logo footer.",
       "stitch": "Directional flat fills, narrow lime rim.",
-      "forbidden": "moon discs, invented clouds"
+      "forbidden": "moon discs, invented clouds",
+      "style_borrow": "cyan/navy ground and lime grid only; no donor aircraft or lightning"
     },
     "cloud_ink": {
       "name": "蓝白云染动势",
@@ -76,12 +77,13 @@
         "S03",
         "S21"
       ],
-      "field": "Pale blue/off-white cloud-dyed ground; irregular ultramarine mixed-thread islands, not uniform racing stripes.",
+      "field": "Preserve the anchor's predominantly pale cloud-dyed ground, irregular blue islands and open white regions; rearrange cloud islands without adding a cloud frame.",
       "palette": "pale blue/off-white dominate; navy aircraft shadows; tiny amber exhausts",
       "layout": "Aircraft travels toward open pale space; integrated lower-right label.",
-      "lettering": "Condensed blue glyphs with thin pale edge, lower-right.",
+      "lettering": "Keep the anchor's blue hand-shaped block glyph character with pale edge, lower-right, without a generic italic wordmark.",
       "stitch": "Fine mixed-thread cloud fields, flat aircraft fills, slim navy rim.",
-      "forbidden": "gold cloud scrolls, sun discs"
+      "forbidden": "gold cloud scrolls, sun discs",
+      "style_borrow": "blue thread mixing and soft light/dark textile edges only; no dark donor aircraft or lightning"
     },
     "red_charge": {
       "name": "红橙冲刺",
@@ -91,12 +93,13 @@
         "S18",
         "S23"
       ],
-      "field": "Red ground; narrow amber/ivory diagonal trails behind the aircraft, irregular crimson counterforms.",
+      "field": "From the style donor borrow a mainly red flat ground and thin yellow/white crossing flight trails. Keep broad red breathing space; no huge amber ribbon.",
       "palette": "red/crimson dominate; silver-gray aircraft, charcoal shadows, amber accent",
       "layout": "Aircraft crosses the red field; integrated lower-edge label.",
-      "lettering": "Slanted ivory glyphs, thin dark-red edge, lower diagonal.",
+      "lettering": "Compact slanted silver/ivory model glyphs integrated along the lower diagonal; preserve red negative space.",
       "stitch": "Flat directional thread regions; slim red rim.",
-      "forbidden": "copied slogans, ring nose intake, copied vintage wings"
+      "forbidden": "copied slogans, ring nose intake, copied vintage wings",
+      "style_borrow": "red ground, thin yellow/white trajectory marks and silver thread only; exclude the vintage round intake, swept wings, slogans and emblem"
     },
     "night_contrast": {
       "name": "夜色剪影",
@@ -110,7 +113,8 @@
       "layout": "Long oblique silhouette; integrated lower-left cyan label.",
       "lettering": "Tall condensed cyan glyphs, narrow dark offset, lower-left.",
       "stitch": "Low-relief fills, selective satin contours, slim charcoal rim.",
-      "forbidden": "panther mascot, decorative stars"
+      "forbidden": "panther mascot, decorative stars",
+      "style_borrow": "near-black ground and selective cyan outlines only; no donor aircraft or mascot"
     }
   },
   "poses": {
@@ -119,10 +123,11 @@
   },
   "common": {
     "carrier": "Single point-up hexagonal cloth patch; slim stitched rim.",
-    "simplification": "Draw a flat textile illustration first: three dominant color masses, a small canopy mark; omit panel seams and rivets. Thread follows each plane, without sculpted bevels.",
-    "hierarchy": "Aircraft spans roughly 75% width; retain long slim proportions; model lettering occupies roughly 15% height.",
+    "simplification": "Preserve the anchor as flat cut-color artwork: continuous wing silhouettes, three dominant thread tones, one canopy mark. Do not rebuild a shaded 3D jet.",
+    "hierarchy": "Preserve anchor aircraft proportions; integrated model glyphs stay comparable in scale.",
     "presentation": "White studio background, whole patch front-facing, soft contact shadow, square image.",
-    "avoid": "miniature jet on fabric, extra aircraft silhouettes, thick piping, molded relief, extra text"
+    "avoid": "sculpted miniature jet, beveled panels, cord piping, donor aircraft parts, extra aircraft, extra words, panel seams and rivets",
+    "region_stitches": "Stitches: aircraft directional fills; ground quieter fill; satin only on glyphs and slim rim."
   },
   "fbs_lexicon": [
     {
@@ -176,5 +181,6 @@
     }
   ],
   "word_budget": 300,
-  "measurements": "Visual design starting ranges estimated from the provided samples; not pixel annotations or factory specifications."
+  "measurements": "Visual design starting ranges estimated from the provided samples; not pixel annotations or factory specifications.",
+  "reference_strategy": "anchor-preserving graphic edit; content/spatial/style separated; no adapter or ControlNet execution claimed"
 }

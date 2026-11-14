@@ -1,18 +1,36 @@
 {
   "browser": "Ego Lite 2.2.1 only",
-  "candidate_images": 6,
-  "reference_images": 6,
-  "all_12_loaded": true,
+  "six_first_images_and_references_loaded": true,
   "dimensions_per_image": 5,
   "total_score_fields": 30,
-  "radio_options": 180,
-  "all_real_scores_initially_empty": true,
-  "qa_session_isolated": true,
-  "missing_score_notice": "pass",
-  "N_remains_pending": "pass",
-  "clipboard_fallback": "pass",
-  "mobile_viewport_width": 390,
-  "mobile_horizontal_overflow": false,
-  "html_version_key_or_prompts_present": false,
+  "real_page_selected_scores": 0,
+  "qa_isolated": true,
+  "viewports": [
+    [
+      1366,
+      768
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      800,
+      600
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "image_left_scores_right": true,
+  "all_five_fields_visible": true,
+  "page_or_score_column_overflow": false,
+  "candidate_switch_score_retention": "pass",
+  "reload_restore": "pass",
+  "missing_score_location": "pass",
+  "N_handling": "pass",
+  "copy_plain_text": "pass",
+  "clipboard_failure_fallback": "pass",
   "result_page_kept_for_user": true
 }

@@ -5,32 +5,62 @@
 <title>技能迭代 · 人工评分</title>
 <style>
 :root{color-scheme:light;--ink:#17272c;--muted:#52666b;--line:#cfdcda;--accent:#006b5d;--paper:#fff;--bg:#f4f6f3}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"PingFang SC",sans-serif}main{max-width:850px;margin:auto;padding:40px 24px 140px}h1{font-size:32px;line-height:1.3;margin:10px 0 16px}h2{font-size:23px;margin:0 0 12px}h3{font-size:18px;margin:0}p{margin:8px 0 16px}.muted,small{color:var(--muted)}.eyebrow{font-size:13px;letter-spacing:.1em;color:var(--accent)}section{padding:28px 0;border-top:1px solid var(--line)}article{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin:16px 0 24px}.review-image{display:block;width:100%;height:auto;margin:16px 0}.reference-images{display:flex;gap:12px;flex-wrap:wrap}.reference-images img{width:160px;max-width:100%;height:160px;object-fit:contain}.material{white-space:pre-wrap;overflow-wrap:anywhere}.links{display:flex;flex-wrap:wrap;gap:16px}a{color:var(--accent)}fieldset{border:0;border-top:1px solid var(--line);margin:24px 0 0;padding:20px 0 0;min-width:0}legend{font-weight:650;padding:0 8px 0 0}.badge{font-weight:400;color:var(--accent);font-size:13px;margin-left:10px}.target{font-size:15px;color:var(--muted)}.choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:12px 0}.choice{position:relative;text-align:center}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice span{display:flex;min-height:48px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;background:white;cursor:pointer;font-weight:650}.choice input:checked+span{background:var(--accent);color:#fff;border-color:var(--accent)}.choice input:focus-visible+span{outline:3px solid #d58d25;outline-offset:3px}.choice small{display:block;font-size:11px;font-weight:400}.anchors{font-size:14px;color:var(--muted)}details{margin:8px 0}summary{cursor:pointer}textarea{display:block;width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:12px;background:white;color:var(--ink);font:inherit}button{border:1px solid var(--accent);border-radius:8px;padding:12px 20px;font:inherit;cursor:pointer;background:var(--accent);color:white}button.secondary{background:white;color:var(--accent)}button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #d58d25;outline-offset:2px}.bar{position:fixed;bottom:0;left:0;right:0;background:#fffffff5;border-top:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:24px;z-index:3}.bar p{margin:0;font-size:14px}.notice{min-height:28px;color:var(--accent)}#copy-output{min-height:170px;font:14px/1.7 ui-monospace,monospace}#fallback{padding:18px;border:1px solid var(--line);background:white;border-radius:10px}#error{color:#9a2517}.intro{max-width:700px}label[for=note]{display:block;font-weight:650;margin:16px 0 8px}@media(max-width:520px){main{padding:24px 16px 150px}h1{font-size:27px}article{padding:18px 14px}.bar{gap:12px;padding:12px 16px}.bar button{padding:10px 14px;font-size:15px}.choices{gap:6px}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"PingFang SC",sans-serif}
+main{height:100dvh;max-width:1400px;margin:auto;padding:18px 24px 0;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:12px}
+h1{font-size:23px;line-height:1.25;margin:0}h2,h3,p{margin:0}.muted,small{color:var(--muted)}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px}.intro{margin-top:5px;color:var(--muted);font-size:13px;max-width:900px}
+#session{font-size:11px;white-space:nowrap;color:var(--muted)}
+.toolbar{display:flex;align-items:center;gap:10px;min-width:0}
+#task-title{font-size:16px;margin-right:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav{display:flex;gap:5px}.nav-item{min-width:34px;padding:6px 9px}.nav-item[aria-current=true]{background:var(--accent);color:white}
+button,a{touch-action:manipulation}button{border:1px solid var(--line);border-radius:7px;padding:8px 13px;font:inherit;background:white;color:var(--ink);cursor:pointer}
+button:disabled{opacity:.4;cursor:default}.primary{background:var(--accent);border-color:var(--accent);color:white}
+button:focus-visible,a:focus-visible,input:focus-visible+span,textarea:focus-visible{outline:3px solid #d58d25;outline-offset:2px}
+#cases{min-height:0}article{height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(350px,440px);gap:24px}
+.material-panel{min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px}
+.main-material{min-height:0;display:flex;align-items:center;justify-content:center;background:white;border:1px solid var(--line);border-radius:10px;overflow:auto}
+.image-trigger{border:0;background:none;display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:0;padding:12px}
+.review-image{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.image-trigger .review-image{width:min(100%,440px);height:min(100%,440px)}
+.material{white-space:pre-wrap;overflow-wrap:anywhere;padding:20px;align-self:flex-start}.links{display:flex;gap:12px;flex-wrap:wrap}a{color:var(--accent)}
+.reference-strip{display:flex;align-items:center;gap:8px;min-height:64px;overflow-x:auto}.reference-label{font-size:12px;color:var(--muted);flex-shrink:0}
+.reference-trigger{padding:3px;border-radius:6px;width:65px;height:65px;flex-shrink:0}.reference-trigger .review-image{width:100%;height:100%}
+.image-hint{font-size:11px;color:var(--muted);margin-left:auto}
+.scores{min-height:0;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.scores h3{font-size:17px}.variant-caption{font-size:12px;color:var(--muted);margin:3px 0 4px}
+fieldset{border:0;border-top:1px solid var(--line);margin:9px 0 0;padding:8px 0 0;min-width:0}
+legend{font-weight:650;padding:0 8px 0 0;font-size:14px}.badge{font-size:11px;color:var(--accent);font-weight:400;margin-left:8px}
+.standard{float:right;padding:0 4px;border:0;color:var(--muted);font-size:12px;background:transparent}
+.target{font-size:12px;line-height:1.35;color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:6px}
+.choice{position:relative;text-align:center}.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice span{display:flex;min-height:34px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-weight:650}
+.choice input:checked+span{background:var(--accent);border-color:var(--accent);color:white}
+footer{min-height:56px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:9px 0}
+#progress{font-size:13px;margin-right:auto}#notice{color:var(--accent);font-size:12px;max-width:240px}
+dialog{border:1px solid var(--line);border-radius:12px;padding:24px;max-width:min(92vw,680px);max-height:90dvh;overflow:auto;color:var(--ink)}
+dialog::backdrop{background:#132c35a8}dialog h2{font-size:20px;margin:0 38px 14px 0}dialog p{margin:12px 0}
+.dialog-close{position:absolute;right:12px;top:12px;padding:4px 10px}
+#media-dialog{max-width:96vw;padding:32px 12px 12px}
+#media-dialog img{display:block;max-width:90vw;max-height:82dvh;object-fit:contain}
+textarea{display:block;width:100%;min-height:90px;border:1px solid var(--line);border-radius:7px;padding:12px;font:inherit;color:var(--ink)}
+#copy-output{min-height:190px;font:13px/1.5 ui-monospace,monospace}#fallback{margin-top:16px}#error{color:#9a2517}
+@media(max-height:700px){main{padding-top:10px;gap:8px}.intro{display:none}.target{display:none}fieldset{margin-top:7px;padding-top:6px}.choices{margin-top:4px}.reference-strip{min-height:50px}.reference-trigger{width:50px;height:50px}}
+@media(max-width:760px){main{padding:12px 12px 0;gap:8px}header{gap:8px}h1{font-size:18px}.intro,#session{display:none}.toolbar{gap:6px;flex-wrap:wrap}#task-title{font-size:13px;flex-basis:100%}.nav-item{min-width:30px;padding:4px 7px}article{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:10px}.scores{padding:9px}.scores h3{font-size:14px}.variant-caption,.target,.image-hint{display:none}legend{font-size:12px}.badge{margin-left:4px;font-size:10px}.standard{font-size:10px}.choices{gap:3px}.choice span{min-height:32px;font-size:12px}fieldset{margin-top:9px;padding-top:7px}.reference-strip{gap:4px;flex-wrap:wrap;overflow:hidden}.reference-label{width:100%}.reference-trigger{width:48px;height:48px}.image-trigger{padding:4px}footer{gap:6px;flex-wrap:wrap;min-height:56px}footer button{padding:7px 9px;font-size:12px}#notice{flex-basis:100%;order:2;max-width:none}#notice:empty{display:none}#progress{font-size:11px}}
 </style>
 <main>
-  <header>
-    <div class="eyebrow">技能迭代 / 人工验收</div>
-    <h1 id="title">正在载入评分内容</h1>
-    <p id="intro" class="intro"></p>
-    <p id="session" class="muted"></p>
-    <p>先看成果，再逐项点选。1 无法使用 · 2 需大改 · 3 可用但要改 · 4 小改即可 · 5 可直接采用 · N 无法判断。没有预填分数。</p>
-  </header>
-  <p id="error" role="alert"></p>
-  <div id="cases"></div>
-  <section>
-    <h2>你的反馈</h2>
-    <label for="note">最想改的一点 <small>选填</small></label>
-    <textarea id="note" placeholder="可以留空，分数本身就是有效反馈。"></textarea>
-    <p class="muted">点“复制分数”，把文字粘贴回聊天即可。含 N 时会标记待补评，不会当作零分。</p>
-    <p id="notice" class="notice" role="status" aria-live="polite"></p>
-    <div id="fallback" hidden>
-      <label for="copy-output">复制受限时，请在下框按 Cmd/Ctrl+C，然后粘贴回聊天。</label>
-      <textarea id="copy-output" readonly></textarea>
-    </div>
-  </section>
+  <header><div><h1 id="title">正在载入评分内容</h1><p id="intro" class="intro"></p></div><p id="session"></p></header>
+  <div class="toolbar"><h2 id="task-title"></h2><nav id="navigation" aria-label="切换待审成果"></nav><button id="task-info" type="button">任务与量表</button></div>
+  <div id="cases"><p id="error" role="alert"></p></div>
+  <footer><p id="progress" aria-live="polite">尚未评分</p><p id="notice" role="status" aria-live="polite"></p><button id="previous" type="button">上一张</button><button id="next" type="button">下一张</button><button id="feedback" type="button">反馈</button><button id="copy" class="primary" type="button">复制分数</button></footer>
 </main>
-<div class="bar"><p id="progress" aria-live="polite">尚未评分</p><button id="copy" type="button">复制分数</button></div>
-<!-- Agent: replace only this public data block. Never embed version mappings or real scores. -->
+<dialog id="info-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><h2>任务与量表</h2><p id="task-prompt"></p><p>1 无法使用 · 2 需大改 · 3 可用但要改 · 4 小改即可 · 5 可直接采用 · N 无法判断。没有预填分数。</p><div id="info-standards"></div></dialog>
+<dialog id="standard-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><h2 id="standard-title"></h2><p id="standard-target"></p><div id="standard-anchors"></div></dialog>
+<dialog id="media-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><img id="large-image" alt="放大查看"></dialog>
+<dialog id="feedback-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><h2>你的反馈</h2><label for="note">最想改的一点（选填）</label><textarea id="note" placeholder="可以留空，分数本身就是有效反馈。"></textarea><p>点选完成后复制分数，粘贴回聊天即可。含 N 保持待补评。</p><div id="fallback" hidden><label for="copy-output">复制受限，请在下框按 Cmd/Ctrl+C。</label><textarea id="copy-output" readonly></textarea></div></dialog>
+<!-- Public review data only. No version mappings, private prompts or author scores. -->
 <script type="application/json" id="review-data">
 {
   "session_id": "example-review-001",
@@ -56,6 +86,11 @@
     return n;
   };
   const safeId = value => typeof value === "string" && /^[A-Za-z0-9_-]{1,80}$/.test(value);
+  const safeUrl = src => {
+    const url = new URL(src, location.href);
+    if (!["http:","https:","file:"].includes(url.protocol)) throw Error("不支持的材料链接");
+    return url.href;
+  };
   let data;
   try {
     data = JSON.parse(byId("review-data").textContent);
@@ -63,15 +98,19 @@
     if (!Array.isArray(data.criteria) || data.criteria.length < 3 || data.criteria.length > 5) throw Error("评分维度须为 3–5 项");
     if (new Set(data.criteria.map(c => c.id)).size !== data.criteria.length) throw Error("维度编号重复");
     for (const c of data.criteria) {
-      if (!safeId(c.id) || !c.label || !c.target || ![1,2,3].includes(c.weight) || typeof c.critical !== "boolean" || ![1,3,5].every(n => c.anchors?.[n])) throw Error("标准须包含有效编号、观察说明、重要性及 1/3/5 分锚点");
+      if (!safeId(c.id) || !c.label || !c.target || ![1,2,3].includes(c.weight) || typeof c.critical !== "boolean" || ![1,3,5].every(n => c.anchors?.[n])) throw Error("标准须有观察说明、重要性和1/3/5分锚点");
     }
     if (!data.criteria.some(c => c.critical)) throw Error("至少指定一个核心项");
-    if (!Array.isArray(data.cases) || !data.cases.length || new Set(data.cases.map(c => c.id)).size !== data.cases.length) throw Error("任务不能为空或重复");
-    for (const c of data.cases) {
-      if (!safeId(c.id) || !c.title || !c.prompt || !Array.isArray(c.variants) || !c.variants.length || new Set(c.variants.map(v => v.id)).size !== c.variants.length) throw Error("任务或候选信息不完整");
-      for (const v of c.variants) if (!safeId(v.id) || (!v.content && !v.links?.length)) throw Error("候选缺少成果材料");
+    if (!Array.isArray(data.cases) || !data.cases.length || new Set(data.cases.map(c=>c.id)).size !== data.cases.length) throw Error("任务不能为空或重复");
+    for (const task of data.cases) {
+      if (!safeId(task.id) || !task.title || !task.prompt || !Array.isArray(task.variants) || !task.variants.length || new Set(task.variants.map(v=>v.id)).size !== task.variants.length) throw Error("任务或候选信息不完整");
+      for (const v of task.variants) {
+        if (!safeId(v.id) || (!v.image && !v.content && !v.links?.length)) throw Error("候选缺少成果材料");
+        if (v.image) safeUrl(v.image);
+      }
+      for (const ref of task.references || []) safeUrl(ref.image);
     }
-  } catch (e) {
+  } catch(e) {
     byId("error").textContent = "评分内容有误，请让作者修正：" + e.message;
     byId("copy").disabled = true;
     return;
@@ -80,105 +119,104 @@
   byId("title").textContent = data.title;
   byId("intro").textContent = data.intro;
   byId("session").textContent = data.session_id + " / " + data.rubric_version;
-  const groups = [];
-  for (const task of data.cases) {
-    const section = el("section");
-    section.append(el("h2", task.title), el("p", task.prompt));
-    const imageNode = (src, alt) => {
-      const url = new URL(src, location.href);
-      if (!["http:","https:","file:"].includes(url.protocol)) throw Error("Invalid image URL");
-      const img = el("img"); img.src = url.href; img.alt = alt; img.className = "review-image"; return img;
-    };
-    const references = el("div", undefined, "reference-images");
-    for (const ref of task.references || []) references.append(imageNode(ref.image, ref.id));
-    section.append(references);
-    for (const variant of task.variants) {
-      const article = el("article");
-      article.append(el("h3", "成果 " + variant.id), el("p", variant.content || "", "material"));
-      if (variant.image) article.append(imageNode(variant.image, "Image " + variant.id));
-      const links = el("p", undefined, "links");
+  const groups = [], panels = [], navigation = [];
+  let current = 0;
+  const show = index => {
+    current = Math.max(0,Math.min(index,panels.length-1));
+    panels.forEach((item,i) => item.article.hidden = i !== current);
+    navigation.forEach((button,i) => button.setAttribute("aria-current",String(i===current)));
+    byId("task-title").textContent = panels[current].task.title + " · 成果 " + panels[current].variant.id;
+    byId("task-prompt").textContent = panels[current].task.prompt;
+    byId("previous").disabled = current === 0;
+    byId("next").disabled = current === panels.length-1;
+  };
+  const imageButton = (src, alt, className) => {
+    const button = el("button", undefined, className);
+    button.type = "button"; button.setAttribute("aria-label","放大 " + alt);
+    const image = el("img"); image.src = safeUrl(src); image.alt = alt; image.className = "review-image";
+    button.append(image);
+    button.addEventListener("click",()=>{byId("large-image").src=image.src;byId("large-image").alt=alt;byId("media-dialog").showModal();});
+    return button;
+  };
+  for (const task of data.cases) for (const variant of task.variants) {
+    const index=panels.length, article=el("article");
+    article.hidden=true;
+    const materials=el("div",undefined,"material-panel"), main=el("div",undefined,"main-material");
+    if (variant.image) main.append(imageButton(variant.image,"成果 "+variant.id,"image-trigger"));
+    else {
+      const text=el("div",variant.content||"","material");
+      const links=el("p",undefined,"links");
       for (const link of variant.links || []) {
-        try {
-          const url = new URL(link.href, location.href);
-          if (!["http:","https:","file:"].includes(url.protocol)) throw Error("不支持的链接");
-          const a = el("a", link.label || "打开成果");
-          a.href = url.href; a.target = "_blank"; a.rel = "noopener noreferrer";
-          links.append(a);
-        } catch { links.append(el("span", "材料链接无效，请联系作者补充。")); }
+        try {const a=el("a",link.label||"打开成果");a.href=safeUrl(link.href);a.target="_blank";a.rel="noopener noreferrer";links.append(a);}
+        catch {links.append(el("span","材料链接无效，请联系作者补充。"));}
       }
-      if (links.childNodes.length) article.append(links);
-      for (const c of data.criteria) {
-        const group = task.id + "__" + variant.id + "__" + c.id;
-        groups.push({group, task:task.id, variant:variant.id, criterion:c.id});
-        const field = el("fieldset");
-        const legend = el("legend", c.label);
-        legend.append(el("span", c.critical ? "核心" : "一般", "badge"));
-        field.append(legend, el("div", c.target, "target"));
-        const choices = el("div", undefined, "choices");
-        for (const score of ["1","2","3","4","5","N"]) {
-          const label = el("label", undefined, "choice");
-          const radio = el("input");
-          radio.type = "radio"; radio.name = group; radio.value = score;
-          radio.setAttribute("aria-label", c.label + " " + (score === "N" ? "无法判断" : score + " 分"));
-          const span = el("span", score);
-          if (score === "N") span.title = "无法判断";
-          label.append(radio, span); choices.append(label);
-        }
-        const details = el("details", undefined, "anchors");
-        details.append(el("summary", "查看 1 / 3 / 5 分标准"));
-        for (const score of [1,3,5]) details.append(el("p", score + " 分：" + c.anchors[score]));
-        field.append(choices, details); article.append(field);
-      }
-      section.append(article);
+      text.append(links);main.append(text);
     }
-    byId("cases").append(section);
+    const refs=el("div",undefined,"reference-strip");refs.append(el("span","参考","reference-label"));
+    for (const ref of task.references || []) refs.append(imageButton(ref.image,ref.id,"reference-trigger"));
+    refs.append(el("span","点图可放大","image-hint"));if(!task.references?.length)refs.hidden=true;
+    materials.append(main,refs);
+    const scores=el("div",undefined,"scores");scores.append(el("h3","成果 "+variant.id),el("p",variant.content||"","variant-caption"));
+    for (const c of data.criteria) {
+      const group=task.id+"__"+variant.id+"__"+c.id;
+      groups.push({group,task:task.id,variant:variant.id,criterion:c.id,panel:index});
+      const field=el("fieldset"),legend=el("legend",c.label);
+      legend.append(el("span",c.critical?"核心":"一般","badge"));
+      const standard=el("button","标准","standard");standard.type="button";standard.setAttribute("aria-label",c.label+"评分标准");
+      standard.addEventListener("click",()=>{
+        byId("standard-title").textContent=c.label;byId("standard-target").textContent=c.target;
+        byId("standard-anchors").replaceChildren(...[1,3,5].map(n=>el("p",n+"分："+c.anchors[n])));
+        byId("standard-dialog").showModal();
+      });
+      field.append(legend,standard,el("div",c.target,"target"));
+      const choices=el("div",undefined,"choices");
+      for (const value of ["1","2","3","4","5","N"]) {
+        const label=el("label",undefined,"choice"),radio=el("input");
+        radio.type="radio";radio.name=group;radio.value=value;
+        radio.setAttribute("aria-label",c.label+" "+(value==="N"?"无法判断":value+"分"));
+        label.append(radio,el("span",value));choices.append(label);
+      }
+      field.append(choices);scores.append(field);
+    }
+    article.append(materials,scores);byId("cases").append(article);
+    panels.push({article,task,variant});
+    const button=el("button",variant.id,"nav-item");button.type="button";button.setAttribute("aria-label",task.title+" 成果 "+variant.id);
+    button.addEventListener("click",()=>show(index));byId("navigation").append(button);navigation.push(button);
   }
-  // Persist only this exact public task/rubric/content, preventing stale scores after edits.
-  const storageKey = "human-review:" + JSON.stringify(data);
-  const scoreFor = group => document.getElementsByName(group).length ? [...document.getElementsByName(group)].find(n => n.checked)?.value : undefined;
-  const refresh = () => {
-    const scores = Object.fromEntries(groups.map(g => [g.group,scoreFor(g.group)]).filter(([,v]) => v));
-    const count = Object.keys(scores).length;
-    byId("progress").textContent = "已填 " + count + " / " + groups.length;
-    try { localStorage.setItem(storageKey, JSON.stringify({scores,note:byId("note").value})); } catch {}
-    byId("fallback").hidden = true;
-    byId("notice").textContent = "";
+  for (const c of data.criteria) {
+    const p=el("p");p.append(el("strong",c.label+"（"+(c.critical?"核心":"一般")+"）"),el("br"),document.createTextNode(c.target));
+    byId("info-standards").append(p);
+  }
+  const storageKey="human-review:"+JSON.stringify(data);
+  const scoreFor=group=>[...document.getElementsByName(group)].find(n=>n.checked)?.value;
+  const refresh=()=>{
+    const scores=Object.fromEntries(groups.map(g=>[g.group,scoreFor(g.group)]).filter(([,v])=>v));
+    byId("progress").textContent="已填 "+Object.keys(scores).length+" / "+groups.length;
+    try{localStorage.setItem(storageKey,JSON.stringify({scores,note:byId("note").value}));}catch{}
+    byId("fallback").hidden=true;byId("notice").textContent="";
   };
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-    if (saved?.scores) for (const g of groups) {
-      const v = saved.scores[g.group];
-      for (const n of document.getElementsByName(g.group)) n.checked = n.value === v;
-    }
-    if (typeof saved?.note === "string") byId("note").value = saved.note;
-  } catch {}
-  byId("cases").addEventListener("change",refresh);
-  byId("note").addEventListener("input",refresh);
-  refresh();
-  byId("copy").addEventListener("click",async () => {
-    const missing = groups.filter(g => !scoreFor(g.group));
-    if (missing.length) {
-      byId("notice").textContent = "还有 " + missing.length + " 项未填；不确定的项可选 N。";
-      document.getElementsByName(missing[0].group)[0].focus();
-      return;
-    }
-    const lines = ["评分 " + data.session_id + " / " + data.rubric_version, "顺序：" + data.criteria.map(c => c.label).join(" | ")];
-    for (const task of data.cases) for (const v of task.variants) {
-      lines.push(task.id + "/" + v.id + "：" + data.criteria.map(c => scoreFor(task.id + "__" + v.id + "__" + c.id)).join(" "));
-    }
-    if (groups.some(g => scoreFor(g.group) === "N")) lines.push("状态：含 N，待补评");
-    if (byId("note").value.trim()) lines.push("最要改：" + byId("note").value.trim());
-    const output = lines.join("\n");
-    byId("copy-output").value = output;
-    try {
-      await navigator.clipboard.writeText(output);
-      byId("notice").textContent = "已复制，粘贴回聊天即可。";
-    } catch {
-      byId("fallback").hidden = false;
-      byId("copy-output").focus(); byId("copy-output").select();
-      byId("notice").textContent = "已生成分数，请复制下方选中文字。";
-    }
+    const saved=JSON.parse(localStorage.getItem(storageKey)||"null");
+    if(saved?.scores)for(const g of groups)for(const n of document.getElementsByName(g.group))n.checked=n.value===saved.scores[g.group];
+    if(typeof saved?.note==="string")byId("note").value=saved.note;
+  }catch{}
+  byId("cases").addEventListener("change",refresh);byId("note").addEventListener("input",refresh);
+  byId("previous").addEventListener("click",()=>show(current-1));byId("next").addEventListener("click",()=>show(current+1));
+  byId("task-info").addEventListener("click",()=>byId("info-dialog").showModal());
+  byId("feedback").addEventListener("click",()=>byId("feedback-dialog").showModal());
+  for(const button of document.querySelectorAll(".dialog-close"))button.addEventListener("click",()=>button.closest("dialog").close());
+  byId("copy").addEventListener("click",async()=>{
+    const missing=groups.filter(g=>!scoreFor(g.group));
+    if(missing.length){show(missing[0].panel);byId("notice").textContent="还有 "+missing.length+" 项未填；可选 N。";document.getElementsByName(missing[0].group)[0].focus();return;}
+    const lines=["评分 "+data.session_id+" / "+data.rubric_version,"顺序："+data.criteria.map(c=>c.label).join(" | ")];
+    for(const task of data.cases)for(const v of task.variants)lines.push(task.id+"/"+v.id+"："+data.criteria.map(c=>scoreFor(task.id+"__"+v.id+"__"+c.id)).join(" "));
+    if(groups.some(g=>scoreFor(g.group)==="N"))lines.push("状态：含 N，待补评");
+    if(byId("note").value.trim())lines.push("最要改："+byId("note").value.trim());
+    const output=lines.join("\n");byId("copy-output").value=output;
+    try{await navigator.clipboard.writeText(output);byId("notice").textContent="已复制，粘贴回聊天即可。";}
+    catch{byId("fallback").hidden=false;if(!byId("feedback-dialog").open)byId("feedback-dialog").showModal();byId("copy-output").focus();byId("copy-output").select();byId("notice").textContent="请复制弹窗中的分数。";}
   });
+  show(0);refresh();
 })();
 </script>
 </html>

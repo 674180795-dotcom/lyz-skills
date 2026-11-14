@@ -29,7 +29,7 @@ class RuntimeContract(unittest.TestCase):
                     p, d, _ = c.compile_brief(dict(aircraft=aircraft, family=family, pose=pose))
                     self.assertLessEqual(d["word_count"], 300)
                     self.assertEqual(d["identity_lock"], c.RULES["aircraft"][aircraft])
-                    self.assertIn("omit panel seams", p)
+                    self.assertIn("panel seams", p)
                     self.assertIn('Only text: "'+aircraft.replace('-', '')+'"', p)
 
     def test_wrong_aircraft_or_appendage_not_transferred(self):
@@ -60,7 +60,7 @@ class RuntimeContract(unittest.TestCase):
             refs = [{"path": str(image), "role": role, "aircraft": "J-35A"} for role in ("geometry", "series")]
             p, d, _ = c.compile_brief({"aircraft": "J-35A", "family": "cloud_ink", "reference_images": refs})
             self.assertLessEqual(d["word_count"], 300)
-            self.assertIn("COLOR/TEXTILE authority only", p)
+            self.assertIn("STYLE donor", p)
             with self.assertRaises(ValueError): c.compile_brief({"reference_images": [refs[0], refs[0]]})
 
     def test_foreign_geometry_rejected_but_style_allowed(self):
