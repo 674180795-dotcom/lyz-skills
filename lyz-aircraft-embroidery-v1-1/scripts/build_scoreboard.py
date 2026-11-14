@@ -22,11 +22,13 @@ def render_review(data):
     rubrics = {
         "r2": [("structure", 3, True), ("series", 3, True), ("color", 2, False), ("angle", 2, False), ("text", 1, False)],
         "r3": [("structure", 3, True), ("series", 3, True), ("originality", 3, True), ("aesthetic", 2, False), ("text", 1, False)],
+        "r4": [("structure", 3, True), ("series", 3, True), ("originality", 3, True), ("aesthetic", 2, False), ("text", 1, False)],
     }
     if data["rubric_version"] not in rubrics or len(data["criteria"]) != 5:
-        raise ValueError("Require a frozen r2/r3 five-criterion rubric")
+        raise ValueError("Require a frozen r2/r3/r4 five-criterion rubric")
     expected = rubrics[data["rubric_version"]]
-    variants_per_case = 2 if data["rubric_version"] == "r2" else 1
+    variants_per_case = 1 if data["rubric_version"] == "r3" else 2
+    case_count = 5 if data["rubric_version"] == "r4" else 3
     for criterion, (name, weight, critical) in zip(data["criteria"], expected):
         if set(criterion) != {"id", "label", "weight", "critical", "target", "anchors"}:
             raise ValueError("Unknown criterion fields")
@@ -34,8 +36,8 @@ def render_review(data):
             raise ValueError("Frozen criterion order/weight/core flag changed")
         if set(criterion["anchors"]) != {"1", "3", "5"}:
             raise ValueError("Unknown anchor fields")
-    if len(data["cases"]) != 3:
-        raise ValueError("Require three matched tasks")
+    if len(data["cases"]) != case_count or len({c["id"] for c in data["cases"]}) != case_count:
+        raise ValueError("Require the frozen number of unique matched tasks")
     labels = []
     for case in data["cases"]:
         if set(case) != {"id", "title", "prompt", "references", "variants"} or len(case["variants"]) != variants_per_case:
@@ -49,7 +51,7 @@ def render_review(data):
                 raise ValueError("Use anonymous images without private links")
             labels.append(variant["id"])
             relative_image(variant["image"])
-    expected_labels = list("ABCDEF") if variants_per_case == 2 else list("ABC")
+    expected_labels = list("ABCDEFGHIJ" if case_count == 5 else ("ABCDEF" if variants_per_case == 2 else "ABC"))
     if sorted(labels) != expected_labels:
         raise ValueError("Require the unique labels for the frozen evaluation mode")
     encoded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")

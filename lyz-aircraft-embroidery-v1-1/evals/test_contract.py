@@ -159,5 +159,33 @@ class BlindScoring(unittest.TestCase):
         r['qa'] = True
         with self.assertRaises(ValueError): s.compare(r, k)
 
+    def test_r4_five_pairs_and_critical_gate(self):
+        key = {"session": "synthetic-r4", "rubric_version": "r4", "nonce": "test-only",
+               "jobs": [{"task_id": f"T{i//2+1}", "label": label,
+                         "version": "baseline" if i % 2 == 0 else "candidate"}
+                        for i, label in enumerate("ABCDEFGHIJ")]}
+        r = {"session": key["session"], "rubric_version": "r4", "assignment_commitment_sha256": s.commitment(key),
+             "ratings": {label: {d: 3 if i % 2 == 0 else 4 for d in s.R4_WEIGHTS}
+                         for i, label in enumerate("ABCDEFGHIJ")}}
+        self.assertTrue(s.compare(r, key)["iteration_success_under_preregistered_rule"])
+        r["ratings"]["B"]["structure"] = 2
+        self.assertFalse(s.compare(r, key)["candidate_accepted"])
+        for invalid in [None, "N", True]:
+            r["ratings"]["J"]["text"] = invalid
+            with self.assertRaises(ValueError): s.compare(r, key)
+
+    def test_r4_page_requires_ten_matched_images(self):
+        b = load("build_scoreboard")
+        criteria = [{"id": d, "label": d, "weight": w, "critical": d in s.R4_CORE,
+                     "target": "synthetic", "anchors": {"1": "low", "3": "mid", "5": "high"}}
+                    for d, w in s.R4_WEIGHTS.items()]
+        data = {"session_id": "synthetic-r4", "rubric_version": "r4", "title": "test", "intro": "test",
+                "criteria": criteria, "cases": [{"id": f"T{i+1}", "title": "test", "prompt": "test", "references": [],
+                 "variants": [{"id": label, "content": "test", "image": f"images/{label}.png", "links": []}
+                              for label in "ABCDEFGHIJ"[i*2:i*2+2]]} for i in range(5)]}
+        self.assertIn("synthetic-r4", b.render(data))
+        data["cases"][4]["variants"].pop()
+        with self.assertRaises(ValueError): b.render(data)
+
 
 if __name__ == '__main__': unittest.main()

@@ -1,5 +1,5 @@
 {
-  "version": "1.1.3",
+  "version": "1.1.4",
   "priority": [
     "aircraft_identity",
     "parameter_orthogonality",
@@ -36,7 +36,7 @@
       "source": "user corpus S19; https://www.news.cn/milpro/20241112/344eb0b405af413ea5eaa29612721e0a/c.html",
       "evidence_status": "verified",
       "evidence_scope": "gross external layout; user corpus illustration visually checked; no exact proportions certified",
-      "topology": "Fore-to-aft: cockpit, small canards, broad swept delta wings, twin fins/nozzles; canards remain visibly separate ahead of main wings."
+      "topology": "Assembly: exactly TWO horizontal pairs, small front canards then broad delta main wings; TWO canted fins and TWO exhausts; no rear tailplanes."
     },
     "J-35A": {
       "name": "Shenyang J-35A single-seat land-based variant",
@@ -56,7 +56,7 @@
       "source": "user corpus S01; https://gdb.hunan.gov.cn/hnsgfb/gdb08xcjx/gdb08xcjx03wkt/202411/t20241118_33963024.html",
       "evidence_status": "verified",
       "evidence_scope": "public gross layout plus sample visual; no production block details",
-      "topology": "Fore-to-aft: cockpit, trapezoidal main wings, smaller rear tailplanes, twin fins/nozzles; never add forward canards."
+      "topology": "Assembly: exactly TWO horizontal pairs, trapezoidal main wings then small rear tailplanes; TWO canted fins and TWO exhausts; no canards."
     },
     "J-10C": {
       "name": "Chengdu J-10C single-seat fighter",
@@ -75,7 +75,7 @@
       "source": "https://eng.mod.gov.cn/xb/Home/Focus/4809633_4.html ; https://www.81.cn/jfjbmap/content/1/2026-02/25/10/2026022510_pdf.pdf",
       "evidence_status": "verified",
       "evidence_scope": "public descriptions verify single engine and canard layout; gross external layout only, exact proportions unverified; official image retrieval unavailable this run",
-      "topology": "One engine and one fin; small canards precede the delta main wings, not rear tailplanes."
+      "topology": "Assembly: exactly TWO horizontal pairs, front canards then delta main wings; ONE fin and ONE exhaust; no third pair."
     },
     "J-15": {
       "name": "Shenyang J-15 single-seat carrier fighter",
@@ -94,7 +94,7 @@
       "source": "https://www.81.cn/kj/2016-01/11/content_6851708.htm",
       "evidence_status": "verified",
       "evidence_scope": "official description verifies canards and twin engines; gross external layout only, no exact proportions or block details certified; official image retrieval unavailable this run",
-      "topology": "Canards, main wings and rear tailplanes are three distinct fore-aft pairs; twin fins and engines at the rear."
+      "topology": "Assembly: exactly THREE horizontal pairs, small front canards, swept main wings, rear tailplanes; TWO fins and TWO exhausts."
     },
     "J-7": {
       "name": "Chengdu J-7 baseline single-seat fighter",
@@ -114,7 +114,7 @@
       "source": "user corpus S17/S22; visually checked gross J-7 silhouette, not a J-7E variant claim",
       "evidence_status": "verified",
       "evidence_scope": "user reference visually checked for gross external layout; this is generic J-7, not an E/G block-specific card",
-      "topology": "Circular nose intake, delta main wings, then rear tailplanes; single fin and single exhaust."
+      "topology": "Assembly: exactly TWO horizontal pairs, triangular main wings then small rear tailplanes; ONE fin and ONE exhaust; circular nose intake."
     }
   },
   "families": {
@@ -127,7 +127,7 @@
       ],
       "palette": "navy/cyan/lime; silver-gray aircraft, dark underside",
       "stitch": "Directional flat fills, narrow lime rim.",
-      "forbidden": "moon discs, invented clouds"
+      "forbidden": "moon discs, literal scenic clouds"
     },
     "cloud_ink": {
       "name": "蓝白云染动势",
@@ -250,9 +250,9 @@
     "vector_facets": "Interlock three angular trajectory facets with one cool curved counterform; preserve breathing room."
   },
   "lettering": {
-    "side_stack": "Tall compact glyphs in a narrow left-side stack, integrated with the negative-space corridor.",
-    "right_pillar": "Compact upright glyph pillar on the right, balancing the aircraft with generous margins.",
-    "upper_corner": "Large cut-angle glyphs upper-right; integrate their edges with the ray geometry."
+    "side_stack": "One horizontal condensed word at left, read left-to-right; never stack individual characters.",
+    "right_pillar": "One horizontal condensed word at right, read left-to-right; keep clear of the aircraft.",
+    "upper_corner": "One horizontal cut-angle word upper-right, read left-to-right; generous clear margin."
   },
   "collection_grammar": "Collection language: identifiable simplified aircraft, bold planar color blocks, selective vivid accents, integrated model glyphs, directional thread, slim embroidered boundary."
 }

@@ -93,7 +93,7 @@ def compile_brief(raw):
     lines = ["Use case: product-mockup. Invent a NEW collection product; synthesize the examples, never reconstruct one image.",
              RULES["collection_grammar"]]
     for i, ref in enumerate(refs, 1):
-        meaning = ("target geometry only, not pose or layout"
+        meaning = ("count/order guide only; ignore its colors, labels, pose and layout"
                    if ref["role"] == "geometry" else
                    "series grammar only; do not borrow its aircraft or layout")
         lines.append(f"Reference {i} ({ref['aircraft']}): {meaning}.")
@@ -108,7 +108,7 @@ def compile_brief(raw):
         RULES["compositions"][plan["composition"]],
         RULES["motifs"][plan["motif"]],
         "Colors: " + family["palette"] + ".",
-        (f'Only text: "{brief["label"]}". ' + RULES["lettering"][plan["lettering"]] if brief["label"] else "Omit all model lettering."),
+        (f'Only text: "{brief["label"]}". Preserve every character/digit. ' + RULES["lettering"][plan["lettering"]] if brief["label"] else "Omit all model lettering."),
         common["region_stitches"],
         common["presentation"],
     ]

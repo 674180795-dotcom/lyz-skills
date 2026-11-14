@@ -1,14 +1,12 @@
 {
   "browser": "Ego Lite 2.2.1 only",
-  "new_model_images": 3,
-  "each_has_two_other_model_style_examples": true,
-  "total_score_fields": 15,
-  "core_criteria": [
-    "structure",
-    "series",
-    "originality"
-  ],
+  "anonymous_images": 10,
+  "score_fields": 50,
   "viewports": [
+    [
+      1280,
+      800
+    ],
     [
       1024,
       768
@@ -25,9 +23,12 @@
   "image_left_scores_right": true,
   "all_five_fields_visible": true,
   "page_or_score_column_overflow": false,
-  "switch_score_retention": "pass",
-  "r3_plain_text_copy": "pass",
+  "all_ten_images_loaded": true,
+  "r4_plain_text_copy": "pass",
+  "missing_scores_blocked": "pass",
   "N_stays_pending": "pass",
+  "clipboard_fallback": "pass",
+  "refresh_score_retention": "pass",
   "actual_scores_initially_selected": 0,
   "qa_session_isolated": true,
   "result_page_kept": true
