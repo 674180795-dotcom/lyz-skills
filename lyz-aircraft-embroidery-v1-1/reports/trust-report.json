@@ -31,9 +31,10 @@
       ]
     }
   ],
-  "independent_human_scores": "missing evidence for 1.1.2; pending_human",
-  "prior_iteration": "1.1.1 human-scored; failed",
+  "independent_human_scores": "missing evidence for 1.1.3; pending_human",
+  "prior_iteration": "1.1.2 human-scored and qualitatively rejected for replication",
   "private_materials": "excluded from Git and ZIP",
   "external_projects_executed": false,
-  "research_reference": "references/open-source-transfer.md"
+  "research_reference": "references/design-expansion.md",
+  "geometry_evidence_limit": "new J-10C/J-15 coarse public descriptions; official photo retrieval unavailable; no exact proportions or production block guarantee"
 }

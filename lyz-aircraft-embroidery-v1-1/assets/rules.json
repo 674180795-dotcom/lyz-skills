@@ -1,17 +1,22 @@
 {
-  "version": "1.1.2",
+  "version": "1.1.3",
   "priority": [
     "aircraft_identity",
     "parameter_orthogonality",
     "pattern_diversity"
   ],
   "defaults": {
-    "aircraft": "J-20",
+    "aircraft": "J-10C",
     "family": "kinetic_grid",
     "pose": "dorsal_left",
     "label": "auto",
     "ratio": "1:1",
-    "reference_images": []
+    "reference_images": [],
+    "design_plan": {
+      "composition": "climb_offset",
+      "motif": "broken_grid_cloud",
+      "lettering": "side_stack"
+    }
   },
   "aircraft": {
     "J-20": {
@@ -52,6 +57,64 @@
       "evidence_status": "verified",
       "evidence_scope": "public gross layout plus sample visual; no production block details",
       "topology": "Fore-to-aft: cockpit, trapezoidal main wings, smaller rear tailplanes, twin fins/nozzles; never add forward canards."
+    },
+    "J-10C": {
+      "name": "Chengdu J-10C single-seat fighter",
+      "features": [
+        "one rear engine nozzle",
+        "one vertical fin",
+        "small forebody canards ahead of delta main wings",
+        "ventral chin intake",
+        "no separate rear horizontal tailplanes"
+      ],
+      "avoid_features": [
+        "twin engines",
+        "twin vertical fins",
+        "conventional rear horizontal tailplanes"
+      ],
+      "source": "https://eng.mod.gov.cn/xb/Home/Focus/4809633_4.html ; https://www.81.cn/jfjbmap/content/1/2026-02/25/10/2026022510_pdf.pdf",
+      "evidence_status": "verified",
+      "evidence_scope": "public descriptions verify single engine and canard layout; gross external layout only, exact proportions unverified; official image retrieval unavailable this run",
+      "topology": "One engine and one fin; small canards precede the delta main wings, not rear tailplanes."
+    },
+    "J-15": {
+      "name": "Shenyang J-15 single-seat carrier fighter",
+      "features": [
+        "long pointed nose and broad blended fuselage",
+        "small forebody canards",
+        "swept main wings extended for flight",
+        "paired rear horizontal tailplanes",
+        "two vertical fins and two engine nozzles"
+      ],
+      "avoid_features": [
+        "single engine",
+        "missing canards",
+        "stealth diamond wings"
+      ],
+      "source": "https://www.81.cn/kj/2016-01/11/content_6851708.htm",
+      "evidence_status": "verified",
+      "evidence_scope": "official description verifies canards and twin engines; gross external layout only, no exact proportions or block details certified; official image retrieval unavailable this run",
+      "topology": "Canards, main wings and rear tailplanes are three distinct fore-aft pairs; twin fins and engines at the rear."
+    },
+    "J-7": {
+      "name": "Chengdu J-7 baseline single-seat fighter",
+      "features": [
+        "slim cylindrical fuselage",
+        "circular nose intake with central cone",
+        "triangular main wings",
+        "one vertical fin and one rear engine nozzle",
+        "paired rear horizontal tailplanes",
+        "no forebody canards"
+      ],
+      "avoid_features": [
+        "twin engines",
+        "side intakes",
+        "forebody canards"
+      ],
+      "source": "user corpus S17/S22; visually checked gross J-7 silhouette, not a J-7E variant claim",
+      "evidence_status": "verified",
+      "evidence_scope": "user reference visually checked for gross external layout; this is generic J-7, not an E/G block-specific card",
+      "topology": "Circular nose intake, delta main wings, then rear tailplanes; single fin and single exhaust."
     }
   },
   "families": {
@@ -62,13 +125,9 @@
         "S11",
         "S21"
       ],
-      "field": "Keep the anchor's navy upper field, sparse lime perspective grid and cyan diagonal lower field; change grid spacing and streak grouping for a sibling design.",
       "palette": "navy/cyan/lime; silver-gray aircraft, dark underside",
-      "layout": "Aircraft crosses the field boundary; integrated lower-left label.",
-      "lettering": "Preserve the anchor's tall dark-blue glyph character and narrow pale edge, integrated lower-left; do not enlarge into a sports-logo footer.",
       "stitch": "Directional flat fills, narrow lime rim.",
-      "forbidden": "moon discs, invented clouds",
-      "style_borrow": "cyan/navy ground and lime grid only; no donor aircraft or lightning"
+      "forbidden": "moon discs, invented clouds"
     },
     "cloud_ink": {
       "name": "蓝白云染动势",
@@ -77,13 +136,9 @@
         "S03",
         "S21"
       ],
-      "field": "Preserve the anchor's predominantly pale cloud-dyed ground, irregular blue islands and open white regions; rearrange cloud islands without adding a cloud frame.",
       "palette": "pale blue/off-white dominate; navy aircraft shadows; tiny amber exhausts",
-      "layout": "Aircraft travels toward open pale space; integrated lower-right label.",
-      "lettering": "Keep the anchor's blue hand-shaped block glyph character with pale edge, lower-right, without a generic italic wordmark.",
       "stitch": "Fine mixed-thread cloud fields, flat aircraft fills, slim navy rim.",
-      "forbidden": "gold cloud scrolls, sun discs",
-      "style_borrow": "blue thread mixing and soft light/dark textile edges only; no dark donor aircraft or lightning"
+      "forbidden": "gold cloud scrolls, sun discs"
     },
     "red_charge": {
       "name": "红橙冲刺",
@@ -93,13 +148,9 @@
         "S18",
         "S23"
       ],
-      "field": "From the style donor borrow a mainly red flat ground and thin yellow/white crossing flight trails. Keep broad red breathing space; no huge amber ribbon.",
-      "palette": "red/crimson dominate; silver-gray aircraft, charcoal shadows, amber accent",
-      "layout": "Aircraft crosses the red field; integrated lower-edge label.",
-      "lettering": "Compact slanted silver/ivory model glyphs integrated along the lower diagonal; preserve red negative space.",
+      "palette": "wine-red/graphite ground, silver aircraft, restrained turquoise and amber accents",
       "stitch": "Flat directional thread regions; slim red rim.",
-      "forbidden": "copied slogans, ring nose intake, copied vintage wings",
-      "style_borrow": "red ground, thin yellow/white trajectory marks and silver thread only; exclude the vintage round intake, swept wings, slogans and emblem"
+      "forbidden": "copied slogans, flames around every edge"
     },
     "night_contrast": {
       "name": "夜色剪影",
@@ -108,26 +159,24 @@
         "S21",
         "S19"
       ],
-      "field": "Near-black ground, two graphite counterforms, selected cyan outer edges; deep interior shadow masses.",
       "palette": "black/graphite, cyan highlights, navy aircraft shadow",
-      "layout": "Long oblique silhouette; integrated lower-left cyan label.",
-      "lettering": "Tall condensed cyan glyphs, narrow dark offset, lower-left.",
       "stitch": "Low-relief fills, selective satin contours, slim charcoal rim.",
-      "forbidden": "panther mascot, decorative stars",
-      "style_borrow": "near-black ground and selective cyan outlines only; no donor aircraft or mascot"
+      "forbidden": "panther mascot, decorative stars"
     }
   },
   "poses": {
     "dorsal_left": "Nose upper-left; shallow side/dorsal three-quarter, long slim fuselage; near wing below the spine, far wing shortened above it.",
-    "dorsal_right": "Nose upper-right; shallow side/dorsal three-quarter, long slim fuselage; near wing below the spine, far wing shortened above it."
+    "dorsal_right": "Nose upper-right; shallow side/dorsal three-quarter, long slim fuselage; near wing below the spine, far wing shortened above it.",
+    "banking_left": "Nose upper-left in a shallow banking three-quarter view; keep model-specific wing/tail counts readable, not top-view symmetry.",
+    "side_left": "Near-side elevated view, nose left, almost horizontal; expose target wing profile and tail arrangement."
   },
   "common": {
-    "carrier": "Single point-up hexagonal cloth patch; slim stitched rim.",
-    "simplification": "Preserve the anchor as flat cut-color artwork: continuous wing silhouettes, three dominant thread tones, one canopy mark. Do not rebuild a shaded 3D jet.",
-    "hierarchy": "Preserve anchor aircraft proportions; integrated model glyphs stay comparable in scale.",
-    "presentation": "White studio background, whole patch front-facing, soft contact shadow, square image.",
-    "avoid": "sculpted miniature jet, beveled panels, cord piping, donor aircraft parts, extra aircraft, extra words, panel seams and rivets",
-    "region_stitches": "Stitches: aircraft directional fills; ground quieter fill; satin only on glyphs and slim rim."
+    "carrier": "One complete point-up hexagonal cloth patch, slim stitched rim.",
+    "simplification": "Use three dominant aircraft tones and one canopy mark; omit panel seams.",
+    "hierarchy": "Balance aircraft, negative space and glyphs; maintain margins.",
+    "presentation": "Front-facing white studio product photo, thin textile relief, square image.",
+    "avoid": "tracing, relabeled replicas, copied full layouts, hybrid aircraft, extra text, mascots, molded relief",
+    "region_stitches": "Directional fill on aircraft/background; compact satin only on glyphs and outer rim."
   },
   "fbs_lexicon": [
     {
@@ -178,9 +227,32 @@
       "S_positive": "low-relief directional fill and compact narrow rim",
       "S_negative": "padded cord edge or metallic molded relief",
       "weight": 3
+    },
+    {
+      "F": "新款原创",
+      "Be": "换机型并重组构图、背景与字形，不是单图换字换色",
+      "S_positive": "new target model plus independent composition, motif and lettering plan",
+      "S_negative": "single-reference reconstruction or relabeling",
+      "weight": 5
     }
   ],
   "word_budget": 300,
   "measurements": "Visual design starting ranges estimated from the provided samples; not pixel annotations or factory specifications.",
-  "reference_strategy": "anchor-preserving graphic edit; content/spatial/style separated; no adapter or ControlNet execution claimed"
+  "reference_strategy": "multi-example collection synthesis; subject identity separate from freely designed composition, background and typography; no single-image reconstruction",
+  "compositions": {
+    "climb_offset": "Off-center rising aircraft on the right; S-shaped negative-space corridor on the left; no horizontal field split.",
+    "banking_cove": "Banking aircraft upper-left; broad curved counterforms form an open asymmetrical cove around it.",
+    "intercept_fan": "Near-horizontal aircraft lower-middle; off-center angular ray fan behind one wing; quiet upper corner."
+  },
+  "motifs": {
+    "broken_grid_cloud": "Fuse broken perspective grid into cloud-dyed thread islands, merging them into one rhythm with open regions.",
+    "tidal_ribbons": "Interweave two broad sea-flow ribbons and a broken warm accent arc as flat textile regions.",
+    "vector_facets": "Interlock three angular trajectory facets with one cool curved counterform; preserve breathing room."
+  },
+  "lettering": {
+    "side_stack": "Tall compact glyphs in a narrow left-side stack, integrated with the negative-space corridor.",
+    "right_pillar": "Compact upright glyph pillar on the right, balancing the aircraft with generous margins.",
+    "upper_corner": "Large cut-angle glyphs upper-right; integrate their edges with the ray geometry."
+  },
+  "collection_grammar": "Collection language: identifiable simplified aircraft, bold planar color blocks, selective vivid accents, integrated model glyphs, directional thread, slim embroidered boundary."
 }

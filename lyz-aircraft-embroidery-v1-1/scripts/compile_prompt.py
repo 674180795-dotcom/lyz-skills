@@ -57,14 +57,19 @@ def compile_brief(raw):
     if not isinstance(brief["label"], str) or not re.fullmatch(r"[A-Za-z0-9\u4e00-\u9fff -]{0,12}", brief["label"]):
         raise ValueError("Label: at most 12 letters/digits/CJK characters/spaces/hyphens")
     refs = brief["reference_images"]
-    if not isinstance(refs, list) or len(refs) > 2:
-        raise ValueError("Use at most two reference images")
-    roles = set()
+    if not isinstance(refs, list) or len(refs) > 4:
+        raise ValueError("Use at most one geometry and three series images")
+    roles = []
+    paths = set()
     for ref in refs:
         if not isinstance(ref, dict) or set(ref) != {"path", "role", "aircraft"}:
             raise ValueError("Each reference needs exactly path, role and observed aircraft")
-        if not isinstance(ref["role"], str) or ref["role"] not in {"geometry", "series"} or ref["role"] in roles:
-            raise ValueError("Use distinct geometry and series roles")
+        if not isinstance(ref["role"], str) or ref["role"] not in {"geometry", "series"}:
+            raise ValueError("Reference role must be geometry or series")
+        if ref["role"] == "geometry" and "geometry" in roles:
+            raise ValueError("Use at most one geometry reference")
+        if ref["role"] == "series" and roles.count("series") >= 3:
+            raise ValueError("Use at most three series references")
         if not isinstance(ref["path"], str):
             raise ValueError("Reference path must be a string")
         plain(ref["aircraft"], "reference aircraft", 40)
@@ -73,14 +78,24 @@ def compile_brief(raw):
         p = Path(ref["path"])
         if not p.is_absolute() or not p.is_file() or p.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
             raise ValueError("Reference must be an existing absolute local image path")
-        roles.add(ref["role"])
+        if p.resolve() in paths:
+            raise ValueError("Duplicate references cannot count as multiple collection examples")
+        paths.add(p.resolve())
+        roles.append(ref["role"])
+    plan = brief["design_plan"]
+    if not isinstance(plan, dict) or set(plan) != {"composition", "motif", "lettering"}:
+        raise ValueError("design_plan needs composition, motif and lettering")
+    for field, choices in [("composition", RULES["compositions"]), ("motif", RULES["motifs"]), ("lettering", RULES["lettering"])]:
+        if not isinstance(plan[field], str) or plan[field] not in choices:
+            raise ValueError(f"Invalid design_plan.{field}")
     family = RULES["families"][brief["family"]]
     common = RULES["common"]
-    lines = ["Use case: product-mockup. Create a sibling patch through reference-led graphic editing."]
+    lines = ["Use case: product-mockup. Invent a NEW collection product; synthesize the examples, never reconstruct one image.",
+             RULES["collection_grammar"]]
     for i, ref in enumerate(refs, 1):
-        meaning = ("CONTENT/SPATIAL anchor: preserve flat embroidered aircraft silhouette, proportions, overlap order and simplified shading; mirror only for heading"
+        meaning = ("target geometry only, not pose or layout"
                    if ref["role"] == "geometry" else
-                   "STYLE donor: " + family["style_borrow"] + "; do not borrow its aircraft")
+                   "series grammar only; do not borrow its aircraft or layout")
         lines.append(f"Reference {i} ({ref['aircraft']}): {meaning}.")
     lines += [
         f"Target {brief['aircraft']}: " + "; ".join(card["features"]) + ".",
@@ -90,11 +105,10 @@ def compile_brief(raw):
         common["simplification"],
         common["carrier"],
         common["hierarchy"] if brief["label"] else "Keep the main aircraft and background readable; no lettering.",
-        family["layout"] if brief["label"] else "One oblique aircraft balanced by the family field; no text block.",
-        family["field"],
+        RULES["compositions"][plan["composition"]],
+        RULES["motifs"][plan["motif"]],
         "Colors: " + family["palette"] + ".",
-        (f'Only text: "{brief["label"]}". ' + family["lettering"] if brief["label"] else "Omit all model lettering."),
-        family["stitch"],
+        (f'Only text: "{brief["label"]}". ' + RULES["lettering"][plan["lettering"]] if brief["label"] else "Omit all model lettering."),
         common["region_stitches"],
         common["presentation"],
     ]
@@ -107,10 +121,15 @@ def compile_brief(raw):
               "family_evidence": family["sources"], "six_axis_plan": {
                   "structure": card["features"], "omission": common["simplification"],
                   "color": family["palette"], "angle": RULES["poses"][brief["pose"]],
-                  "text": family["lettering"] if brief["label"] else "explicitly omitted",
-                  "series": family["layout"]},
+                  "text": RULES["lettering"][plan["lettering"]] if brief["label"] else "explicitly omitted",
+                  "series": RULES["collection_grammar"]},
               "priority": RULES["priority"], "fbs_weights": RULES["fbs_lexicon"],
-              "reference_contract": {"geometry": "content/spatial anchor; preserve graphic aircraft", "series": family["style_borrow"]},
+              "reference_contract": {"geometry": "target identity only; new pose and composition", "series": "synthesize shared grammar; never reconstruct a single example"},
+              "novelty_plan": {"changed_axes": ["composition", "background_motif", "lettering_layout"],
+                               "composition": RULES["compositions"][plan["composition"]],
+                               "motif": RULES["motifs"][plan["motif"]],
+                               "lettering": RULES["lettering"][plan["lettering"]],
+                               "visual_originality": "pending_human; a complete plan is not proof of originality"},
               "execution_method": RULES["reference_strategy"],
               "image_generated": False, "human_rating": "pending"}
     request = {"kind": "host-agent-call-plan", "preferred_tool": "image_gen.imagegen", "prompt": prompt,

@@ -1,8 +1,13 @@
 {
-  "aircraft": "J-20",
+  "aircraft": "J-10C",
   "family": "kinetic_grid",
   "pose": "dorsal_left",
-  "label": "J20",
+  "label": "J10C",
   "ratio": "1:1",
-  "reference_images": []
+  "reference_images": [],
+  "design_plan": {
+    "composition": "climb_offset",
+    "motif": "broken_grid_cloud",
+    "lettering": "side_stack"
+  }
 }

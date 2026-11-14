@@ -44,9 +44,11 @@ class RuntimeContract(unittest.TestCase):
         self.assertIn("three-quarter", p)
 
     def test_text_is_integrated_and_not_footer(self):
-        p, _, _ = c.compile_brief({"label": "J35A", "family": "cloud_ink"})
+        p, d, _ = c.compile_brief({"aircraft": "J-35A", "label": "J35A", "family": "cloud_ink",
+                                  "design_plan": {"composition": "banking_cove", "motif": "tidal_ribbons", "lettering": "right_pillar"}})
         self.assertIn('Only text: "J35A"', p)
-        self.assertIn("lower-right", p)
+        self.assertIn(c.RULES["lettering"]["right_pillar"], p)
+        self.assertEqual(len(d["novelty_plan"]["changed_axes"]), 3)
         self.assertNotIn("small block letters below the aircraft", p)
 
     def test_invalid_and_injected_input_rejected(self):
@@ -57,11 +59,40 @@ class RuntimeContract(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             image = Path(t) / "dummy.png"
             image.write_bytes(b'host must inspect image bytes before passing')
-            refs = [{"path": str(image), "role": role, "aircraft": "J-35A"} for role in ("geometry", "series")]
+            series = Path(t) / "series.png"
+            series.write_bytes(b'separate series example')
+            refs = [{"path": str(image), "role": "geometry", "aircraft": "J-35A"},
+                    {"path": str(series), "role": "series", "aircraft": "J-20"}]
             p, d, _ = c.compile_brief({"aircraft": "J-35A", "family": "cloud_ink", "reference_images": refs})
             self.assertLessEqual(d["word_count"], 300)
-            self.assertIn("STYLE donor", p)
+            self.assertIn("series grammar only", p)
             with self.assertRaises(ValueError): c.compile_brief({"reference_images": [refs[0], refs[0]]})
+
+    def test_multiple_style_examples_can_synthesize_other_aircraft(self):
+        with tempfile.TemporaryDirectory() as t:
+            refs = []
+            for i, aircraft in enumerate(["J-20", "J-35A"]):
+                image = Path(t) / f"style{i}.png"
+                image.write_bytes(b'host inspects actual bytes')
+                refs.append(dict(path=str(image), role="series", aircraft=aircraft))
+            p, d, request = c.compile_brief(dict(aircraft="J-10C", reference_images=refs))
+            self.assertEqual(len(request["references_to_inspect_and_pass"]), 2)
+            self.assertIn("one rear engine nozzle", p)
+            self.assertNotIn("CONTENT/SPATIAL anchor", p)
+            self.assertNotIn("preserve anchor aircraft", p.lower())
+            self.assertEqual(d["novelty_plan"]["visual_originality"].split(';')[0], "pending_human")
+            for i in range(2, 4):
+                image = Path(t) / f"style{i}.png"
+                image.write_bytes(b'additional style example')
+                refs.append(dict(path=str(image), role="series", aircraft="J-6"))
+            with self.assertRaises(ValueError): c.compile_brief(dict(aircraft="J-10C", reference_images=refs))
+
+    def test_plan_fields_required_and_family_cannot_forbid_target_intake(self):
+        with self.assertRaises(ValueError): c.compile_brief({"design_plan": {"composition": "climb_offset"}})
+        with self.assertRaises(ValueError): c.compile_brief({"design_plan": {"composition": "trace_anchor", "motif": "tidal_ribbons", "lettering": "right_pillar"}})
+        p, _, _ = c.compile_brief(dict(aircraft="J-7", family="red_charge"))
+        self.assertIn("circular nose intake with central cone", p)
+        self.assertNotIn("ring nose intake", p)
 
     def test_foreign_geometry_rejected_but_style_allowed(self):
         with tempfile.TemporaryDirectory() as t:

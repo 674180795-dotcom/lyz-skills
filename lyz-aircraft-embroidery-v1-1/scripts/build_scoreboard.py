@@ -19,22 +19,26 @@ def relative_image(value):
 def render_review(data):
     if set(data) != {"session_id", "rubric_version", "title", "intro", "criteria", "cases"}:
         raise ValueError("Review data must not contain extra/private fields")
-    if data["rubric_version"] != "r2" or len(data["criteria"]) != 5:
-        raise ValueError("Require the frozen r2 five-criterion rubric")
-    expected = [("structure", 3, True), ("series", 3, True), ("color", 2, False),
-                ("angle", 2, False), ("text", 1, False)]
+    rubrics = {
+        "r2": [("structure", 3, True), ("series", 3, True), ("color", 2, False), ("angle", 2, False), ("text", 1, False)],
+        "r3": [("structure", 3, True), ("series", 3, True), ("originality", 3, True), ("aesthetic", 2, False), ("text", 1, False)],
+    }
+    if data["rubric_version"] not in rubrics or len(data["criteria"]) != 5:
+        raise ValueError("Require a frozen r2/r3 five-criterion rubric")
+    expected = rubrics[data["rubric_version"]]
+    variants_per_case = 2 if data["rubric_version"] == "r2" else 1
     for criterion, (name, weight, critical) in zip(data["criteria"], expected):
         if set(criterion) != {"id", "label", "weight", "critical", "target", "anchors"}:
             raise ValueError("Unknown criterion fields")
         if (criterion["id"], criterion["weight"], criterion["critical"]) != (name, weight, critical):
-            raise ValueError("Frozen r2 criterion order/weight/core flag changed")
+            raise ValueError("Frozen criterion order/weight/core flag changed")
         if set(criterion["anchors"]) != {"1", "3", "5"}:
             raise ValueError("Unknown anchor fields")
     if len(data["cases"]) != 3:
         raise ValueError("Require three matched tasks")
     labels = []
     for case in data["cases"]:
-        if set(case) != {"id", "title", "prompt", "references", "variants"} or len(case["variants"]) != 2:
+        if set(case) != {"id", "title", "prompt", "references", "variants"} or len(case["variants"]) != variants_per_case:
             raise ValueError("Unknown public task fields or unmatched variants")
         for ref in case["references"]:
             if set(ref) != {"id", "image"}:
@@ -45,8 +49,9 @@ def render_review(data):
                 raise ValueError("Use anonymous images without private links")
             labels.append(variant["id"])
             relative_image(variant["image"])
-    if sorted(labels) != list("ABCDEF"):
-        raise ValueError("Require six unique anonymous labels A-F")
+    expected_labels = list("ABCDEF") if variants_per_case == 2 else list("ABC")
+    if sorted(labels) != expected_labels:
+        raise ValueError("Require the unique labels for the frozen evaluation mode")
     encoded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")
     template = (ROOT / "assets/human-scorecard.html").read_text(encoding="utf-8")
     return re.sub(r'(<script type="application/json" id="review-data">)[\s\S]*?(</script>)',
